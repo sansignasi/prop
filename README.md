@@ -16,7 +16,7 @@ TAULELL:
     Conté la matriu de 8*8 de la partida actual
     Cada posició de la matriu indicarà si hi ha peça, de quin jugador és la peça i quin tipus de peça es
     Conte funcions per saber si la posicio a la que vol moure es valida
-    Moure peçaS
+    Moure peça
    
 PEÇA:
     Cada peça tindrà un atribut que indicarà de quin tipus és
