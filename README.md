@@ -1,10 +1,9 @@
 # PROP
 Classes:
     - Taulell
-    - Jugador
-    - Maquina1
-    - Maquina2
-    - Usuari
+    - J. Maquina1
+    - J. Maquina2
+    - J. Usuari
     - Peça
     - Base d'Usuaris
     - Problema
@@ -18,7 +17,12 @@ TAULELL:
     Conte funcions per saber si la posicio a la que vol moure es valida
     Moure peça
    
-PEÇA:
-    Cada peça tindrà un atribut que indicarà de quin tipus és
+Dubtes Pol:
+    - Cada jugador té un vector de N peces on cada peça té la seva pròpia posició i el tipus i el jugador
+    - Per cridar a l'algorisme et caldrà també el vector de l'oponent -> es pot accedir?
+    - La matriu del taulell tindrà 8*8 posicions on cada casella està o bé buida o bé té una peça
     
-    
+REPARTIMENT CLASSES
+    Pol:
+    Ignacio:
+    Pablo Manolo Escobar:
