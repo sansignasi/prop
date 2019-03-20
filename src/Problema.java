@@ -1,22 +1,22 @@
 package src;
+import javafx.util.Pair;
 
 public class Problema {
     //ATRIBUTS
-    //string nomprob (nom del problema)
-    //string FEM (codificacio en FEM del problema)
-    //string dificultad (dificultad asociada al problema)
-    //pair(int,int) primer int -> num maximo de jugadas para el jaquemate
-    //              segundo int -> jugador que ataca 0 blancas 1 negras
-    //bool validat (validat o no)
-    //string creador (nombre del usuario creador del problema)
-    //Taulell T (representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
+    private String nomprob; //nom del problema
+    private String FEM; //codificacio en FEM del problema
+    private String dificultad; //dificultad asociada al problema
+    private Pair<Integer,Integer> tema; /*primer int -> num maximo de jugadas para el jaquemate
+                                         segundo int -> jugador que ataca 0 blancas 1 negras*/
+    private Boolean validat; //validat o no
+    private String creador; //nombre del usuario creador del problema
+    Taulell T; //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
     //METODES
-    //calcularDificultad()
+    public void calcularDificultad() {
         //PRE:
         //POST: calcula la dificultad asociada al problema
-    //crearProblema()
-        //PRE: el problema identificado como nomprob no existe
-        //POST: crea el problema nomprob
+    }
+
     //borrarProblema()
         //PRE: el problema identificado como nomprob existe
         //POST: elimina el problema nomprob de la base de problemas y su ranking asociado
