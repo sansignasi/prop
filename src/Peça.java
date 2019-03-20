@@ -1,15 +1,45 @@
 package src;
 
+import java.awt.*;
+
 public class Peça {
+
+    public enum ColorPeça{
+        Black,
+        White
+    }
+
+    public enum TipusPeça{
+        King,
+        Queen,
+        Rook,
+        Bishop,
+        Knight,
+        Pawn,
+        None
+    }
+
+
+
+
     //ATRIBUTS
-    private pair<char,int> id;
-        //Pair que conté la informació que identifica a una Peça. El seu tipus (id.first) i un número que
-        //diferencia les peces del mateix tipus
-    private pair<int,int> pos;
-        //Pair que representa la posició i,j on es troba la peça al taulell
+    private ColorPeça color;
+        //Color de la peça (de la enum)
+    private TipusPeça tipus;
+        //Tipus de peça (de la enum)
+
+
     //MÈTODES
-    bool posValida(int i,int j){return false};
+    public Peça(){
+
+    }
+
+    public Peça(ColorPeça c, TipusPeça t){
+        this.ColorPeça = c;
+        this.TipusPeça = t;
+    }
+    bool posValida(int p){return false};
         //PRE:
-        //POST: retorna true si la Peça pot desplaçar-se a la posició i,j, false altrament.
+        //POST: retorna true si la Peça pot desplaçar-se a la posició p, false altrament.
 
 }
