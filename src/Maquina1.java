@@ -14,6 +14,16 @@ public class Maquina1 { //Minimax amb profunditat limitada
         return p;
     }
 
+    public int Heuristic1(Taulell t, int jugador){
+        int ret = 0;
+        return ret;
+    }
+
+    public int Heuristic2(Taulell t, int jugador){
+        int ret = 0;
+        return ret;
+    }
+
     public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
         ArrayList ret = new ArrayList();
         return ret;
@@ -47,7 +57,8 @@ public class Maquina1 { //Minimax amb profunditat limitada
     public int valorMax(Taulell t, int jugador){
         int vmax;
         if (estatTerminal(t,jugador)){
-            //retorna la puntuació de l'heurístic -> classe a part o funció interna
+            if (jugador == 0) return Heuristic1(t, jugador);
+            else return Heuristic2(t,jugador);
         }
         else{
             vmax = -9999;
