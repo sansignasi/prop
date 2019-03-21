@@ -122,4 +122,10 @@ public class Taulell {
     public Taulell() {
         matriu = new Peça[8][8];
     }
+
+    public boolean teRei(int jug){
+        Jugador j = getJugador(jug);
+
+        for (int i=0; i<)
+    }
 }

@@ -4,6 +4,11 @@ import lib.Pair;
 import java.util.ArrayList;
 
 public class Maquina1 { //Minimax amb profunditat limitada
+
+    private int prof;
+
+    public void initializeProf(){}
+
     public Pair getMovimentAlgorisme1(Taulell t, int jugador){
 
 
@@ -45,7 +50,9 @@ public class Maquina1 { //Minimax amb profunditat limitada
 
         for (int i=0; i<p.size();++i) {
             Pair mov = p.get(i);
-            cmax = valorMin(t.mourePeça(p.get(i)),jugador);
+            t.mourePeça(p.get(i));
+            --prof;
+            cmax = valorMin(t,jugador);
             if (cmax > max){
                 max = cmax;
                 movret = mov;
@@ -64,7 +71,9 @@ public class Maquina1 { //Minimax amb profunditat limitada
             vmax = -9999;
             ArrayList<Pair> p = calculaMovimentsPosibles(t,jugador); //no retorna un enter, retorna un conjunt de moviments
             for (int i=0; i<p.size(); ++i){
-                vmax = Math.max(vmax,valorMin(t.mourePeça(p.get(i)),jugador));
+                t.mourePeça(p.get(i));
+                --prof;
+                vmax = Math.max(vmax,valorMin(t,jugador));
             }
             return vmax;
         }
@@ -73,13 +82,16 @@ public class Maquina1 { //Minimax amb profunditat limitada
     public int valorMin(Taulell t, int jugador){
         int vmin;
         if (estatTerminal(t,jugador)){
-            //retorna la puntuació de l'heurístic -> classe a part o funció interna
+            if (jugador == 0) return Heuristic1(t, jugador);
+            else return Heuristic2(t,jugador);
         }
         else{
             vmin = 9999;
             ArrayList<Pair> p = calculaMovimentsPosibles(t,jugador); //no retorna un enter, retorna un conjunt de moviments
             for (int i=0; i<p.size(); ++i){
-                vmin = Math.min(vmin,valorMax(t.mourePeça(p.get(i)),jugador));
+                t.mourePeça(p.get(i));
+                --prof;
+                vmin = Math.min(vmin,valorMax(t,jugador));
             }
             return vmin;
         }

@@ -29,6 +29,7 @@ public class Peça {
         //Tipus de peça (de la enum)
 
 
+
     //MÈTODES
     public Peça(){
 
@@ -38,8 +39,10 @@ public class Peça {
         this.ColorPeça = c;
         this.TipusPeça = t;
     }
-    bool posValida(int p){return false};
+    public boolean posValida(int p){return false};
         //PRE:
         //POST: retorna true si la Peça pot desplaçar-se a la posició p, false altrament.
+
+
 
 }
