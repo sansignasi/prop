@@ -1,5 +1,7 @@
 package src;
 
+import lib.Pair;
+
 public class Taulell {
     //ATRIBUTS
     private Peça [] matriu;
