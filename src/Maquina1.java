@@ -32,72 +32,44 @@ public class Maquina1 { //Minimax amb profunditat limitada
             if (p.get(i).tePeça() && jugador == 1){ //jugador 1 enemic
 
                 Peça pC = p.get(i);
-
-                if (pC.tipusPeça == 'K') ret -= 900;
-                else if (pC.tipusPeça == 'Q') ret -= 90;
-                else if (pC.tipusPeça == 'T') ret -= 50;
-                else if (pC.tipusPeça == 'B') ret -= 30;
-                else if (pC.tipusPeça == 'P') ret -= 10;
-                else if (pC.tipusPeça == 'N') ret -= 30;
+                ret += pC.getPuntuacio();
             }
-            else if (p.get(i).tePeça() && jugador == 0){ //jugador 1 enemic
+            else if (p.get(i).tePeça() && jugador == 0){
 
                 Peça pC = p.get(i);
-
-                if (pC.tipusPeça == 'K') ret += 900;
-                if (pC.tipusPeça == 'Q') ret += 90;
-                if (pC.tipusPeça == 'T') ret += 50;
-                if (pC.tipusPeça == 'B') ret += 30;
-                if (pC.tipusPeça == 'P') ret += 10;
-                if (pC.tipusPeça == 'N') ret += 30;
+                ret -= pC.getPuntuacio();
             }
         }
         return ret;
     }
 
     public int Heuristic2(Taulell t, int jugador){
-        int ret = 0;
-        return ret;
 
         ArrayList<Peça> p = t.getTaulell();
 
         int ret = 0;
 
         for (int i=0; i<p.size();++i){
-            if (p.get(i).tePeça() && jugador == 0){ //jugador 1 enemic
+            if (p.get(i).tePeça() && jugador == 0){ //jugador 0 enemic
 
                 Peça pC = p.get(i);
-
-                if (pC.tipusPeça == 'K') ret -= 900;
-                else if (pC.tipusPeça == 'Q') ret -= 90;
-                else if (pC.tipusPeça == 'T') ret -= 50;
-                else if (pC.tipusPeça == 'B') ret -= 30;
-                else if (pC.tipusPeça == 'P') ret -= 10;
-                else if (pC.tipusPeça == 'N') ret -= 30;
+                ret += pC.getPuntuacio();
             }
-            else if (p.get(i).tePeça() && jugador == 1){ //jugador 1 enemic
+            else if (p.get(i).tePeça() && jugador == 1){
 
                 Peça pC = p.get(i);
-
-                if (pC.tipusPeça == 'K') ret += 900;
-                if (pC.tipusPeça == 'Q') ret += 90;
-                if (pC.tipusPeça == 'T') ret += 50;
-                if (pC.tipusPeça == 'B') ret += 30;
-                if (pC.tipusPeça == 'P') ret += 10;
-                if (pC.tipusPeça == 'N') ret += 30;
+                ret -= pC.getPuntuacio();
             }
         }
         return ret;
     }
 
     public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
-        ArrayList ret = new ArrayList();
-        return ret;
+        return null;
     }
 
     public boolean estatTerminal(Taulell t, int jugador){
         if (! t.teRei(jugador)) return true;
-        else if (t.getMoviments() == 0) return true;
         else if (prof == 0) return true;
         else return false;
     }
@@ -111,7 +83,7 @@ public class Maquina1 { //Minimax amb profunditat limitada
 
         for (int i=0; i<p.size();++i) {
             Pair mov = p.get(i);
-            t.actualitzarTaulell((Peça)p.get(i).getFirst(),(int)p.get(i).getSecond());
+            t.actualitzarTaulell((Peça)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             --prof;
             cmax = valorMin(t,jugador);
             if (cmax > max){
