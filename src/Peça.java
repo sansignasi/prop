@@ -47,8 +47,7 @@ public class Peça {
         if(this.tipus==TipusPeça.Knight){this.valor=3}
         if(this.tipus==TipusPeça.Pawn){this.valor=1}
     }
-    bool posValida(int p){return false};
-        //PRE:
+boolean        //PRE:
         //POST: retorna true si la Peça pot desplaçar-se a la posició p, false altrament.
 
 }
