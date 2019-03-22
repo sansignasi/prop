@@ -2,7 +2,7 @@ package src;
 
 public class Taulell {
     //ATRIBUTS
-    private Peça [] matriu;
+    private Peça [][] taulell;
         //Matriu d'objectes Peça ([i][j] = null si en la posició i,j no hi ha cap Peça)
         //i = files, j = columnes
     //MÈTODES
@@ -10,6 +10,7 @@ public class Taulell {
         //PRE: matriu està buida
         //POST: s'inicialitza el taulell amb les peces de cada jugador a la posició del problema
         int index = 0;
+        int fila = 0;
         for (int i = 0; i<FEN.length (); i++) {
             char c = FEN.charAt (i);
             if (index < 64 && c != ' ') {
@@ -47,7 +48,7 @@ public class Taulell {
                 }
                 else if (c == 'P')
                 {
-                    matriu[index] = new Peça(Peça.ColorPeça.White, Peça.TipusPeça.Pawn);
+                    taulell[fila][index/fila] = new Peça(Peça.ColorPeça.White, Peça.TipusPeça.Pawn);
                     index++;
                 }
                 else if (c == 'N')
@@ -107,6 +108,7 @@ public class Taulell {
                 }
                 else if (c == '/')
                 {
+                    fila++;
                     continue;
                 }
             }
