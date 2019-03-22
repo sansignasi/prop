@@ -29,7 +29,7 @@ public class Maquina1 { //Minimax amb profunditat limitada
         int ret = 0;
 
         for (int i=0; i<p.size();++i){
-            if (p.get(i).tePeça() and jugador == 1){ //jugador 1 enemic
+            if (p.get(i).tePeça() && jugador == 1){ //jugador 1 enemic
 
                 Peça pC = p.get(i);
 
@@ -40,7 +40,7 @@ public class Maquina1 { //Minimax amb profunditat limitada
                 else if (pC.tipusPeça == 'P') ret -= 10;
                 else if (pC.tipusPeça == 'N') ret -= 30;
             }
-            else if (p.get(i).tePeça() and jugador == 0){ //jugador 1 enemic
+            else if (p.get(i).tePeça() && jugador == 0){ //jugador 1 enemic
 
                 Peça pC = p.get(i);
 
