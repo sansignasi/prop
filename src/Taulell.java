@@ -1,7 +1,5 @@
 package src;
 
-import lib.Pair;
-
 public class Taulell {
     //ATRIBUTS
     private Peça [] matriu;
@@ -123,11 +121,5 @@ public class Taulell {
         //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
     public Taulell() {
         matriu = new Peça[8][8];
-    }
-
-    public boolean teRei(int jug){
-        Jugador j = getJugador(jug);
-
-        for (int i=0; i<)
     }
 }
