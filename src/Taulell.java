@@ -1,11 +1,43 @@
 package src;
 
+import lib.Pair;
+
 public class Taulell {
+
     //ATRIBUTS
-    private Peça [][] taulell;
+
+    private Piece [][] matriu;
         //Matriu d'objectes Peça ([i][j] = null si en la posició i,j no hi ha cap Peça)
         //i = files, j = columnes
+
+
+    //CREADORA
+    public Taulell() {
+        Piece[][] matriu = new Piece[8][8];
+    }
+
+    //GETTERS
+
+    public Piece[][] getTaulell(){
+        return matriu;
+    }
+
+    public Piece getPiece(int i, int j){
+        return matriu[i][j];
+    }
+    //SETTERS
+
+    public void actualitzarTaulell(Piece p1, Pair p){}
+    //PRE: p1 és una peça de la matriu i p una posició vàlida on es pot moure p1
+    //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
+
     //MÈTODES
+
+    public boolean tePiece(int i, int j){
+        if (matriu[i][j] == null) return false;
+        else return true;
+    }
+
     void carregaFEN(String fen) throws IncorrectFENException {
         for (char keyVar : this.squares.keySet()) {
             for (int j = 1; j <= 8; j++) {
@@ -61,13 +93,12 @@ public class Taulell {
             throw new IncorrectFENException("Color of the player to move next incorrect.");
         }
     }
+
     void mostrarTaulell() {}
         //PRE:
         //POST: mostra l'estat actual de les peces al taulell
-    void actualitzarTaulell(Peça p1, pos p){}
-        //PRE: p1 és una peça de la matriu i p una posició vàlida on es pot moure p1
-        //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
-    public Taulell() {
-        matriu = new Peça[8][8];
-    }
+
+
+
+
 }

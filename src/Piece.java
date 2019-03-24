@@ -2,14 +2,14 @@ package src;
 
 import java.awt.*;
 
-public class Peça {
+public class Piece {
 
-    public enum ColorPeça{
+    public enum PieceColor{
         Black,
         White
     }
 
-    public enum TipusPeça{
+    public enum TipusPiece{
         King,
         Queen,
         Rook,
@@ -23,22 +23,21 @@ public class Peça {
 
 
     //ATRIBUTS
-    private ColorPeça color;
+    private PieceColor color;
         //Color de la peça (de la enum)
-    private TipusPeça tipus;
+    private TipusPiece tipus;
         //Tipus de peça (de la enum)
 
-
     //MÈTODES
-    public Peça(){
-
+    public Piece(){
+        Piece p = new Piece();
     }
 
-    public Peça(ColorPeça c, TipusPeça t){
-        this.ColorPeça = c;
-        this.TipusPeça = t;
+    public Piece(PieceColor c, TipusPiece t){
+        PieceColor = c;
+        TipusPiece = t;
     }
-    bool posValida(int p){return false};
+    boolean posValida(int p){return false};
         //PRE:
         //POST: retorna true si la Peça pot desplaçar-se a la posició p, false altrament.
 

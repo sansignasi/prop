@@ -1,5 +1,5 @@
 package src;
-import javafx.util.Pair;
+import lib.Pair;
 
 public class Problema {
     //ATRIBUTS

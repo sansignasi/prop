@@ -24,20 +24,22 @@ public class Maquina1 { //Minimax amb profunditat limitada
 
     public int Heuristic1(Taulell t, int jugador){
 
-        ArrayList<Peça> p = t.getTaulell();
+        Piece[][] p = t.getTaulell();
 
         int ret = 0;
 
-        for (int i=0; i<p.size();++i){
-            if (p.get(i).tePeça() && jugador == 1){ //jugador 1 enemic
+        for (int i=0; i< p.length; ++i) {
+            for (int j = 0; j < p[0].length; ++j) {
 
-                Peça pC = p.get(i);
-                ret -= pC.getPuntuacio();
-            }
-            else if (p.get(i).tePeça() && jugador == 0){
+                if (t.tePiece(i,j) && jugador == 1) { //jugador 1 enemic
+                    Piece pC = t.getPiece(i,j);
+                    ret -= pC.getPuntuacio();
+                }
+                else if (t.tePiece(i,j) && jugador == 0) {
 
-                Peça pC = p.get(i);
-                ret += pC.getPuntuacio();
+                    Piece pC = t.getPiece(i,j);
+                    ret += pC.getPuntuacio();
+                }
             }
         }
         return ret;
@@ -45,20 +47,22 @@ public class Maquina1 { //Minimax amb profunditat limitada
 
     public int Heuristic2(Taulell t, int jugador){
 
-        ArrayList<Peça> p = t.getTaulell();
+        Piece [][] p = t.getTaulell();
 
         int ret = 0;
 
-        for (int i=0; i<p.size();++i){
-            if (p.get(i).tePeça() && jugador == 0){ //jugador 0 enemic
+        for (int i=0; i< p.length; ++i) {
+            for (int j = 0; j < p[0].length; ++j) {
 
-                Peça pC = p.get(i);
-                ret -= pC.getPuntuacio();
-            }
-            else if (p.get(i).tePeça() && jugador == 1){
+                if (t.tePiece(i,j) && jugador == 0) { //jugador 0 enemic
+                    Piece pC = t.getPiece(i,j);
+                    ret -= pC.getPuntuacio();
+                }
+                else if (t.tePiece(i,j) && jugador == 1) {
 
-                Peça pC = p.get(i);
-                ret += pC.getPuntuacio();
+                    Piece pC = t.getPiece(i,j);
+                    ret += pC.getPuntuacio();
+                }
             }
         }
         return ret;
@@ -67,10 +71,16 @@ public class Maquina1 { //Minimax amb profunditat limitada
     public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
         ArrayList<Pair> a = new ArrayList<Pair>();
+        Piece[][] m = t.getTaulell();
 
         if (jugador == 0){ //som les blanques
 
-            for (int i=0; i<)
+            for (int i=0; i< m.length;++i) {
+
+            }
+        }
+        else{ //som les negres
+
         }
 
         return a;
@@ -91,7 +101,7 @@ public class Maquina1 { //Minimax amb profunditat limitada
 
         for (int i=0; i<p.size();++i) {
             Pair mov = p.get(i);
-            t.actualitzarTaulell((Peça)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
+            t.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             --prof;
             cmax = valorMin(t,jugador);
             if (cmax > max){
@@ -112,7 +122,7 @@ public class Maquina1 { //Minimax amb profunditat limitada
             vmax = -9999;
             ArrayList<Pair> p = calculaMovimentsPosibles(t,jugador); //no retorna un enter, retorna un conjunt de moviments
             for (int i=0; i<p.size(); ++i){
-                t.actualitzarTaulell((Peça)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
+                t.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 --prof;
                 vmax = Math.max(vmax,valorMin(t,jugador));
             }
@@ -130,7 +140,7 @@ public class Maquina1 { //Minimax amb profunditat limitada
             vmin = 9999;
             ArrayList<Pair> p = calculaMovimentsPosibles(t,jugador); //no retorna un enter, retorna un conjunt de moviments
             for (int i=0; i<p.size(); ++i){
-                t.actualitzarTaulell((Peça)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
+                t.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 --prof;
                 vmin = Math.min(vmin,valorMax(t,jugador));
             }
