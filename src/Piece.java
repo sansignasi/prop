@@ -1,6 +1,9 @@
 package src;
 
+import lib.Pair;
+
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Piece {
 
@@ -49,17 +52,21 @@ public class Piece {
 
     public String getTipus(){
         if(tipus.equals("King")) return "King";
-        if(tipus.equals("Queen")) return "Queen";
-        if(tipus.equals("Rook")) return "Rook";
-        if(tipus.equals("Bishop")) return "Bishop";
-        if(tipus.equals("Knight")) return "Knight";
-        if(tipus.equals("Pawn")) return "Pawn";
+        else if(tipus.equals("Queen")) return "Queen";
+        else if(tipus.equals("Rook")) return "Rook";
+        else if(tipus.equals("Bishop")) return "Bishop";
+        else if(tipus.equals("Knight")) return "Knight";
+        else if(tipus.equals("Pawn")) return "Pawn";
         else return null;
     }
 
     public boolean posValida(int p){return false};
         //PRE:
         //POST: retorna true si la Peça pot desplaçar-se a la posició p, false altrament.
+
+    public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j){
+        return null;
+    }
 
 
 
