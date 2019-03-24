@@ -3,6 +3,7 @@ import lib.Pair;
 
 import java.util.ArrayList;
 
+
 public class Maquina1 { //Minimax amb profunditat limitada
 
     private int prof;
@@ -70,17 +71,16 @@ public class Maquina1 { //Minimax amb profunditat limitada
 
     public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
-        ArrayList<Pair> a = new ArrayList<Pair>();
+        ArrayList<Pair> a = new ArrayList<>();
         Piece[][] m = t.getTaulell();
 
-        if (jugador == 0){ //som les blanques
-
-            for (int i=0; i< m.length;++i) {
-
+        for (int i=0; i< m.length; ++i) {
+            for (int j = 0; j < m[0].length; ++j){
+                if (! (m[i][j] == null) && m[i][j].getJugador() == jugador){
+                    ArrayList<Pair> aux = m[i][j].calculaMovimentPiece(m,i,j);
+                    //concatenem aux amb a
+                }
             }
-        }
-        else{ //som les negres
-
         }
 
         return a;

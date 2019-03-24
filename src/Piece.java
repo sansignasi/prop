@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class Piece {
 
+
     public enum PieceColor{
         Black,
         White
@@ -29,6 +30,11 @@ public class Piece {
         //Tipus de peça (de la enum)
 
     //MÈTODES
+
+    public int getJugador(){ //RETORNAM UN 0 SI LA PEÇA ES BLANCA I UN 1 SI ES NEGRA PORFA
+
+    }
+
     public Piece(){
         Piece p = new Piece();
     }
@@ -37,9 +43,10 @@ public class Piece {
         PieceColor = c;
         TipusPiece = t;
     }
-    boolean posValida(int p){return false};
+    public boolean posValida(int p){return false};
         //PRE:
         //POST: retorna true si la Peça pot desplaçar-se a la posició p, false altrament.
+
 
 
 }
