@@ -42,4 +42,5 @@ public class Peça {
         //PRE:
         //POST: retorna true si la Peça pot desplaçar-se a la posició p, false altrament.
 
+
 }
