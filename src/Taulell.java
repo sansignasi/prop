@@ -38,6 +38,16 @@ public class Taulell {
         else return true;
     }
 
+    public boolean teRei(int jg){
+
+        for (int i = 0; i < matriu.length; ++i){
+            for (int j = 0; j < matriu[0].length; ++j){
+                if (matriu[i][j].getTipus() == "King" && matriu[i][j].getJugador() == jg) return true;
+            }
+        }
+        return false;
+    }
+
     void carregaFEN(String fen) throws IncorrectFENException {
         for (char keyVar : this.squares.keySet()) {
             for (int j = 1; j <= 8; j++) {

@@ -31,8 +31,9 @@ public class Piece {
 
     //MÈTODES
 
-    public int getJugador(){ //RETORNAM UN 0 SI LA PEÇA ES BLANCA I UN 1 SI ES NEGRA PORFA
-
+    public int getJugador(){
+        if (color.equals("Black")) return 1;
+        else return 0;
     }
 
     public Piece(){
@@ -40,9 +41,22 @@ public class Piece {
     }
 
     public Piece(PieceColor c, TipusPiece t){
-        PieceColor = c;
-        TipusPiece = t;
+        this.color = c;
+        this.tipus = t;
     }
+
+    @Override
+
+    public String getTipus(){
+        if(tipus.equals("King")) return "King";
+        if(tipus.equals("Queen")) return "Queen";
+        if(tipus.equals("Rook")) return "Rook";
+        if(tipus.equals("Bishop")) return "Bishop";
+        if(tipus.equals("Knight")) return "Knight";
+        if(tipus.equals("Pawn")) return "Pawn";
+        else return null;
+    }
+
     public boolean posValida(int p){return false};
         //PRE:
         //POST: retorna true si la Peça pot desplaçar-se a la posició p, false altrament.
