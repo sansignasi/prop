@@ -25,7 +25,7 @@ public class Partida {
     public void setEstat(String estat) {
         this.estat = estat;
     }
-/*
+
     public void jugar(){
         estat = "curs";
         Instant start = Instant.now();
@@ -37,7 +37,7 @@ public class Partida {
         Instant finish = Instant.now();
         temps = Duration.between(start, finish).toSeconds();
         finalizar();
-    }*/
+    }
 
 
 

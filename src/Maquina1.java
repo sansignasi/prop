@@ -11,7 +11,7 @@ public class Maquina1 { //Minimax amb profunditat limitada
     public void initializeProf(){
 
     }
-/*
+
     public Pair getMovimentAlgorisme1(Taulell t, int jugador){
 
 
@@ -23,7 +23,7 @@ public class Maquina1 { //Minimax amb profunditat limitada
         Pair p = MiniMax(t,jugador);
         return p;
     }
-/
+
     public int Heuristic1(Taulell t, int jugador){
 
         Piece[][] p = t.getTaulell();
@@ -147,5 +147,5 @@ public class Maquina1 { //Minimax amb profunditat limitada
             }
             return vmin;
         }
-    }*/
+    }
 }
