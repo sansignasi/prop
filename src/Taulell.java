@@ -32,7 +32,7 @@ public class Taulell {
     //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
 
     //MÈTODES
-
+    /*
     public boolean tePiece(int i, int j){
         if (matriu[i][j] == null) return false;
         else return true;
@@ -108,5 +108,5 @@ public class Taulell {
 
 
 
-
+*/
 }
