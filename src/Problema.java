@@ -16,7 +16,6 @@ public class Problema {
         //PRE:
         //POST: calcula la dificultad asociada al problema
     }
-
     //borrarProblema()
         //PRE: el problema identificado como nomprob existe
         //POST: elimina el problema nomprob de la base de problemas y su ranking asociado
