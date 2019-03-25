@@ -28,6 +28,10 @@ public class Piece {
     //Color de la peça (de la enum)
     private TipusPiece tipus;
     //Tipus de peça (de la enum)
+    private int valor;
+    //Valor de la peça
+
+
 
     //MÈTODES
 
@@ -44,6 +48,32 @@ public class Piece {
         this.color = c;
         this.tipus = t;
     }
+    public Piece(char c,char t) {
+        //COLOR
+        if (c=='b'){
+            this.color = PieceColor.Black;
+        }
+        else this.color = PieceColor.White;
+        //TIPUS
+        if (t=='k'){
+            this.tipus = TipusPiece.King;
+        }
+        else if (t=='q'){
+            this.tipus = TipusPiece.Queen;
+        }
+        else if (t=='r'){
+            this.tipus = TipusPiece.Rook;
+        }
+        else if (t=='b'){
+            this.tipus = TipusPiece.Bishop;
+        }
+        else if (t=='n'){
+            this.tipus = TipusPiece.Knight;
+        }
+        else if (t=='p') {
+            this.tipus = TipusPiece.Pawn;
+        }
+    }
 
     //@Override
 
@@ -55,6 +85,16 @@ public class Piece {
         else if (tipus.equals("Knight")) return "Knight";
         else if (tipus.equals("Pawn")) return "Pawn";
         else return null;
+    }
+
+    public int getValor() {
+        if (tipus==TipusPiece.King) return 9999;
+        else if (tipus==TipusPiece.Queen) return 9;
+        else if (tipus==TipusPiece.Rook) return 5;
+        else if (tipus==TipusPiece.Bishop) return 3;
+        else if (tipus==TipusPiece.Knight) return 3;
+        else if (tipus==TipusPiece.Pawn) return 1;
+        else return 0;
     }
 
     public boolean posValida(int p) {
