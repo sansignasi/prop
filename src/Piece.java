@@ -78,12 +78,12 @@ public class Piece {
     //@Override
 
     public String getTipus() {
-        if (tipus.equals("King")) return "King";
-        else if (tipus.equals("Queen")) return "Queen";
-        else if (tipus.equals("Rook")) return "Rook";
-        else if (tipus.equals("Bishop")) return "Bishop";
-        else if (tipus.equals("Knight")) return "Knight";
-        else if (tipus.equals("Pawn")) return "Pawn";
+        if (tipus==TipusPiece.King) return "King";
+        else if (tipus==TipusPiece.Queen) return "Queen";
+        else if (tipus==TipusPiece.Rook) return "Rook";
+        else if (tipus==TipusPiece.Bishop) return "Bishop";
+        else if (tipus==TipusPiece.Knight) return "Knight";
+        else if (tipus==TipusPiece.Pawn) return "Pawn";
         else return null;
     }
 
