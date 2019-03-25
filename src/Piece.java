@@ -36,7 +36,7 @@ public class Piece {
     //MÈTODES
 
     public int getJugador() {
-        if (color.equals("Black")) return 1;
+        if (this.color==PieceColor.Black) return 1;
         else return 0;
     }
 

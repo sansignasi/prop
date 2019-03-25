@@ -94,9 +94,9 @@ public class Taulell {
 
         // Jugador que comença a moure (atacant)
         if (fenArray[1].equals("b")) {
-            Partida.setAtacant('b');
+            Problema.setAtacant('b');
         } else if (fenArray[1].equals("w")) {
-            Partida.setAtacant('w');
+            Problema.setAtacant('w');
         } else {
             throw new IncorrectFENException("Color del jugador atacant incorrecte.");
         }

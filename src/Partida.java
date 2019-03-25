@@ -39,11 +39,6 @@ public class Partida {
         finalizar();
     }
 
-    public void setAtacant(char a){
-        this.atacant=a;
-    }
-
-
 
 
 
