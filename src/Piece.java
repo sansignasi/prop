@@ -45,7 +45,7 @@ public class Piece {
         this.tipus = t;
     }
 
-    @Override
+    //@Override
 
     public String getTipus() {
         if (tipus.equals("King")) return "King";
@@ -58,10 +58,10 @@ public class Piece {
     }
 
     public boolean posValida(int p) {
-        return false
+        return false;
     }
 
-    ;
+
     //PRE:
     //POST: retorna true si la Peça pot desplaçar-se a la posició p, false altrament.
 
