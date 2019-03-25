@@ -34,15 +34,14 @@ public class Taulell {
     //MÈTODES
     /*
     public boolean tePiece(int i, int j){
-        if (matriu[i][j] == null) return false;
-        else return true;
+        return matriu[i][j] != null;
     }
 
     public boolean teRei(int jg){
 
         for (int i = 0; i < matriu.length; ++i){
             for (int j = 0; j < matriu[0].length; ++j){
-                if (matriu[i][j].getTipus() == "King" && matriu[i][j].getJugador() == jg) return true;
+                if (matriu[i][j].getTipus().equals("King") && matriu[i][j].getJugador() == jg) return true;
             }
         }
         return false;
@@ -85,8 +84,6 @@ public class Taulell {
                     }
                     continue;
                 }
-                int x = colsY;
-                int y = lines;
                 matriu[lines][colsY] = new Piece(color,lletra);
                 colsY++;
             }
