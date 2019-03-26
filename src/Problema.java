@@ -4,17 +4,20 @@ import lib.Pair;
 public class Problema {
     //ATRIBUTS
     private String nomprob; //nom del problema
-    private String FEM; //codificacio en FEM del problema
+    private String FEN; //codificacio en FEN del problema
     private String dificultad; //dificultad asociada al problema
-    private Pair<Integer,Integer> tema; /*primer int -> num maximo de jugadas para el jaquemate
-                                         segundo int -> jugador que ataca 0 blancas 1 negras*/
+    private int nMax; // num maximo de jugadas para el jaquemate
+    private char atacant; // jugador que comença i ataca, b black, w white
     private Boolean validat; //validat o no
     private String creador; //nombre del usuario creador del problema
-    Taulell T; //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
+    private Taulell T = new Taulell(); //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
     //METODES
     public void calcularDificultad() {
         //PRE:
         //POST: calcula la dificultad asociada al problema
+    }
+    public void setAtacant(char a){
+        this.atacant = a;
     }
 
     //borrarProblema()

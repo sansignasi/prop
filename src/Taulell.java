@@ -34,73 +34,68 @@ public class Taulell {
     //MÈTODES
 
     public boolean tePiece(int i, int j){
-        if (matriu[i][j] == null) return false;
-        else return true;
+        return matriu[i][j] != null;
     }
 
     public boolean teRei(int jg){
 
         for (int i = 0; i < matriu.length; ++i){
             for (int j = 0; j < matriu[0].length; ++j){
-                if (matriu[i][j].getTipus() == "King" && matriu[i][j].getJugador() == jg) return true;
+                if (matriu[i][j].getTipus().equals("King") && matriu[i][j].getJugador() == jg) return true;
             }
         }
         return false;
     }
 
     void carregaFEN(String fen) throws IncorrectFENException {
-        for (char keyVar : this.squares.keySet()) {
-            for (int j = 1; j <= 8; j++) {
-                this.squares.get(keyVar)[j].piece = null;
+        for (int i = 0; i < matriu.length; ++i) {
+            for (int j = 0; j < matriu[0].length; ++j) {
+                matriu[i][j] = null;
             }
         }
-        this.pieces = new LinkedList<BoardPiece>();
 
         // Split the FEN with whitespaces:
         String[] fenArray = fen.split(" ");
         if (fenArray.length < 4) {
-            throw new IncorrectFENException("Number of argument incorrect in the FEN.");
+            throw new IncorrectFENException("FEN incorrecte.");
         }
 
         // Parse the board description:
-        String[] boardArray = fenArray[0].split("/");
-        if (boardArray.length != 8) {
-            throw new IncorrectFENException("Board representation incorrect in the FEN.");
+        String[] taulellArray = fenArray[0].split("/");
+        if (taulellArray.length != 8) {
+            throw new IncorrectFENException("Representació FEN del taulell incorrecte.");
         }
 
-        for (int lines = 1; lines <= 8; lines++) {
-            String line = boardArray[lines - 1];
-            int colsY = 1;
+        for (int lines = 0; lines < 8; lines++) {
+            String line = taulellArray[lines];
+            int colsY = 0;
             for (int cols = 0; cols < line.length(); cols++) {
-                char letter = line.charAt(cols);
-                PieceColor color;
-                if (String.valueOf(letter).matches("[rbqkpn]")) {
-                    color = PieceColor.BLACK;
-                } else if (String.valueOf(letter).matches("[RBQKPN]")) {
-                    color = PieceColor.WHITE;
+                char lletra = line.charAt(cols);
+                char color;
+                if (String.valueOf(lletra).matches("[rbqkpn]")) {
+                    color = 'b';
+                } else if (String.valueOf(lletra).matches("[RBQKPN]")) {
+                    color = 'w';
                 } else {
                     try {
-                        colsY = colsY + Integer.parseInt(String.valueOf(letter));
+                        colsY = colsY + Integer.parseInt(String.valueOf(lletra));
                     } catch (NumberFormatException e) {
-                        throw new IncorrectFENException("Board representation incorrect in the FEN.");
+                        throw new IncorrectFENException("Representació FEN del taulell incorrecte.");
                     }
                     continue;
                 }
-                PieceType name = PieceType.getType(letter);
-                char x = letters[colsY];
-                int y = numbers[lines];
-                this.addPiece(name, color, x, y);
+                matriu[lines][colsY] = new Piece(color,lletra);
                 colsY++;
             }
         }
 
-        // Parse the color of the player to move next:
+        // Jugador que comença a moure (atacant)
         if (fenArray[1].equals("b")) {
-            this.currentMove = PieceColor.BLACK;
+            Problema.setAtacant('b');
         } else if (fenArray[1].equals("w")) {
-            this.currentMove = PieceColor.WHITE;
+            Problema.setAtacant('w');
         } else {
-            throw new IncorrectFENException("Color of the player to move next incorrect.");
+            throw new IncorrectFENException("Color del jugador atacant incorrecte.");
         }
     }
 

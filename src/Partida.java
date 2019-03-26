@@ -10,6 +10,7 @@ public class Partida {
     private String estat; //estado de la partida en el momento actual (en pausa, curs, fi).
     private Jugador j1; //jugador 1  de la partida (el que ataca)
     private Jugador j2; //jugador 2 de la partida (el que defiende)
+    private char atacant;
     //METODES
 
 
@@ -29,7 +30,7 @@ public class Partida {
         estat = "curs";
         Instant start = Instant.now();
         for(; mov > 0 || estat.equals("fi"); --mov) {
-            j1.jugatorn();
+           j1.jugatorn();
             if (estat.equals("fi")) break;
             j2.jugatorn();
         }
@@ -37,7 +38,6 @@ public class Partida {
         temps = Duration.between(start, finish).toSeconds();
         finalizar();
     }
-
 
 
 
