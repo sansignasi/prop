@@ -1,6 +1,7 @@
 import lib.Pair;
 import src.Piece;
 import java.util.ArrayList;
+
 public class DriverPiece {
     public void testConstructor(){
         Piece p = new Piece(Piece.PieceColor.White, Piece.TipusPiece.Rook);
