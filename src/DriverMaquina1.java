@@ -1,3 +1,5 @@
+package src;
+
 import lib.Pair;
 import java.util.ArrayList;
 import src.Maquina1;
@@ -25,11 +27,12 @@ public class DriverMaquina1 {
             {null,null,null,null,null,null,null,null}};
 
 
-    public Taulell t = new Taulell();
+    public Taulell t = new Taulell(matriu);
 
     public  void testgetMovimentAlgorism1() {
 
         Pair p = m.getMovimentAlgorisme1(t, jugador);
+        System.out.println((int)p.getFirst() + " " + (int)p.getSecond());
     }
     public void testHeuristic1() {
         int h1 = m.Heuristic1( t, jugador);
