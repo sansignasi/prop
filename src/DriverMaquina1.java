@@ -4,18 +4,28 @@ import src.Maquina1;
 import src.Piece;
 import src.Taulell;
 
+import static src.Piece.PieceColor.Black;
 import static src.Piece.PieceColor.White;
 import static src.Piece.TipusPiece.*;
 
 public class DriverMaquina1 {
 
-    public int jugador = 0;
-    public int jg =0 ;
+    private int jugador = 0;
+    private int jg =0 ;
     Maquina1 m;
+
+
+    Piece[][] matriu = { {new Piece(White, Rook), null, new Piece(White, King),null,null,new Piece(White, Bishop),null,new Piece(White, Rook)}, //R,-,K,-,-,B,-,R
+            {new Piece(White, Pawn), new Piece(White, Pawn), null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
+            {new Piece(Black, Pawn), null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null}};
+
+
     public Taulell t = new Taulell();
-
-    Piece[][] matriu = { new Piece(White, Rook), null, new Piece(White, King),null,null,new Piece(White, Bishop),null,new Piece(White, Rook)};
-
 
     public  void testgetMovimentAlgorism1() {
 

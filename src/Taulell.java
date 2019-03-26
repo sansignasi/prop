@@ -16,6 +16,10 @@ public class Taulell {
         Piece[][] matriu = new Piece[8][8];
     }
 
+    public Taulell(Piece[][] mat){
+        this.matriu = mat;
+    }
+
     //GETTERS
 
     public Piece[][] getTaulell(){
@@ -91,9 +95,9 @@ public class Taulell {
 
         // Jugador que comença a moure (atacant)
         if (fenArray[1].equals("b")) {
-            Problema.setAtacant('b');
+            //Problema.setAtacant('b');
         } else if (fenArray[1].equals("w")) {
-            Problema.setAtacant('w');
+            //Problema.setAtacant('w');
         } else {
             throw new IncorrectFENException("Color del jugador atacant incorrecte.");
         }
