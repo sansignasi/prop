@@ -35,12 +35,12 @@ public class Maquina1 { //Minimax amb profunditat limitada
 
                 if (t.tePiece(i,j) && jugador == 1) { //jugador 1 enemic
                     Piece pC = t.getPiece(i,j);
-                    ret -= pC.getPuntuacio();
+                    ret -= pC.getValor();
                 }
                 else if (t.tePiece(i,j) && jugador == 0) {
 
                     Piece pC = t.getPiece(i,j);
-                    ret += pC.getPuntuacio();
+                    ret += pC.getValor();
                 }
             }
         }
@@ -58,12 +58,12 @@ public class Maquina1 { //Minimax amb profunditat limitada
 
                 if (t.tePiece(i,j) && jugador == 0) { //jugador 0 enemic
                     Piece pC = t.getPiece(i,j);
-                    ret -= pC.getPuntuacio();
+                    ret -= pC.getValor();
                 }
                 else if (t.tePiece(i,j) && jugador == 1) {
 
                     Piece pC = t.getPiece(i,j);
-                    ret += pC.getPuntuacio();
+                    ret += pC.getValor();
                 }
             }
         }
