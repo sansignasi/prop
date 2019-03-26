@@ -19,7 +19,7 @@ public class DriverPiece {
         Piece p = new Piece(Piece.PieceColor.White, Piece.TipusPiece.King);
         Piece enem = new Piece(Piece.PieceColor.White, Piece.TipusPiece.Pawn);
         matriu[4][3] = p;
-        matriu[2k][4] = enem;
+        matriu[2][4] = enem;
         ArrayList<Pair> ar = p.calculaMovimentsPiece(matriu,4,3);
         for(int i = 0; i < ar.size(); ++i){
             Pair pi = ar.get(i);
