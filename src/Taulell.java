@@ -1,127 +1,113 @@
 package src;
 
+import lib.Pair;
+
 public class Taulell {
+
     //ATRIBUTS
-    private Peça [][] taulell;
+
+    private Piece [][] matriu;
         //Matriu d'objectes Peça ([i][j] = null si en la posició i,j no hi ha cap Peça)
         //i = files, j = columnes
+
+
+    //CREADORA
+    public Taulell() {
+        Piece[][] matriu = new Piece[8][8];
+    }
+
+    public Taulell(Piece[][] mat){
+        this.matriu = mat;
+    }
+
+    //GETTERS
+
+    public Piece[][] getTaulell(){
+        return matriu;
+    }
+
+    public Piece getPiece(int i, int j){
+        return matriu[i][j];
+    }
+    //SETTERS
+
+    public void actualitzarTaulell(Piece p1, Pair p){}
+    //PRE: p1 és una peça de la matriu i p una posició vàlida on es pot moure p1
+    //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
+
     //MÈTODES
-    void inicialitzaTaulell(String FEN){
-        //PRE: matriu està buida
-        //POST: s'inicialitza el taulell amb les peces de cada jugador a la posició del problema
-        int index = 0;
-        int fila = 0;
-        for (int i = 0; i<FEN.length (); i++) {
-            char c = FEN.charAt (i);
-            if (index < 64 && c != ' ') {
-                if (c == '1' && index < 63)
-                {
-                    index++;
-                }
-                else if (c == '2' && index < 62)
-                {
-                    index += 2;
-                }
-                else if (c == '3' && index < 61)
-                {
-                    index += 3;
-                }
-                else if (c == '4' && index < 60)
-                {
-                    index += 4;
-                }
-                else if (c == '5' && index < 59)
-                {
-                    index += 5;
-                }
-                else if (c == '6' && index < 58)
-                {
-                    index += 6;
-                }
-                else if (c == '7' && index < 57)
-                {
-                    index += 7;
-                }
-                else if (c == '8' && index < 56)
-                {
-                    index += 8;
-                }
-                else if (c == 'P')
-                {
-                    taulell[fila][index/fila] = new Peça(Peça.ColorPeça.White, Peça.TipusPeça.Pawn);
-                    index++;
-                }
-                else if (c == 'N')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.White, Peça.TipusPeça.Knight);
-                    index++;
-                }
-                else if (c == 'B')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.White, Peça.TipusPeça.Bishop);
-                    index++;
-                }
-                else if (c == 'R')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.White, Peça.TipusPeça.Rook);
-                    index++;
-                }
-                else if (c == 'Q')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.White, Peça.TipusPeça.Queen);
-                    index++;
-                }
-                else if (c == 'K')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.White, Peça.TipusPeça.King);
-                    index++;
-                }
-                else if (c == 'p')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.Black, Peça.TipusPeça.Pawn);
-                    index++;
-                }
-                else if (c == 'n')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.Black, Peça.TipusPeça.Knight);
-                    index++;
-                }
-                else if (c == 'b')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.Black, Peça.TipusPeça.Bishop);
-                    index++;
-                }
-                else if (c == 'r')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.Black, Peça.TipusPeça.Rook);
-                    index++;
-                }
-                else if (c == 'q')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.Black, Peça.TipusPeça.Queen);
-                    index++;
-                }
-                else if (c == 'k')
-                {
-                    matriu[index] = new Peça(Peça.ColorPeça.Black, Peça.TipusPeça.King);
-                    index++;
-                }
-                else if (c == '/')
-                {
-                    fila++;
-                    continue;
-                }
+
+    public boolean tePiece(int i, int j){
+        return matriu[i][j] != null;
+    }
+
+    public boolean teRei(int jg){
+
+        for (int i = 0; i < matriu.length; ++i){
+            for (int j = 0; j < matriu[0].length; ++j){
+                if (matriu[i][j].getTipus().equals("King") && matriu[i][j].getJugador() == jg) return true;
+            }
+        }
+        return false;
+    }
+
+    void carregaFEN(String fen) throws IncorrectFENException {
+        for (int i = 0; i < matriu.length; ++i) {
+            for (int j = 0; j < matriu[0].length; ++j) {
+                matriu[i][j] = null;
             }
         }
 
+        // Split the FEN with whitespaces:
+        String[] fenArray = fen.split(" ");
+        if (fenArray.length < 4) {
+            throw new IncorrectFENException("FEN incorrecte.");
+        }
+
+        // Parse the board description:
+        String[] taulellArray = fenArray[0].split("/");
+        if (taulellArray.length != 8) {
+            throw new IncorrectFENException("Representació FEN del taulell incorrecte.");
+        }
+
+        for (int lines = 0; lines < 8; lines++) {
+            String line = taulellArray[lines];
+            int colsY = 0;
+            for (int cols = 0; cols < line.length(); cols++) {
+                char lletra = line.charAt(cols);
+                char color;
+                if (String.valueOf(lletra).matches("[rbqkpn]")) {
+                    color = 'b';
+                } else if (String.valueOf(lletra).matches("[RBQKPN]")) {
+                    color = 'w';
+                } else {
+                    try {
+                        colsY = colsY + Integer.parseInt(String.valueOf(lletra));
+                    } catch (NumberFormatException e) {
+                        throw new IncorrectFENException("Representació FEN del taulell incorrecte.");
+                    }
+                    continue;
+                }
+                matriu[lines][colsY] = new Piece(color,lletra);
+                colsY++;
+            }
+        }
+
+        // Jugador que comença a moure (atacant)
+        if (fenArray[1].equals("b")) {
+            //Problema.setAtacant('b');
+        } else if (fenArray[1].equals("w")) {
+            //Problema.setAtacant('w');
+        } else {
+            throw new IncorrectFENException("Color del jugador atacant incorrecte.");
+        }
     }
+
     void mostrarTaulell() {}
         //PRE:
         //POST: mostra l'estat actual de les peces al taulell
-    void actualitzarTaulell(Peça p1, pos p){}
-        //PRE: p1 és una peça de la matriu i p una posició vàlida on es pot moure p1
-        //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
-    public Taulell() {
-        matriu = new Peça[8][8];
-    }
+
+
+
+
 }
