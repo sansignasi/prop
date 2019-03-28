@@ -9,6 +9,7 @@ public class Taulell {
     private Piece [][] matriu;
         //Matriu d'objectes Peça ([i][j] = null si en la posició i,j no hi ha cap Peça)
         //i = files, j = columnes
+        //Blanques MAJÚSCULES, Negres minúscules
 
 
     //CREADORA
@@ -103,11 +104,38 @@ public class Taulell {
         }
     }
 
-    void mostrarTaulell() {}
+    String taulellAFEN() {
+        String fen = "";
+        // Build the board description:
+        for(int i=8; i>=1; i--) {
+            int emptyCounter = 0;
+
+            for(int j=1;j<=8;j--) {
+                if(this.matriu[i][j]!=null) {
+                    if(emptyCounter!=0) {
+                        fen += emptyCounter;
+                        emptyCounter = 0;
+                    }
+                        fen += matriu[i][j].getLletra();
+
+                } else {
+                    emptyCounter++;
+                }
+            }
+            if(emptyCounter!=0) {
+                fen += emptyCounter;
+            }
+            if(i!=1) {
+                fen += "/";
+            }
+        }
+        return fen;
+    }
+
+
+    void mostrarTaulell() {
         //PRE:
         //POST: mostra l'estat actual de les peces al taulell
-
-
-
-
+        System.out.println("print something");
+    }
 }

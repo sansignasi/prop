@@ -35,10 +35,7 @@ public class Piece {
 
     //MÈTODES
 
-    public int getJugador() {
-        if (this.color==PieceColor.Black) return 1;
-        else return 0;
-    }
+    //CONSTRUCTORES
 
     public Piece() {
         Piece p = new Piece();
@@ -75,7 +72,8 @@ public class Piece {
         }
     }
 
-    //@Override
+
+    //GETTERS
 
     public String getTipus() {
         if (tipus==TipusPiece.King) return "King";
@@ -97,13 +95,36 @@ public class Piece {
         else return 0;
     }
 
-    public boolean posValida(int p) {
-        return false;
+    public int getJugador() {
+        if (this.color==PieceColor.Black) return 1;
+        else return 0;
+    }
+    public char getColor() {
+        if (this.color==PieceColor.Black) return 'b';
+        else return 'w';
     }
 
+    public char getLletra(){
+        if(this.color==PieceColor.Black){
+            if (tipus==TipusPiece.King) return 'k';
+            else if (tipus==TipusPiece.Queen) return 'q';
+            else if (tipus==TipusPiece.Rook) return 'r';
+            else if (tipus==TipusPiece.Bishop) return 'b';
+            else if (tipus==TipusPiece.Knight) return 'n';
+            else if (tipus==TipusPiece.Pawn) return 'p';
+        }
+        else if(this.color==PieceColor.White){
+            if (tipus==TipusPiece.King) return 'K';
+            else if (tipus==TipusPiece.Queen) return 'Q';
+            else if (tipus==TipusPiece.Rook) return 'R';
+            else if (tipus==TipusPiece.Bishop) return 'B';
+            else if (tipus==TipusPiece.Knight) return 'N';
+            else if (tipus==TipusPiece.Pawn) return 'P';
+        }
+        return 0;
+    }
 
-    //PRE:
-    //POST: retorna true si la Peça pot desplaçar-se a la posició p, false altrament.
+    //ALTRES MÈTODES
 
     public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
         Piece p = m[i][j];

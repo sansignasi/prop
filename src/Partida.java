@@ -30,9 +30,9 @@ public class Partida {
         estat = "curs";
         Instant start = Instant.now();
         for(; mov > 0 || estat.equals("fi"); --mov) {
-           j1.jugatorn();
+            //j1.jugatorn();
             if (estat.equals("fi")) break;
-            j2.jugatorn();
+            //j2.jugatorn();
         }
         Instant finish = Instant.now();
         temps = Duration.between(start, finish).toSeconds();
