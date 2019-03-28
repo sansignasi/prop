@@ -6,7 +6,7 @@ public class Taulell {
 
     //ATRIBUTS
 
-    private Piece [][] matriu;
+    private Piece [][] matriu = new Piece[8][8];
         //Matriu d'objectes Peça ([i][j] = null si en la posició i,j no hi ha cap Peça)
         //i = files, j = columnes
         //Blanques MAJÚSCULES, Negres minúscules
@@ -52,13 +52,12 @@ public class Taulell {
         return false;
     }
 
-    void carregaFEN(String fen) throws IncorrectFENException {
+    public void carregaFEN(String fen) throws IncorrectFENException {
         for (int i = 0; i < matriu.length; ++i) {
             for (int j = 0; j < matriu[0].length; ++j) {
                 matriu[i][j] = null;
             }
         }
-
         // Split the FEN with whitespaces:
         String[] fenArray = fen.split(" ");
         if (fenArray.length < 4) {
@@ -104,13 +103,12 @@ public class Taulell {
         }
     }
 
-    String taulellAFEN() {
+    public String taulellAFEN() {
         String fen = "";
         // Build the board description:
-        for(int i=8; i>=1; i--) {
+        for(int i=0; i<8; i++) {
             int emptyCounter = 0;
-
-            for(int j=1;j<=8;j--) {
+            for(int j=0;j<8;j++) {
                 if(this.matriu[i][j]!=null) {
                     if(emptyCounter!=0) {
                         fen += emptyCounter;
@@ -125,7 +123,7 @@ public class Taulell {
             if(emptyCounter!=0) {
                 fen += emptyCounter;
             }
-            if(i!=1) {
+            if(i!=7) {
                 fen += "/";
             }
         }

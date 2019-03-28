@@ -52,22 +52,22 @@ public class Piece {
         }
         else this.color = PieceColor.White;
         //TIPUS
-        if (t=='k'){
+        if (t=='k' || t=='K'){
             this.tipus = TipusPiece.King;
         }
-        else if (t=='q'){
+        else if (t=='q'|| t=='Q'){
             this.tipus = TipusPiece.Queen;
         }
-        else if (t=='r'){
+        else if (t=='r'|| t=='R'){
             this.tipus = TipusPiece.Rook;
         }
-        else if (t=='b'){
+        else if (t=='b'|| t=='B'){
             this.tipus = TipusPiece.Bishop;
         }
-        else if (t=='n'){
+        else if (t=='n'|| t=='N'){
             this.tipus = TipusPiece.Knight;
         }
-        else if (t=='p') {
+        else if (t=='p'|| t=='P') {
             this.tipus = TipusPiece.Pawn;
         }
     }
