@@ -1,7 +1,6 @@
-import lib.Pair;
-import src.IncorrectFENException;
-import src.Piece;
-import src.Taulell;
+package src;
+import java.util.Scanner;
+
 
 import java.util.ArrayList;
 
@@ -14,14 +13,17 @@ public class DriverTaulell {
             }
         }
         Taulell t = new Taulell();
-        t.carregaFEN("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Meteme un buen FEN:");
+        String fen2 = sc.nextLine();
+        t.carregaFEN(fen2);
         Piece[][] mat = t.getTaulell();
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[i].length; j++) {
                 if (mat[i][j]!=null) {
                     System.out.print(mat[i][j].getLletra() + " " + " " + " ");
                 }
-                else System.out.print(" " + " " + " ");
+                else System.out.print("-" + " " + " " + " ");
             }
             System.out.println();
             System.out.println();
@@ -32,7 +34,22 @@ public class DriverTaulell {
 
 
     public static void main(String[] args) throws IncorrectFENException {
-        testTaulell();
+        int opt = 99;
+        while (opt!=0){
+            System.out.println("Tria una opció:");
+            System.out.println("1.Introduir FEN");
+            System.out.println("0.Exit");
+            Scanner sc = new Scanner(System.in);
+            opt = sc.nextInt();
+            switch (opt){
+                case 1:
+                    testTaulell();
+                    break;
+                case 0:
+                    System.out.println("Adiós");
+                    break;
+            }
+        }
     }
 
 }

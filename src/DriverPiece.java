@@ -1,5 +1,6 @@
+package src;
+
 import lib.Pair;
-import src.Piece;
 import java.util.ArrayList;
 
 public class DriverPiece {

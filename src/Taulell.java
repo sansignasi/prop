@@ -92,15 +92,6 @@ public class Taulell {
                 colsY++;
             }
         }
-
-        // Jugador que comença a moure (atacant)
-        if (fenArray[1].equals("b")) {
-            //Problema.setAtacant('b');
-        } else if (fenArray[1].equals("w")) {
-            //Problema.setAtacant('w');
-        } else {
-            throw new IncorrectFENException("Color del jugador atacant incorrecte.");
-        }
     }
 
     public String taulellAFEN() {
@@ -134,6 +125,5 @@ public class Taulell {
     void mostrarTaulell() {
         //PRE:
         //POST: mostra l'estat actual de les peces al taulell
-        System.out.println("print something");
     }
 }

@@ -20,6 +20,15 @@ public class Problema {
         this.atacant = a;
     }
 
+    /*// Jugador que comença a moure (atacant)
+        if (fenArray[1].equals("b")) {
+        Problema.setAtacant('b');
+    } else if (fenArray[1].equals("w")) {
+        Problema.setAtacant('w');
+    } else {
+        throw new IncorrectFENException("Color del jugador atacant incorrecte.");
+    }*/
+
     //borrarProblema()
         //PRE: el problema identificado como nomprob existe
         //POST: elimina el problema nomprob de la base de problemas y su ranking asociado
