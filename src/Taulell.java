@@ -6,9 +6,10 @@ public class Taulell {
 
     //ATRIBUTS
 
-    private Piece [][] matriu;
+    private Piece [][] matriu = new Piece[8][8];
         //Matriu d'objectes Peça ([i][j] = null si en la posició i,j no hi ha cap Peça)
         //i = files, j = columnes
+        //Blanques MAJÚSCULES, Negres minúscules
 
 
     //CREADORA
@@ -51,13 +52,12 @@ public class Taulell {
         return false;
     }
 
-    void carregaFEN(String fen) throws IncorrectFENException {
+    public void carregaFEN(String fen) throws IncorrectFENException {
         for (int i = 0; i < matriu.length; ++i) {
             for (int j = 0; j < matriu[0].length; ++j) {
                 matriu[i][j] = null;
             }
         }
-
         // Split the FEN with whitespaces:
         String[] fenArray = fen.split(" ");
         if (fenArray.length < 4) {
@@ -103,11 +103,37 @@ public class Taulell {
         }
     }
 
-    void mostrarTaulell() {}
+    public String taulellAFEN() {
+        String fen = "";
+        // Build the board description:
+        for(int i=0; i<8; i++) {
+            int emptyCounter = 0;
+            for(int j=0;j<8;j++) {
+                if(this.matriu[i][j]!=null) {
+                    if(emptyCounter!=0) {
+                        fen += emptyCounter;
+                        emptyCounter = 0;
+                    }
+                        fen += matriu[i][j].getLletra();
+
+                } else {
+                    emptyCounter++;
+                }
+            }
+            if(emptyCounter!=0) {
+                fen += emptyCounter;
+            }
+            if(i!=7) {
+                fen += "/";
+            }
+        }
+        return fen;
+    }
+
+
+    void mostrarTaulell() {
         //PRE:
         //POST: mostra l'estat actual de les peces al taulell
-
-
-
-
+        System.out.println("print something");
+    }
 }
