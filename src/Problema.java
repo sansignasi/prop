@@ -10,7 +10,7 @@ public class Problema {
     private char atacant; // jugador que comença i ataca, b black, w white
     private Boolean validat; //validat o no
     private String creador; //nombre del usuario creador del problema
-    private Taulell T = new Taulell(); //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
+   // private Taulell T = new Taulell(); //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
     //METODES
     public void calcularDificultad() {
         //PRE:

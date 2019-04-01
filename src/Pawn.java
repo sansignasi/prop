@@ -6,23 +6,21 @@ import java.util.ArrayList;
 
 public class Pawn extends Piece {
 
-    public int getValor() {
-        return 1;
-    }
-
-    public char getLletra(){
-        if(super.getColor() == 'w'){
-            return 'P';
-        }
-        else return 'p';
-    }
-
     public Pawn(char c) {
         super(c);
     }
 
     public String getTipus() {
         return "Pawn";
+    }
+
+    public int getValor() {
+        return 1;
+    }
+
+    public char getLletra(){
+        if(super.getColor() == 'w')return 'P';
+        else return 'p';
     }
 
     public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
