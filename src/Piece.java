@@ -15,6 +15,7 @@ public class Piece {
     //ATRIBUTS
     private PieceColor color;
     //Color de la peça (de la enum)
+    private Pair pos;
 
 
 
@@ -33,8 +34,22 @@ public class Piece {
             this.color = PieceColor.Black;
         }
         else this.color = PieceColor.White;
+        pos = new Pair(null,null);
     }
 
+    public Piece(char c, int x, int y) {
+        super();
+        //COLOR
+        if (c=='b'){
+            this.color = PieceColor.Black;
+        }
+        else this.color = PieceColor.White;
+        pos = new Pair(x,y);
+    }
+
+    public void setPos(int x, int y) {
+        pos = new Pair(x,y);
+    }
 
     //GETTERS
 
@@ -57,6 +72,10 @@ public class Piece {
 
     public char getLletra(){
         return 0;
+    }
+
+    public Pair getPos() {
+        return pos;
     }
 
     //ALTRES MÈTODES
