@@ -49,6 +49,7 @@ public class DriverTaulell {
                     System.out.println("Adiós");
                     break;
             }
+            System.out.println();
         }
     }
 

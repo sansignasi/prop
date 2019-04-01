@@ -8,10 +8,10 @@ import src.Taulell;
 
 import static src.Piece.PieceColor.Black;
 import static src.Piece.PieceColor.White;
-import static src.Piece.TipusPiece.*;
+//import static src.Piece.TipusPiece.*;
 
 public class DriverMaquina1 {
-
+/*
     private int jugador = 0;
     private int jg =0 ;
     Maquina1 m;
@@ -64,6 +64,6 @@ public class DriverMaquina1 {
     public void main (String [] args){
         testgetMovimentAlgorism1();
 
-    }
+    }*/
 
 }

@@ -88,7 +88,32 @@ public class Taulell {
                     }
                     continue;
                 }
-                matriu[lines][colsY] = new Piece(color,lletra);
+                switch (lletra){
+                    case 'k':
+                    case 'K':
+                        matriu[lines][colsY] = new King(color);
+                        break;
+                    case 'q':
+                    case 'Q':
+                        matriu[lines][colsY] = new Queen(color);
+                        break;
+                    case 'r':
+                    case 'R':
+                        matriu[lines][colsY] = new Rook(color);
+                        break;
+                    case 'b':
+                    case 'B':
+                        matriu[lines][colsY] = new Bishop(color);
+                        break;
+                    case 'n':
+                    case 'N':
+                        matriu[lines][colsY] = new Knight(color);
+                        break;
+                    case 'p':
+                    case 'P':
+                        matriu[lines][colsY] = new Pawn(color);
+                        break;
+                }
                 colsY++;
             }
         }
