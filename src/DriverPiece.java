@@ -13,12 +13,13 @@ public class DriverPiece {
     }
 
     public static void testgetTipus() {
-        Piece p = new Piece(Piece.PieceColor.White, Piece.TipusPiece.Rook);
+        Piece p = new Pawn('w','p');
         System.out.println(p.getTipus());
     }
     public static void testcalculaMovimentsPiece(){
         Piece[][] matriu = new Piece[8][8];
-        Piece p = new Piece(Piece.PieceColor.White, Piece.TipusPiece.King);
+        Piece p = new Pawn('w','p');
+
         Piece enem = new Piece(Piece.PieceColor.White, Piece.TipusPiece.Pawn);
         matriu[4][3] = p;
         matriu[2][4] = enem;

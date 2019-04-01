@@ -12,22 +12,10 @@ public class Piece {
         White
     }
 
-    public enum TipusPiece {
-        King,
-        Queen,
-        Rook,
-        Bishop,
-        Knight,
-        Pawn,
-        None
-    }
-
 
     //ATRIBUTS
     private PieceColor color;
     //Color de la peça (de la enum)
-    private TipusPiece tipus;
-    //Tipus de peça (de la enum)
     private int valor;
     //Valor de la peça
 
@@ -41,58 +29,31 @@ public class Piece {
         Piece p = new Piece();
     }
 
-    public Piece(PieceColor c, TipusPiece t) {
-        this.color = c;
-        this.tipus = t;
-    }
-    public Piece(char c,char t) {
+    public Piece(char c) {
+        super();
         //COLOR
         if (c=='b'){
             this.color = PieceColor.Black;
         }
         else this.color = PieceColor.White;
-        //TIPUS
-        if (t=='k' || t=='K'){
-            this.tipus = TipusPiece.King;
-        }
-        else if (t=='q'|| t=='Q'){
-            this.tipus = TipusPiece.Queen;
-        }
-        else if (t=='r'|| t=='R'){
-            this.tipus = TipusPiece.Rook;
-        }
-        else if (t=='b'|| t=='B'){
-            this.tipus = TipusPiece.Bishop;
-        }
-        else if (t=='n'|| t=='N'){
-            this.tipus = TipusPiece.Knight;
-        }
-        else if (t=='p'|| t=='P') {
-            this.tipus = TipusPiece.Pawn;
-        }
     }
 
 
     //GETTERS
 
     public String getTipus() {
-        if (tipus==TipusPiece.King) return "King";
-        else if (tipus==TipusPiece.Queen) return "Queen";
-        else if (tipus==TipusPiece.Rook) return "Rook";
-        else if (tipus==TipusPiece.Bishop) return "Bishop";
-        else if (tipus==TipusPiece.Knight) return "Knight";
-        else if (tipus==TipusPiece.Pawn) return "Pawn";
-        else return null;
+        return null;
     }
 
     public int getValor() {
+        /*
         if (tipus==TipusPiece.King) return 9999;
         else if (tipus==TipusPiece.Queen) return 9;
         else if (tipus==TipusPiece.Rook) return 5;
         else if (tipus==TipusPiece.Bishop) return 3;
         else if (tipus==TipusPiece.Knight) return 3;
-        else if (tipus==TipusPiece.Pawn) return 1;
-        else return 0;
+        else if (tipus==TipusPiece.Pawn) return 1;*/
+        return 0;
     }
 
     public int getJugador() {
@@ -105,28 +66,13 @@ public class Piece {
     }
 
     public char getLletra(){
-        if(this.color==PieceColor.Black){
-            if (tipus==TipusPiece.King) return 'k';
-            else if (tipus==TipusPiece.Queen) return 'q';
-            else if (tipus==TipusPiece.Rook) return 'r';
-            else if (tipus==TipusPiece.Bishop) return 'b';
-            else if (tipus==TipusPiece.Knight) return 'n';
-            else if (tipus==TipusPiece.Pawn) return 'p';
-        }
-        else if(this.color==PieceColor.White){
-            if (tipus==TipusPiece.King) return 'K';
-            else if (tipus==TipusPiece.Queen) return 'Q';
-            else if (tipus==TipusPiece.Rook) return 'R';
-            else if (tipus==TipusPiece.Bishop) return 'B';
-            else if (tipus==TipusPiece.Knight) return 'N';
-            else if (tipus==TipusPiece.Pawn) return 'P';
-        }
         return 0;
     }
 
     //ALTRES MÈTODES
 
     public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
+        /*
         Piece p = m[i][j];
         int dir;
         ArrayList<Pair> res = new ArrayList<>();
@@ -610,8 +556,10 @@ public class Piece {
                 --dir;
             }
         }
-        return res;
+        return res;*/
+        return null;
     }
+
 }
 
 
