@@ -9,7 +9,7 @@ public class Maquina1 { //Minimax amb profunditat limitada
     private int prof;
 
     public void initializeProf(){
-
+        prof = 10;
     }
 
     public Pair getMovimentAlgorisme1(Taulell t, int jugador){
