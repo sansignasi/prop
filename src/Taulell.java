@@ -52,7 +52,7 @@ public class Taulell {
     //MÈTODES
 
     public boolean tePiece(int i, int j){
-        return matriu[i][j] != null;
+        return (matriu[i][j] != null);
     }
 
     public boolean teRei(int jg){

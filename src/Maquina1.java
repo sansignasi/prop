@@ -9,7 +9,7 @@ public class Maquina1 { //Minimax amb profunditat limitada
     private int prof;
 
     public void initializeProf(){
-
+        prof = 1;
     }
 
     public Pair getMovimentAlgorisme1(Taulell t, int jugador){
@@ -33,11 +33,12 @@ public class Maquina1 { //Minimax amb profunditat limitada
         for (int i=0; i< p.length; ++i) {
             for (int j = 0; j < p[0].length; ++j) {
 
-                if (t.tePiece(i,j) && jugador == 1) { //jugador 1 enemic
+                Piece p1 = t.getPiece(i,j);
+                if (t.tePiece(i,j) && p1.getJugador()==jugador) { //jugador 1 enemic
                     Piece pC = t.getPiece(i,j);
-                    ret -= pC.getValor();
+                    ret += pC.getValor();
                 }
-                else if (t.tePiece(i,j) && jugador == 0) {
+                else if (t.tePiece(i,j) && p1.getJugador()==jugador) {
 
                     Piece pC = t.getPiece(i,j);
                     ret += pC.getValor();
@@ -75,11 +76,13 @@ public class Maquina1 { //Minimax amb profunditat limitada
         ArrayList<Pair> a = new ArrayList<>();
         Piece[][] m = t.getTaulell();
 
+        jugador = 1;
+
         for (int i=0; i< m.length; ++i) {
             for (int j = 0; j < m[0].length; ++j){
-                if (! (m[i][j] == null) && m[i][j].getJugador() == jugador){
+                if (t.tePiece(i,j) && m[i][j].getJugador() == jugador){
                     ArrayList<Pair> aux = m[i][j].calculaMovimentsPiece(m,i,j);
-
+                    a.addAll(aux);
                 }
             }
         }
@@ -88,45 +91,60 @@ public class Maquina1 { //Minimax amb profunditat limitada
     }
 
     public boolean estatTerminal(Taulell t, int jugador){
-        if (! t.teRei(jugador)) return true;
-        else if (prof == 0) return true;
-        else return false;
+        //if (! t.teRei(jugador)) return true;
+        //else if (prof <= 0) return true;
+        //else return false;
+        return true;
     }
 
     public Pair MiniMax(Taulell t, int jg){
+
         int max,cmax; //puntuacio de la heurística
-        max = -9999;
+        max = -99999999;
         Pair movret = new Pair(0,0);
-        
         ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
+        int aux1 = prof;
 
         for (int i=0; i<p.size();++i) {
+            Taulell aux = t;
             Pair mov = p.get(i);
-            t.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
-            --prof;
+            aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(t,jg);
+            //System.out.println("lheuristic es "+ cmax + "  el moviment es " + mov);
             if (cmax > max){
                 max = cmax;
                 movret = mov;
+                //System.out.println("l'heuristic es " + max + " el moviment es " + movret);
             }
+            prof = aux1;
         }
         return movret;
+
+        /*jg = 1;
+        ArrayList<Pair> p = calculaMovimentsPosibles(t,jg);
+        for (int i = 0; i < p.size(); ++i) System.out.println(p.get(i).getFirst() + " " + p.get(i).getSecond());*/
     }
 
     public int valorMax(Taulell t, int jg){
         int vmax;
         if (estatTerminal(t,jg)){
-            if (jg == 0) return Heuristic1(t, jg); //jugador 0 blanques
-            else return Heuristic2(t,jg);
+            int x = Heuristic1(t,jg);
+            //System.out.println("El valor del heuristic es " + x );
+            return x;
         }
         else{
-            vmax = -9999;
+            vmax = -99999999;
             ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
             for (int i=0; i<p.size(); ++i){
-                t.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
-                --prof;
-                vmax = Math.max(vmax,valorMin(t,jg));
+                Taulell aux = t;
+                aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
+                int k = valorMin(aux,jg);
+                //System.out.println("el valor de vmax es " + vmax + " el valor de k es " + k);
+                vmax = Math.max(vmax,k);
+                //System.out.println("ens enduem " + vmax);
             }
+            --prof;
+            //System.out.println("valorMax retorna " + vmax);
             return vmax;
         }
     }
@@ -134,17 +152,21 @@ public class Maquina1 { //Minimax amb profunditat limitada
     public int valorMin(Taulell t, int jg){
         int vmin;
         if (estatTerminal(t,jg)){
-            if (jg == 0) return Heuristic1(t, jg); //jugador 0 blanques
-            else return Heuristic2(t,jg);
+            int x = Heuristic1(t,jg);
+            //System.out.println("El valor del heuristic es " + x );
+            return x;
         }
         else{
-            vmin = 9999;
-            ArrayList<Pair> p = calculaMovimentsPosibles(t,Math.abs(jg-1)); //IMPORTANT AIXO -> CRIDO AMB L'ALTRE JUGADOR
+            vmin = 99999999;
+            ArrayList<Pair> p = calculaMovimentsPosibles(t,jg);
             for (int i=0; i<p.size(); ++i){
-                t.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
-                --prof;
-                vmin = Math.min(vmin,valorMax(t,jg));
+                Taulell aux = t;
+                aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
+                int k = valorMax(aux,jg);
+                vmin = Math.min(vmin,k);
             }
+            --prof;
+            //System.out.println("valorMin retorna " + vmin);
             return vmin;
         }
     }

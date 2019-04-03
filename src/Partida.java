@@ -26,7 +26,7 @@ public class Partida {
         this.estat = estat;
     }
 
-    public void jugar(){
+    /*public void jugar(){
         estat = "curs";
         Instant start = Instant.now();
         for(; mov > 0 || estat.equals("fi"); --mov) {
@@ -37,7 +37,7 @@ public class Partida {
         Instant finish = Instant.now();
         temps = Duration.between(start, finish).toSeconds();
         finalizar();
-    }
+    }*/
 
 
 
