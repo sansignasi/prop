@@ -10,6 +10,10 @@ public class Knight extends Piece {
         super(c);
     }
 
+    public Knight(char c,int x, int y) {
+        super(c,x,y);
+    }
+
     public String getTipus() {
         return "Knight";
     }
