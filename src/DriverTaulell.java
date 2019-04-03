@@ -18,6 +18,7 @@ public class DriverTaulell {
     }
     public static void testMostraTaulell(){
         t.mostrarTaulell();
+        t.taulellAFEN();
     }
     public static void testActualitzaTaulell() throws IncorrectFENException{
 
