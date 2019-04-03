@@ -49,7 +49,7 @@ public class DriverTaulell {
                     testCarregarFen();
                     break;
                 case 2:
-                    testActualitzaTaulell()
+                    testActualitzaTaulell();
                     System.out.println("Adiós");
                     break;
                 case 0:

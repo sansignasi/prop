@@ -8,28 +8,28 @@ import src.Taulell;
 
 public class DriverMaquina1 {
 
-    public static int jugador = 0;
-    public static int jg =0 ;
+    public static int jugador = 1;
+    public static int jg =1 ;
     public static Maquina1 m = new Maquina1();
 
 
-    public static Piece[][] matriu = { {new Rook('w'), null, new King('w'),null,null,new Bishop('w'),null,new Rook('w')}, //R,-,K,-,-,B,-,R
-            {new Pawn('w'), new Pawn('w'), null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
-            {new Pawn('b'), null,null,null,null,null,null,null},
+    public static Piece[][] matriu = { {new Rook('b'), null, new King('b'),null,null,new Bishop('b'),null,new Rook('b')}, //R,-,K,-,-,B,-,R
+            {new Pawn('b'), new Pawn('b'), null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
+            {new Pawn('w'), null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,null,null,null}};
+            {null,null,null,null,null,new King('w'),null,null}};
 
 
     public static Taulell t = new Taulell(matriu);
 
     public  static void testgetMovimentAlgorism1() {
-        System.out.println("abans crida");
         Pair p = m.getMovimentAlgorisme1(t, jugador);
-        System.out.println("despres crida");
-        System.out.println((int)p.getFirst() + " " + (int)p.getSecond());
+        System.out.println(p.getFirst() + " " + p.getSecond());
+        //Pair p1 = (Pair)p.getSecond();
+        //System.out.println(p1.getFirst() + " " + p1.getSecond());
     }
     public static void testHeuristic1() {
         int h1 = m.Heuristic1( t, jugador);
@@ -60,10 +60,11 @@ public class DriverMaquina1 {
     }
     public static void main (String [] args){
 
-        System.out.println((t.tePiece(0,0)));
 
         int k = m.Heuristic1(t,0);
         System.out.println(k);
+        int k1 = m.Heuristic1(t,1);
+        System.out.println(k1);
         testgetMovimentAlgorism1();
 
     }
