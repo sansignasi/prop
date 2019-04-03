@@ -164,13 +164,15 @@ public class Taulell {
         //PRE:
         //POST: mostra l'estat actual de les peces al taulell
         char [][] tprint = new char[9][9];
-        for(int i=0;i<9;i++){
-            tprint[i][0]=(char)(i+1);
-            tprint[0][i]=(char)(65+i);
+        for(int i=1;i<9;i++){
+            tprint[i][0]=(char)(i+'0');
+            tprint[0][i]=(char)(64+i);
         }
         for(int j=1;j<9;j++){
             for(int y=1;y<9;y++){
-                tprint[j][y]=matriu[j-1][y-1].getLletra();
+                if(matriu[j-1][y-1]!=null) {
+                    tprint[j][y] = matriu[j - 1][y - 1].getLletra();
+                }
             }
         }
         for (int i = 0; i < tprint.length; i++) {
@@ -178,6 +180,7 @@ public class Taulell {
                 if (tprint[i][j]!=0) {
                     System.out.print(tprint[i][j] + " " + " " + " ");
                 }
+                else if(i==0 && j==0) System.out.print(" " + " " + " " + " ");
                 else System.out.print("-" + " " + " " + " ");
             }
             System.out.println();

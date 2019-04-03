@@ -6,71 +6,23 @@ import lib.Pair;
 import java.util.ArrayList;
 
 public class DriverTaulell {
+
+    private static Taulell t = new Taulell();
+
+
     public static void testCarregarFen() throws IncorrectFENException {
-        Piece[][] matriu = new Piece[8][8];
-        for (int i = 0; i < matriu.length; ++i) {
-            for (int j = 0; j < matriu[0].length; ++j) {
-                matriu[i][j] = null;
-            }
-        }
-        Taulell t = new Taulell();
         Scanner sc = new Scanner(System.in);
         System.out.println("Meteme un buen FEN:");
         String fen2 = sc.nextLine();
         t.carregaFEN(fen2);
-        Piece[][] mat = t.getTaulell();
-        for (int i = 0; i < mat.length; i++) {
-            for (int j = 0; j < mat[i].length; j++) {
-                if (mat[i][j]!=null) {
-                    System.out.print(mat[i][j].getLletra() + " " + " " + " ");
-                }
-                else System.out.print("-" + " " + " " + " ");
-            }
-            System.out.println();
-            System.out.println();
-        }
-        String st = t.taulellAFEN();
-        System.out.print(st);
     }
-    public static void testMostraTaulell() throws IncorrectFENException {
-        Piece[][] matriu = new Piece[8][8];
-        for (int i = 0; i < matriu.length; ++i) {
-            for (int j = 0; j < matriu[0].length; ++j) {
-                matriu[i][j] = null;
-            }
-        }
-        Taulell t = new Taulell();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Meteme un buen FEN:");
-        String fen2 = sc.nextLine();
-        t.carregaFEN(fen2);
+    public static void testMostraTaulell(){
         t.mostrarTaulell();
     }
     public static void testActualitzaTaulell() throws IncorrectFENException{
-        Piece[][] matriu = new Piece[8][8];
-        for (int i = 0; i < matriu.length; ++i) {
-            for (int j = 0; j < matriu[0].length; ++j) {
-                matriu[i][j] = null;
-            }
-        }
-        Taulell t = new Taulell();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Meteme un buen FEN:");
-        String fen2 = sc.nextLine();
-        t.carregaFEN(fen2);
-        Piece[][] mat = t.getTaulell();
-        for (int i = 0; i < mat.length; i++) {
-            for (int j = 0; j < mat[i].length; j++) {
-                if (mat[i][j]!=null) {
-                    System.out.print(mat[i][j].getLletra() + " " + " " + " ");
-                }
-                else System.out.print("-" + " " + " " + " ");
-            }
-            System.out.println();
-            System.out.println();
-        }
+
         System.out.println("Escriu quina peça vols moure:");
-        sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         int px = sc.nextInt();
         int py = sc.nextInt();
         Piece p = t.getPiece(px,py);
@@ -80,19 +32,6 @@ public class DriverTaulell {
         int fy = sc.nextInt();
         Pair posf = new Pair(fx,fy);
         t.actualitzarTaulell(p,posf);
-        Piece[][] mat2 = t.getTaulell();
-        for (int i = 0; i < mat2.length; i++) {
-            for (int j = 0; j < mat2[i].length; j++) {
-                if (mat[i][j]!=null) {
-                    System.out.print(mat2[i][j].getLletra() + " " + " " + " ");
-                }
-                else System.out.print("-" + " " + " " + " ");
-            }
-            System.out.println();
-            System.out.println();
-        }
-        String st = t.taulellAFEN();
-        System.out.print(st);
     }
 
 
