@@ -37,11 +37,13 @@ public class Taulell {
         //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
         Pair posIni = p1.getPos();
         if(matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]==null){
+            matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]=null;
             matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]=p1;
             p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
         }
         else{
             //MENJAR PEÇA, SUMAR PUNTUACIÓ
+            matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]=null;
             matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]=p1;
             p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
         }
@@ -161,5 +163,28 @@ public class Taulell {
     void mostrarTaulell() {
         //PRE:
         //POST: mostra l'estat actual de les peces al taulell
+        char [][] tprint = new char[9][9];
+        for(int i=1;i<9;i++){
+            tprint[i][0]=(char)(i+'0');
+            tprint[0][i]=(char)(64+i);
+        }
+        for(int j=1;j<9;j++){
+            for(int y=1;y<9;y++){
+                if(matriu[j-1][y-1]!=null) {
+                    tprint[j][y] = matriu[j - 1][y - 1].getLletra();
+                }
+            }
+        }
+        for (int i = 0; i < tprint.length; i++) {
+            for (int j = 0; j < tprint[i].length; j++) {
+                if (tprint[i][j]!=0) {
+                    System.out.print(tprint[i][j] + " " + " " + " ");
+                }
+                else if(i==0 && j==0) System.out.print(" " + " " + " " + " ");
+                else System.out.print("-" + " " + " " + " ");
+            }
+            System.out.println();
+            System.out.println();
+        }
     }
 }
