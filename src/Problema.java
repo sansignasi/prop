@@ -16,9 +16,6 @@ public class Problema {
         //PRE:
         //POST: calcula la dificultad asociada al problema
     }
-    public void setAtacant(char a){
-        this.atacant = a;
-    }
 
     /*// Jugador que comença a moure (atacant)
         if (fenArray[1].equals("b")) {
