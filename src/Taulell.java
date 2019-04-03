@@ -18,7 +18,7 @@ public class Taulell {
     }
 
     public Taulell(Piece[][] mat){
-        this.matriu = mat;
+        matriu = mat;
     }
 
     //GETTERS
@@ -32,9 +32,20 @@ public class Taulell {
     }
     //SETTERS
 
-    public void actualitzarTaulell(Piece p1, Pair p){}
-    //PRE: p1 és una peça de la matriu i p una posició vàlida on es pot moure p1
-    //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
+    public void actualitzarTaulell(Piece p1, Pair posFi) {
+        //PRE: p1 és una peça de la matriu i p una posició vàlida on es pot moure p1
+        //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
+        Pair posIni = p1.getPos();
+        if(matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]==null){
+            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]=p1;
+            p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
+        }
+        else{
+            //MENJAR PEÇA, SUMAR PUNTUACIÓ
+            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]=p1;
+            p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
+        }
+    }
 
     //MÈTODES
 
@@ -91,27 +102,27 @@ public class Taulell {
                 switch (lletra){
                     case 'k':
                     case 'K':
-                        matriu[lines][colsY] = new King(color);
+                        matriu[lines][colsY] = new King(color,lines,colsY);
                         break;
                     case 'q':
                     case 'Q':
-                        matriu[lines][colsY] = new Queen(color);
+                        matriu[lines][colsY] = new Queen(color,lines,colsY);
                         break;
                     case 'r':
                     case 'R':
-                        matriu[lines][colsY] = new Rook(color);
+                        matriu[lines][colsY] = new Rook(color,lines,colsY);
                         break;
                     case 'b':
                     case 'B':
-                        matriu[lines][colsY] = new Bishop(color);
+                        matriu[lines][colsY] = new Bishop(color,lines,colsY);
                         break;
                     case 'n':
                     case 'N':
-                        matriu[lines][colsY] = new Knight(color);
+                        matriu[lines][colsY] = new Knight(color,lines,colsY);
                         break;
                     case 'p':
                     case 'P':
-                        matriu[lines][colsY] = new Pawn(color);
+                        matriu[lines][colsY] = new Pawn(color,lines,colsY);
                         break;
                 }
                 colsY++;

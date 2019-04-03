@@ -10,6 +10,10 @@ public class Rook extends Piece {
         super(c);
     }
 
+    public Rook(char c,int x, int y) {
+        super(c,x,y);
+    }
+
     public String getTipus() {
         return "Rook";
     }

@@ -10,6 +10,10 @@ public class Bishop extends Piece{
         super(c);
     }
 
+    public Bishop(char c,int x, int y) {
+        super(c,x,y);
+    }
+
     public String getTipus() {
         return "Bishop";
     }

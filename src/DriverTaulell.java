@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class DriverTaulell {
-    public static void testTaulell() throws IncorrectFENException {
+    public static void testCarregarFen() throws IncorrectFENException {
         Piece[][] matriu = new Piece[8][8];
         for (int i = 0; i < matriu.length; ++i) {
             for (int j = 0; j < matriu[0].length; ++j) {
@@ -31,6 +31,9 @@ public class DriverTaulell {
         String st = t.taulellAFEN();
         System.out.print(st);
     }
+    public static void testActualitzaTaulell() throws IncorrectFENException{
+        testCarregarFen();
+    }
 
 
     public static void main(String[] args) throws IncorrectFENException {
@@ -43,7 +46,11 @@ public class DriverTaulell {
             opt = sc.nextInt();
             switch (opt){
                 case 1:
-                    testTaulell();
+                    testCarregarFen();
+                    break;
+                case 2:
+                    testActualitzaTaulell()
+                    System.out.println("Adiós");
                     break;
                 case 0:
                     System.out.println("Adiós");

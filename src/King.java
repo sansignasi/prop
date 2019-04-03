@@ -10,6 +10,10 @@ public class King extends Piece {
         super(c);
     }
 
+    public King(char c,int x, int y) {
+        super(c,x,y);
+    }
+
     public String getTipus() {
         return "King";
     }
