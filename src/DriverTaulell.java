@@ -21,15 +21,17 @@ public class DriverTaulell {
     }
     public static void testActualitzaTaulell() throws IncorrectFENException{
 
-        System.out.println("Escriu quina peça vols moure:");
+        System.out.println("Escriu quina peça vols moure: ");
         Scanner sc = new Scanner(System.in);
-        int px = sc.nextInt();
-        int py = sc.nextInt();
+        String inPiece = sc.nextLine();
+        int py = (int)inPiece.charAt(0) - 'a'; //COLUMNES
+        int px = (int)inPiece.charAt(2) - '1'; //FILES
         Piece p = t.getPiece(px,py);
         System.out.println("Escriu on la vols moure");
         sc = new Scanner(System.in);
-        int fx = sc.nextInt();
-        int fy = sc.nextInt();
+        String inPos = sc.nextLine();
+        int fy = (int)inPos.charAt(0) - 'a'; //COLUMNES
+        int fx = (int)inPos.charAt(2) - '1'; //FILES
         Pair posf = new Pair(fx,fy);
         t.actualitzarTaulell(p,posf);
     }
