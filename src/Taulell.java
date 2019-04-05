@@ -21,6 +21,18 @@ public class Taulell {
         matriu = mat;
     }
 
+    public void copiaTaulell(Taulell t){
+        Piece[][] k = t.matriu;
+        for (int i = 0; i < k.length; ++i){
+            for (int j = 0; j < k[0].length; ++j) {
+                if (t.tePiece(i,j)){
+                    Piece p = new Piece(k[i][j]);
+                    matriu[i][j] = p;
+                }
+            }
+        }
+    }
+
     //GETTERS
 
     public Piece[][] getTaulell(){
@@ -37,16 +49,22 @@ public class Taulell {
         //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
         Pair posIni = p1.getPos();
         if(matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]==null){
-            matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]=null;
-            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]=p1;
+            matriu[(int)posIni.getFirst()][(int)posIni.getSecond()] = null;
+            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()] = p1;
             p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
+            System.out.println((int)posIni.getFirst() + " " + (int)posIni.getSecond());
+            System.out.println("hola estic dins d'actualitzar i la posicio anterior es " + matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]);
+
         }
         else{
             //MENJAR PEÇA, SUMAR PUNTUACIÓ
             matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]=null;
             matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]=p1;
             p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
+            System.out.println("hola estic dins d'actualitzar matar i la posicio anterior es " + matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]);
+
         }
+
     }
 
     //MÈTODES

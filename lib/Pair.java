@@ -12,6 +12,15 @@ public class Pair {
         return this.second;
     }
 
+    public void setFirst(Object a){
+        first = a;
+    }
+
+    public void setSecond(Object a){
+        second = a;
+    }
+
+
     public Pair(Object a, Object b) {
         this.first = a;
         this.second = b;

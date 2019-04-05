@@ -23,6 +23,12 @@ public class Piece {
 
     //CONSTRUCTORES
 
+    public Piece (Piece p){
+        Piece p1 = new Piece();
+        p1.color = p.color;
+        p1.pos = p.pos;
+    }
+
     public Piece() {
         Piece p = new Piece();
     }
@@ -47,8 +53,9 @@ public class Piece {
         pos = new Pair(x,y);
     }
 
-    public void setPos(int x, int y) {
-        pos = new Pair(x,y);
+    public void setPos(int a, int b) {
+        pos.setFirst(a);
+        pos.setSecond(b);
     }
 
     //GETTERS

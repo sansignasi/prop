@@ -9,23 +9,33 @@ import src.Taulell;
 public class DriverMaquina1 {
 
     public static int jugador = 1;
-    public static int jg =1 ;
+    public static int jg = 1 ;
     public static Maquina1 m = new Maquina1();
 
 
-    public static Piece[][] matriu = { {new Rook('b'), null, new King('b'),null,null,new Bishop('b'),null,new Rook('b')}, //R,-,K,-,-,B,-,R
-            {new Pawn('b'), new Pawn('b'), null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
-            {new Pawn('w'), null,null,null,null,null,null,null},
+    /*public static Piece[][] matriu = { {new Rook('b',0,0), null, new King('b',0,2),null,null,new Bishop('b',0,5),null,new Rook('b',0,7)}, //R,-,K,-,-,B,-,R
+            {new Pawn('b',1,0), new Pawn('b',1,1), null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
+            {new Pawn('w',2,0), null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,new King('w'),null,null}};
+            {null,null,null,null,null,new King('b',7,5),null,null}};*/
+
+    public static Piece[][] matriu = { {null, null, null,null,null,null,null,null}, //R,-,K,-,-,B,-,R
+            {new Pawn('b',1,0), new Pawn('b',1,1), null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
+            {new Pawn('w',2,0), null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null}};
 
 
     public static Taulell t = new Taulell(matriu);
 
     public  static void testgetMovimentAlgorism1() {
+       // t.mostrarTaulell();
         Pair p = m.getMovimentAlgorisme1(t, jugador);
         System.out.println(p.getFirst() + " " + p.getSecond());
         //Pair p1 = (Pair)p.getSecond();
@@ -59,12 +69,6 @@ public class DriverMaquina1 {
         int vmin = m.valorMin(t,jg);
     }
     public static void main (String [] args){
-
-
-        int k = m.Heuristic1(t,0);
-        System.out.println(k);
-        int k1 = m.Heuristic1(t,1);
-        System.out.println(k1);
         testgetMovimentAlgorism1();
 
     }
