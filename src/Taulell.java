@@ -54,6 +54,7 @@ public class Taulell {
             p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
             System.out.println((int)posIni.getFirst() + " " + (int)posIni.getSecond());
             System.out.println("hola estic dins d'actualitzar i la posicio anterior es " + matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]);
+            System.out.println(p1.getPos() + " " + matriu[(int)posFi.getFirst()][(int)posFi.getSecond()].getPos());
 
         }
         else{
