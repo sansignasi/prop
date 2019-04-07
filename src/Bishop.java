@@ -5,6 +5,9 @@ import lib.Pair;
 import java.util.ArrayList;
 
 public class Bishop extends Piece{
+    public Bishop(Piece p) {
+        super(p);
+    }
 
     public Bishop(char c) {
         super(c);

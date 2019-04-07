@@ -30,7 +30,7 @@ public class Piece {
     }
 
     public Piece() {
-        Piece p = new Piece();
+        super();
     }
 
     public Piece(char c) {

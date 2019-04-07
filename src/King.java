@@ -5,6 +5,9 @@ import lib.Pair;
 import java.util.ArrayList;
 
 public class King extends Piece {
+    public King(Piece p) {
+        super(p);
+    }
 
     public King(char c) {
         super(c);
