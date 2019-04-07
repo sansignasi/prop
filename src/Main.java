@@ -47,9 +47,9 @@ public class Main {
                     int j2 = sc.nextInt();
 
                     //Crida a Partida
-                    Problema prob;
-                    Jugador jug1;
-                    Jugador jug2;
+                    Problema prob = new Problema();
+                    Jugador jug1 = new Jugador();
+                    Jugador jug2 = new Jugador();
                     //Problema:
                     if(inprob==1){
                         prob = new Problema(fen1,2,"Problema 1, mat de blanques en 2");
@@ -72,12 +72,13 @@ public class Main {
                     }
                     //Jugador 2:
                     if(j1==1){
-                        jug2 = new Usuari(0,0);
+                        jug2 = new Usuari(1,1);
                     }
                     else if(j1==2){
                         //jug2 = new M1(0,0);
                     }
                     Partida game = new Partida(prob,jug1,jug2);
+                    game.jugarPartida();
 
 
                     break;

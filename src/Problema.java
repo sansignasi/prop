@@ -13,7 +13,8 @@ public class Problema {
    private Taulell T; //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
     //METODES
 
-
+    public Problema(){
+    }
     public Problema(String s, int n, String nom) throws IncorrectFENException {
         FEN = s;
         nMax = n;

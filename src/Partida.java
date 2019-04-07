@@ -1,7 +1,11 @@
 package src;
 
+import lib.Pair;
+
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Partida {
     //ATRIBUTS
@@ -24,22 +28,40 @@ public class Partida {
         this.T = p.getTaulell();
     }
 
-    public void setEstat(String estat) {
-        this.estat = estat;
+    public void jugarPartida(){
+        String s;
+        Scanner sc = new Scanner(System.in);
+        int x;
+        int y;
+        Piece p;
+        Pair move;
+        ArrayList<Pair> posmovs;
+        for(int i = 0; i < (mov*2)-1;++i){
+            Boolean posok = false;
+            T.mostrarTaulell();
+            if(i%2 == 0){
+                System.out.println("Torn de l'atacant");
+                move = j1.jugarTorn(T);
+            }
+            else{
+                System.out.println("Torn del defensor");
+                move = j2.jugarTorn(T);
+            }
+            Pair pos = (Pair)move.getSecond();
+            p = (Piece)move.getFirst();
+            posmovs = p.calculaMovimentsPiece(T.getTaulell(),(int)p.getPos().getFirst(),(int)p.getPos().getSecond());
+            for(int j = 0; j < posmovs.size();++j){
+                Pair posaux = (Pair)posmovs.get(j).getSecond();
+                if(posaux.getFirst() == pos.getFirst() && posaux.getSecond() == pos.getSecond()){
+                    T.actualitzarTaulell(p,(Pair)move.getSecond());
+                    posok = true;
+                }
+            }
+           if(!posok)System.out.println("Posició incorrecta");
+        }
+        T.mostrarTaulell();
     }
 
-    /*public void jugar(){
-        estat = "curs";
-        Instant start = Instant.now();
-        for(; mov > 0 || estat.equals("fi"); --mov) {
-            //j1.jugatorn();
-            if (estat.equals("fi")) break;
-            //j2.jugatorn();
-        }
-        Instant finish = Instant.now();
-        temps = Duration.between(start, finish).toSeconds();
-        finalizar();
-    }*/
 
 
 
