@@ -14,16 +14,21 @@ public class Problema {
     //METODES
 
 
-    public Problema(String s, int n) throws IncorrectFENException {
+    public Problema(String s, int n, String nom) throws IncorrectFENException {
         FEN = s;
         nMax = n;
         T = new Taulell(s);
+        nomprob = nom;
     }
 
-    public void calcularatacant(){
+    public void calcularatacant() {
         String[] fenArray = FEN.split(" ");
         if (fenArray[1].equals("w")) atacant = 0;
         else atacant = 1;
+    }
+
+    public void visualitzaProblema(){
+
     }
 
 
