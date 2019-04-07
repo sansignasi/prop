@@ -67,9 +67,18 @@ public class Main {
                     if(j1==1){
                         jug1 = new Usuari(0,0);
                     }
-                    if(j1==1){
-                        jug1 = new Usuari(0,0);
+                    else if(j1==2){
+                        //jug1 = new M1(0,0);
                     }
+                    //Jugador 2:
+                    if(j1==1){
+                        jug2 = new Usuari(0,0);
+                    }
+                    else if(j1==2){
+                        //jug2 = new M1(0,0);
+                    }
+                    Partida game = new Partida(prob,jug1,jug2);
+
 
                     break;
                 case 2:
