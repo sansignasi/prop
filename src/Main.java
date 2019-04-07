@@ -37,6 +37,40 @@ public class Main {
                     String fen3 = "B6K/B1N5/2np3p/2r2n1Q/1p2k3/1P2PNP1/4P3/8 w - - 0 1";
                     Problema prob3 = new Problema(fen3,2,"Problema 3, mat de blanques en 2");
                     prob3.visualitzaProblema();
+                    System.out.println();
+                    System.out.println();
+                    System.out.println("Escull un dels problemes mostrats per jugar-lo:");
+                    int inprob = sc.nextInt();
+                    System.out.println("Qui comença atacant? Opció 1: Usuari, Opció 2: M1");
+                    int j1 = sc.nextInt();
+                    System.out.println("Qui defensa? Opció 1: Usuari, Opció 2: M1");
+                    int j2 = sc.nextInt();
+
+                    //Crida a Partida
+                    Problema prob;
+                    Jugador jug1;
+                    Jugador jug2;
+                    //Problema:
+                    if(inprob==1){
+                        prob = new Problema(fen1,2,"Problema 1, mat de blanques en 2");
+                    }
+                    else if(inprob==2){
+                        prob = new Problema(fen2,2,"Problema 2, mat de blanques en 2");
+                    }
+                    else if(inprob==3){
+                        prob = new Problema(fen3,2,"Problema 3, mat de blanques en 2");
+                    }
+                    else{
+                        System.out.println("Jugador erroni");
+                    }
+                    //Jugador 1:
+                    if(j1==1){
+                        jug1 = new Usuari(0,0);
+                    }
+                    if(j1==1){
+                        jug1 = new Usuari(0,0);
+                    }
+
                     break;
                 case 2:
                     //testActualitzaTaulell();
