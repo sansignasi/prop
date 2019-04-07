@@ -5,21 +5,23 @@ import java.time.Instant;
 
 public class Partida {
     //ATRIBUTS
+    private Problema p;
     private int mov; //num de movimientos restantes que el jugador 1 tiene para hacer jaquemate
     private float temps; //tiempo que se ha jugado en la partida
     private String estat; //estado de la partida en el momento actual (en pausa, curs, fi).
     private Jugador j1; //jugador 1  de la partida (el que ataca)
     private Jugador j2; //jugador 2 de la partida (el que defiende)
-    private char atacant;
+    private int atacant;
+    private Taulell T;
     //METODES
 
-
-    public Partida(int N, float t, String e, Jugador jug1, Jugador jug2){
-        this.mov = N;
-        this.temps = t;
-        this.estat = e;
-        this.j1 = jug1;
-        this.j2 = jug2;
+    public Partida(Problema p, Jugador j1, Jugador j2){
+        this.j1 = j1;
+        this.j2 = j2;
+        this.p = p;
+        mov = p.getMoviments();
+        atacant = p.getAtacant();
+        this.T = p.getTaulell();
     }
 
     public void setEstat(String estat) {
