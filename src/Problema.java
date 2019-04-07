@@ -10,8 +10,24 @@ public class Problema {
     private char atacant; // jugador que comença i ataca, b black, w white
     private Boolean validat; //validat o no
     private String creador; //nombre del usuario creador del problema
-   private Taulell T = new Taulell(); //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
+   private Taulell T; //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
     //METODES
+
+
+    public Problema(String s, int n) throws IncorrectFENException {
+        FEN = s;
+        nMax = n;
+        T = new Taulell(s);
+    }
+
+    public void calcularatacant(){
+        String[] fenArray = FEN.split(" ");
+        if (fenArray[1].equals("w")) atacant = 0;
+        else atacant = 1;
+    }
+
+
+
     public void calcularDificultad() {
         //PRE:
         //POST: calcula la dificultad asociada al problema
