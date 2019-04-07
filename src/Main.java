@@ -20,8 +20,8 @@ public class Main {
             switch (opt){
                 case 1:
                     System.out.println("Escull un dels següents problemes per jugar-lo");
-                    String prob1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
-                    Problema prob1 = new Problema(prob1);
+                    String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
+                    Problema prob1 = new Problema(fen1,2,"Problema 1");
                     prob1.visualitzarProblema();
 
                     break;
