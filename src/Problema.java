@@ -7,7 +7,7 @@ public class Problema {
     private String FEN; //codificacio en FEN del problema
     private String dificultad; //dificultad asociada al problema
     private int nMax; // num maximo de jugadas para el jaquemate
-    private char atacant; // jugador que comença i ataca, b black, w white
+    private int atacant; // jugador que comença i ataca, b black, w white
     private Boolean validat; //validat o no
     private String creador; //nombre del usuario creador del problema
    private Taulell T; //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
@@ -43,6 +43,15 @@ public class Problema {
         this.dificultad = "Mas dificil que el final de BD";
     }
 
+    public int getMoviments(){
+        return nMax;
+    }
+    public int getAtacant(){
+        return atacant;
+    }
+    public Taulell getTaulell(){
+        return T;
+    }
     /*// Jugador que comença a moure (atacant)
         if (fenArray[1].equals("b")) {
         Problema.setAtacant('b');
