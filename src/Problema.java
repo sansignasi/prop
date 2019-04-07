@@ -19,6 +19,7 @@ public class Problema {
         nMax = n;
         T = new Taulell(s);
         nomprob = nom;
+        calcularDificultad();
     }
 
     public void calcularatacant() {
@@ -28,14 +29,17 @@ public class Problema {
     }
 
     public void visualitzaProblema(){
-
+        System.out.println("Aquest es el problema"+nomprob);
+        System.out.println();
+        System.out.println("Dificultad: muy difisil"+dificultad);
+        System.out.println();
+        T.mostrarTaulell();
     }
-
-
 
     public void calcularDificultad() {
         //PRE:
         //POST: calcula la dificultad asociada al problema
+        this.dificultad = "mas dificil que el final de BD";
     }
 
     /*// Jugador que comença a moure (atacant)
