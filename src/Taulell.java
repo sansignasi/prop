@@ -21,6 +21,10 @@ public class Taulell {
         matriu = mat;
     }
 
+    public Taulell(String fen) throws IncorrectFENException{
+        carregaFEN(fen);
+    }
+
     public void copiaTaulell(Taulell t){
         Piece[][] k = t.matriu;
         for (int i = 0; i < k.length; ++i){
@@ -52,9 +56,6 @@ public class Taulell {
             matriu[(int)posIni.getFirst()][(int)posIni.getSecond()] = null;
             matriu[(int)posFi.getFirst()][(int)posFi.getSecond()] = p1;
             p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
-            System.out.println((int)posIni.getFirst() + " " + (int)posIni.getSecond());
-            System.out.println("hola estic dins d'actualitzar i la posicio anterior es " + matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]);
-            System.out.println(p1.getPos() + " " + matriu[(int)posFi.getFirst()][(int)posFi.getSecond()].getPos());
 
         }
         else{
@@ -62,8 +63,6 @@ public class Taulell {
             matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]=null;
             matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]=p1;
             p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
-            System.out.println("hola estic dins d'actualitzar matar i la posicio anterior es " + matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]);
-
         }
 
     }

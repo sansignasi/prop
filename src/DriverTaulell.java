@@ -2,9 +2,6 @@ package src;
 import java.util.Scanner;
 import lib.Pair;
 
-
-import java.util.ArrayList;
-
 public class DriverTaulell {
 
     private static Taulell t = new Taulell();
@@ -20,8 +17,7 @@ public class DriverTaulell {
         t.mostrarTaulell();
         t.taulellAFEN();
     }
-    public static void testActualitzaTaulell() throws IncorrectFENException{
-
+    public static void testActualitzaTaulell(){
         System.out.println("Escriu quina peça vols moure: ");
         Scanner sc = new Scanner(System.in);
         String inPiece = sc.nextLine();
