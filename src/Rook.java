@@ -5,6 +5,9 @@ import lib.Pair;
 import java.util.ArrayList;
 
 public class Rook extends Piece {
+    public Rook(Piece p) {
+        super(p);
+    }
 
     public Rook(char c) {
         super(c);

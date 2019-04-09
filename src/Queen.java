@@ -5,6 +5,9 @@ import lib.Pair;
 import java.util.ArrayList;
 
 public class Queen extends Piece {
+    public Queen(Piece p) {
+        super(p);
+    }
 
     public Queen(char c) {
         super(c);

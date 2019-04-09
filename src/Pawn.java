@@ -5,6 +5,9 @@ import lib.Pair;
 import java.util.ArrayList;
 
 public class Pawn extends Piece {
+    public Pawn(Piece p) {
+        super(p);
+    }
 
     public Pawn(char c) {
         super(c);
