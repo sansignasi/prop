@@ -14,7 +14,7 @@ public class Taulell {
 
     //CREADORA
     public Taulell() {
-        Piece[][] matriu = new Piece[8][8];
+        this.matriu = new Piece[8][8];
     }
 
     public Taulell(Piece[][] mat){
@@ -27,12 +27,13 @@ public class Taulell {
 
     public void copiaTaulell(Taulell t){
         Piece[][] k = t.matriu;
+
         for (int i = 0; i < k.length; ++i){
             for (int j = 0; j < k[0].length; ++j) {
-                if (t.tePiece(i,j)){
-                    Piece p = new Piece(k[i][j]);
-                    matriu[i][j] = p;
+                if(t.tePiece(i,j)) {
+                    this.matriu[i][j] = new Piece(k[i][j]);
                 }
+                else this.matriu[i][j] = null;
             }
         }
     }
@@ -53,16 +54,17 @@ public class Taulell {
         //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
         Pair posIni = p1.getPos();
         if(matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]==null){
+
             matriu[(int)posIni.getFirst()][(int)posIni.getSecond()] = null;
-            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()] = p1;
             p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
+            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()] = p1;
 
         }
         else{
-            //MENJAR PEÇA, SUMAR PUNTUACIÓ
-            matriu[(int)posIni.getFirst()][(int)posIni.getSecond()]=null;
-            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]=p1;
+
+            matriu[(int)posIni.getFirst()][(int)posIni.getSecond()] = null;
             p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
+            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()] = p1;
         }
 
     }

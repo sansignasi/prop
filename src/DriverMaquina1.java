@@ -35,9 +35,9 @@ public class DriverMaquina1 {
     public static Taulell t = new Taulell(matriu);
 
     public  static void testgetMovimentAlgorism1() {
-       // t.mostrarTaulell();
+        //t.mostrarTaulell();
         Pair p = m.getMovimentAlgorisme1(t, jugador);
-        System.out.println(p.getFirst() + " " + p.getSecond());
+        System.out.println("El moviment que retorna la maquina 1 es " + p.getFirst() + " " + p.getSecond());
         //Pair p1 = (Pair)p.getSecond();
         //System.out.println(p1.getFirst() + " " + p1.getSecond());
     }

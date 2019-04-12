@@ -26,7 +26,9 @@ public class Piece {
     public Piece (Piece p){
         Piece p1 = new Piece();
         p1.color = p.color;
-        p1.pos = p.pos;
+        Pair aux = new Pair(0,0);
+        aux.setFirst(p.getPos().getFirst());
+        aux.setSecond(p.getPos().getSecond());
     }
 
     public Piece() {
