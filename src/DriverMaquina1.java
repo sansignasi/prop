@@ -24,48 +24,62 @@ public class DriverMaquina1 {
 
     public static Taulell t = new Taulell(matriu);
 
-    public  static void testgetMovimentAlgorism1(int jugador) {
-        Pair p = m.jugarTorn(t, jugador);
+    public  static void testgetMovimentAlgorism1(int jugador, int profunditat) {
+        Pair p = m.jugarTorn(t, jugador, profunditat);
         System.out.println("El moviment que retorna la maquina 1 es " + p.getFirst() + " " + p.getSecond());
+        System.out.println();
+
     }
 
     public static void testHeuristic1(int j) {
         int h1 = m.Heuristic1( t, j);
         System.out.println("L'avaluació del taulell de l'Heurístic 1 es " + h1);
+        System.out.println();
+
 
     }
     public static void testHeuristic2(int j) {
 
         int h2 = m.Heuristic2(t, j);
         System.out.println("L'avaluació del taulell de l'Heurístic 2 es " + h2);
+        System.out.println();
+
     }
     public static void testcalculaMovimentsPosibles(int j) {
 
         ArrayList<Pair> v = m.calculaMovimentsPosibles(t,j);
         System.out.println("El vector resultants amb tots els moviments possibles de les peces del jugador es de: ");
         for (int i = 0; i < v.size(); ++i) System.out.println(v.get(i).getFirst() + " " + v.get(i).getSecond());
-        System.out.println("hola");
+        System.out.println();
+
 
     }
     public static void testestatTerminal(int jugador, int profunditat) {
 
         boolean b = m.estatTerminal(t,jugador, profunditat);
-        System.out.println("El taulell resultant és estat terminal?" + b);
+        System.out.println("El taulell resultant és estat terminal? " + b);
+        System.out.println();
     }
     public static void testMiniMax(int jugador, int profunditat) {
 
         Pair mm = m.MiniMax(t, jugador, profunditat);
         System.out.println("La peça i la posició calculades pel MiniMax son: " + mm.getFirst() + " " + mm.getSecond());
+        System.out.println();
+
     }
     public static void testvalorMax(int jugador, int profunditat) {
 
         int vm = m.valorMax(t, jugador, profunditat);
         System.out.println("El valor retornat per la funció valorMax és: " + vm);
+        System.out.println();
+
 
     }
     public static void testvalorMin(int jugador, int profunditat) {
         int vmin = m.valorMin(t,jugador, profunditat);
         System.out.println("El valor retornat per la funció valorMin és: " + vmin);
+        System.out.println();
+
 
     }
 
@@ -81,6 +95,7 @@ public class DriverMaquina1 {
             System.out.println("5.TestMiniMax");
             System.out.println("6.TestHeuristic1");
             System.out.println("7.TestHeuristic2");
+            System.out.println("8.TestGetMovimentAlgorisme1");
             System.out.println("0.Exit");
 
             Scanner sc = new Scanner(System.in);
@@ -142,7 +157,9 @@ public class DriverMaquina1 {
                     Scanner in7 = new Scanner(System.in);
                     System.out.println("Escull el jugador");
                     j = in7.nextInt();
-                    testgetMovimentAlgorism1(j);
+                    System.out.println("Escull la profunditat");
+                    p = in7.nextInt();
+                    testgetMovimentAlgorism1(j,p);
                 break;
                 case 0:
                     System.out.println("Adeu");
