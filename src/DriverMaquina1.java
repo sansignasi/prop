@@ -10,7 +10,7 @@ public class DriverMaquina1 {
 
     public static int jugador = 1;
     public static int jg = 1 ;
-    public static Maquina1 m = new Maquina1();
+    public static Maquina1 m = new Maquina1(0,0);
 
 
     /*public static Piece[][] matriu = { {new Rook('b',0,0), null, new King('b',0,2),null,null,new Bishop('b',0,5),null,new Rook('b',0,7)}, //R,-,K,-,-,B,-,R
@@ -36,7 +36,7 @@ public class DriverMaquina1 {
 
     public  static void testgetMovimentAlgorism1() {
         //t.mostrarTaulell();
-        Pair p = m.getMovimentAlgorisme1(t, jugador);
+        Pair p = m.jugarTorn(t, jugador);
         System.out.println("El moviment que retorna la maquina 1 es " + p.getFirst() + " " + p.getSecond());
         //Pair p1 = (Pair)p.getSecond();
         //System.out.println(p1.getFirst() + " " + p1.getSecond());

@@ -41,14 +41,17 @@ public class Partida {
             T.mostrarTaulell();
             if(i%2 == 0){
                 System.out.println("Torn de l'atacant");
-                move = j1.jugarTorn(T);
+                move = j1.jugarTorn(T,j1.getColor());
             }
             else{
                 System.out.println("Torn del defensor");
-                move = j2.jugarTorn(T);
+                move = j2.jugarTorn(T,j2.getColor());
             }
             Pair pos = (Pair)move.getSecond();
             p = (Piece)move.getFirst();
+            Pair posp = p.getPos();
+            System.out.println(posp.getFirst()+" "+posp.getSecond());
+            System.out.println(pos.getFirst()+" "+pos.getSecond());
             posmovs = p.calculaMovimentsPiece(T.getTaulell(),(int)p.getPos().getFirst(),(int)p.getPos().getSecond());
             for(int j = 0; j < posmovs.size();++j){
                 Pair posaux = (Pair)posmovs.get(j).getSecond();

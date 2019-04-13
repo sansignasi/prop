@@ -12,7 +12,7 @@ public class Usuari extends Jugador{
         super(color,rol);
     }
 
-    public Pair jugarTorn(Taulell t){
+    public Pair jugarTorn(Taulell t,int jugador){
         System.out.println("Escriu quina peça vols moure: ");
         Scanner sc = new Scanner(System.in);
         String inPiece = sc.nextLine();

@@ -19,7 +19,7 @@ public class Jugador {
         return color;
     }
 
-    public Pair jugarTorn(Taulell t){
+    public Pair jugarTorn(Taulell t,int jugador){
         return null;
     }
 }
