@@ -19,14 +19,13 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
     public Pair jugarTorn(Taulell t, int jugador){
 
         initializeProf();
-        Pair p = MiniMax(t,jugador);
+        Pair p = MiniMax(t,jugador,prof);
         return p;
     }
 
     public int Heuristic1(Taulell t, int jugador){
 
         Piece[][] p = t.getTaulell();
-        //t.mostrarTaulell();
 
         int ret = 0;
 
@@ -39,9 +38,7 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
                         Piece pC = t.getPiece(i,j);
                         ret += pC.getValor();
                     }
-                    //System.out.println(jugador);
                    else {
-                        //System.out.println("ignasi tonto");
                         Piece pC = t.getPiece(i,j);
                         ret -= pC.getValor();
                     }
@@ -98,7 +95,7 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
         else return false;
     }
 
-    public Pair MiniMax(Taulell t, int jg){
+    public Pair MiniMax(Taulell t, int jg, int profunditat){
 
         int max,cmax; //puntuacio de la heurística
         max = -99999999;
@@ -110,7 +107,7 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
             Pair mov = p.get(i);
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
-            int prf = prof;
+            int prf = profunditat;
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,prf-1);
 
