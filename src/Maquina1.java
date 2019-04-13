@@ -10,15 +10,8 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
         super(color,rol);
     }
 
-    private int prof;
-
-    public void initializeProf(){
-        prof = 4;
-    }
-
     public Pair jugarTorn(Taulell t, int jugador, int profunditat){
 
-        initializeProf();
         Pair p = MiniMax(t,jugador,profunditat);
         return p;
     }
@@ -103,7 +96,7 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
         ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
 
         for (int i=0; i<p.size();++i) {
-            System.out.println("estem dins de minimax i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
+            //System.out.println("estem dins de minimax i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
             Pair mov = p.get(i);
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
@@ -131,7 +124,7 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
             ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
 
             for (int i=0; i<p.size(); ++i){
-                System.out.println("estem dins de valormax i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
+                //System.out.println("estem dins de valormax i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
                 Taulell aux = new Taulell();
                 aux.copiaTaulell(t);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
@@ -154,7 +147,7 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
             vmin = 99999999;
             ArrayList<Pair> p = calculaMovimentsPosibles(t,Math.abs(jg-1));
             for (int i=0; i<p.size(); ++i){
-               System.out.println("estem dins de valormin i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
+                //System.out.println("estem dins de valormin i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
                 Taulell aux = new Taulell();
                 aux.copiaTaulell(t);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());

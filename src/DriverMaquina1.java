@@ -47,9 +47,11 @@ public class DriverMaquina1 {
     }
     public static void testcalculaMovimentsPosibles(int j) {
 
-        ArrayList<Pair> v = m.calculaMovimentsPosibles(t,j);
+        ArrayList<Pair> p = m.calculaMovimentsPosibles(t,j);
         System.out.println("El vector resultants amb tots els moviments possibles de les peces del jugador es de: ");
-        for (int i = 0; i < v.size(); ++i) System.out.println(v.get(i).getFirst() + " " + v.get(i).getSecond());
+        for (int i = 0; i < p.size(); ++i) {
+            System.out.println(p.get(i).getFirst() + " " + p.get(i).getSecond());
+        }
         System.out.println();
 
 
@@ -104,7 +106,7 @@ public class DriverMaquina1 {
                 case 1:
                     Scanner reader = new Scanner(System.in);
                     System.out.println("Escull un color: 1(negres) o 0 (blanques)");
-                    int j = reader.next().charAt(0);
+                    int j = reader.nextInt();
                     testcalculaMovimentsPosibles(j);
                     break;
                 case 2:
