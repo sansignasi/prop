@@ -22,13 +22,13 @@ public class DriverMaquina1 {
             {null,null,null,null,null,null,null,null},
             {null,null,null,null,null,new King('b',7,5),null,null}};*/
 
-    public static Piece[][] matriu = { {null, null, null,null,null,null,null,null}, //R,-,K,-,-,B,-,R
+    public static Piece[][] matriu = { {null, null, null,null,new King('b',0,4),null,null,null}, //R,-,K,-,-,B,-,R
             {new Pawn('b',1,0), new Pawn('b',1,1), null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
             {new Pawn('w',2,0), null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,null,null,null},
+            {null,null,new Bishop('b',5,2),null,null,null,null,null},
+            {null,null,null,new King('w',6,3),null,null,null,null},
             {null,null,null,null,null,null,null,null}};
 
 
@@ -41,6 +41,7 @@ public class DriverMaquina1 {
         //Pair p1 = (Pair)p.getSecond();
         //System.out.println(p1.getFirst() + " " + p1.getSecond());
     }
+    /*
     public static void testHeuristic1() {
         int h1 = m.Heuristic1( t, jugador);
     }
@@ -67,7 +68,7 @@ public class DriverMaquina1 {
     public static void testvalorMin() {
 
         int vmin = m.valorMin(t,jg);
-    }
+    }*/
     public static void main (String [] args){
         testgetMovimentAlgorism1();
 

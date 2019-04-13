@@ -15,6 +15,11 @@ public class Taulell {
     //CREADORA
     public Taulell() {
         this.matriu = new Piece[8][8];
+        for (int i = 0; i < this.matriu.length; ++i){
+            for (int j = 0; j < this.matriu.length; ++j){
+                this.matriu[i][j] = null;
+            }
+        }
     }
 
     public Taulell(Piece[][] mat){
@@ -25,17 +30,34 @@ public class Taulell {
         carregaFEN(fen);
     }
 
+    public Piece copiaPiece(Piece u){
+        Piece p;
+        if (u.getTipus() == "Pawn") p = new Pawn(u);
+        else if (u.getTipus() == "King") p = new King(u);
+        else if (u.getTipus() == "Knight") p = new Knight(u);
+        else if (u.getTipus() == "Bishop") p = new Bishop(u);
+        else if (u.getTipus() == "Queen") p = new Queen(u);
+        else p = new Rook(u);
+        return p;
+    }
+
     public void copiaTaulell(Taulell t){
+
         Piece[][] k = t.matriu;
 
         for (int i = 0; i < k.length; ++i){
             for (int j = 0; j < k[0].length; ++j) {
+
                 if(t.tePiece(i,j)) {
-                    this.matriu[i][j] = new Piece(k[i][j]);
+
+                    Piece u = t.getPiece(i,j);
+                    Piece p = copiaPiece(u);
+                    this.matriu[i][j] = p;
                 }
                 else this.matriu[i][j] = null;
             }
         }
+
     }
 
     //GETTERS
@@ -53,18 +75,21 @@ public class Taulell {
         //PRE: p1 és una peça de la matriu i p una posició vàlida on es pot moure p1
         //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
         Pair posIni = p1.getPos();
-        if(matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]==null){
 
+        if(matriu[(int)posFi.getFirst()][(int)posFi.getSecond()]==null){
+            Piece aux = copiaPiece(p1);
             matriu[(int)posIni.getFirst()][(int)posIni.getSecond()] = null;
-            p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
-            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()] = p1;
+            aux.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
+            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()] = aux;
+
 
         }
         else{
-
+            Piece aux = copiaPiece(p1);
             matriu[(int)posIni.getFirst()][(int)posIni.getSecond()] = null;
-            p1.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
-            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()] = p1;
+            aux.setPos((int)posFi.getFirst(),(int)posFi.getSecond());
+            matriu[(int)posFi.getFirst()][(int)posFi.getSecond()] = aux;
+
         }
 
     }
@@ -79,7 +104,9 @@ public class Taulell {
 
         for (int i = 0; i < matriu.length; ++i){
             for (int j = 0; j < matriu[0].length; ++j){
-                if (matriu[i][j].getTipus().equals("King") && matriu[i][j].getJugador() == jg) return true;
+                if(this.tePiece(i,j)) {
+                    if (matriu[i][j].getTipus().equals("King") && matriu[i][j].getJugador() == jg) return true;
+                }
             }
         }
         return false;

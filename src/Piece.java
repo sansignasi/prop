@@ -24,11 +24,15 @@ public class Piece {
     //CONSTRUCTORES
 
     public Piece (Piece p){
-        Piece p1 = new Piece();
-        p1.color = p.color;
+        this.color = p.color;
         Pair aux = new Pair(0,0);
+        //System.out.println("la posicio de la piece per parametre es " + p.getPos());
         aux.setFirst(p.getPos().getFirst());
         aux.setSecond(p.getPos().getSecond());
+        this.pos = aux;
+        //System.out.println("la posicio despres del pair es " + this.getPos());
+
+
     }
 
     public Piece() {
