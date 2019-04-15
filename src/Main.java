@@ -85,6 +85,7 @@ public class Main {
 
 
                     break;
+
                 case 2:
                     String f = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
                     Problema p = new Problema(f,2,"Mat de blanques en 2");
@@ -92,10 +93,10 @@ public class Main {
                     System.out.println();
                     System.out.println();
                     int n = p.validariOptimitzarProblema(p.getTaulell(),p.getAtacant(),p.getMoviments()*2+1);
-                    System.out.println("la n es " + n);
                     if (n == -1) System.out.println("El problema no es pot resoldre en " + p.getMoviments() + " moviments. i la n es " + n);
-                    else System.out.println("El problema es pot resoldre en " + (p.getMoviments()*2 - n) + " moviments.");
+                    else System.out.println("El problema es pot resoldre en " + (p.getMoviments()) + " moviments.");
                     break;
+
                 case 3:
                     f = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
                     p = new Problema(f,2,"Mat de blanques en 2");
@@ -103,10 +104,10 @@ public class Main {
                     System.out.println();
                     System.out.println();
                     n = p.validarProblema(p.getTaulell(),p.getAtacant(),p.getMoviments()*2+1);
-                    System.out.println("la n es " + n);
                     if (n == -1) System.out.println("El problema no es pot resoldre en " + p.getMoviments() + " moviments. i la n es " + n);
-                    else System.out.println("El problema es pot resoldre en " + (p.getMoviments()*2 - n) + " moviments.");
+                    else System.out.println("El problema es pot resoldre en " + (p.getMoviments()) + " moviments.");
                     break;
+
                 case 0:
                     System.out.println("Adiós");
                     break;

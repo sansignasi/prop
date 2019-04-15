@@ -139,20 +139,17 @@ public class Problema {
         int ret,cmax; //puntuacio de la heurística
         ret = -99999999;
         ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
-        System.out.println("la profunditat inicial es de "+ profunditat);
 
         for (int i=0; i<p.size();++i) {
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
-            System.out.println("VALOR MIN RETORNA " + cmax);
 
             if (cmax > ret){
                 ret = cmax;
             }
         }
-        System.out.println("EL RETORN DEL MINIMAX SERA " + ret);
         return ret;
     }
 

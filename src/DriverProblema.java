@@ -28,7 +28,7 @@ public class DriverProblema {
         int n = p.validariOptimitzarProblema(t,jugador,profunditat*2);
         //System.out.println("la n es " + n);
         if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments. i la n es " + n);
-        else System.out.println("El problema es pot resoldre en " + (profunditat*2 - n) + " moviments.");
+        else System.out.println("El problema es pot resoldre en " + (profunditat*2 - n)/2 + " moviments.");
 
     }
 
