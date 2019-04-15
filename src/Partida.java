@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Partida {
     //ATRIBUTS
-    private Problema p;
+    private Problema prob;
     private int mov; //num de movimientos restantes que el jugador 1 tiene para hacer jaquemate
     private float temps; //tiempo que se ha jugado en la partida
     private String estat; //estado de la partida en el momento actual (en pausa, curs, fi).
@@ -22,7 +22,7 @@ public class Partida {
     public Partida(Problema p, Jugador j1, Jugador j2){
         this.j1 = j1;
         this.j2 = j2;
-        this.p = p;
+        this.prob = p;
         mov = p.getMoviments();
         atacant = p.getAtacant();
         this.T = p.getTaulell();
@@ -41,11 +41,11 @@ public class Partida {
             T.mostrarTaulell();
             if(i%2 == 0){
                 System.out.println("Torn de l'atacant");
-                move = j1.jugarTorn(T,j1.getColor());
+                move = j1.jugarTorn(T,j1.getColor(),prob.getMoviments()*2);
             }
             else{
                 System.out.println("Torn del defensor");
-                move = j2.jugarTorn(T,j2.getColor());
+                move = j2.jugarTorn(T,j2.getColor(),prob.getMoviments()*2);
             }
             Pair pos = (Pair)move.getSecond();
             p = (Piece)move.getFirst();
