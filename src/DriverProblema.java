@@ -26,8 +26,9 @@ public class DriverProblema {
 
     public static void testValidarProblema(int jugador, int profunditat) {
         int n = p.validarProblema(t,jugador,profunditat*2);
+        System.out.println("la n es " + n);
         if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments. i la n es " + n);
-        else System.out.println("El problema es pot resoldre en " + (profunditat - n) + " moviments.");
+        else System.out.println("El problema es pot resoldre en " + (profunditat*2 - n) + " moviments.");
 
     }
 
