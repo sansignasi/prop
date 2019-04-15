@@ -24,9 +24,17 @@ public class DriverProblema {
 
     public static Taulell t = new Taulell(matriu);
 
+    public static void testValidariOptimitzarProblema(int jugador, int profunditat) {
+        int n = p.validariOptimitzarProblema(t,jugador,profunditat*2);
+        //System.out.println("la n es " + n);
+        if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments. i la n es " + n);
+        else System.out.println("El problema es pot resoldre en " + (profunditat*2 - n) + " moviments.");
+
+    }
+
     public static void testValidarProblema(int jugador, int profunditat) {
-        int n = p.validarProblema(t,jugador,profunditat*2);
-        System.out.println("la n es " + n);
+        int n = p.validariOptimitzarProblema(t,jugador,profunditat*2);
+        //System.out.println("la n es " + n);
         if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments. i la n es " + n);
         else System.out.println("El problema es pot resoldre en " + (profunditat*2 - n) + " moviments.");
 
@@ -41,7 +49,7 @@ public class DriverProblema {
 
     public static void testMiniMax(int jugador, int profunditat) {
 
-        int mm = p.MiniMax(t, jugador, profunditat);
+        int mm = p.MiniMaxOptim(t, jugador, profunditat);
         System.out.println("Els moviments minims trobats pel MiniMax son: " + mm);
         System.out.println();
 
@@ -67,11 +75,12 @@ public class DriverProblema {
         while (opt!=0){
             System.out.println("~~~~DRIVER MAQUINA1~~~~");
             System.out.println("Tria una opció:");
-            System.out.println("1.TestValidarProblema");
+            System.out.println("1.TestValidariOptimitzarProblema");
             System.out.println("2.TestEstatTerminal");
             System.out.println("3.TestValorMax");
             System.out.println("4.TestValorMin");
             System.out.println("5.TestMiniMax");
+            System.out.println("5.TestValidarProblema");
             System.out.println("0.Exit");
 
             Scanner sc = new Scanner(System.in);
@@ -83,7 +92,7 @@ public class DriverProblema {
                     int p = in5.nextInt();
                     System.out.println("Escull el jugador");
                     int j = in5.nextInt();
-                    testValidarProblema(j,p);
+                    testValidariOptimitzarProblema(j,p);
                     break;
 
                 case 2:
@@ -118,6 +127,15 @@ public class DriverProblema {
                     System.out.println("Escull el jugador");
                     j = in4.nextInt();
                     testMiniMax(j,p);
+                    break;
+
+                case 6:
+                    Scanner in6 = new Scanner(System.in);
+                    System.out.println("Escull la profunditat");
+                    p = in6.nextInt();
+                    System.out.println("Escull el jugador");
+                    j = in6.nextInt();
+                    testValidarProblema(j,p);
                     break;
 
                 case 0:

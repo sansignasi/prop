@@ -13,7 +13,8 @@ public class Main {
         while (opt!=0){
             System.out.println("Tria una opció:");
             System.out.println("1.Jugar problema");
-            System.out.println("2.Validar problema");
+            System.out.println("2.Validar i optimitzar problema");
+            System.out.println("3.Validar problema");
             System.out.println("0.Exit");
             Scanner sc = new Scanner(System.in);
             opt = sc.nextInt();
@@ -74,9 +75,11 @@ public class Main {
                     if(j2==1){
                         jug2 = new Usuari(1,1);
                     }
+
                     else if(j2==2){
                         jug2 = new Maquina1(1,1);
                     }
+
                     Partida game = new Partida(prob,jug1,jug2);
                     game.jugarPartida();
 
@@ -88,13 +91,21 @@ public class Main {
                     p.visualitzaProblema();
                     System.out.println();
                     System.out.println();
-                    int n = p.validarProblema(p.getTaulell(),p.getAtacant(),p.getMoviments());
+                    int n = p.validariOptimitzarProblema(p.getTaulell(),p.getAtacant(),p.getMoviments()*2+1);
                     System.out.println("la n es " + n);
                     if (n == -1) System.out.println("El problema no es pot resoldre en " + p.getMoviments() + " moviments. i la n es " + n);
                     else System.out.println("El problema es pot resoldre en " + (p.getMoviments()*2 - n) + " moviments.");
                     break;
                 case 3:
-                    //testMostraTaulell();
+                    f = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
+                    p = new Problema(f,2,"Mat de blanques en 2");
+                    p.visualitzaProblema();
+                    System.out.println();
+                    System.out.println();
+                    n = p.validarProblema(p.getTaulell(),p.getAtacant(),p.getMoviments()*2+1);
+                    System.out.println("la n es " + n);
+                    if (n == -1) System.out.println("El problema no es pot resoldre en " + p.getMoviments() + " moviments. i la n es " + n);
+                    else System.out.println("El problema es pot resoldre en " + (p.getMoviments()*2 - n) + " moviments.");
                     break;
                 case 0:
                     System.out.println("Adiós");
