@@ -82,7 +82,7 @@ public class Problema {
 
     public int validarProblema(Taulell t, int jug, int mov){
         int k = MiniMax(t,jug,mov);
-        return 0;
+        return k;
     }
 
 
@@ -104,7 +104,11 @@ public class Problema {
     }
 
     public boolean estatTerminal(Taulell t, int jugador, int prf){
-        if (!t.teRei(Math.abs(jugador-1)) && prf >= 0) return true;
+        if (!t.teRei(Math.abs(jugador-1)) && prf >= 0) {
+            System.out.println("entro aqui i la profunditat es " + prf);
+            return true;
+        }
+        else if (prf == -1) return true;
         else return false;
     }
 
@@ -122,6 +126,7 @@ public class Problema {
             int prf = profunditat;
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,prf-1);
+            //System.out.println("EL MINIMAX RETORNA " + cmax);
 
             if (cmax > max){
                 ret = cmax;
@@ -134,7 +139,9 @@ public class Problema {
         int vmax;
 
         if (estatTerminal(t,jg,prf)){
-            return prf;
+            //System.out.println(prf);
+            if (prf == -1) return 999;
+            else return prf;
         }
         else{
             vmax = -99999999;
@@ -146,6 +153,7 @@ public class Problema {
                 aux.copiaTaulell(t);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 int l = valorMin(aux,jg, prf-1);
+                //System.out.println("EL VALORMAX RETORNA " + l);
                 vmax = Math.max(vmax,l);
             }
             return vmax;
@@ -156,6 +164,7 @@ public class Problema {
         int vmin;
 
         if (estatTerminal(t,jg,prf)){
+            //System.out.println(prf);
             return prf;
             //System.out.println("El valor del heuristic es " + x );
         }
@@ -168,6 +177,7 @@ public class Problema {
                 aux.copiaTaulell(t);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 int l = valorMax(aux,jg, prf-1);
+                //System.out.println("EL VALORMIN RETORNA " + l);
                 vmin = Math.min(vmin,l);
 
             }
