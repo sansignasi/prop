@@ -65,43 +65,4 @@ public class Partida {
         T.mostrarTaulell();
     }
 
-
-
-
-
-    public void pausar() {
-        //PRE: la partida no esta en pausa
-        //POST: se pausa la partida. El estado pasa a ser en pausa, el tiempo pra de contar.
-        if(estat.equals("curs")){
-            estat = "pausa";
-        }
-
-    }
-
-    public void reanudar() {
-        //PRE: la partida esta en pausa
-        //POST: se reanuda la partida
-        if(estat.equals("pausa")){
-            estat = "curs";
-        }
-
-
-    }
-    public void abandonar() {
-        //PRE:
-        //POST: se abandona la partida
-
-    }
-    public void gurdar() {
-        //PRE:
-        //POST: se guarda el estado actual de la partida: como estan las piezas, a quien le toca mover, tiempo,y el
-        //numero de movimientos restantes
-
-
-    }
-    public void finalizar() {
-        //PRE:
-        //POST: muestra los resultados finales de la partida y actualiza ranking si necesario.
-
-    }
 }

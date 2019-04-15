@@ -23,6 +23,7 @@ public class Problema {
         T = new Taulell(s);
         nomprob = nom;
         calcularDificultad();
+        calcularatacant();
     }
 
     public void calcularatacant() {
