@@ -80,7 +80,7 @@ public class DriverProblema {
             System.out.println("3.TestValorMax");
             System.out.println("4.TestValorMin");
             System.out.println("5.TestMiniMax");
-            System.out.println("5.TestValidarProblema");
+            System.out.println("6.TestValidarProblema");
             System.out.println("0.Exit");
 
             Scanner sc = new Scanner(System.in);

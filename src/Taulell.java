@@ -208,7 +208,6 @@ public class Taulell {
         return fen;
     }
 
-
     void mostrarTaulell() {
         //PRE:
         //POST: mostra l'estat actual de les peces al taulell
