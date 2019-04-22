@@ -40,29 +40,6 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
         return ret;
     }
 
-    public int Heuristic2(Taulell t, int jugador){
-
-        Piece [][] p = t.getTaulell();
-
-        int ret = 0;
-
-        for (int i=0; i< p.length; ++i) {
-            for (int j = 0; j < p[0].length; ++j) {
-
-                if (t.tePiece(i,j) && jugador == 0) { //jugador 0 enemic
-                    Piece pC = t.getPiece(i,j);
-                    ret -= pC.getValor();
-                }
-                else if (t.tePiece(i,j) && jugador == 1) {
-
-                    Piece pC = t.getPiece(i,j);
-                    ret += pC.getValor();
-                }
-            }
-        }
-        return ret;
-    }
-
     public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
         ArrayList<Pair> a = new ArrayList<>();
