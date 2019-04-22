@@ -98,8 +98,8 @@ public class Main {
                     break;
 
                 case 3:
-                    f = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
-                    p = new Problema(f,2,"Mat de blanques en 2");
+                    f = "5r2/1pR3Bn/1KP1k3/2P1p3/1p3pP1/5Q2/3Pp2p/1B1b4 w - - 0 1";
+                    p = new Problema(f,1,"Mat de blanques en 2");
                     p.visualitzaProblema();
                     System.out.println();
                     System.out.println();
