@@ -110,6 +110,7 @@ public class Problema {
 
     public boolean estatTerminal(Taulell t, int jugador, int prf){
         if (prf == 0) return true;
+        if (!t.teRei((Math.abs(jugador-1)))) return true;
         else return false;
     }
 
