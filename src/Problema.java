@@ -86,9 +86,10 @@ public class Problema {
         return k;
     }
 
-    public int validarProblema(Taulell t, int jug, int mov){
+    public boolean validarProblema(Taulell t, int jug, int mov){
         int k = MiniMax(t,jug,mov);
-        return k;
+        if (k >= 1) return true;
+        else return false;
     }
 
     public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){

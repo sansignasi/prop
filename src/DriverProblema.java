@@ -28,15 +28,15 @@ public class DriverProblema {
         int n = p.validariOptimitzarProblema(t,jugador,profunditat*2);
         //System.out.println("la n es " + n);
         if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments. i la n es " + n);
-        else System.out.println("El problema es pot resoldre en " + (profunditat*2 - n)/2 + " moviments.");
+        else System.out.println("El problema es pot resoldre en " + (((profunditat*2 - n)/2)+1) + " moviments.");
 
     }
 
     public static void testValidarProblema(int jugador, int profunditat) {
-        int n = p.validariOptimitzarProblema(t,jugador,profunditat*2);
+        boolean b = p.validarProblema(t,jugador,profunditat*2);
         //System.out.println("la n es " + n);
-        if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments. i la n es " + n);
-        else System.out.println("El problema es pot resoldre en " + (profunditat*2 - n) + " moviments.");
+        if (!b) System.out.println("El problema no es pot resoldre");
+        else System.out.println("El problema es pot resoldre en " + profunditat + " moviments.");
 
     }
 

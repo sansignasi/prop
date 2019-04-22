@@ -103,8 +103,8 @@ public class Main {
                     p.visualitzaProblema();
                     System.out.println();
                     System.out.println();
-                    n = p.validarProblema(p.getTaulell(),p.getAtacant(),p.getMoviments()*2+1);
-                    if (n == -1) System.out.println("El problema no es pot resoldre en " + p.getMoviments() + " moviments. i la n es " + n);
+                    boolean b = p.validarProblema(p.getTaulell(),p.getAtacant(),p.getMoviments()*2+1);
+                    if (! b) System.out.println("El problema no es pot resoldre");
                     else System.out.println("El problema es pot resoldre en " + (p.getMoviments()) + " moviments.");
                     break;
 
