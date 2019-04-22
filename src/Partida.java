@@ -63,6 +63,15 @@ public class Partida {
            if(!posok)System.out.println("Posició incorrecta");
         }
         T.mostrarTaulell();
+        if(atacant == 0){
+            if(T.jaquemate(1))System.out.println("L'atacant guanya amb Escac i mat!");
+            else System.out.println("L'atacant perd");
+        }
+        else{
+            if(T.jaquemate(0))System.out.println("L'atacant guanya amb Escac i mat!");
+            else System.out.println("L'atacant perd");
+        }
+
     }
 
 }

@@ -33,6 +33,22 @@ public class DriverTaulell {
         t.actualitzarTaulell(p,posf);
     }
 
+    public static void testJaquemate() {
+        if(taux.jaquemate(1))System.out.println("Hay Jaquemate");
+        else System.out.println("No hay jaquemate");
+    }
+
+    public static Piece[][] matriu = { {null, null, null,new King('b',0,3),null,null,new Queen('w',0,6),null}, //R,-,K,-,-,B,-,R
+            {null,null, null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
+            {null, null,null,new King('w',2,3),null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null}}; //para probar eel jaquemate
+
+
+    public static Taulell taux = new Taulell(matriu); //para probar el jaquemate
 
     public static void main(String[] args) throws IncorrectFENException {
         int opt = 99;
@@ -41,6 +57,7 @@ public class DriverTaulell {
             System.out.println("1.Carregar FEN");
             System.out.println("2.Actualitzar Taulell");
             System.out.println("3.Mostrar Taulell");
+            System.out.println("4.Test Jaque Mate");
             System.out.println("0.Exit");
             Scanner sc = new Scanner(System.in);
             opt = sc.nextInt();
@@ -53,6 +70,9 @@ public class DriverTaulell {
                     break;
                 case 3:
                     testMostraTaulell();
+                    break;
+                case 4:
+                    testJaquemate();
                     break;
                 case 0:
                     System.out.println("Adiós");

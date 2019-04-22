@@ -2,6 +2,8 @@ package src;
 
 import lib.Pair;
 
+import java.util.ArrayList;
+
 public class Taulell {
 
     //ATRIBUTS
@@ -206,7 +208,6 @@ public class Taulell {
         return fen;
     }
 
-
     void mostrarTaulell() {
         //PRE:
         //POST: mostra l'estat actual de les peces al taulell
@@ -233,5 +234,53 @@ public class Taulell {
             System.out.println();
             System.out.println();
         }
+    }
+    boolean jaquemate(int jug){//jug es el jugador que defiende 0 blancas 1 negras
+        ArrayList<Pair> posenemy = new ArrayList<>();
+        int x = 0;
+        int y = 0;
+        int poslegales = 0;
+        ArrayList<Pair> posrey = new ArrayList<>();
+        for (int i = 0; i < 8;++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (matriu[i][j] != null) { //si hay pieza
+                    if (matriu[i][j].getJugador() == jug) { //la pieza es del que defiende
+                        if (matriu[i][j].getTipus().equals("King")) { //el rey del defensor
+                            x = i;
+                            y = j;
+                            posrey = matriu[x][y].calculaMovimentsPiece(matriu,x,y);
+                            Piece rey = matriu[x][y];
+                            Pair pos = new Pair(x,y);
+                            Pair aux = new Pair(rey,pos);
+                            posrey.add(aux);
+                            poslegales = posrey.size();
+                            System.out.println(poslegales);
+                        }
+                    } else { //si es enemiga ponemos sus posibles posiciones en el vec posenemy
+                        ArrayList<Pair> aux = matriu[i][j].calculaMovimentsPiece(matriu, i, j);
+                        posenemy.addAll(aux);
+                    }
+                }
+            }
+        }
+         //metemos pos del rey tambien para ver si le hacen jaque
+        for (int i = 0; i < posrey.size();++i){
+            boolean found = false;
+            Pair posreyaux = posrey.get(i);
+            posreyaux =(Pair) posreyaux.getSecond();
+            for (int j = 0; j < posenemy.size() && !found;++j){
+                Pair posenemyaux = posenemy.get(j);
+                posenemyaux = (Pair) posenemyaux.getSecond();
+                if(posreyaux.getFirst() == posenemyaux.getFirst() && posreyaux.getSecond() == posenemyaux.getSecond()){
+                    found = true;
+                    System.out.println("la pos "+posreyaux.getFirst()+" "+posreyaux.getSecond());
+                    --poslegales;
+                }
+            }
+
+        }
+        System.out.println(poslegales);
+        if(poslegales == 0)return true;
+        else return false;
     }
 }
