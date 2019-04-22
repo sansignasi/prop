@@ -87,5 +87,62 @@ public class Pawn extends Piece {
         return res;
     }
 
+    public ArrayList<Pair> calculaMovimentsJaqueMate(Piece[][] m, int i, int j) {
+        Piece p = m[i][j];
+        int dir = 3;
+        ArrayList<Pair> res = new ArrayList<>();
+        boolean obs; //nos dice si ha encontrado un obstaculo en esa direccion
+        while (dir > 0) {//calcular todas las dir de movimiento posibles
+            int auxi = i;
+            int auxj = j;
+            obs = false;
+            while (!obs) {
+                if (dir == 1) {//diagonal delante izq
+                    if (super.getColor() == 'w') {
+                        --auxi;
+                        --auxj;
+                    } else {
+                        ++auxi;
+                        ++auxj;
+                    }
+                    if (auxi < 0 || auxj < 0 || auxi > 7 || auxj > 7)
+                        obs = true;  //te sales del tablero
+                    else {
+                        res.add(new Pair(p, new Pair(auxi, auxj)));
+                        obs = true;
+                    }
+                }
+                if (dir == 2) {//palante
+                    if (super.getColor() == 'w') {
+                        --auxi;
+                    } else ++auxi;
+                    if (auxi < 0 || auxi > 7) obs = true;
+                    else if (m[auxi][auxj] == null) {
+                        res.add(new Pair(p, new Pair(auxi, auxj)));
+                        obs = true;
+                    } else obs = true;  //te sales del tablero, hay otra pieza
+                }
+                if (dir == 3) {//diagonal delante derecha
+                    if (super.getColor() == 'w') {
+                        --auxi;
+                        ++auxj;
+                    } else {
+                        ++auxi;
+                        --auxj;
+                    }
+
+                    if (auxi < 0 || auxi > 7 || auxj < 0 || auxj > 7)
+                        obs = true;  //te sales del tablero, hay otra pieza
+                    else { //si hay enemigo
+                        res.add(new Pair(p, new Pair(auxi, auxj)));
+                        obs = true;
+                    }
+                }
+            }
+            --dir;
+        }
+        return res;
+    }
+
 }
 

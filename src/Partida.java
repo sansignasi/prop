@@ -36,7 +36,8 @@ public class Partida {
         Piece p;
         Pair move;
         ArrayList<Pair> posmovs;
-        for(int i = 0; i < (mov*2)-1;++i){
+        boolean jaquemate = false;
+        for(int i = 0; i < (mov*2)-1 && !jaquemate;++i){
             Boolean posok = false;
             T.mostrarTaulell();
             if(i%2 == 0){
@@ -60,17 +61,13 @@ public class Partida {
                     posok = true;
                 }
             }
-           if(!posok)System.out.println("Posició incorrecta");
+            if(!posok)System.out.println("Posició incorrecta");
+            if(T.jaquemate(j2.getColor())) System.out.println("L'atacant guanya amb Escac i mat!");
+            else if (T.jaquemate(j1.getColor())) System.out.println("El defensor guanya amb Escac i mat!");
+
         }
         T.mostrarTaulell();
-        if(atacant == 0){
-            if(T.jaquemate(1))System.out.println("L'atacant guanya amb Escac i mat!");
-            else System.out.println("L'atacant perd");
-        }
-        else{
-            if(T.jaquemate(0))System.out.println("L'atacant guanya amb Escac i mat!");
-            else System.out.println("L'atacant perd");
-        }
+
 
     }
 

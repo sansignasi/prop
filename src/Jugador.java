@@ -18,6 +18,9 @@ public class Jugador {
     public int getColor(){
         return color;
     }
+    public int getRol(){
+        return rol;
+    }
 
     public Pair jugarTorn(Taulell t,int jugador,int prof){
         return null;

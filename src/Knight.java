@@ -93,4 +93,64 @@ public class Knight extends Piece {
         }
         return res;
     }
+    public ArrayList<Pair> calculaMovimentsJaqueMate(Piece[][] m, int i, int j) {
+        Piece p = m[i][j];
+        int dir;
+        ArrayList<Pair> res = new ArrayList<>();
+        boolean obs; //nos dice si ha encontrado un obstaculo en esa direccion
+        dir = 8;
+        while (dir > 0) {//calcular todas las dir de movimiento posibles
+            int auxi = i;
+            int auxj = j;
+            obs = false;
+            while (!obs) {
+                if (dir == 1) {
+                    auxi -= 2;
+                    --auxj;
+                    if (auxi < 0 || auxj < 0) obs = true;
+                }
+                else if(dir == 2) {
+                    auxi -= 2;
+                    ++auxj;
+                    if (auxi < 0 || auxj > 7) obs = true;
+                }
+                else if(dir == 3) {
+                    auxi += 2;
+                    --auxj;
+                    if (auxi > 7 || auxj < 0) obs = true;
+                }
+                else if(dir == 4) {
+                    auxi += 2;
+                    ++auxj;
+                    if (auxi > 7 || auxj > 7) obs = true;
+                }
+                else if(dir == 5) {
+                    auxj += 2;
+                    --auxi;
+                    if (auxi < 0 || auxj > 7) obs = true;
+                }
+                else if(dir == 6) {
+                    auxj += 2;
+                    ++auxi;
+                    if (auxi > 7 || auxj > 7) obs = true;
+                }
+                else if(dir == 7) {
+                    auxj -= 2;
+                    ++auxi;
+                    if (auxi > 7 || auxj < 0) obs = true;
+                }
+                else if(dir == 8) {
+                    auxj -= 2;
+                    --auxi;
+                    if (auxi < 0 || auxj < 0) obs = true;
+                }
+                if(!obs) {
+                    res.add(new Pair(p, new Pair(auxi, auxj)));
+                    obs = true;
+                }
+            }
+            --dir;
+        }
+        return res;
+    }
 }

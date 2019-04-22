@@ -248,16 +248,15 @@ public class Taulell {
                         if (matriu[i][j].getTipus().equals("King")) { //el rey del defensor
                             x = i;
                             y = j;
-                            posrey = matriu[x][y].calculaMovimentsPiece(matriu,x,y);
+                            posrey = matriu[x][y].calculaMovimentsJaqueMate(matriu,x,y);
                             Piece rey = matriu[x][y];
                             Pair pos = new Pair(x,y);
                             Pair aux = new Pair(rey,pos);
                             posrey.add(aux);
                             poslegales = posrey.size();
-                            System.out.println(poslegales);
                         }
                     } else { //si es enemiga ponemos sus posibles posiciones en el vec posenemy
-                        ArrayList<Pair> aux = matriu[i][j].calculaMovimentsPiece(matriu, i, j);
+                        ArrayList<Pair> aux = matriu[i][j].calculaMovimentsJaqueMate(matriu, i, j);
                         posenemy.addAll(aux);
                     }
                 }
@@ -273,13 +272,11 @@ public class Taulell {
                 posenemyaux = (Pair) posenemyaux.getSecond();
                 if(posreyaux.getFirst() == posenemyaux.getFirst() && posreyaux.getSecond() == posenemyaux.getSecond()){
                     found = true;
-                    System.out.println("la pos "+posreyaux.getFirst()+" "+posreyaux.getSecond());
                     --poslegales;
                 }
             }
 
         }
-        System.out.println(poslegales);
         if(poslegales == 0)return true;
         else return false;
     }

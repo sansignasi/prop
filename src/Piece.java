@@ -96,6 +96,7 @@ public class Piece {
     public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
         return null;
     }
+    public ArrayList<Pair> calculaMovimentsJaqueMate(Piece[][] m, int i, int j) {return null;}
 
 }
 

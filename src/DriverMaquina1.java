@@ -40,8 +40,8 @@ public class DriverMaquina1 {
     }
     public static void testHeuristic2(int j) {
 
-        int h2 = m.Heuristic2(t, j);
-        System.out.println("L'avaluació del taulell de l'Heurístic 2 es " + h2);
+        //int h2 = m.Heuristic2(t, j);
+        //System.out.println("L'avaluació del taulell de l'Heurístic 2 es " + h2);
         System.out.println();
 
     }
