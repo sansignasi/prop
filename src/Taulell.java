@@ -213,7 +213,7 @@ public class Taulell {
         //POST: mostra l'estat actual de les peces al taulell
         char [][] tprint = new char[9][9];
         for(int i=1;i<9;i++){
-            tprint[i][0]=(char)(i+'0');
+            tprint[i][0]=(char)(Math.abs(i-9)+'0');
             tprint[0][i]=(char)(64+i);
         }
         for(int j=1;j<9;j++){
