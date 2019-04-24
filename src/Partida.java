@@ -85,6 +85,7 @@ public class Partida {
                 else System.out.println("El defensor fa escac!");
             }
         }
+        if(!jaquemate)System.out.println("L'atacant no ha aconseguit fer escac i mat en els moviments establerts, guanya el defensor!");
         T.mostrarTaulell();
     }
 }
