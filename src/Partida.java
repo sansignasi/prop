@@ -51,8 +51,8 @@ public class Partida {
             Pair pos = (Pair)move.getSecond();
             p = (Piece)move.getFirst();
             Pair posp = p.getPos();
-            System.out.println(posp.getFirst()+" "+posp.getSecond());
-            System.out.println(pos.getFirst()+" "+pos.getSecond());
+            System.out.println(posp.getFirst()+" "+posp.getSecond()); //quitar esto
+            System.out.println(pos.getFirst()+" "+pos.getSecond()); //quitar esto
             posmovs = p.calculaMovimentsPiece(T.getTaulell(),(int)p.getPos().getFirst(),(int)p.getPos().getSecond());
             for(int j = 0; j < posmovs.size();++j){
                 Pair posaux = (Pair)posmovs.get(j).getSecond();
@@ -62,13 +62,21 @@ public class Partida {
                 }
             }
             if(!posok)System.out.println("Posició incorrecta");
-            if(T.jaquemate(j2.getColor())) System.out.println("L'atacant guanya amb Escac i mat!");
-            else if (T.jaquemate(j1.getColor())) System.out.println("El defensor guanya amb Escac i mat!");
-
+            if(T.jaque(j2.getColor())){
+                if(T.jaquemate(j2.getColor())){
+                    System.out.println("L'atacant guanya amb Escac i mat!");
+                    jaquemate = true;
+                }
+                else System.out.println("L'atacant fa escac!");
+            }
+            if(T.jaque(j1.getColor())){
+                if(T.jaquemate(j1.getColor())){
+                    System.out.println("El defensor guanya amb Escac i mat!");
+                    jaquemate = true;
+                }
+                else System.out.println("El defensor fa escac!");
+            }
         }
         T.mostrarTaulell();
-
-
     }
-
 }

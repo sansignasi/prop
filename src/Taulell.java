@@ -235,7 +235,35 @@ public class Taulell {
             System.out.println();
         }
     }
-    boolean jaquemate(int jug){//jug es el jugador que defiende 0 blancas 1 negras
+    boolean jaque(int jug) {//jug es el jugador al que le estan haciendo el jaque(0 atacante 1 defensor)
+        ArrayList<Pair> posenemy = new ArrayList<>();
+        int x = 0;
+        int y = 0;
+        for (int i = 0; i < 8;++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (matriu[i][j] != null) { //si hay pieza
+                    if (matriu[i][j].getJugador() == jug) { //la pieza es del que defiende
+                        if (matriu[i][j].getTipus().equals("King")) { //el rey del defensor
+                            x = i;
+                            y = j;
+                        }
+                    } else { //si es enemiga ponemos sus posibles posiciones en el vec posenemy
+                        ArrayList<Pair> aux = matriu[i][j].calculaMovimentsPiece(matriu, i, j);
+                        posenemy.addAll(aux);
+                    }
+                }
+            }
+        }
+        boolean amenaza = false;
+        for(int i = 0; i < posenemy.size() && !amenaza;++i){
+            Pair posenemyaux = posenemy.get(i);
+            posenemyaux = (Pair) posenemyaux.getSecond();
+            if((int)posenemyaux.getFirst() == x && (int)posenemyaux.getSecond() == y)amenaza = true;
+        }
+        return amenaza;
+    }
+
+    boolean jaquemate(int jug){//jug es el jugador al que le estan haciendo el jaquemate(0 atacante 1 defensor)
         ArrayList<Pair> posenemy = new ArrayList<>();
         int x = 0;
         int y = 0;
@@ -248,7 +276,7 @@ public class Taulell {
                         if (matriu[i][j].getTipus().equals("King")) { //el rey del defensor
                             x = i;
                             y = j;
-                            posrey = matriu[x][y].calculaMovimentsJaqueMate(matriu,x,y);
+                            posrey = matriu[x][y].calculaMovimentsPiece(matriu,x,y);
                             Piece rey = matriu[x][y];
                             Pair pos = new Pair(x,y);
                             Pair aux = new Pair(rey,pos);
