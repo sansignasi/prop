@@ -22,7 +22,7 @@ public class Usuari extends Jugador{
             sc = new Scanner(System.in);
             String inPiece = sc.nextLine();
             py = (int) inPiece.charAt(0) - 'a'; //COLUMNES
-            px = Math.abs((int) inPiece.charAt(1) - '1'-9); //FILES
+            px = Math.abs(((int)inPiece.charAt(1) - '1')-7); //FILES
             if (!(px < 0 || px > 7 || py < 0 || py > 7)) ok = true;
             else System.out.println("Posició incorrecta, torna a intentar-ho");
         }
@@ -37,7 +37,7 @@ public class Usuari extends Jugador{
             sc = new Scanner(System.in);
             String inPos = sc.nextLine();
             int fy = (int) inPos.charAt(0) - 'a'; //COLUMNES
-            int fx = (int) inPos.charAt(1) - '1'; //FILES
+            int fx = Math.abs(((int) inPos.charAt(1) - '1')-7); //FILES
             Pair posf = new Pair(fx, fy);
             return new Pair(p, posf);
         }

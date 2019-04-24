@@ -131,9 +131,12 @@ public class CtrlDomini {
                     else System.out.println("El problema es pot resoldre en " + (pv2.getMoviments()) + " moviments.");
                     break;
 
-
                 case 0:
                     System.out.println("Adiós");
+                    break;
+
+                default:
+                    System.out.println("Opció invàlida. Torna-ho a provar.");
                     break;
             }
             System.out.println();
