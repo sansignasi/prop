@@ -13,11 +13,19 @@ public class Usuari extends Jugador{
     }
 
     public Pair jugarTorn(Taulell t,int jugador,int prof){
-        System.out.println("Escriu quina peça vols moure: ");
-        Scanner sc = new Scanner(System.in);
-        String inPiece = sc.nextLine();
-        int py = (int)inPiece.charAt(0) - 'a'; //COLUMNES
-        int px = (int)inPiece.charAt(1) - '1'; //FILES
+        boolean ok = false;
+        int py = 0;
+        int px = 0;
+        Scanner sc;
+        while(!ok) {
+            System.out.println("Escriu quina peça vols moure: ");
+            sc = new Scanner(System.in);
+            String inPiece = sc.nextLine();
+            py = (int) inPiece.charAt(0) - 'a'; //COLUMNES
+            px = (int) inPiece.charAt(1) - '1'; //FILES
+            if (!(px < 0 || px > 7 || py < 0 || py > 7)) ok = true;
+            else System.out.println("Posició incorrecta, torna a intentar-ho");
+        }
         if(t.tePiece(px,py)) {
             Piece p = t.getPiece(px, py);
             if (p.getJugador() != super.getColor()) {
