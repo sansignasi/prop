@@ -104,6 +104,7 @@ public class Problema {
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
+            //System.out.println((Piece)p.get(i).getFirst() + " " + (Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
             if (cmax > ret){
                 ret = cmax;
@@ -123,6 +124,7 @@ public class Problema {
         for (int i=0; i<p.size();++i) {
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
+            System.out.println((Piece)p.get(i).getFirst() + " " + (Pair)p.get(i).getSecond());
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
 

@@ -27,7 +27,7 @@ public class DriverMaquina1 {
     public static Taulell t = new Taulell(matriu);
 
     public  static void testgetMovimentAlgorism1(int jugador, int profunditat) throws IncorrectFENException {
-        t = new Taulell("8/8/8/8/8/8/8/8 w - - 0 1");
+        t = new Taulell("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1");
         t.mostrarTaulell();
         Pair p = m.jugarTorn(t, jugador, profunditat);
         System.out.println("El moviment que retorna la maquina 1 es " + p.getFirst() + " " + p.getSecond());

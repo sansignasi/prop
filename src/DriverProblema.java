@@ -26,16 +26,18 @@ public class DriverProblema {
 
     public static Taulell t = new Taulell(matriu);
 
-    public static void testValidariOptimitzarProblema(int jugador, int profunditat) {
+    public static void testValidariOptimitzarProblema(int jugador, int profunditat) throws Exception {
         int n = p.validariOptimitzarProblema(t,jugador,profunditat*2);
         if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments. i la n es " + n);
         else System.out.println("El problema es pot resoldre en " + n + " moviments.");
 
     }
 
-    public static void testValidarProblema(int jugador, int profunditat) {
-        boolean b = p.validarProblema(t,jugador,profunditat*2);
-        //System.out.println("la n es " + n);
+    public static void testValidarProblema(int jugador, int profunditat) throws Exception{
+        //t = new Taulell("8/8/8/8/8/8/8/8 w - - 0 1");
+        t = new Taulell("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1");
+        t.mostrarTaulell();
+        boolean b = p.validarProblema(t,jugador,profunditat*2+1);
         if (!b) System.out.println("El problema no es pot resoldre");
         else System.out.println("El problema es pot resoldre en " + profunditat + " moviments.");
 
@@ -71,7 +73,7 @@ public class DriverProblema {
 
     }
 
-    public static void main (String [] args) throws IncorrectFENException{
+    public static void main (String [] args) throws Exception{
         int opt = 99;
         while (opt!=0){
             System.out.println("~~~~DRIVER PROBLEMA~~~~");
@@ -82,13 +84,12 @@ public class DriverProblema {
             System.out.println("4.TestValorMin");
             System.out.println("5.TestMiniMax");
             System.out.println("6.TestValidarProblema");
-            System.out.println("7.TestCalcularAtacant");
-            System.out.println("8.TestVisualitzarProblema");
 
             System.out.println("0.Exit");
 
             Scanner sc = new Scanner(System.in);
             opt = sc.nextInt();
+
             switch (opt){
                 case 1:
                     Scanner in5 = new Scanner(System.in);
@@ -139,24 +140,6 @@ public class DriverProblema {
                     p = in6.nextInt();
                     System.out.println("Escull el jugador");
                     j = in6.nextInt();
-                    testValidarProblema(j,p);
-                    break;
-
-                case 7:
-                    Scanner in7 = new Scanner(System.in);
-                    System.out.println("Escull ");
-                    p = in7.nextInt();
-                    System.out.println("Escull el jugador");
-                    j = in7.nextInt();
-                    testValidarProblema(j,p);
-
-                    break;
-                case 8:
-                    Scanner in8 = new Scanner(System.in);
-                    System.out.println("Escull la profunditat");
-                    p = in8.nextInt();
-                    System.out.println("Escull el jugador");
-                    j = in8.nextInt();
                     testValidarProblema(j,p);
                     break;
 
