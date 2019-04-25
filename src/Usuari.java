@@ -21,7 +21,7 @@ public class Usuari extends Jugador{
         int px = 0;
         Scanner sc;
         while(!ok) {
-            System.out.println("Escriu quina peça vols moure: ");
+            System.out.println("Escriu quina peça vols moure(ex a1):");
             sc = new Scanner(System.in);
             String inPiece = sc.nextLine();
             py = (int) inPiece.charAt(0) - 'a'; //COLUMNES
@@ -36,7 +36,7 @@ public class Usuari extends Jugador{
                 Pair posf = new Pair(-1, -1);
                 return new Pair(p, posf);
             }
-            System.out.println("Escriu on la vols moure");
+            System.out.println("Escriu on la vols moure(ex a1):");
             sc = new Scanner(System.in);
             String inPos = sc.nextLine();
             int fy = (int) inPos.charAt(0) - 'a'; //COLUMNES

@@ -52,12 +52,30 @@ public class CtrlDomini {
                     System.out.println();
                     System.out.println("Escull un dels problemes mostrats per jugar-lo:");
                     //Atacant
-                    int inprob = sc.nextInt();
+                    boolean ok = false;
+                    int inprob = 0;
+                    while(!ok) {
+                        inprob = sc.nextInt();
+                        if (inprob >= 1 && inprob <= 3) ok = true;
+                        else System.out.println("Problema erroni, torna a intentar-ho");
+                    }
                     System.out.println("Qui comença atacant? Opció 1: Usuari, Opció 2: M1");
+                    ok = false;
+                    int j2 = 0;
+                    int j1 = 0;
                     //Defensor
-                    int j1 = sc.nextInt();
+                    while(!ok) {
+                        j1 = sc.nextInt();
+                        if (j1 == 1 || j1 == 2) ok = true;
+                        else System.out.println("Jugador erroni, torna a intentar-ho");
+                    }
+                    ok = false;
                     System.out.println("Qui defensa? Opció 1: Usuari, Opció 2: M1");
-                    int j2 = sc.nextInt();
+                    while(!ok) {
+                        j2 = sc.nextInt();
+                        if (j2 == 1 || j2 == 2) ok = true;
+                        else System.out.println("Jugador erroni, torna a intentar-ho");
+                    }
 
                     //Crida a Partida
                     Problema prob = new Problema();
@@ -78,17 +96,20 @@ public class CtrlDomini {
                     }
                     //Jugador 1:
                     if(j1==1){
-                        jug1 = new Usuari(0,0);
+                        jug1 = new Usuari(prob.getAtacant(),0);
                     }
                     else if(j1==2){
-                        jug1 = new Maquina1(0,0);
+                        jug1 = new Maquina1(prob.getAtacant(),0);
                     }
                     //Jugador 2:
+                    int x = prob.getAtacant();
+                    if(x == 1) x = 0;
+                    else x = 1;
                     if(j2==1){
-                        jug2 = new Usuari(1,1);
+                        jug2 = new Usuari(x,1);
                     }
                     else if(j2==2){
-                        jug2 = new Maquina1(1,1);
+                        jug2 = new Maquina1(x,1);
                     }
                     Partida game = new Partida(prob,jug1,jug2);
                     game.jugarPartida();
@@ -109,7 +130,7 @@ public class CtrlDomini {
                     System.out.println();
                     System.out.println();
                     int n = pv1.validarProblema(pv1.getTaulell(),pv1.getAtacant(),pv1.getMoviments()*2+1);
-                    if (n == -1) System.out.println("El problema no es pot resoldre en " + pv1.getMoviments() + " moviments. i la n es " + n);
+                    if (n == -1) System.out.println("El problema no es pot resoldre en " + pv1.getMoviments() + " moviments.");
                     else System.out.println("El problema es pot resoldre en " + (pv1.getMoviments()) + " moviments.");
                     break;
 

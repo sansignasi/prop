@@ -88,7 +88,7 @@ public class DriverPiece {
                     Scanner reader4 = new Scanner(System.in);
                     System.out.println("Escull un tipus de peça(Peó,Alfil,Cavall,Torre,Rei,Reina)");
                     String t3 = reader4.nextLine();
-                    System.out.println("Introdueix una posició pero col.locar la peça");
+                    System.out.println("Introdueix una coordenada per col.locar la peça en el taulell(ex 5 2)");
                     int x = reader4.nextInt();
                     int y = reader4.nextInt();
                     if(x > 7 || y > 7 || x < 0 || y < 0){
