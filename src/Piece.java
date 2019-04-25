@@ -18,11 +18,7 @@ public class Piece {
     private Pair pos;
 
 
-
-    //MÈTODES
-
     //CONSTRUCTORES
-
     public Piece (Piece p){
         this.color = p.color;
         Pair aux = new Pair(0,0);
@@ -59,13 +55,7 @@ public class Piece {
         pos = new Pair(x,y);
     }
 
-    public void setPos(int a, int b) {
-        pos.setFirst(a);
-        pos.setSecond(b);
-    }
-
     //GETTERS
-
     public String getTipus() {
         return null;
     }
@@ -91,11 +81,18 @@ public class Piece {
         return pos;
     }
 
+    //SETTERS
+    public void setPos(int a, int b) {
+        pos.setFirst(a);
+        pos.setSecond(b);
+    }
+
     //ALTRES MÈTODES
 
     public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
         return null;
     }
+    public ArrayList<Pair> calculaMovimentsJaqueMate(Piece[][] m, int i, int j) {return null;}
 
 }
 

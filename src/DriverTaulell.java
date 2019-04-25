@@ -34,6 +34,7 @@ public class DriverTaulell {
     }
 
     public static void testJaquemate() {
+        taux.mostrarTaulell();
         if(taux.jaquemate(1))System.out.println("Hay Jaquemate");
         else System.out.println("No hay jaquemate");
     }
