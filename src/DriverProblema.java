@@ -12,6 +12,8 @@ public class DriverProblema {
 
     public static Problema p = new Problema();
 
+    //es pot treballar amb aquesta matriu de prova o es pot carregar un taulell amb un fen directament
+
     public static Piece[][] matriu = { {null, null, null,null,new King('b',0,4),null,null,null}, //R,-,K,-,-,B,-,R
             {new Pawn('b',1,0), new Pawn('b',1,1), null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
             {new Pawn('w',2,0), null,null,null,null,null,null,null},
@@ -69,7 +71,7 @@ public class DriverProblema {
 
     }
 
-    public static void main (String [] args){
+    public static void main (String [] args) throws IncorrectFENException{
         int opt = 99;
         while (opt!=0){
             System.out.println("~~~~DRIVER PROBLEMA~~~~");
@@ -80,6 +82,9 @@ public class DriverProblema {
             System.out.println("4.TestValorMin");
             System.out.println("5.TestMiniMax");
             System.out.println("6.TestValidarProblema");
+            System.out.println("7.TestCalcularAtacant");
+            System.out.println("8.TestVisualitzarProblema");
+
             System.out.println("0.Exit");
 
             Scanner sc = new Scanner(System.in);
@@ -134,6 +139,24 @@ public class DriverProblema {
                     p = in6.nextInt();
                     System.out.println("Escull el jugador");
                     j = in6.nextInt();
+                    testValidarProblema(j,p);
+                    break;
+
+                case 7:
+                    Scanner in7 = new Scanner(System.in);
+                    System.out.println("Escull ");
+                    p = in7.nextInt();
+                    System.out.println("Escull el jugador");
+                    j = in7.nextInt();
+                    testValidarProblema(j,p);
+
+                    break;
+                case 8:
+                    Scanner in8 = new Scanner(System.in);
+                    System.out.println("Escull la profunditat");
+                    p = in8.nextInt();
+                    System.out.println("Escull el jugador");
+                    j = in8.nextInt();
                     testValidarProblema(j,p);
                     break;
 

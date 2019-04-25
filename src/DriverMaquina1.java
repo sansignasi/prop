@@ -12,6 +12,8 @@ public class DriverMaquina1 {
 
     public static Maquina1 m = new Maquina1(0,0);
 
+    //es pot treballar amb aquesta matriu de prova o es pot carregar un taulell amb un fen directament
+
     public static Piece[][] matriu = { {null, null, null,null,new King('b',0,4),null,null,null}, //R,-,K,-,-,B,-,R
             {new Pawn('b',1,0), new Pawn('b',1,1), null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
             {new Pawn('w',2,0), null,null,null,null,null,null,null},
@@ -24,8 +26,8 @@ public class DriverMaquina1 {
 
     public static Taulell t = new Taulell(matriu);
 
-    public  static void testgetMovimentAlgorism1(int jugador, int profunditat) {
-        t = new Taulell("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1")
+    public  static void testgetMovimentAlgorism1(int jugador, int profunditat) throws IncorrectFENException {
+        t = new Taulell("8/8/8/8/8/8/8/8 w - - 0 1");
         t.mostrarTaulell();
         Pair p = m.jugarTorn(t, jugador, profunditat);
         System.out.println("El moviment que retorna la maquina 1 es " + p.getFirst() + " " + p.getSecond());
@@ -85,7 +87,7 @@ public class DriverMaquina1 {
         System.out.println();
     }
 
-    public static void main (String [] args){
+    public static void main (String [] args) throws IncorrectFENException{
         int opt = 99;
         while (opt!=0){
             System.out.println("~~~~DRIVER MAQUINA1~~~~");
