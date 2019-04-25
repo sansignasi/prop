@@ -6,10 +6,12 @@ import java.util.ArrayList;
 
 public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
 
+    //CREADORES
     public Maquina1(int color, int rol) {
         super(color,rol);
     }
 
+    //MÈTODES
     public Pair jugarTorn(Taulell t, int jugador, int profunditat){
         Pair p = MiniMax(t,jugador,profunditat);
         return p;

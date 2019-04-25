@@ -5,6 +5,8 @@ import lib.Pair;
 import java.util.ArrayList;
 
 public class Pawn extends Piece {
+
+    //CREADORES
     public Pawn(Piece p) {
         super(p);
     }
@@ -17,6 +19,7 @@ public class Pawn extends Piece {
         super(c,x,y);
     }
 
+    //GETTERS
     public String getTipus() {
         return "Pawn";
     }
@@ -30,6 +33,7 @@ public class Pawn extends Piece {
         else return 'p';
     }
 
+    //MÈTODES
     public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
         Piece p = m[i][j];
         int dir = 3;

@@ -5,6 +5,8 @@ import lib.Pair;
 import java.util.ArrayList;
 
 public class Rook extends Piece {
+
+    //CONSTRUCTORES
     public Rook(Piece p) {
         super(p);
     }
@@ -17,6 +19,7 @@ public class Rook extends Piece {
         super(c,x,y);
     }
 
+    //GETTERS
     public String getTipus() {
         return "Rook";
     }
@@ -30,6 +33,7 @@ public class Rook extends Piece {
         else return 'r';
     }
 
+    //MÈTODES
     public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
         Piece p = m[i][j];
         int dir;

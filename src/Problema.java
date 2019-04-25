@@ -12,9 +12,9 @@ public class Problema {
     private int atacant; // jugador que comença i ataca, b black, w white
     private Boolean validat; //validat o no
     private String creador; //nombre del usuario creador del problema
-   private Taulell T; //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
-    //METODES
+    private Taulell T; //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
 
+    //CONSTRUCTORES
     public Problema(){
     }
     public Problema(String s, int n, String nom) throws IncorrectFENException {
@@ -26,6 +26,7 @@ public class Problema {
         calcularatacant();
     }
 
+    //MÈTODES
     public void calcularatacant() {
         String[] fenArray = FEN.split(" ");
         if (fenArray[1].equals("w")) atacant = 0;
@@ -57,14 +58,6 @@ public class Problema {
         return T;
     }
 
-    /*// Jugador que comença a moure (atacant)
-        if (fenArray[1].equals("b")) {
-        Problema.setAtacant('b');
-    } else if (fenArray[1].equals("w")) {
-        Problema.setAtacant('w');
-    } else {
-        throw new IncorrectFENException("Color del jugador atacant incorrecte.");
-    }*/
 
     //borrarProblema()
         //PRE: el problema identificado como nomprob existe

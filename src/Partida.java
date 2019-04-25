@@ -17,8 +17,8 @@ public class Partida {
     private Jugador j2; //jugador 2 de la partida (el que defiende)
     private int atacant;
     private Taulell T;
-    //METODES
 
+    //CREADORA
     public Partida(Problema p, Jugador j1, Jugador j2){
         this.j1 = j1;
         this.j2 = j2;
@@ -28,6 +28,7 @@ public class Partida {
         this.T = p.getTaulell();
     }
 
+    //MÈTODES
     public void jugarPartida(){
         String s;
         Scanner sc = new Scanner(System.in);

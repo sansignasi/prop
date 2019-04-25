@@ -5,6 +5,8 @@ import lib.Pair;
 import java.util.ArrayList;
 
 public class King extends Piece {
+
+    //CREADORES
     public King(Piece p) {
         super(p);
     }
@@ -17,6 +19,7 @@ public class King extends Piece {
         super(c,x,y);
     }
 
+    //GETTERS
     public String getTipus() {
         return "King";
     }
@@ -30,6 +33,7 @@ public class King extends Piece {
         else return 'k';
     }
 
+    //MÈTODES
     public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
         Piece p = m[i][j];
         int dir;

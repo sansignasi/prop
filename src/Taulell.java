@@ -14,7 +14,8 @@ public class Taulell {
         //Blanques MAJÚSCULES, Negres minúscules
 
 
-    //CREADORA
+    //CREADORES
+
     public Taulell() {
         this.matriu = new Piece[8][8];
         for (int i = 0; i < this.matriu.length; ++i){
@@ -31,6 +32,8 @@ public class Taulell {
     public Taulell(String fen) throws IncorrectFENException{
         carregaFEN(fen);
     }
+
+    //COPIADORES
 
     public Piece copiaPiece(Piece u){
         Piece p;

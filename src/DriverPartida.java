@@ -37,7 +37,7 @@ public class DriverPartida {
                     testjugarPartida(prob,jug1,jug2);
 
                 case 0:
-                    System.out.println("Adiós");
+                    System.out.println("Exit.");
                     break;
             }
         }

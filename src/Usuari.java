@@ -6,12 +6,15 @@ import java.util.Scanner;
 
 public class Usuari extends Jugador{
 
+    //ATRIBUTS
     private String nomuser;
 
+    //CONSTRUCTORES
     public Usuari(int color, int rol) {
         super(color,rol);
     }
 
+    //MÈTODES
     public Pair jugarTorn(Taulell t,int jugador,int prof){
         boolean ok = false;
         int py = 0;
