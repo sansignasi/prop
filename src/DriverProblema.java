@@ -161,7 +161,7 @@ public class DriverProblema {
                     break;
 
                 case 0:
-                    System.out.println("Adeu");
+                    System.out.println("Exit");
                     break;
             }
         }

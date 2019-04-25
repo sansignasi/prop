@@ -66,7 +66,7 @@ public class Problema {
 
     public boolean validarProblema(Taulell t, int jug, int mov){
         int k = MiniMax(t,jug,mov);
-        if (k >= 1) return true;
+        if (k >= 0) return true;
         else return false;
     }
 
