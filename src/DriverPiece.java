@@ -13,44 +13,82 @@ public class DriverPiece {
 
     public static void testgetTipus(String s) {
         Piece p;
-        if(s.equals("Peó"))p = new Pawn('w');
-        else if(s.equals("Alfil"))p = new Bishop('w');
-        else if(s.equals("Torre"))p = new Rook('w');
-        else if(s.equals("Cavall"))p = new Knight('w');
-        else if(s.equals("Reina"))p = new Queen('w');
-        else p = new King('w');
-        System.out.println(p.getTipus());
+        if(s.equals("Peó")){
+            p = new Pawn('w');
+            System.out.println(p.getTipus());
+        }
+        else if(s.equals("Alfil")){
+            p = new Bishop('w');
+            System.out.println(p.getTipus());
+        }
+        else if(s.equals("Torre")){
+            p = new Rook('w');
+            System.out.println(p.getTipus());
+        }
+        else if(s.equals("Cavall")){
+            p = new Knight('w');
+            System.out.println(p.getTipus());
+        }
+        else if(s.equals("Rei")){
+            p = new King('w');
+            System.out.println(p.getTipus());
+        }
+        else if(s.equals("Reina")){
+            p = new Queen('w');
+            System.out.println(p.getTipus());
+        }
+        else System.out.println("tipus incorrecte");
     }
 
     public static void testgetLletra(String s, char c) {
         Piece p;
-        if(s.equals("Peó"))p = new Pawn(c);
-        else if(s.equals("Alfil"))p = new Bishop(c);
-        else if(s.equals("Torre"))p = new Rook(c);
-        else if(s.equals("Cavall"))p = new Knight(c);
-        else if(s.equals("Reina"))p = new Queen(c);
-        else p = new King(c);
-        System.out.println(p.getLletra());
+        if(s.equals("Peó")){
+            p = new Pawn(c);
+            System.out.println(p.getLletra());
+        }
+        else if(s.equals("Alfil")){
+            p = new Bishop(c);
+            System.out.println(p.getLletra());
+        }
+        else if(s.equals("Torre")){
+            p = new Rook(c);
+            System.out.println(p.getLletra());
+        }
+        else if(s.equals("Cavall")){
+            p = new Knight(c);
+            System.out.println(p.getLletra());
+        }
+        else if(s.equals("Reina")){
+            p = new Queen(c);
+            System.out.println(p.getLletra());
+        }
+        else if(s.equals("Rei")){
+            p = new King(c);
+            System.out.println(p.getLletra());
+        }
+        else System.out.println("tipus incorrecte");
     }
 
-    public static void testcalculaMovimentsPiece(String s, int x, int y){
-        Piece[][] matriu = new Piece[8][8];
-        Piece p;
-        if(s.equals("Peó"))p = new Pawn('w');
-        else if(s.equals("Alfil"))p = new Bishop('w');
-        else if(s.equals("Torre"))p = new Rook('w');
-        else if(s.equals("Cavall"))p = new Knight('w');
-        else if(s.equals("Reina"))p = new Queen('w');
-        else p = new King('w');
-        matriu[x][y] = p;
-        ArrayList<Pair> ar = p.calculaMovimentsPiece(matriu,x,y);
-        for(int i = 0; i < ar.size(); ++i){
+    public static void testcalculaMovimentsPiece() throws IncorrectFENException{
+        Taulell t = new Taulell();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introdueix un FEN:");
+        String fen2 = sc.nextLine();
+        t.carregaFEN(fen2);
+        t.mostrarTaulell();
+        System.out.println("Escull la posició de la peça a testejar(ex a5):");
+        String inPiece = sc.nextLine();
+        int py = (int) inPiece.charAt(0) - 'a'; //COLUMNES
+        int px = Math.abs(((int)inPiece.charAt(1) - '1')-7); //FILES
+        Piece p = t.getPiece(px,py);
+        ArrayList<Pair> ar = p.calculaMovimentsPiece(t.getTaulell(),px,py);
+        for(int i = 0; i < ar.size();++i){
             Pair pi = ar.get(i);
             Pair p2 = (Pair) pi.getSecond();
-            System.out.println("possible pos "+p2.getFirst()+" "+p2.getSecond());
+            System.out.println("Possible posició: "+p2.getFirst()+" "+p2.getSecond());
         }
     }
-    public static void main (String [] args){
+    public static void main (String [] args)throws IncorrectFENException{
         int opt = 99;
         while (opt!=0){
             System.out.println("~~~~DRIVER PEÇA~~~~");
@@ -85,17 +123,7 @@ public class DriverPiece {
                     testgetLletra(t2,c2);
                     break;
                 case 4:
-                    Scanner reader4 = new Scanner(System.in);
-                    System.out.println("Escull un tipus de peça(Peó,Alfil,Cavall,Torre,Rei,Reina)");
-                    String t3 = reader4.nextLine();
-                    System.out.println("Introdueix una coordenada per col.locar la peça en el taulell(ex 5 2)");
-                    int x = reader4.nextInt();
-                    int y = reader4.nextInt();
-                    if(x > 7 || y > 7 || x < 0 || y < 0){
-                        System.out.println("Posició invalida");
-                        break;
-                    }
-                    testcalculaMovimentsPiece(t3,x,y);
+                    testcalculaMovimentsPiece();
                     break;
                 case 0:
                     System.out.println("Adiós");

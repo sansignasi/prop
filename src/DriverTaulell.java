@@ -6,10 +6,9 @@ public class DriverTaulell {
 
     private static Taulell t = new Taulell();
 
-
     public static void testCarregarFen() throws IncorrectFENException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Meteme un buen FEN:");
+        System.out.println("Introdueix un FEN:");
         String fen2 = sc.nextLine();
         t.carregaFEN(fen2);
     }
@@ -18,38 +17,42 @@ public class DriverTaulell {
         t.taulellAFEN();
     }
     public static void testActualitzaTaulell(){
-        System.out.println("Escriu quina peça vols moure: ");
+        t.mostrarTaulell();
+        System.out.println("Escriu quina peça vols moure(ex a5): ");
         Scanner sc = new Scanner(System.in);
         String inPiece = sc.nextLine();
-        int py = (int)inPiece.charAt(0) - 'a'; //COLUMNES
-        int px = (int)inPiece.charAt(2) - '1'; //FILES
+        int py = (int) inPiece.charAt(0) - 'a'; //COLUMNES
+        int px = Math.abs(((int)inPiece.charAt(1) - '1')-7); //FILES
         Piece p = t.getPiece(px,py);
-        System.out.println("Escriu on la vols moure");
+        System.out.println("Escriu on la vols moure(ex a5):");
         sc = new Scanner(System.in);
         String inPos = sc.nextLine();
-        int fy = (int)inPos.charAt(0) - 'a'; //COLUMNES
-        int fx = (int)inPos.charAt(2) - '1'; //FILES
+        int fy = (int) inPos.charAt(0) - 'a'; //COLUMNES
+        int fx = Math.abs(((int)inPos.charAt(1) - '1')-7); //FILES
         Pair posf = new Pair(fx,fy);
         t.actualitzarTaulell(p,posf);
+        t.mostrarTaulell();
+    }
+    public static void testMate()throws IncorrectFENException  {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introdueix un FEN:");
+        String fen2 = sc.nextLine();
+        t.carregaFEN(fen2);
+        t.mostrarTaulell();
+        if(t.jaque(1))System.out.println("Es fa escac");
+        else System.out.println("No es fa escac");
     }
 
-    public static void testJaquemate() {
-        taux.mostrarTaulell();
-        if(taux.jaquemate(1))System.out.println("Hay Jaquemate");
-        else System.out.println("No hay jaquemate");
+    public static void testJaquemate()throws IncorrectFENException  {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introdueix un FEN:");
+        String fen2 = sc.nextLine();
+        t.carregaFEN(fen2);
+        t.mostrarTaulell();
+        if(t.jaquemate(1))System.out.println("Es fa escac y mat");
+        else System.out.println("No es fa escac y mat");
     }
 
-    public static Piece[][] matriu = { {null, null, null,new King('b',0,3),null,null,new Queen('w',0,6),null}, //R,-,K,-,-,B,-,R
-            {null,null, null,null,null,null,null,null}, //Pe,Pe,-,-,-,-,-,-
-            {null, null,null,new King('w',2,3),null,null,null,null},
-            {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,null,null,null},
-            {null,null,null,null,null,null,null,null}}; //para probar eel jaquemate
-
-
-    public static Taulell taux = new Taulell(matriu); //para probar el jaquemate
 
     public static void main(String[] args) throws IncorrectFENException {
         int opt = 99;
@@ -58,7 +61,8 @@ public class DriverTaulell {
             System.out.println("1.Carregar FEN");
             System.out.println("2.Actualitzar Taulell");
             System.out.println("3.Mostrar Taulell");
-            System.out.println("4.Test Jaque Mate");
+            System.out.println("4.Test situació escac");
+            System.out.println("5.Test situació escac i mat");
             System.out.println("0.Exit");
             Scanner sc = new Scanner(System.in);
             opt = sc.nextInt();
@@ -73,10 +77,13 @@ public class DriverTaulell {
                     testMostraTaulell();
                     break;
                 case 4:
+                    testMate();
+                    break;
+                case 5:
                     testJaquemate();
                     break;
                 case 0:
-                    System.out.println("Adiós");
+                    System.out.println("Exit");
                     break;
             }
             System.out.println();
