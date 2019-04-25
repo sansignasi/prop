@@ -39,8 +39,8 @@ public class DriverTaulell {
         String fen2 = sc.nextLine();
         t.carregaFEN(fen2);
         t.mostrarTaulell();
-        if(t.jaque(1))System.out.println("Es fa mat");
-        else System.out.println("No es fa mat");
+        if(t.jaque(1))System.out.println("Es fa escac");
+        else System.out.println("No es fa escac");
     }
 
     public static void testJaquemate()throws IncorrectFENException  {
