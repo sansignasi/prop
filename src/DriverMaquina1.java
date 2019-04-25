@@ -17,7 +17,7 @@ public class DriverMaquina1 {
             {new Pawn('w',2,0), null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
             {null,null,null,null,null,null,null,null},
-            {null,null,new Bishop('b',5,2),null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
             {null,null,null,new King('w',6,3),null,null,null,null},
             {null,null,null,null,null,null,null,null}};
 
@@ -25,6 +25,8 @@ public class DriverMaquina1 {
     public static Taulell t = new Taulell(matriu);
 
     public  static void testgetMovimentAlgorism1(int jugador, int profunditat) {
+        t = new Taulell("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1")
+        t.mostrarTaulell();
         Pair p = m.jugarTorn(t, jugador, profunditat);
         System.out.println("El moviment que retorna la maquina 1 es " + p.getFirst() + " " + p.getSecond());
         System.out.println();

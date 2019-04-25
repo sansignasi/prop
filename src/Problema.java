@@ -58,8 +58,10 @@ public class Problema {
     }
 
     public int validariOptimitzarProblema(Taulell t, int jug, int mov){
-        int k = MiniMaxOptim(t,jug,mov);
-        return k;
+
+        int k = MiniMaxOptim(t, jug, mov);
+        if (k == -1) return -1;
+        else return (((mov - k) / 2) + 1);
     }
 
     public boolean validarProblema(Taulell t, int jug, int mov){

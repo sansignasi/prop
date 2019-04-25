@@ -129,8 +129,8 @@ public class CtrlDomini {
                     pv1.visualitzaProblema();
                     System.out.println();
                     System.out.println();
-                    int n = pv1.validarProblema(pv1.getTaulell(),pv1.getAtacant(),pv1.getMoviments()*2+1);
-                    if (n == -1) System.out.println("El problema no es pot resoldre en " + pv1.getMoviments() + " moviments.");
+                    boolean b = pv1.validarProblema(pv1.getTaulell(),pv1.getAtacant(),pv1.getMoviments()*2+1);
+                    if (!b) System.out.println("El problema no es pot resoldre en " + pv1.getMoviments() + " moviments.");
                     else System.out.println("El problema es pot resoldre en " + (pv1.getMoviments()) + " moviments.");
                     break;
 
@@ -147,7 +147,7 @@ public class CtrlDomini {
                     pv2.visualitzaProblema();
                     System.out.println();
                     System.out.println();
-                    n = pv2.validariOptimitzarProblema(pv2.getTaulell(),pv2.getAtacant(),pv2.getMoviments()*2+1);
+                    int n = pv2.validariOptimitzarProblema(pv2.getTaulell(),pv2.getAtacant(),pv2.getMoviments()*2+1);
                     if (n == -1) System.out.println("El problema no es pot resoldre en " + pv2.getMoviments() + " moviments. i la n mínima es " + n);
                     else System.out.println("El problema es pot resoldre en " + (pv2.getMoviments()) + " moviments.");
                     break;
