@@ -42,13 +42,7 @@ public class DriverMaquina1 {
 
 
     }
-    public static void testHeuristic2(int j) {
 
-        //int h2 = m.Heuristic2(t, j);
-        //System.out.println("L'avaluació del taulell de l'Heurístic 2 es " + h2);
-        System.out.println();
-
-    }
     public static void testcalculaMovimentsPosibles(int j) {
 
         ArrayList<Pair> p = m.calculaMovimentsPosibles(t,j);
@@ -98,7 +92,6 @@ public class DriverMaquina1 {
             System.out.println("4.TestValorMin");
             System.out.println("5.TestMiniMax");
             System.out.println("6.TestHeuristic1");
-            System.out.println("7.TestHeuristic2");
             System.out.println("8.TestGetMovimentAlgorisme1");
             System.out.println("0.Exit");
 
