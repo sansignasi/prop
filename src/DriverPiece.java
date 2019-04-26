@@ -126,7 +126,7 @@ public class DriverPiece {
                     testcalculaMovimentsPiece();
                     break;
                 case 0:
-                    System.out.println("Adiós");
+                    System.out.println("Exit");
                     break;
             }
         }
