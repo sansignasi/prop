@@ -92,7 +92,7 @@ public class DriverMaquina1 {
             System.out.println("4.TestValorMin");
             System.out.println("5.TestMiniMax");
             System.out.println("6.TestHeuristic1");
-            System.out.println("8.TestGetMovimentAlgorisme1");
+            System.out.println("7.TestGetMovimentAlgorisme1");
             System.out.println("0.Exit");
 
             Scanner sc = new Scanner(System.in);
@@ -144,7 +144,7 @@ public class DriverMaquina1 {
                     testHeuristic1(j);
                     break;
 
-                case 8:
+                case 7:
                     Scanner in7 = new Scanner(System.in);
                     System.out.println("Escull el jugador");
                     j = in7.nextInt();
