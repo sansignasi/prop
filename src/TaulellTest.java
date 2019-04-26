@@ -1,11 +1,10 @@
 package src;
 import lib.Pair;
 
-import org.junit.jupiter.api.BeforeAll;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaulellTest {
+
 
     @org.junit.jupiter.api.Test
     void carregaFEN() throws IncorrectFENException {
