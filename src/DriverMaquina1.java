@@ -27,8 +27,6 @@ public class DriverMaquina1 {
     public static Taulell t = new Taulell(matriu);
 
     public  static void testgetMovimentAlgorism1(int jugador, int profunditat) throws IncorrectFENException {
-        t = new Taulell("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1");
-        t.mostrarTaulell();
         Pair p = m.jugarTorn(t, jugador, profunditat);
         System.out.println("El moviment que retorna la maquina 1 es " + p.getFirst() + " " + p.getSecond());
         System.out.println();
@@ -81,7 +79,7 @@ public class DriverMaquina1 {
         System.out.println();
     }
 
-    public static void main (String [] args) throws IncorrectFENException{
+    public static void main (String [] args) throws Exception{
         int opt = 99;
         while (opt!=0){
             System.out.println("~~~~DRIVER MAQUINA1~~~~");
@@ -93,6 +91,7 @@ public class DriverMaquina1 {
             System.out.println("5.TestMiniMax");
             System.out.println("6.TestHeuristic1");
             System.out.println("7.TestGetMovimentAlgorisme1");
+            System.out.println("8.InicialitzarFEN");
             System.out.println("0.Exit");
 
             Scanner sc = new Scanner(System.in);
@@ -106,52 +105,62 @@ public class DriverMaquina1 {
                     break;
                 case 2:
                     Scanner in = new Scanner(System.in);
-                    System.out.println("Escull la profunditat");
+                    System.out.println("Escull la profunditat (introduïr 0 si es Terminal)");
                     int p = in.nextInt();
-                    System.out.println("Escull el jugador");
+                    System.out.println("Escull el jugador (0:blanques, 1:negres)");
                     j = in.nextInt();
                     testestatTerminal(j,p);
                     break;
                 case 3:
                     Scanner in2 = new Scanner(System.in);
-                    System.out.println("Escull la profunditat");
+                    System.out.println("Escull la profunditat (número de moviments que vols fer * 2)");
                     p = in2.nextInt();
-                    System.out.println("Escull el jugador");
+                    System.out.println("Escull el jugador (0:blanques, 1:negres)");
                     j = in2.nextInt();
                     testvalorMax(j,p);
                     break;
                 case 4:
                     Scanner in3 = new Scanner(System.in);
-                    System.out.println("Escull la profunditat");
+                    System.out.println("Escull la profunditat (número de moviments que vols fer * 2)");
                     p = in3.nextInt();
-                    System.out.println("Escull el jugador");
+                    System.out.println("Escull el jugador (0:blanques, 1:negres)");
                     j = in3.nextInt();
                     testvalorMin(j,p);
                     break;
 
                 case 5:
                     Scanner in4 = new Scanner(System.in);
-                    System.out.println("Escull la profunditat");
+                    System.out.println("Escull la profunditat (número de moviments que vols fer * 2)");
                     p = in4.nextInt();
-                    System.out.println("Escull el jugador");
+                    System.out.println("Escull el jugador (0:blanques, 1:negres)");
                     j = in4.nextInt();
                     testMiniMax(j,p);
                     break;
                 case 6:
                     Scanner in5 = new Scanner(System.in);
-                    System.out.println("Escull el jugador");
+                    System.out.println("Escull el jugador (0:blanques, 1:negres)");
                     j = in5.nextInt();
                     testHeuristic1(j);
                     break;
 
                 case 7:
                     Scanner in7 = new Scanner(System.in);
-                    System.out.println("Escull el jugador");
+                    System.out.println("Escull el jugador (0:blanques, 1:negres)");
                     j = in7.nextInt();
-                    System.out.println("Escull la profunditat");
+                    System.out.println("Escull la profunditat (número de moviments)");
                     p = in7.nextInt();
                     testgetMovimentAlgorism1(j,p);
                 break;
+
+                case 8:
+                    Scanner in8 = new Scanner(System.in);
+                    System.out.println("Introdueix el FEN");
+                    String s = in8.nextLine();
+                    t = new Taulell(s);
+                    System.out.println();
+                    t.mostrarTaulell();
+                    System.out.println();
+                    break;
                 case 0:
                     System.out.println("Exit");
                     break;

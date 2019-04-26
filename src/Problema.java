@@ -58,14 +58,15 @@ public class Problema {
     }
 
     public int validariOptimitzarProblema(Taulell t, int jug, int mov){
-
         int k = MiniMaxOptim(t, jug, mov);
+        System.out.println(k);
         if (k == -1) return -1;
-        else return (((mov - k) / 2) + 1);
+        else return (((mov - k) / 2)-1);
     }
 
     public boolean validarProblema(Taulell t, int jug, int mov){
         int k = MiniMax(t,jug,mov);
+        System.out.println(k);
         if (k >= 0) return true;
         else return false;
     }
@@ -104,7 +105,6 @@ public class Problema {
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
-            //System.out.println((Piece)p.get(i).getFirst() + " " + (Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
             if (cmax > ret){
                 ret = cmax;
@@ -120,17 +120,17 @@ public class Problema {
         int ret,cmax; //puntuacio de la heurística
         ret = -99999999;
         ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
+        int i = 0;
 
-        for (int i=0; i<p.size();++i) {
+        while(i<p.size()){
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
-            System.out.println((Piece)p.get(i).getFirst() + " " + (Pair)p.get(i).getSecond());
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
-
             if (cmax > ret){
                 ret = cmax;
             }
+            ++i;
         }
         return ret;
     }

@@ -13,7 +13,7 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
 
     //MÈTODES
     public Pair jugarTorn(Taulell t, int jugador, int profunditat){
-        Pair p = MiniMax(t,jugador,profunditat);
+        Pair p = MiniMax(t,jugador,profunditat*2);
         return p;
     }
 
