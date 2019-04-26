@@ -21,7 +21,14 @@ public class DriverPartida {
             opt = sc.nextInt();
             switch (opt) {
                 case 1:
-                    Problema prob = new Problema("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1", 2, "Problema 1, mat de blanques en 2");
+                    Scanner s = new Scanner(System.in);
+                    System.out.println("Introdueix un FEN:");
+                    String fen2 = s.nextLine();
+                    System.out.println("Escriu el nombre de moviments per guanyar.");
+                    System.out.println();
+                    Scanner scF = new Scanner(System.in);
+                    int nmovs = scF.nextInt();
+                    Problema prob = new Problema(fen2, nmovs, "Problema Test");
                     System.out.println("Es jugarà aquest problema");
                     prob.visualitzaProblema();
                     Jugador jug1 = new Jugador();

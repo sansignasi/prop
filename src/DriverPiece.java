@@ -88,6 +88,27 @@ public class DriverPiece {
             System.out.println("Possible posició: "+p2.getFirst()+" "+p2.getSecond());
         }
     }
+
+    public static void testcalculaMovimentsJaqueMate() throws IncorrectFENException{
+        Taulell t = new Taulell();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introdueix un FEN:");
+        String fen2 = sc.nextLine();
+        t.carregaFEN(fen2);
+        t.mostrarTaulell();
+        System.out.println("Escull la posició de la peça a testejar(ex a5):");
+        String inPiece = sc.nextLine();
+        int py = (int) inPiece.charAt(0) - 'a'; //COLUMNES
+        int px = Math.abs(((int)inPiece.charAt(1) - '1')-7); //FILES
+        Piece p = t.getPiece(px,py);
+        ArrayList<Pair> ar = p.calculaMovimentsJaqueMate(t.getTaulell(),px,py);
+        for(int i = 0; i < ar.size();++i){
+            Pair pi = ar.get(i);
+            Pair p2 = (Pair) pi.getSecond();
+            System.out.println("Possible posició: "+p2.getFirst()+" "+p2.getSecond());
+        }
+    }
+
     public static void main (String [] args)throws IncorrectFENException{
         int opt = 99;
         while (opt!=0){
@@ -97,6 +118,7 @@ public class DriverPiece {
             System.out.println("2.TestGetTipus");
             System.out.println("3.TestGetLletra");
             System.out.println("4.TestcalculaMovimentsPiece");
+            System.out.println("5.TestcalculaMovimentsJaqueMate");
             System.out.println("0.Exit");
             Scanner sc = new Scanner(System.in);
             opt = sc.nextInt();
@@ -124,6 +146,9 @@ public class DriverPiece {
                     break;
                 case 4:
                     testcalculaMovimentsPiece();
+                    break;
+                case 5:
+                    testcalculaMovimentsJaqueMate();
                     break;
                 case 0:
                     System.out.println("Exit");

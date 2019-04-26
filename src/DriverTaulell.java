@@ -12,6 +12,10 @@ public class DriverTaulell {
         String fen2 = sc.nextLine();
         t.carregaFEN(fen2);
     }
+    public static void testTaulellAFEN() throws IncorrectFENException {
+        String fen2 = t.taulellAFEN();
+        System.out.println(fen2);
+    }
     public static void testMostraTaulell(){
         t.mostrarTaulell();
         t.taulellAFEN();
@@ -61,8 +65,9 @@ public class DriverTaulell {
             System.out.println("1.Carregar FEN");
             System.out.println("2.Actualitzar Taulell");
             System.out.println("3.Mostrar Taulell");
-            System.out.println("4.Test situació escac");
-            System.out.println("5.Test situació escac i mat");
+            System.out.println("4.Mostrar FEN del Taulell");
+            System.out.println("5.Test situació escac");
+            System.out.println("6.Test situació escac i mat");
             System.out.println("0.Exit");
             Scanner sc = new Scanner(System.in);
             opt = sc.nextInt();
@@ -77,9 +82,12 @@ public class DriverTaulell {
                     testMostraTaulell();
                     break;
                 case 4:
-                    testMate();
+                    testTaulellAFEN();
                     break;
                 case 5:
+                    testMate();
+                    break;
+                case 6:
                     testJaquemate();
                     break;
                 case 0:
