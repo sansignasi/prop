@@ -144,12 +144,6 @@ public class DriverMaquina1 {
                     testHeuristic1(j);
                     break;
 
-                case 7:
-                    Scanner in6 = new Scanner(System.in);
-                    System.out.println("Escull el jugador");
-                    j = in6.nextInt();
-                    testHeuristic2(j);
-                    break;
                 case 8:
                     Scanner in7 = new Scanner(System.in);
                     System.out.println("Escull el jugador");
