@@ -30,7 +30,6 @@ public class CtrlDomini {
             System.out.println("Tria una opció:");
             System.out.println("1.Jugar problema");
             System.out.println("2.Validar problema");
-            System.out.println("3.Validar problema i optimitzar moviments mínims");
             System.out.println("0.Exit");
             Scanner sc = new Scanner(System.in);
             opt = sc.nextInt();
@@ -132,24 +131,6 @@ public class CtrlDomini {
                     boolean b = pv1.validarProblema(pv1.getTaulell(),pv1.getAtacant(),pv1.getMoviments()*2+1);
                     if (!b) System.out.println("El problema no es pot resoldre en " + pv1.getMoviments() + " moviments.");
                     else System.out.println("El problema es pot resoldre en " + (pv1.getMoviments()) + " moviments.");
-                    break;
-
-                case 3:
-                    System.out.println("Escriu un FEN per validar-lo i trobar els moviments mínims per resoldre'l.");
-                    System.out.println();
-                    scF = new Scanner(System.in);
-                    fen = scF.nextLine();
-                    System.out.println("Escriu el nombre de moviments amb els que vols provar de validar-lo.");
-                    System.out.println();
-                    scF = new Scanner(System.in);
-                    nmovs = scF.nextInt();
-                    Problema pv2 = new Problema(fen,nmovs,"ProblemaValidarOptimitzar");
-                    pv2.visualitzaProblema();
-                    System.out.println();
-                    System.out.println();
-                    int n = pv2.validariOptimitzarProblema(pv2.getTaulell(),pv2.getAtacant(),pv2.getMoviments()*2+1);
-                    if (n == -1) System.out.println("El problema no es pot resoldre en " + pv2.getMoviments() + " moviments. i la n mínima es " + n);
-                    else System.out.println("El problema es pot resoldre en " + (pv2.getMoviments()) + " moviments.");
                     break;
 
                 case 0:
