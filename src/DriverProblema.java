@@ -35,7 +35,7 @@ public class DriverProblema {
 
     public static void testValidarProblema(int jugador, int profunditat) throws Exception{
         //t = new Taulell("8/8/8/8/8/8/8/8 w - - 0 1");
-        t = new Taulell("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1");
+        t = new Taulell("B6K/B1N5/2np3p/2r2n1Q/1p2k3/1P2PNP1/4P3/8 w - - 0 1");
         t.mostrarTaulell();
         boolean b = p.validarProblema(t,jugador,profunditat*2+1);
         if (!b) System.out.println("El problema no es pot resoldre");
