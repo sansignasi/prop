@@ -8,6 +8,9 @@ public class Taulell {
 
     //ATRIBUTS
 
+    private boolean reiblanc;
+    private boolean reinegre;
+
     private Piece [][] matriu = new Piece[8][8];
         //Matriu d'objectes Peça ([i][j] = null si en la posició i,j no hi ha cap Peça)
         //i = files, j = columnes
@@ -17,6 +20,8 @@ public class Taulell {
     //CREADORES
 
     public Taulell() {
+        this.reiblanc = true;
+        this.reinegre = true;
         this.matriu = new Piece[8][8];
         for (int i = 0; i < this.matriu.length; ++i){
             for (int j = 0; j < this.matriu.length; ++j){
@@ -26,10 +31,16 @@ public class Taulell {
     }
 
     public Taulell(Piece[][] mat){
-        matriu = mat;
+        {
+            this.reiblanc = true;
+            this.reinegre = true;
+            matriu = mat;
+        }
     }
 
     public Taulell(String fen) throws IncorrectFENException{
+        this.reiblanc = true;
+        this.reinegre = true;
         carregaFEN(fen);
     }
 
@@ -76,6 +87,12 @@ public class Taulell {
     }
     //SETTERS
 
+    public void setRei(boolean b, int jg){
+
+        if (jg == 0) this.reiblanc = b;
+        else if (jg == 1) this.reinegre = b;
+    }
+
     public void actualitzarTaulell(Piece p1, Pair posFi) {
         //PRE: p1 és una peça de la matriu i p una posició vàlida on es pot moure p1
         //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
@@ -107,14 +124,8 @@ public class Taulell {
 
     public boolean teRei(int jg){
 
-        for (int i = 0; i < matriu.length; ++i){
-            for (int j = 0; j < matriu[0].length; ++j){
-                if(this.tePiece(i,j)) {
-                    if (matriu[i][j].getTipus().equals("King") && matriu[i][j].getJugador() == jg) return true;
-                }
-            }
-        }
-        return false;
+        if (jg == 0) return this.reiblanc;
+        else return this.reinegre;
     }
 
     public void carregaFEN(String fen) throws IncorrectFENException {

@@ -79,6 +79,9 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
             int prf = profunditat;
+            Pair po = (Pair) p.get(i).getSecond();
+            if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
+            else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,prf-1);
 
@@ -105,6 +108,9 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
                 //System.out.println("estem dins de valormax i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
                 Taulell aux = new Taulell();
                 aux.copiaTaulell(t);
+                Pair po = (Pair) p.get(i).getSecond();
+                if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
+                else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 int l = valorMin(aux,jg, prf-1);
                 vmax = Math.max(vmax,l);
@@ -128,6 +134,9 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
                 //System.out.println("estem dins de valormin i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
                 Taulell aux = new Taulell();
                 aux.copiaTaulell(t);
+                Pair po = (Pair) p.get(i).getSecond();
+                if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
+                else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 int l = valorMax(aux,jg, prf-1);
                 vmin = Math.min(vmin,l);

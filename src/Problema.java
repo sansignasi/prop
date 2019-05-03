@@ -59,14 +59,12 @@ public class Problema {
 
     public int validariOptimitzarProblema(Taulell t, int jug, int mov){
         int k = MiniMaxOptim(t, jug, mov);
-        System.out.println(k);
         if (k == -1) return -1;
         else return (((mov - k) / 2)-1);
     }
 
     public boolean validarProblema(Taulell t, int jug, int mov){
         int k = MiniMax(t,jug,mov);
-        System.out.println(k);
         if (k >= 0) return true;
         else return false;
     }
@@ -104,6 +102,9 @@ public class Problema {
         while(i<p.size() && ret < 0){
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
+            Pair po = (Pair) p.get(i).getSecond();
+            if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
+            else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
             if (cmax > ret){
@@ -125,6 +126,9 @@ public class Problema {
         while(i<p.size()){
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
+            Pair po = (Pair) p.get(i).getSecond();
+            if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
+            else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
             if (cmax > ret){
@@ -150,6 +154,9 @@ public class Problema {
             for (int i=0; i<p.size(); ++i){
                 Taulell aux = new Taulell();
                 aux.copiaTaulell(t);
+                Pair po = (Pair) p.get(i).getSecond();
+                if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
+                else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 int l = valorMin(aux,jg, (prf)-1);
                 vmax = Math.max(vmax,l);
@@ -173,6 +180,9 @@ public class Problema {
             for (int i=0; i<p.size(); ++i){
                 Taulell aux = new Taulell();
                 aux.copiaTaulell(t);
+                Pair po = (Pair) p.get(i).getSecond();
+                if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
+                else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 int l = valorMax(aux,jg, (prf)-1);
                 vmin = Math.min(vmin,l);
