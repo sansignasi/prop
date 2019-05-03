@@ -42,6 +42,52 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
         return ret;
     }
 
+    public int Heuristic2(Taulell t, int jugador){
+
+        Piece[][] p = t.getTaulell();
+
+        int ret = 0;
+
+        for (int i=0; i< p.length; ++i) {
+            for (int j = 0; j < p[0].length; ++j) {
+
+                Piece p1 = t.getPiece(i,j);
+                if(t.tePiece(i,j)){
+                    if (p1.getJugador()==jugador) {
+                        Piece pC = t.getPiece(i,j);
+                        ret += pC.getValor();
+                    }
+                    else {
+                        Piece pC = t.getPiece(i,j);
+                        ret -= pC.getValor();
+                    }
+                }
+            }
+        }
+
+        ArrayList<Pair> v1 = calculaMovimentsPosibles(t,jugador);
+        int ret1 = 0;
+        for (int i = 0; i < v1.size(); ++i){
+            Pair aux = (Pair)v1.get(i).getSecond();
+            if (t.tePiece((int)aux.getFirst(),(int)aux.getSecond())){
+                Piece enemic = t.getPiece((int)aux.getFirst(),(int)aux.getSecond());
+                ret1 += enemic.getValor();
+
+            }
+        }
+        ArrayList<Pair> v2 = calculaMovimentsPosibles(t,Math.abs(jugador-1));
+        for (int i = 0; i < v2.size(); ++i){
+            Pair aux = (Pair)v2.get(i).getSecond();
+            if (t.tePiece((int)aux.getFirst(),(int)aux.getSecond())){
+                Piece enemic = t.getPiece((int)aux.getFirst(),(int)aux.getSecond());
+                ret1 -= enemic.getValor();
+
+            }
+        }
+
+        return ret+ret1;
+    }
+
     public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
         ArrayList<Pair> a = new ArrayList<>();
@@ -97,7 +143,7 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
         int vmax;
 
         if (estatTerminal(t,jg,prf)){
-            int x = Heuristic1(t,jg);
+            int x = Heuristic2(t,jg);
             return x;
         }
         else{
@@ -123,7 +169,7 @@ public class Maquina1 extends Jugador{ //Minimax amb profunditat limitada
         int vmin;
 
         if (estatTerminal(t,jg,prf)){
-            int x = Heuristic1(t,jg);
+            int x = Heuristic2(t,jg);
             //System.out.println("El valor del heuristic es " + x );
             return x;
         }
