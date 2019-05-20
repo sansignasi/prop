@@ -1,15 +1,17 @@
 package src;
 
-import lib.Pair;
-import src.*;
-
-import java.util.ArrayList;
-import java.util.Scanner;
+import src.presentacio.CtrlPresentacion;
 
 public class Main {
 
-    public static void main(String[] args) throws IncorrectFENException {
-        CtrlDomini cDomini = new CtrlDomini();
-        cDomini.menuPrincipal();
+    public static void main(String[] args) {
+
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                CtrlPresentacion mainWindow = new CtrlPresentacion();
+                mainWindow.inicializarPresentacion();
+            }
+        });
+
     }
 }
