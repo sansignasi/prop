@@ -46,7 +46,9 @@ public class Problema {
         //POST: calcula la dificultad asociada al problema
         this.dificultad = "Normal";
     }
-
+    public String getNomprob(){
+        return nomprob;
+    }
     public int getMoviments(){
         return nMax;
     }
