@@ -20,16 +20,13 @@ public class Ranking {
     public void introRank(String s, Double i){
         boolean b = rk.containsKey(s);
         double tsecs = (double) i / 1_000_000_000;
-        //DecimalFormat df = new DecimalFormat("#.##");
-        //tsecs = Double.parseDouble(df.format(tsecs));
+        tsecs = (double)Math.round(tsecs * 100d) / 100d;
         if(b){
-            System.out.println("Existeix" + rk.get(s));
             if(rk.get(s)>tsecs){
                 rk.put(s,tsecs);
             }
         }
         else{
-            System.out.println("No Existeix");
             rk.put(s,tsecs);
         }
     }
@@ -54,13 +51,5 @@ public class Ranking {
             sortedHashMap.put(entry.getKey(), entry.getValue());
         }
         return sortedHashMap;
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        Problema p = new Problema();
-        long elapsedTime = System.nanoTime();
-        Thread.sleep(5000);
-        elapsedTime = System.nanoTime() - elapsedTime;
-        System.out.println(elapsedTime);
     }
 }
