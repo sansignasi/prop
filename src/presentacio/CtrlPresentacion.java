@@ -9,11 +9,13 @@ public class CtrlPresentacion {
     private CtrlDomini controladorDomini;
     private VistaLogin vistaLogin;
     private VistaFormularioLogin vistaFormularioLogin;
+    private VistaFormularioRegistro vistaFormularioRegistro;
 
     public CtrlPresentacion() {
         CtrlDomini controladorDomini = CtrlDomini.getInstance();
         vistaLogin = new VistaLogin(this);
         vistaFormularioLogin = new VistaFormularioLogin(this);
+        vistaFormularioRegistro = new VistaFormularioRegistro(this);
     }
 
     public void inicializarPresentacion() throws IncorrectFENException {
@@ -22,11 +24,18 @@ public class CtrlPresentacion {
     }
 
     public void cambiarVistaAFormularioLogin() {
-        vistaLogin.desactivar();
         vistaFormularioLogin.hacerVisible();
     }
     public void cambiarVistaALogin() {
-        vistaFormularioLogin.desactivar();
         vistaLogin.hacerVisible();
+    }
+
+    public void cambiarVistaAFormularioRegister(){
+        vistaFormularioRegistro.hacerVisible();
+    }
+
+    public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
+        int i = controladorDomini.verificarusuari(user,psw);
+        return i;
     }
 }

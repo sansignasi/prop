@@ -1,5 +1,6 @@
 package src;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CtrlDomini {
@@ -10,8 +11,10 @@ public class CtrlDomini {
 
     public BaseDeProblemes bproblemes;
     public BaseUsuaris busers;
+    public String currentuser;
 
     private static CtrlDomini singletonObject;
+
 
     public static CtrlDomini getInstance() {
         if (singletonObject == null)
@@ -24,6 +27,19 @@ public class CtrlDomini {
         this.bproblemes = db.loadBProblemes();
         this.busers = db.loadBUsers();
     }
+
+    public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
+        int i = busers.verificarusuari(user,psw);
+        return i;
+    }
+
+
+
+
+
+
+
+
 
     public void precarregarProblemes() throws IncorrectFENException{
         String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";

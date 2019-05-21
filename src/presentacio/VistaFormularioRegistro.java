@@ -1,21 +1,22 @@
 package src.presentacio;
 
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VistaLogin {
+public class VistaFormularioRegistro {
     private CtrlPresentacion controladorPresentacion;
 
-    private JFrame frameVista = new JFrame("Vista Login");
-    private JButton loginButton;
+    private JFrame frameVista = new JFrame("Vista Formulario Registro");
     private JPanel panel1;
+    private JTextField textField1;
+    private JButton backButton;
     private JButton registerButton;
+    private JTextField textField2;
 
-    public VistaLogin(CtrlPresentacion c){
+
+    public VistaFormularioRegistro(CtrlPresentacion c) {
         controladorPresentacion = c;
         inicializarComponentes(); //iniciar las configs de cada elemento
         asignarListenersComponentes(); //asignar listeners de los elementos(clikar boton, etc...)
@@ -24,17 +25,17 @@ public class VistaLogin {
 
     private void inicializarComponentes() { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
         inicializarFrameVista();
-
     }
+
     private void inicializarFrameVista() { //preferencias del Jframe
         frameVista.setPreferredSize(new Dimension(700,400));
-        frameVista.setResizable(false);
         frameVista.setBounds(50,50,700,400);
+        frameVista.setResizable(false);
         frameVista.setLocationRelativeTo(null);
         frameVista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameVista.setContentPane(panel1);
-
     }
+
     public void hacerVisible() {
         frameVista.setEnabled(true);
         frameVista.pack();
@@ -42,31 +43,32 @@ public class VistaLogin {
     }
 
     public void desactivar() {
-        frameVista.setEnabled(false);
         frameVista.setVisible(false);
+        frameVista.setEnabled(false);
     }
 
     private void asignarListenersComponentes() {
-
-        loginButton.addActionListener(new ActionListener() {
+        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 desactivar();
-                controladorPresentacion.cambiarVistaAFormularioLogin();
+                controladorPresentacion.cambiarVistaALogin();
             }
         });
 
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                desactivar();
-                controladorPresentacion.cambiarVistaAFormularioRegister();
+                String user = textField1.getText();
+                if(user == null)JOptionPane.showMessageDialog(null,"Contrasenya incorrecta.");
+                String psw = textField2.getText();
+                int i = controladorPresentacion.verificarusuari(user,psw);
             }
         });
+
+
 
 
     }
 
 }
-
-

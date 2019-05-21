@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class CtrlPersistencia {
 
-    private CtrlDomini cd = CtrlDomini.getInstance();
 
     private static CtrlPersistencia singletonObject;
 

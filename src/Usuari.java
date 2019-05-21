@@ -7,15 +7,38 @@ import java.util.Scanner;
 public class Usuari extends Jugador{
 
     //ATRIBUTS
-    private String nomuser = "PoleteTontete";
+    private String nomuser;
+    private String contraseña;
 
     //CONSTRUCTORES
     public Usuari(int color, int rol) {
         super(color,rol);
     }
 
+    public Usuari(String user, String psw){
+        super();
+        nomuser = user;
+        contraseña = psw;
+    }
+
     public String getNom(){
         return this.nomuser;
+    }
+
+    public void setNomuser(String nomuser) {
+        this.nomuser = nomuser;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public String getNomuser() {
+        return nomuser;
+    }
+
+    public String getContraseña() {
+        return contraseña;
     }
 
     //MÈTODES

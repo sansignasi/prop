@@ -13,11 +13,13 @@ public class VistaFormularioLogin {
     private JPasswordField passwordField1;
     private JPanel panel1;
     private JButton backButton;
+    private JButton loginButton;
 
     public VistaFormularioLogin(CtrlPresentacion c){
         controladorPresentacion = c;
         inicializarComponentes(); //iniciar las configs de cada elemento
         asignarListenersComponentes(); //asignar listeners de los elementos(clikar boton, etc...)
+
 
     }
 
@@ -27,6 +29,7 @@ public class VistaFormularioLogin {
 
     private void inicializarFrameVista() { //preferencias del Jframe
         frameVista.setPreferredSize(new Dimension(700,400));
+        frameVista.setBounds(50,50,700,400);
         frameVista.setResizable(false);
         frameVista.setLocationRelativeTo(null);
         frameVista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,7 +51,22 @@ public class VistaFormularioLogin {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                desactivar();
                 controladorPresentacion.cambiarVistaALogin();
+            }
+        });
+
+        loginButton.addActionListener(new ActionListener() { //boton de login
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String user = textField1.getText();
+                String psw = passwordField1.getText();
+                int i = controladorPresentacion.verificarusuari(user,psw);
+                if(i == 1) JOptionPane.showMessageDialog(null,"Contrasenya incorrecta.");
+                else if (i == 2) JOptionPane.showMessageDialog(null,"L'usuari no existeix.");
+                else{ //si el usuario esta okey pasamos a la siguiente vista
+
+                }
             }
         });
 
