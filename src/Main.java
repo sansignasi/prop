@@ -1,10 +1,12 @@
 package src;
 
-import src.presentacio.CtrlPresentacion;
+import src.Controladors.CtrlDomini;
+import src.Domini.IncorrectFENException;
+import src.Controladors.CtrlPresentacion;
 
 public class Main {
 
-    public static void main(String[] args) throws IncorrectFENException{
+    public static void main(String[] args) throws IncorrectFENException {
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
