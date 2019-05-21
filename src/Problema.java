@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Problema {
     //ATRIBUTS
     private String nomprob; //nom del problema
-    private String FEN; //codificacio en FEN del problema
+    public String FEN; //codificacio en FEN del problema
     private String dificultad; //dificultad asociada al problema
     private int nMax; // num maximo de jugadas para el jaquemate
     private int atacant; // jugador que comença i ataca, b black, w white
@@ -30,6 +30,10 @@ public class Problema {
         nomprob = nom;
         calcularDificultad();
         calcularatacant();
+    }
+
+    public void restoreTaulell() throws IncorrectFENException{
+        T = new Taulell(FEN);
     }
 
     public void putRanking(String s, double i){

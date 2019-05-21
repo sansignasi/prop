@@ -14,6 +14,7 @@ public class DriverRanking {
         }
         Partida game = new Partida(bp.buscarProblema("p1"),j1,j2);
         game.jugarPartida();
+        bp.buscarProblema("p1").restoreTaulell();
     }
 
 
