@@ -8,9 +8,11 @@ public class Main {
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+                CtrlDomini cd = new CtrlDomini();
                 CtrlPresentacion mainWindow = new CtrlPresentacion();
                 try {
-                    mainWindow.inicializarPresentacion();
+                    //cd.menuPrincipal(); //descomentar para probar programa
+                    mainWindow.inicializarPresentacion(); //parte grafica
                 } catch (IncorrectFENException e) {
                     e.printStackTrace();
                 }
