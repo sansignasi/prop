@@ -34,4 +34,8 @@ public class Jugador {
     public Pair jugarTorn(Taulell t,int jugador,int prof){
         return null;
     }
+
+    public String getNom() {
+        return null;
+    }
 }

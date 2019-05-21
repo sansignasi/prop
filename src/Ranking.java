@@ -8,24 +8,34 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.text.*;
 import java.util.Set;
 
 public class Ranking {
-    HashMap<String,Integer> rk = new HashMap<String,Integer>();
+    HashMap<String,Double> rk = new HashMap<String,Double>();
 
     public Ranking(){
     }
 
-    public void introRank(String s, Integer i){
+    public void introRank(String s, Double i){
         boolean b = rk.containsKey(s);
+        double tsecs = (double) i / 1_000_000_000;
+        //DecimalFormat df = new DecimalFormat("#.##");
+        //tsecs = Double.parseDouble(df.format(tsecs));
         if(b){
-            if(rk.get(s)>i){
-                rk.put(s,i);
+            System.out.println("Existeix" + rk.get(s));
+            if(rk.get(s)>tsecs){
+                rk.put(s,tsecs);
             }
         }
         else{
-            rk.put(s,i);
+            System.out.println("No Existeix");
+            rk.put(s,tsecs);
         }
+    }
+
+    public void mostraRanking(){
+        System.out.println(Collections.singletonList(rk));
     }
 
     private static HashMap sortPerValors(HashMap map) {
@@ -46,7 +56,11 @@ public class Ranking {
         return sortedHashMap;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Problema p = new Problema();
+        long elapsedTime = System.nanoTime();
+        Thread.sleep(5000);
+        elapsedTime = System.nanoTime() - elapsedTime;
+        System.out.println(elapsedTime);
     }
 }

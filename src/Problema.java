@@ -32,7 +32,7 @@ public class Problema {
         calcularatacant();
     }
 
-    public void putRanking(String s, int i){
+    public void putRanking(String s, double i){
         R.introRank(s,i);
     }
 
@@ -68,6 +68,7 @@ public class Problema {
     public Taulell getTaulell(){
         return T;
     }
+    public Ranking getRanking() {return R;}
 
     public int validariOptimitzarProblema(Taulell t, int jug, int mov){
         int k = MiniMaxOptim(t, jug, mov);

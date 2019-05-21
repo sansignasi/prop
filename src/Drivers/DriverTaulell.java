@@ -1,6 +1,9 @@
-package src;
+package src.Drivers;
 import java.util.Scanner;
 import lib.Pair;
+import src.IncorrectFENException;
+import src.Piece;
+import src.Taulell;
 
 public class DriverTaulell {
 

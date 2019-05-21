@@ -1,14 +1,12 @@
-package src;
+package src.Drivers;
 
 import lib.Pair;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import src.Maquina1;
-import src.Piece;
-import src.Taulell;
+import src.*;
 
-    public class DriverMaquina2 {
+public class DriverMaquina2 {
 
         public static Maquina2 m = new Maquina2(0, 0);
 

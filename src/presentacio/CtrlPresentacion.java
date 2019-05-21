@@ -11,7 +11,7 @@ public class CtrlPresentacion {
     private VistaFormularioLogin vistaFormularioLogin;
 
     public CtrlPresentacion() {
-        controladorDomini = new CtrlDomini();
+        CtrlDomini controladorDomini = CtrlDomini.getInstance();
         vistaLogin = new VistaLogin(this);
         vistaFormularioLogin = new VistaFormularioLogin(this);
     }

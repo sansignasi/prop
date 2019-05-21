@@ -17,6 +17,8 @@ public class Partida {
     private Jugador j2; //jugador 2 de la partida (el que defiende)
     private int atacant;
     private Taulell T;
+    private boolean j1u=false;
+    private boolean j2u=false;
     //METODES
 
     public Partida(Problema p, Jugador j1, Jugador j2) {
@@ -26,11 +28,15 @@ public class Partida {
         mov = p.getMoviments();
         atacant = p.getAtacant();
         this.T = p.getTaulell();
+        if(j1 instanceof Usuari) j1u = true;
+        if(j2 instanceof Usuari) j2u = true;
     }
 
     public boolean jugarPartida() {
         String s;
         Scanner sc = new Scanner(System.in);
+        long timej1 = 0;
+        long taux = 0;
         int x;
         int y;
         Piece p;
@@ -45,7 +51,12 @@ public class Partida {
                 while (!peçaselec) {
                     if (i % 2 == 0) {
                         System.out.println("Torn de l'atacant");
+                        taux = System.nanoTime();
                         move = j1.jugarTorn(T, j1.getColor(), prob.getMoviments() * 2);
+                        if(j1u){
+                            taux = System.nanoTime() - taux;
+                            timej1+=taux;
+                        }
                         if (move != null) peçaselec = true;
                         else System.out.println("En aquesta posició no hi ha peça, torna a intentar-ho");
                     } else {
@@ -88,6 +99,8 @@ public class Partida {
         else {
             if (T.jaquemate(j2.getColor())){
                 System.out.println("~~L'atacant guanya amb Escac i mat!~~");
+                this.prob.putRanking(j1.getNom(),timej1);
+                prob.getRanking().mostraRanking();
                 return true;
             }
             else{

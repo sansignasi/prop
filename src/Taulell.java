@@ -249,7 +249,7 @@ public class Taulell {
             System.out.println();
         }
     }
-    boolean jaque(int jug) {//jug es el jugador al que le estan haciendo el jaque(0 atacante 1 defensor)
+    public boolean jaque(int jug) {//jug es el jugador al que le estan haciendo el jaque(0 atacante 1 defensor)
         ArrayList<Pair> posenemy = new ArrayList<>();
         int x = 0;
         int y = 0;
@@ -277,7 +277,7 @@ public class Taulell {
         return amenaza;
     }
 
-    boolean jaquemate(int jug){//jug es el jugador al que le estan haciendo el jaquemate(0 atacante 1 defensor)
+    public boolean jaquemate(int jug){//jug es el jugador al que le estan haciendo el jaquemate(0 atacante 1 defensor)
         ArrayList<Pair> posenemy = new ArrayList<>();
         int x = 0;
         int y = 0;

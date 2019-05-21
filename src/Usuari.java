@@ -7,11 +7,15 @@ import java.util.Scanner;
 public class Usuari extends Jugador{
 
     //ATRIBUTS
-    private String nomuser;
+    private String nomuser = "PoleteTontete";
 
     //CONSTRUCTORES
     public Usuari(int color, int rol) {
         super(color,rol);
+    }
+
+    public String getNom(){
+        return this.nomuser;
     }
 
     //MÈTODES

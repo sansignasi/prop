@@ -8,7 +8,7 @@ public class Main {
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                CtrlDomini cd = new CtrlDomini();
+                CtrlDomini cd = CtrlDomini.getInstance();
                 CtrlPresentacion mainWindow = new CtrlPresentacion();
                 try {
                     //cd.menuPrincipal(); //descomentar para probar programa
