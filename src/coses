@@ -1,0 +1,9 @@
+FALTA PER FER (POL)
+Usuari ha d'emmagatzemar les puntuacions de tots els problemes que ha jugat?
+Base de problemes té map amb nom problema problema
+Problema ha de guardar les puntuacions de totes les persones que han jugat el problema?
+Base de usuaris guarda tots els usuaris amb nom usuari usuari
+Calcular puntuacio donat un problema jugat -> temps, moviments ...
+Controlador de persistencia -> json
+Controlador de domini -> veure com es relaciona amb el controlador de persistencia
+Millorar heuristic maquina2
