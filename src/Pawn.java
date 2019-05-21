@@ -34,7 +34,7 @@ public class Pawn extends Piece {
     }
 
     //MÈTODES
-    public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
+    /*public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
         Piece p = m[i][j];
         int dir = 3;
         ArrayList<Pair> res = new ArrayList<>();
@@ -87,6 +87,28 @@ public class Pawn extends Piece {
                 }
             }
             --dir;
+        }
+        return res;
+    }*/
+
+    public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
+        Piece p = m[i][j];
+        ArrayList<Pair> res = new ArrayList<>();
+
+        if (p.getColor() == 'b') {
+            if (i < 7) {
+                if (m[i + 1][j] == null) res.add(new Pair(p, new Pair(i + 1, j)));
+                if ((j < 7 && m[i+1][j+1] != null) && m[i + 1][j + 1].getColor() != p.getColor()) res.add(new Pair(p, new Pair(i + 1, j + 1)));
+                if ((j > 0 && m[i+1][j-1] != null) && m[i + 1][j - 1].getColor() != p.getColor()) res.add(new Pair(p, new Pair(i + 1, j - 1)));
+            }
+        }
+
+        else if (p.getColor() == 'w') {
+            if (i > 0) {
+                if (m[i - 1][j] == null) res.add(new Pair(p, new Pair(i - 1, j)));
+                if ((j < 7 && m[i-1][j+1] != null) && m[i - 1][j + 1].getColor() != p.getColor()) res.add(new Pair(p, new Pair(i - 1, j + 1)));
+                if ((j > 0 && m[i-1][j-1] != null) && m[i - 1][j - 1].getColor() != p.getColor()) res.add(new Pair(p, new Pair(i - 1, j - 1)));
+            }
         }
         return res;
     }
