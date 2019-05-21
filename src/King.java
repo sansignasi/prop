@@ -34,6 +34,7 @@ public class King extends Piece {
     }
 
     //MÈTODES
+    /*
     public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
         Piece p = m[i][j];
         int dir;
@@ -84,7 +85,15 @@ public class King extends Piece {
             --dir;
         }
         return res;
+    }*/
+
+    public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
+        Piece p = m[i][j];
+        ArrayList<Pair> res = new ArrayList<>();
+
+        return res;
     }
+
     public ArrayList<Pair> calculaMovimentsJaqueMate(Piece[][] m, int i, int j) {
         Piece p = m[i][j];
         int dir;

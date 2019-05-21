@@ -6,6 +6,18 @@ import java.util.Scanner;
 
 public class DriverPiece {
 
+    public static Piece[][] matriu = { {null, null, null,null,new King('b',0,4),null,null,null}, //R,-,K,-,-,B,-,R
+            {new Pawn('b',1,0), new Pawn('b',1,1), null,null,null,null,new Pawn('b',1,6),null}, //Pe,Pe,-,-,-,-,-,-
+            {new Pawn('w',2,0), null,null,null,null,new Pawn('w',2,5),null,new Pawn('w',2,7)},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,null,null,null,null,null},
+            {null,null,null,new King('w',6,3),null,null,null,null},
+            {null,null,null,null,null,null,null,null}};
+
+
+    public static Taulell t = new Taulell(matriu);
+
     public static void testgetJugador(char c){
         Piece p = new Pawn(c);
         System.out.println(p.getJugador());
@@ -70,11 +82,13 @@ public class DriverPiece {
     }
 
     public static void testcalculaMovimentsPiece() throws IncorrectFENException{
-        Taulell t = new Taulell();
-        Scanner sc = new Scanner(System.in);
+        /*Taulell t = new Taulell();
+
         System.out.println("Introdueix un FEN:");
         String fen2 = sc.nextLine();
         t.carregaFEN(fen2);
+        */
+        Scanner sc = new Scanner(System.in);
         t.mostrarTaulell();
         System.out.println("Escull la posició de la peça a testejar(ex a5):");
         String inPiece = sc.nextLine();
