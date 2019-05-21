@@ -28,6 +28,10 @@ public class BaseDeProblemes {
 
         cjtproblemes.remove(p.getNomprob());
     }
+
+    public boolean existeixProblema(String s){
+        return cjtproblemes.containsKey(s);
+    }
     public Problema buscarProblema(String s){
 
         return cjtproblemes.get(s);

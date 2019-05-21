@@ -9,7 +9,9 @@ public class DriverRanking {
     public static void testjugarPartida(Problema p, Jugador j1, Jugador j2) throws IncorrectFENException {
         Problema prox = new Problema("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1",2,"p1");
         BaseDeProblemes bp = BaseDeProblemes.getInstance();
-        bp.afegirProblema(prox);
+        if(!bp.existeixProblema("p1")) {
+            bp.afegirProblema(prox);
+        }
         Partida game = new Partida(bp.buscarProblema("p1"),j1,j2);
         game.jugarPartida();
     }
