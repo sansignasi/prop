@@ -10,7 +10,6 @@ public class Jugador {
 
     //CREADORES
     public Jugador(){
-        super();
     }
 
     public Jugador(int c, int r){
@@ -25,6 +24,10 @@ public class Jugador {
     }
     public int getRol(){
         return rol;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     //MÈTODES

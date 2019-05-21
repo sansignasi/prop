@@ -30,6 +30,7 @@ public class CtrlDomini {
             System.out.println("Tria una opció:");
             System.out.println("1.Jugar problema");
             System.out.println("2.Validar problema");
+            System.out.println("3.Simulación");
             System.out.println("0.Exit");
             Scanner sc = new Scanner(System.in);
             opt = sc.nextInt();
@@ -131,6 +132,26 @@ public class CtrlDomini {
                     boolean b = pv1.validarProblema(pv1.getTaulell(),pv1.getAtacant(),pv1.getMoviments()*2+1);
                     if (!b) System.out.println("El problema no es pot resoldre en " + pv1.getMoviments() + " moviments.");
                     else System.out.println("El problema es pot resoldre en " + (pv1.getMoviments()) + " moviments.");
+                    break;
+
+                case 3:
+                    Scanner s = new Scanner(System.in);
+                    System.out.println("Selecciona atacante: 1.M1 2.M2");
+                    int n = s.nextInt();
+                    Jugador atacant;
+                    if(n == 1) atacant = new Maquina1();
+                    else atacant = new Maquina2();
+                    System.out.println("Selecciona defensor: 1.M1 2.M2");
+                    int m = s.nextInt();
+                    Jugador defensor;
+                    if(m == 1) defensor = new Maquina1();
+                    else defensor = new Maquina2();
+                    Simulacio sim = new Simulacio(atacant,defensor,ProblemesPrecarregats);
+                    ArrayList<Boolean> res = sim.simular();
+                    for(int i = 0; i < res.size();++i){
+                        if(res.get(i))System.out.println("L'atacant ha guanyat el problema "+i);
+                        else System.out.println("L'atacant ha perdut el problema "+i);
+                    }
                     break;
 
                 case 0:

@@ -28,7 +28,7 @@ public class Partida {
         this.T = p.getTaulell();
     }
 
-    public void jugarPartida() {
+    public boolean jugarPartida() {
         String s;
         Scanner sc = new Scanner(System.in);
         int x;
@@ -81,11 +81,19 @@ public class Partida {
             }
         }
         T.mostrarTaulell();
-        if (!jaquemate)
+        if (!jaquemate) {
             System.out.println("~~L'atacant no ha aconseguit fer escac i mat en els moviments establerts, guanya el defensor!~~");
+            return false;
+        }
         else {
-            if (T.jaquemate(j2.getColor())) System.out.println("~~L'atacant guanya amb Escac i mat!~~");
-            else System.out.println("~~El defensor guanya amb Escac i mat!~~");
+            if (T.jaquemate(j2.getColor())){
+                System.out.println("~~L'atacant guanya amb Escac i mat!~~");
+                return true;
+            }
+            else{
+                System.out.println("~~El defensor guanya amb Escac i mat!~~");
+                return false;
+            }
         }
     }
 

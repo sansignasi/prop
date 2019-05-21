@@ -222,7 +222,7 @@ public class Taulell {
         return fen;
     }
 
-    void mostrarTaulell() {
+    public void mostrarTaulell() {
         //PRE:
         //POST: mostra l'estat actual de les peces al taulell
         char [][] tprint = new char[9][9];

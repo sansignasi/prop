@@ -1,5 +1,6 @@
 package src;
 import lib.Pair;
+import java.util.HashMap;
 
 import java.util.ArrayList;
 
@@ -12,18 +13,27 @@ public class Problema {
     private int atacant; // jugador que comença i ataca, b black, w white
     private Boolean validat; //validat o no
     private String creador; //nombre del usuario creador del problema
-   private Taulell T; //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
+    private Taulell T; //(representa el objeto taulell, matriz de piezas, que tendra el estado inicial del problema)
+    private Ranking R; //Rànking de puntuaciones del problema
     //METODES
 
     public Problema(){
+        T = new Taulell();
+        R = new Ranking();
     }
+
     public Problema(String s, int n, String nom) throws IncorrectFENException {
         FEN = s;
         nMax = n;
         T = new Taulell(s);
+        R = new Ranking();
         nomprob = nom;
         calcularDificultad();
         calcularatacant();
+    }
+
+    public void putRanking(String s, int i){
+        R.introRank(s,i);
     }
 
     public void calcularatacant() {
@@ -46,7 +56,9 @@ public class Problema {
         //POST: calcula la dificultad asociada al problema
         this.dificultad = "Normal";
     }
-
+    public String getNomprob(){
+        return nomprob;
+    }
     public int getMoviments(){
         return nMax;
     }
