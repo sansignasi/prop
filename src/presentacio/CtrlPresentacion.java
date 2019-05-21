@@ -12,7 +12,7 @@ public class CtrlPresentacion {
     private VistaFormularioRegistro vistaFormularioRegistro;
 
     public CtrlPresentacion() {
-        CtrlDomini controladorDomini = CtrlDomini.getInstance();
+        controladorDomini = CtrlDomini.getInstance();
         vistaLogin = new VistaLogin(this);
         vistaFormularioLogin = new VistaFormularioLogin(this);
         vistaFormularioRegistro = new VistaFormularioRegistro(this);
@@ -35,7 +35,9 @@ public class CtrlPresentacion {
     }
 
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
+        System.out.print("holactrlpresent");
         int i = controladorDomini.verificarusuari(user,psw);
         return i;
+
     }
 }

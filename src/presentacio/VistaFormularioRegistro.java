@@ -60,9 +60,13 @@ public class VistaFormularioRegistro {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String user = textField1.getText();
-                if(user == null)JOptionPane.showMessageDialog(null,"Contrasenya incorrecta.");
-                String psw = textField2.getText();
-                int i = controladorPresentacion.verificarusuari(user,psw);
+                if(user.isEmpty())JOptionPane.showMessageDialog(null,"Introdueix nom d'usuari.");
+                else{
+                    String psw = textField2.getText();
+                    if(psw.isEmpty())JOptionPane.showMessageDialog(null,"Introdueix contrasenya.");
+                }
+
+                //int i = controladorPresentacion.verificarusuari(user,psw);
             }
         });
 

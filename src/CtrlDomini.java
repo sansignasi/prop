@@ -24,11 +24,17 @@ public class CtrlDomini {
     }
 
     private CtrlDomini() {
+        /*
         this.bproblemes = db.loadBProblemes();
         this.busers = db.loadBUsers();
+        */
+        busers = new BaseUsuaris();
     }
 
     public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
+        Usuari u = new Usuari("user","psw");
+        busers.afegirusuari(u);
+        System.out.print("holactrldomini");
         int i = busers.verificarusuari(user,psw);
         return i;
     }
