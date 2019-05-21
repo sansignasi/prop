@@ -4,7 +4,25 @@ import java.util.Scanner;
 
 public class CtrlPersistencia {
 
-        //aqui aniran tots els gets
-        //usuari
-        //problema
+    private CtrlDomini cd = CtrlDomini.getInstance();
+
+    private static CtrlPersistencia singletonObject;
+
+    public static CtrlPersistencia getInstance() {
+        if (singletonObject == null)
+            singletonObject = new CtrlPersistencia() {
+            };
+        return singletonObject;
+    }
+
+    public BaseDeProblemes loadBProblemes(){
+        return null;
+
+    }
+
+    public BaseUsuaris loadBUsers(){
+        return null;
+    }
+
+
 }

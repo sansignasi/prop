@@ -4,9 +4,25 @@ import java.util.Scanner;
 
 public class CtrlDomini {
 
+    private CtrlPersistencia db = CtrlPersistencia.getInstance();
+
     ArrayList<Problema> ProblemesPrecarregats = new ArrayList<Problema>();
 
-    public CtrlDomini() {
+    public BaseDeProblemes bproblemes;
+    public BaseUsuaris busers;
+
+    private static CtrlDomini singletonObject;
+
+    public static CtrlDomini getInstance() {
+        if (singletonObject == null)
+            singletonObject = new CtrlDomini() {
+            };
+        return singletonObject;
+    }
+
+    private CtrlDomini() {
+        this.bproblemes = db.loadBProblemes();
+        this.busers = db.loadBUsers();
     }
 
     public void precarregarProblemes() throws IncorrectFENException{
