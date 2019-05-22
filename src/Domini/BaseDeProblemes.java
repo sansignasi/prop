@@ -1,16 +1,19 @@
 package src.Domini;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 
 public class BaseDeProblemes {
 
-    private Map<String,Problema> cjtproblemes;
+    private TreeMap<String,Problema> cjtproblemes;
 
     private static BaseDeProblemes singletonObject;
 
     public static BaseDeProblemes getInstance() {
+
         if (singletonObject == null)
             singletonObject = new BaseDeProblemes() {
             };
@@ -18,8 +21,18 @@ public class BaseDeProblemes {
     }
 
     private BaseDeProblemes() {
-        this.cjtproblemes = new HashMap<String,Problema>();
+
+        this.cjtproblemes = new TreeMap<String,Problema>();
     }
+
+    public TreeMap getMap(){
+        return cjtproblemes;
+    }
+
+    public void setMap (TreeMap<String,Problema> m){
+        cjtproblemes = m;
+    }
+
     public void afegirProblema(Problema p){
 
         cjtproblemes.put(p.getNomprob(),p);
@@ -30,8 +43,10 @@ public class BaseDeProblemes {
     }
 
     public boolean existeixProblema(String s){
+
         return cjtproblemes.containsKey(s);
     }
+
     public Problema buscarProblema(String s){
 
         return cjtproblemes.get(s);
