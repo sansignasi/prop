@@ -4,7 +4,7 @@ import src.Domini.*;
 
 import java.util.*;
 
-public class CtrlDomini {//hola
+public class CtrlDomini {
 
     private CtrlPersistencia db = CtrlPersistencia.getInstance();
 
@@ -82,7 +82,7 @@ public class CtrlDomini {//hola
 
     public void precarregarProblemes() throws IncorrectFENException {
         String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
-        Problema prob1 = new Problema(fen1,2,"Problema 1, mat de blanques en 2");
+        Problema prob1 = new Problema(fen1,2,"prob1");
         ProblemesPrecarregats.add(prob1);
         String fen2 = "5r2/1pR3Bn/1KP1k3/2P1p3/1p3pP1/5Q2/3Pp2p/1B1b4 w - - 0 1";
         Problema prob2 = new Problema(fen2,2,"Problema 2, mat de blanques en 2");
