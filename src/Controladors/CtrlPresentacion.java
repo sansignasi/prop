@@ -3,6 +3,9 @@ package src.Controladors;
 import src.Domini.IncorrectFENException;
 import src.Presentacio.*;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 public class CtrlPresentacion {
     private CtrlDomini controladorDomini;
     private VistaLogin vistaLogin;
@@ -49,6 +52,10 @@ public class CtrlPresentacion {
         vistaSelecProbJugar.hacerVisible();
     }
 
+    public void cambiarVistaABoard() throws IncorrectFENException {
+        board.hacerVisible();
+    }
+
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
         int i = controladorDomini.verificarusuari(user,psw);
         return i;
@@ -69,4 +76,23 @@ public class CtrlPresentacion {
     public char[][] matriuProblema(String nomprob) throws IncorrectFENException {
         return controladorDomini.matriuProblema(nomprob);
     }
+
+    public Set<String> getNomProblemes() throws IncorrectFENException {
+        return controladorDomini.getNomProblemes();
+    }
+
+    public int getMovimentsProblema(String s){
+        return controladorDomini.getMovimentsProblema(s);
+    }
+
+    public String getCreadorProblema(String s){
+        return controladorDomini.getCreadorProblema(s);
+    }
+
+    public String getDificultadProblema(String s){
+        return controladorDomini.getDificultadProblema(s);
+    }
+
+
+
 }

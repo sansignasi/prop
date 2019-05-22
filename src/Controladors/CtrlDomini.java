@@ -10,9 +10,9 @@ public class CtrlDomini {
 
     ArrayList<Problema> ProblemesPrecarregats = new ArrayList<Problema>();
 
-    public BaseDeProblemes bproblemes;
-    public BaseUsuaris busers;
-    public String currentuser;
+    private BaseDeProblemes bproblemes;
+    private BaseUsuaris busers;
+    private String currentuser;
 
     private static CtrlDomini singletonObject;
 
@@ -66,16 +66,40 @@ public class CtrlDomini {
 
     public void crearusuari(String user, String psw){
         Usuari u = new Usuari(user,psw);
+        currentuser = user;
         busers.afegirusuari(u);
         //GuardaBUsers();
     }
 
-    public char[][] matriuProblema(String nomprob) throws IncorrectFENException{
-        String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
-        Problema prob1 = new Problema(fen1,2,"prob1");
-        bproblemes.afegirProblema(prob1);
-        return bproblemes.buscarProblema(nomprob).matriuChars();
+    public Set<String> getNomProblemes() throws IncorrectFENException {
+        precarregarProblemes();
+        ProblemesPrecarregats.get(0).setCreador("Wanyu");
+        ProblemesPrecarregats.get(1).setCreador("Admin");
+        ProblemesPrecarregats.get(2).setCreador("tetas");
+        bproblemes.afegirProblema(ProblemesPrecarregats.get(1));
+        bproblemes.afegirProblema(ProblemesPrecarregats.get(0));
+        bproblemes.afegirProblema(ProblemesPrecarregats.get(2));
+        return bproblemes.getNomProblemes();
     }
+
+    public int getMovimentsProblema(String s){
+        return bproblemes.buscarProblema(s).getMoviments();
+    }
+
+    public String getCreadorProblema(String s){
+        return bproblemes.buscarProblema(s).getCreador();
+    }
+
+    public String getDificultadProblema(String s){
+        return bproblemes.buscarProblema(s).getDificultad();
+    }
+
+
+
+
+
+
+
 
 
 
@@ -238,6 +262,9 @@ public class CtrlDomini {
         }
     }
 
+    public char[][] matriuProblema(String nomprob) {
+        return bproblemes.buscarProblema(nomprob).matriuChars();
+    }
 }
 
 

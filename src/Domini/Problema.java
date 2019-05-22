@@ -31,6 +31,18 @@ public class Problema {
         calcularatacant();
     }
 
+    public String getDificultad() {
+        return dificultad;
+    }
+
+    public String getCreador() {
+        return creador;
+    }
+
+    public void setCreador(String creador) {
+        this.creador = creador;
+    }
+
     public void restoreTaulell() throws IncorrectFENException{
         T = new Taulell(FEN);
     }
