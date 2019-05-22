@@ -12,6 +12,7 @@ public class CtrlDomini {
 
     public BaseDeProblemes bproblemes;
     public BaseUsuaris busers;
+    public String currentuser;
 
     private static CtrlDomini singletonObject;
 
@@ -43,18 +44,41 @@ public class CtrlDomini {
 
     }
 
+    public void reload() {
+        bproblemes = BaseDeProblemes.getInstance();
+        busers = BaseUsuaris.getInstance();
+    }
+
     public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
-        Usuari u = new Usuari("user","psw");
+        Usuari u = new Usuari("aa","aa");
         busers.afegirusuari(u);
         int i = busers.verificarusuari(user,psw);
         return i;
     }
 
-    public void reload() {
-
-        bproblemes = BaseDeProblemes.getInstance();
-        busers = BaseUsuaris.getInstance();
+    public String getCurrentuser() {
+        return currentuser;
     }
+
+    public void setCurrentuser(String currentuser) {
+        this.currentuser = currentuser;
+    }
+
+    public void crearusuari(String user, String psw){
+        Usuari u = new Usuari(user,psw);
+        busers.afegirusuari(u);
+        //GuardaBUsers();
+    }
+
+
+
+
+
+
+
+
+
+
 
     public void precarregarProblemes() throws IncorrectFENException {
         String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";

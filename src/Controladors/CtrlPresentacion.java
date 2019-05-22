@@ -1,10 +1,7 @@
 package src.Controladors;
 
 import src.Domini.IncorrectFENException;
-import src.Presentacio.VistaFormularioLogin;
-import src.Presentacio.VistaFormularioRegistro;
-import src.Presentacio.VistaLogin;
-import src.Presentacio.VistaMenuPrincipal;
+import src.Presentacio.*;
 
 public class CtrlPresentacion {
     private CtrlDomini controladorDomini;
@@ -12,6 +9,7 @@ public class CtrlPresentacion {
     private VistaFormularioLogin vistaFormularioLogin;
     private VistaFormularioRegistro vistaFormularioRegistro;
     private VistaMenuPrincipal vistaMenuPrincipal;
+    private VistaSelecProbJugar vistaSelecProbJugar;
 
     public CtrlPresentacion() {
         controladorDomini = CtrlDomini.getInstance();
@@ -19,6 +17,7 @@ public class CtrlPresentacion {
         vistaFormularioLogin = new VistaFormularioLogin(this);
         vistaFormularioRegistro = new VistaFormularioRegistro(this);
         vistaMenuPrincipal = new VistaMenuPrincipal(this);
+        vistaSelecProbJugar = new VistaSelecProbJugar(this);
     }
 
     public void inicializarPresentacion() throws IncorrectFENException {
@@ -42,6 +41,10 @@ public class CtrlPresentacion {
         vistaMenuPrincipal.hacerVisible();
     }
 
+    public void cambiarVistaASelecProbJugar(){
+        vistaSelecProbJugar.hacerVisible();
+    }
+
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
         int i = controladorDomini.verificarusuari(user,psw);
         return i;
@@ -54,6 +57,7 @@ public class CtrlPresentacion {
     public String getCurrentuser(){
         return controladorDomini.getCurrentuser();
     }
+
     public void crearusuari(String user, String psw){
         controladorDomini.crearusuari(user,psw);
     }
