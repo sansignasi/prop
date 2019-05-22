@@ -70,12 +70,12 @@ public class CtrlDomini {
         //GuardaBUsers();
     }
 
-
-
-
-
-
-
+    public char[][] matriuProblema(String nomprob) throws IncorrectFENException{
+        String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
+        Problema prob1 = new Problema(fen1,2,"prob1");
+        bproblemes.afegirProblema(prob1);
+        return bproblemes.buscarProblema(nomprob).matriuChars();
+    }
 
 
 
@@ -238,9 +238,6 @@ public class CtrlDomini {
         }
     }
 
-    public char[][] matriuProblema(String nomprob) {
-        return bproblemes.buscarProblema(nomprob).matriuChars();
-    }
 }
 
 

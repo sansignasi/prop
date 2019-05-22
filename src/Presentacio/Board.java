@@ -23,7 +23,8 @@ public class Board {
     private static final String COLS = "ABCDEFGH";
     private static char[][] mchar;
 
-    Board() throws IncorrectFENException {
+    public Board(CtrlPresentacion c) throws IncorrectFENException {
+        controladorPresentacion = c;
         initializeGui();
     }
 
@@ -103,33 +104,18 @@ public class Board {
         return gui;
     }
 
-    public static void main(String[] args) throws IncorrectFENException {
+    public void hacerVisible() throws IncorrectFENException {
         mostrarMchar();
-        Runnable r = new Runnable() {
+        JFrame f = new JFrame("Jugar Problema");
+        f.add(this.getGui());
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        f.setLocationByPlatform(true);
 
-            @Override
-            public void run() {
-                Board cb =
-                        null;
-                try {
-                    cb = new Board();
-                } catch (IncorrectFENException e) {
-                    e.printStackTrace();
-                }
-
-                JFrame f = new JFrame("Jugar Problema");
-                f.add(cb.getGui());
-                f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                f.setLocationByPlatform(true);
-
-                // ensures the frame is the minimum size it needs to be
-                // in order display the components within it
-                f.pack();
-                // ensures the minimum size is enforced.
-                f.setMinimumSize(f.getSize());
-                f.setVisible(true);
-            }
-        };
-        SwingUtilities.invokeLater(r);
+        // ensures the frame is the minimum size it needs to be
+        // in order display the components within it
+        f.pack();
+        // ensures the minimum size is enforced.
+        f.setMinimumSize(f.getSize());
+        f.setVisible(true);
     }
 }
