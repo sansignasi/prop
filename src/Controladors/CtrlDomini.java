@@ -32,12 +32,25 @@ public class CtrlDomini {
         busers = new BaseUsuaris();
     }
 
+    public void setCurrentuser(String currentuser) {
+        this.currentuser = currentuser;
+    }
+
+    public String getCurrentuser() {
+        return currentuser;
+    }
+
     public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
         Usuari u = new Usuari("user","psw");
         busers.afegirusuari(u);
-        System.out.print("holactrldomini");
         int i = busers.verificarusuari(user,psw);
         return i;
+    }
+
+    public void crearusuari(String user, String psw){
+        currentuser = user;
+        Usuari u = new Usuari(user,psw);
+        busers.afegirusuari(u);
     }
 
 
