@@ -4,7 +4,7 @@ import src.Domini.*;
 
 import java.util.*;
 
-public class CtrlDomini {
+public class CtrlDomini {//hola
 
     private CtrlPersistencia db = CtrlPersistencia.getInstance();
 
