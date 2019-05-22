@@ -3,7 +3,7 @@ package src.Controladors;
 import src.Domini.IncorrectFENException;
 import src.Presentacio.*;
 
-public class CtrlPresentacion {
+public class CtrlPresentacion {//hola
     private CtrlDomini controladorDomini;
     private VistaLogin vistaLogin;
     private VistaFormularioLogin vistaFormularioLogin;
