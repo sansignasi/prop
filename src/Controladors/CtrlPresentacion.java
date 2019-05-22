@@ -3,7 +3,7 @@ package src.Controladors;
 import src.Domini.IncorrectFENException;
 import src.Presentacio.*;
 
-public class CtrlPresentacion {//hola
+public class CtrlPresentacion {
     private CtrlDomini controladorDomini;
     private VistaLogin vistaLogin;
     private VistaFormularioLogin vistaFormularioLogin;
@@ -14,6 +14,7 @@ public class CtrlPresentacion {//hola
 
     public CtrlPresentacion() throws IncorrectFENException {
         controladorDomini = CtrlDomini.getInstance();
+        controladorDomini.reload();
         vistaLogin = new VistaLogin(this);
         vistaFormularioLogin = new VistaFormularioLogin(this);
         vistaFormularioRegistro = new VistaFormularioRegistro(this);
@@ -24,8 +25,8 @@ public class CtrlPresentacion {//hola
 
     public void inicializarPresentacion() throws IncorrectFENException {
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
-        //vistaLogin.hacerVisible(); //descomentar para testear presentacion
-        board.hacerVisible();
+        vistaLogin.hacerVisible(); //descomentar para testear presentacion
+        //board.hacerVisible();
     }
 
     public void cambiarVistaAFormularioLogin() {

@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 public class BaseDeProblemes {
 
-    private TreeMap<String,Problema> cjtproblemes;
+    private TreeMap<String,Problema> cjtproblemes = new TreeMap<String,Problema>();
 
     private static BaseDeProblemes singletonObject;
 

@@ -30,7 +30,12 @@ public class Board {
 
     public static void mostrarMchar() throws IncorrectFENException{
         mchar = controladorPresentacion.matriuProblema("prob1");
-        System.out.println(mchar);
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                System.out.print(mchar[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
 
