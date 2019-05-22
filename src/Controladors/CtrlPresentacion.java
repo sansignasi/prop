@@ -61,4 +61,8 @@ public class CtrlPresentacion {
     public void crearusuari(String user, String psw){
         controladorDomini.crearusuari(user,psw);
     }
+
+    public char[][] matriuProblema(String nomprob) {
+        return controladorDomini.matriuProblema(nomprob);
+    }
 }
