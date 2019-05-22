@@ -237,6 +237,10 @@ public class CtrlDomini {
             System.out.println();
         }
     }
+
+    public char[][] matriuProblema(String nomprob) {
+        return bproblemes.buscarProblema(nomprob).matriuChars();
+    }
 }
 
 
