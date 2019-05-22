@@ -1,11 +1,19 @@
 package src.Presentacio;
 
+import src.Controladors.CtrlDomini;
+import src.Controladors.CtrlPresentacion;
+import src.Domini.IncorrectFENException;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import javax.swing.border.*;
 
+
 public class Board {
+
+    private static CtrlPresentacion controladorPresentacion;
+    private static CtrlDomini ctrlDomini;
 
     private final JPanel gui = new JPanel(new BorderLayout(3, 3));
     private JButton[][] chessBoardSquares = new JButton[8][8];
@@ -13,10 +21,17 @@ public class Board {
     private final JLabel message = new JLabel(
             "Chess Champ is ready to play!");
     private static final String COLS = "ABCDEFGH";
+    private static char[][] mchar;
 
-    Board() {
+    Board() throws IncorrectFENException {
         initializeGui();
     }
+
+    public static void mostrarMchar() throws IncorrectFENException{
+        mchar = controladorPresentacion.matriuProblema("prob1");
+        System.out.println(mchar);
+    }
+
 
     public final void initializeGui() {
         // set up the main GUI
@@ -31,8 +46,6 @@ public class Board {
         tools.add(new JButton("Resign")); // TODO - add functionality!
         tools.addSeparator();
         tools.add(message);
-
-        gui.add(new JLabel("?"), BorderLayout.LINE_START);
 
         chessBoard = new JPanel(new GridLayout(0, 9));
         chessBoard.setBorder(new LineBorder(Color.BLACK));
@@ -90,13 +103,19 @@ public class Board {
         return gui;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IncorrectFENException {
+        mostrarMchar();
         Runnable r = new Runnable() {
 
             @Override
             public void run() {
                 Board cb =
-                        new Board();
+                        null;
+                try {
+                    cb = new Board();
+                } catch (IncorrectFENException e) {
+                    e.printStackTrace();
+                }
 
                 JFrame f = new JFrame("Jugar Problema");
                 f.add(cb.getGui());

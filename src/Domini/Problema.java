@@ -45,6 +45,16 @@ public class Problema {
         else atacant = 1;
     }
 
+    public char[][] matriuChars(){
+        char[][] maux = new char[8][8];
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                maux[i][j]=T.getPiece(i,j).getLletra();
+            }
+        }
+        return maux;
+    }
+
     public void visualitzaProblema(){
         System.out.println(nomprob);
         System.out.println();

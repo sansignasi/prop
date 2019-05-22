@@ -1,8 +1,8 @@
 package src.Controladors;
 import src.Domini.*;
 
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CtrlDomini {
 
@@ -12,6 +12,7 @@ public class CtrlDomini {
 
     public BaseDeProblemes bproblemes;
     public BaseUsuaris busers;
+    public String currentuser;
 
     private static CtrlDomini singletonObject;
 
@@ -23,38 +24,36 @@ public class CtrlDomini {
         return singletonObject;
     }
 
-    private CtrlDomini(){}
-
-    public void CarregaBProblemes() throws Exception{
-
-        Vector<String> sbproblemes = db.loadBProblems("dades/BProblemes.txt");
-    }
-
-    public void CarregaBUsers() throws Exception{
-
-        Vector<String> sbusers = db.loadBUsers("dades/BUsers.txt");
-    }
-
-    public void GuardaBroblemes () throws Exception{
-
-    }
-
-    public void GuardaBUsers () throws Exception{
-
+    private CtrlDomini() {
+        /*
+        this.bproblemes = db.loadBProblemes();
+        this.busers = db.loadBUsers();
+        */
+        busers = new BaseUsuaris();
     }
 
     public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
         Usuari u = new Usuari("user","psw");
         busers.afegirusuari(u);
+        System.out.print("holactrldomini");
         int i = busers.verificarusuari(user,psw);
         return i;
     }
 
-    public void reload() {
-
-        bproblemes = BaseDeProblemes.getInstance();
-        busers = BaseUsuaris.getInstance();
+    public char[][] matriuProblema(String nomProb) throws IncorrectFENException{
+        String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
+        Problema prob1 = new Problema(fen1,2,"prob1");
+        bproblemes.afegirProblema(prob1);
+        return bproblemes.buscarProblema(nomProb).matriuChars();
     }
+
+
+
+
+
+
+
+
 
     public void precarregarProblemes() throws IncorrectFENException {
         String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
@@ -67,7 +66,6 @@ public class CtrlDomini {
         Problema prob3 = new Problema(fen3,2,"Problema 3, mat de blanques en 2");
         ProblemesPrecarregats.add(prob3);
     }
-
 
     public void menuPrincipal() throws IncorrectFENException{
 
@@ -214,11 +212,3 @@ public class CtrlDomini {
         }
     }
 }
-
-
-
-
-
-
-
-
