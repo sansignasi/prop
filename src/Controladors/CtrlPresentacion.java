@@ -10,19 +10,22 @@ public class CtrlPresentacion {
     private VistaFormularioRegistro vistaFormularioRegistro;
     private VistaMenuPrincipal vistaMenuPrincipal;
     private VistaSelecProbJugar vistaSelecProbJugar;
+    private Board board;
 
-    public CtrlPresentacion() {
+    public CtrlPresentacion() throws IncorrectFENException {
         controladorDomini = CtrlDomini.getInstance();
         vistaLogin = new VistaLogin(this);
         vistaFormularioLogin = new VistaFormularioLogin(this);
         vistaFormularioRegistro = new VistaFormularioRegistro(this);
         vistaMenuPrincipal = new VistaMenuPrincipal(this);
         vistaSelecProbJugar = new VistaSelecProbJugar(this);
+        board = new Board(this);
     }
 
     public void inicializarPresentacion() throws IncorrectFENException {
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
-        vistaLogin.hacerVisible(); //descomentar para testear presentacion
+        //vistaLogin.hacerVisible(); //descomentar para testear presentacion
+        board.hacerVisible();
     }
 
     public void cambiarVistaAFormularioLogin() {
@@ -62,7 +65,7 @@ public class CtrlPresentacion {
         controladorDomini.crearusuari(user,psw);
     }
 
-    public char[][] matriuProblema(String nomprob) {
+    public char[][] matriuProblema(String nomprob) throws IncorrectFENException {
         return controladorDomini.matriuProblema(nomprob);
     }
 }
