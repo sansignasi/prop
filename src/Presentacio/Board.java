@@ -115,7 +115,7 @@ public class Board {
     }
 
     public void hacerVisible() throws IncorrectFENException {
-        //carregaMchar();
+
         JFrame f = new JFrame("Jugar Problema");
         f.add(this.getGui());
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
