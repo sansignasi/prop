@@ -90,7 +90,12 @@ public class VistaSelecProbJugar {
         vsJugadorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                desactivar();
+                try {
+                    controladorPresentacion.cambiarVistaAJugarPartida("Jugador",list1.getSelectedValue().toString());
+                } catch (IncorrectFENException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 

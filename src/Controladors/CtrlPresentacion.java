@@ -35,14 +35,13 @@ public class CtrlPresentacion {
         vistaFormularioRegistro = new VistaFormularioRegistro(this);
         vistaMenuPrincipal = new VistaMenuPrincipal(this);
         vistaSelecProbJugar = new VistaSelecProbJugar(this);
-        board = new Board(this);
         vistaEscollirProbsSimulacio = new VistaEscollirProbsSimulacio(this);
     }
     public void inicializarPresentacion() throws IncorrectFENException {
         asignar();
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
-        //vistaLogin.hacerVisible(); //descomentar para testear presentacion
-        board.hacerVisible();
+        vistaLogin.hacerVisible(); //descomentar para testear presentacion
+        //board.hacerVisible();
     }
 
     public void cambiarVistaAFormularioLogin() {
@@ -71,6 +70,10 @@ public class CtrlPresentacion {
         board.hacerVisible();
     }
 
+    public void cambiarVistaAJugarPartida(String tipusjug,String nomprob) throws IncorrectFENException {
+        board = new Board(this,nomprob);
+        board.hacerVisible();
+    }
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
         int i = controladorDomini.verificarusuari(user,psw);
         return i;

@@ -23,9 +23,9 @@ public class Board {
     private static final String COLS = "ABCDEFGH";
     private char[][] mchar;
 
-    public Board(CtrlPresentacion c) throws IncorrectFENException {
+    public Board(CtrlPresentacion c,String nomprob) throws IncorrectFENException {
         controladorPresentacion = c;
-        mchar = controladorPresentacion.matriuProblema("prob1");
+        mchar = controladorPresentacion.matriuProblema(nomprob);
         initializeGui();
     }
 
@@ -115,7 +115,7 @@ public class Board {
     }
 
     public void hacerVisible() throws IncorrectFENException {
-        carregaMchar();
+        //carregaMchar();
         JFrame f = new JFrame("Jugar Problema");
         f.add(this.getGui());
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
