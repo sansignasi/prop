@@ -70,8 +70,8 @@ public class VistaFormularioRegistro {
                         int i = controladorPresentacion.verificarusuari(user,psw);
                         if(i == 0 || i == 1)JOptionPane.showMessageDialog(null,"Aquest nom d'usuari ja existeix.");
                         else { //registramos en nuevo user
-                            /*
-                            controladorPresentacion.crearusuari(user,psw);*/
+
+                            controladorPresentacion.crearusuari(user,psw);
                             desactivar();
                             controladorPresentacion.cambiarVistaAMenuPrincipal();
                         }

@@ -1,6 +1,7 @@
 package src.Domini;
 
 import lib.Pair;
+import src.Controladors.CtrlDomini;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,9 +18,10 @@ public class Partida {
     private Taulell T;
     private boolean j1u=false;
     private boolean j2u=false;
+    private CtrlDomini c = CtrlDomini.getInstance();
     //METODES
 
-    public Partida(Problema p, Jugador j1, Jugador j2) {
+    public Partida(Problema p, Jugador j1, Jugador j2) throws IncorrectFENException {
         this.j1 = j1;
         this.j2 = j2;
         this.prob = p;
@@ -30,7 +32,11 @@ public class Partida {
         if(j2 instanceof Usuari) j2u = true;
     }
 
-    public boolean jugarPartida() {
+    public char[][] matriuChars(){
+        return T.matriuChars();
+    }
+
+    public boolean jugarPartida() throws IncorrectFENException {
         String s;
         Scanner sc = new Scanner(System.in);
         long timej1 = 0;
@@ -72,6 +78,7 @@ public class Partida {
                     Pair posaux = (Pair) posmovs.get(j).getSecond();
                     if (posaux.getFirst() == pos.getFirst() && posaux.getSecond() == pos.getSecond()) {
                         T.actualitzarTaulell(p, (Pair) move.getSecond());
+                        c.actualizarMchar(matriuChars());
                         posok = true;
                         System.out.println("La peça de la posició " + letraColumna((int) posp.getSecond()) + Math.abs((int) posp.getFirst() - 8) + " es mou a la posició " + letraColumna((int) pos.getSecond()) + Math.abs((int) pos.getFirst() - 8));
                     }

@@ -1,6 +1,7 @@
 package src.Presentacio;
 
 import src.Controladors.CtrlPresentacion;
+import src.Domini.IncorrectFENException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,11 +45,11 @@ public class VistaMenuPrincipal {
 
 
 
-    public void hacerVisible() {/*
+    public void hacerVisible() {
         LabelCurrentUsuer.setText(controladorPresentacion.getCurrentuser());
         frameVista.setEnabled(true);
         frameVista.pack();
-        frameVista.setVisible(true);*/
+        frameVista.setVisible(true);
     }
 
     public void desactivar() {
@@ -76,6 +77,12 @@ public class VistaMenuPrincipal {
         simularProblemesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                desactivar();
+                try {
+                    controladorPresentacion.cambiarVistaAEscollirProbsSimulacio();
+                } catch (IncorrectFENException e1) {
+                    e1.printStackTrace();
+                }
 
             }
         });

@@ -17,6 +17,7 @@ public final class ChessSprites {
             throw new UncheckedIOException(x);
         }
     }
+
     public static final BufferedImage GOLD_QUEEN    = SHEET.getSubimage(0 * SIZE, 0,    SIZE, SIZE);
     public static final BufferedImage SILVER_QUEEN  = SHEET.getSubimage(0 * SIZE, SIZE, SIZE, SIZE);
     public static final BufferedImage GOLD_KING     = SHEET.getSubimage(1 * SIZE, 0,    SIZE, SIZE);
@@ -36,4 +37,33 @@ public final class ChessSprites {
                     GOLD_KNIGHT, SILVER_KNIGHT,
                     GOLD_BISHOP, SILVER_BISHOP,
                     GOLD_PAWN,   SILVER_PAWN));
+    public static final BufferedImage ImatgeDePiece(char c){
+        switch (c){
+            case 'k':
+                return GOLD_KING;
+            case 'K':
+                return SILVER_KING;
+            case 'q':
+                return GOLD_QUEEN;
+            case 'Q':
+                return SILVER_QUEEN;
+            case 'r':
+                return GOLD_ROOK;
+            case 'R':
+                return SILVER_ROOK;
+            case 'b':
+                return GOLD_BISHOP;
+            case 'B':
+                return SILVER_BISHOP;
+            case 'n':
+                return GOLD_KNIGHT;
+            case 'N':
+                return SILVER_KNIGHT;
+            case 'p':
+                return GOLD_PAWN;
+            case 'P':
+                return SILVER_PAWN;
+            default: return SILVER_PAWN;
+        }
+    }
 }

@@ -19,35 +19,23 @@ public class CtrlDomini {
 
     ArrayList<Problema> ProblemesPrecarregats = new ArrayList<Problema>();
 
-    public BaseDeProblemes bproblemes;
-    public BaseUsuaris busers;
+    private BaseDeProblemes bproblemes;
+    private BaseUsuaris busers;
+    private String currentuser;
+    private CtrlPresentacion ctrlPresentacion;
 
     private static CtrlDomini singletonObject;
 
 
-    public static CtrlDomini getInstance() {
+    public static CtrlDomini getInstance() throws IncorrectFENException {
         if (singletonObject == null)
             singletonObject = new CtrlDomini() {
             };
         return singletonObject;
     }
 
-    private CtrlDomini(){}
-
-    public void setBProblemes(BaseDeProblemes b){
-        bproblemes = b;
-    }
-
-    public void setBUsers(BaseUsuaris b){
-        busers = b;
-    }
-
-    public BaseDeProblemes getBProblemes(){
-        return bproblemes;
-    }
-
-    public BaseUsuaris getBUsuaris(){
-        return busers;
+    private CtrlDomini() throws IncorrectFENException {
+        ctrlPresentacion = CtrlPresentacion.getInstance();
     }
 
 
@@ -97,20 +85,24 @@ public class CtrlDomini {
 
     }
 
-    public void GuardaBUsers () throws Exception{
+    public void GuardaBUsers () throws Exception {
 
-        TreeMap<String,Usuari> t = busers.getMap();
+        TreeMap<String, Usuari> t = busers.getMap();
 
         String[] s = new String[t.size()];
 
         int i = 0;
 
-        for(Map.Entry<String,Usuari> entry : t.entrySet()) {
+        for (Map.Entry<String, Usuari> entry : t.entrySet()) {
             s[i] = gson.toJson(entry.getValue());
             ++i;
         }
         db.EscriureUsuaris(s);
+    }
 
+    public void reload() {
+        bproblemes = BaseDeProblemes.getInstance();
+        busers = BaseUsuaris.getInstance();
     }
 
     public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
@@ -120,11 +112,59 @@ public class CtrlDomini {
         return i;
     }
 
-    public void reload() {
-
-        bproblemes = BaseDeProblemes.getInstance();
-        busers = BaseUsuaris.getInstance();
+    public String getCurrentuser() {
+        return currentuser;
     }
+
+    public void setCurrentuser(String currentuser) {
+        this.currentuser = currentuser;
+    }
+
+    public void crearusuari(String user, String psw){
+        Usuari u = new Usuari(user,psw);
+        currentuser = user;
+        busers.afegirusuari(u);
+        //GuardaBUsers();
+    }
+
+    public Set<String> getNomProblemes() throws IncorrectFENException {
+        precarregarProblemes();
+        ProblemesPrecarregats.get(0).setCreador("Wanyu");
+        ProblemesPrecarregats.get(1).setCreador("Admin");
+        ProblemesPrecarregats.get(2).setCreador("tetas");
+        bproblemes.afegirProblema(ProblemesPrecarregats.get(1));
+        bproblemes.afegirProblema(ProblemesPrecarregats.get(0));
+        bproblemes.afegirProblema(ProblemesPrecarregats.get(2));
+        return bproblemes.getNomProblemes();
+    }
+
+    public int getMovimentsProblema(String s){
+        return bproblemes.buscarProblema(s).getMoviments();
+    }
+
+    public String getCreadorProblema(String s){
+        return bproblemes.buscarProblema(s).getCreador();
+    }
+
+    public String getDificultadProblema(String s){
+        return bproblemes.buscarProblema(s).getDificultad();
+    }
+
+    /*FUNCIONES IGNASI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    public char[][] matriuProblema(String nomprob) {
+        return bproblemes.buscarProblema(nomprob).matriuChars();
+    }
+
+    public void actualizarMchar(char[][] mchar) throws IncorrectFENException {
+        ctrlPresentacion.actualitzaBoard(mchar);
+    }
+
+
+
+
+ //hola
+
+
 
     public void precarregarProblemes() throws IncorrectFENException {
         String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";

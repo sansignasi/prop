@@ -8,14 +8,26 @@ import java.util.Set;
 
 public class CtrlPresentacion {
     private CtrlDomini controladorDomini;
+    private static CtrlPresentacion ctrlPresentacion;
     private VistaLogin vistaLogin;
     private VistaFormularioLogin vistaFormularioLogin;
     private VistaFormularioRegistro vistaFormularioRegistro;
     private VistaMenuPrincipal vistaMenuPrincipal;
     private VistaSelecProbJugar vistaSelecProbJugar;
     private Board board;
+    private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
 
-    public CtrlPresentacion() throws IncorrectFENException {
+    public static CtrlPresentacion getInstance() {
+        if (ctrlPresentacion == null)
+            ctrlPresentacion = new CtrlPresentacion() {
+            };
+        return ctrlPresentacion;
+    }
+
+    private CtrlPresentacion() {
+
+    }
+    private void asignar() throws IncorrectFENException {
         controladorDomini = CtrlDomini.getInstance();
         controladorDomini.reload();
         vistaLogin = new VistaLogin(this);
@@ -23,10 +35,10 @@ public class CtrlPresentacion {
         vistaFormularioRegistro = new VistaFormularioRegistro(this);
         vistaMenuPrincipal = new VistaMenuPrincipal(this);
         vistaSelecProbJugar = new VistaSelecProbJugar(this);
-        board = new Board(this);
+        vistaEscollirProbsSimulacio = new VistaEscollirProbsSimulacio(this);
     }
-
     public void inicializarPresentacion() throws IncorrectFENException {
+        asignar();
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
         vistaLogin.hacerVisible(); //descomentar para testear presentacion
         //board.hacerVisible();
@@ -52,10 +64,16 @@ public class CtrlPresentacion {
         vistaSelecProbJugar.hacerVisible();
     }
 
+    public void cambiarVistaAEscollirProbsSimulacio() throws IncorrectFENException {vistaEscollirProbsSimulacio.hacerVisible();}
+
     public void cambiarVistaABoard() throws IncorrectFENException {
         board.hacerVisible();
     }
 
+    public void cambiarVistaAJugarPartida(String tipusjug,String nomprob) throws IncorrectFENException {
+        board = new Board(this,nomprob);
+        board.hacerVisible();
+    }
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
         int i = controladorDomini.verificarusuari(user,psw);
         return i;
@@ -73,7 +91,7 @@ public class CtrlPresentacion {
         controladorDomini.crearusuari(user,psw);
     }
 
-    public char[][] matriuProblema(String nomprob) throws IncorrectFENException {
+    public char[][] matriuProblema(String nomprob) {
         return controladorDomini.matriuProblema(nomprob);
     }
 
@@ -93,6 +111,7 @@ public class CtrlPresentacion {
         return controladorDomini.getDificultadProblema(s);
     }
 
-
-
+    public void actualitzaBoard(char[][] mchar) throws IncorrectFENException {
+        board.actualitzaMchar(mchar);
+    }
 }

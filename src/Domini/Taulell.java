@@ -128,6 +128,21 @@ public class Taulell {
         else return this.reinegre;
     }
 
+    public char[][] matriuChars(){
+        char[][] maux = new char[8][8];
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                if(this.getPiece(i,j)==null){
+                    maux[i][j] = '-';
+                }
+                else {
+                    maux[i][j] = this.getPiece(i, j).getLletra();
+                }
+            }
+        }
+        return maux;
+    }
+
     public void carregaFEN(String fen) throws IncorrectFENException {
         for (int i = 0; i < matriu.length; ++i) {
             for (int j = 0; j < matriu[0].length; ++j) {

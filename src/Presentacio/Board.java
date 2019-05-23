@@ -21,21 +21,16 @@ public class Board {
     private final JLabel message = new JLabel(
             "Chess Champ is ready to play!");
     private static final String COLS = "ABCDEFGH";
-    private static char[][] mchar;
+    private char[][] mchar;
 
-    public Board(CtrlPresentacion c) throws IncorrectFENException {
+    public Board(CtrlPresentacion c,String nomprob) throws IncorrectFENException {
         controladorPresentacion = c;
+        mchar = controladorPresentacion.matriuProblema(nomprob);
         initializeGui();
     }
 
-    public static void mostrarMchar() throws IncorrectFENException{
-        mchar = controladorPresentacion.matriuProblema("prob1");
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                System.out.print(mchar[i][j] + " ");
-            }
-            System.out.println();
-        }
+    public void actualitzaMchar(char[][] mcharx) throws IncorrectFENException{
+        mchar = mcharx;
     }
 
 
@@ -95,7 +90,11 @@ public class Board {
                         chessBoard.add(new JLabel("" + (ii + 1),
                                 SwingConstants.CENTER));
                     default:
+                        ImageIcon img = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[ii][jj]));
                         chessBoard.add(chessBoardSquares[jj][ii]);
+                        if(mchar[ii][jj]!='-') {
+                            chessBoardSquares[jj][ii].setIcon(img);
+                        }
                 }
             }
         }
@@ -110,8 +109,9 @@ public class Board {
     }
 
     public void hacerVisible() throws IncorrectFENException {
-        mostrarMchar();
+
         JFrame f = new JFrame("Jugar Problema");
+        f.setPreferredSize(new Dimension(600,600));
         f.add(this.getGui());
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setLocationByPlatform(true);
