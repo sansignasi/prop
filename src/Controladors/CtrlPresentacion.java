@@ -8,14 +8,26 @@ import java.util.Set;
 
 public class CtrlPresentacion {
     private CtrlDomini controladorDomini;
+    private static CtrlPresentacion ctrlPresentacion;
     private VistaLogin vistaLogin;
     private VistaFormularioLogin vistaFormularioLogin;
     private VistaFormularioRegistro vistaFormularioRegistro;
     private VistaMenuPrincipal vistaMenuPrincipal;
     private VistaSelecProbJugar vistaSelecProbJugar;
     private Board board;
+    private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
 
-    public CtrlPresentacion() throws IncorrectFENException {
+    public static CtrlPresentacion getInstance() throws IncorrectFENException {
+        if (ctrlPresentacion == null)
+            ctrlPresentacion = new CtrlPresentacion() {
+            };
+        return ctrlPresentacion;
+    }
+
+    private CtrlPresentacion() {
+
+    }
+    private void asignar() throws IncorrectFENException {
         controladorDomini = CtrlDomini.getInstance();
         controladorDomini.reload();
         vistaLogin = new VistaLogin(this);
@@ -24,9 +36,10 @@ public class CtrlPresentacion {
         vistaMenuPrincipal = new VistaMenuPrincipal(this);
         vistaSelecProbJugar = new VistaSelecProbJugar(this);
         board = new Board(this);
+        vistaEscollirProbsSimulacio = new VistaEscollirProbsSimulacio(this);
     }
-
     public void inicializarPresentacion() throws IncorrectFENException {
+        asignar();
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
         //vistaLogin.hacerVisible(); //descomentar para testear presentacion
         board.hacerVisible();
@@ -51,6 +64,8 @@ public class CtrlPresentacion {
     public void cambiarVistaASelecProbJugar(){
         vistaSelecProbJugar.hacerVisible();
     }
+
+    public void cambiarVistaAEscollirProbsSimulacio() throws IncorrectFENException {vistaEscollirProbsSimulacio.hacerVisible();}
 
     public void cambiarVistaABoard() throws IncorrectFENException {
         board.hacerVisible();

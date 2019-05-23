@@ -10,10 +10,14 @@ public class Main {
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                CtrlDomini cd = CtrlDomini.getInstance();
+                try {
+                    CtrlDomini cd = CtrlDomini.getInstance();
+                } catch (IncorrectFENException e) {
+                    e.printStackTrace();
+                }
                 CtrlPresentacion mainWindow = null;
                 try {
-                    mainWindow = new CtrlPresentacion();
+                    mainWindow = CtrlPresentacion.getInstance();
                 } catch (IncorrectFENException e) {
                     e.printStackTrace();
                 }

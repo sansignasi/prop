@@ -13,18 +13,21 @@ public class CtrlDomini {
     private BaseDeProblemes bproblemes;
     private BaseUsuaris busers;
     private String currentuser;
+    private CtrlPresentacion ctrlPresentacion;
 
     private static CtrlDomini singletonObject;
 
 
-    public static CtrlDomini getInstance() {
+    public static CtrlDomini getInstance() throws IncorrectFENException {
         if (singletonObject == null)
             singletonObject = new CtrlDomini() {
             };
         return singletonObject;
     }
 
-    private CtrlDomini(){}
+    private CtrlDomini() throws IncorrectFENException {
+        ctrlPresentacion = CtrlPresentacion.getInstance();
+    }
 
     /*FUNCIONES DEL POL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     public void CarregaBProblemes() throws Exception{
