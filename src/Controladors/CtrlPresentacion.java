@@ -17,7 +17,7 @@ public class CtrlPresentacion {
     private Board board;
     private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
 
-    public static CtrlPresentacion getInstance() {
+    public static CtrlPresentacion getInstance() throws IncorrectFENException{
         if (ctrlPresentacion == null)
             ctrlPresentacion = new CtrlPresentacion() {
             };

@@ -18,7 +18,8 @@ public class Main {
                 CtrlPresentacion mainWindow = null;
                 try {
                     mainWindow = CtrlPresentacion.getInstance();
-                } catch (IncorrectFENException e) {
+                }
+                catch (IncorrectFENException e) {
                     e.printStackTrace();
                 }
                 try {
