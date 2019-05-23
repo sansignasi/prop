@@ -18,7 +18,7 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         return p;
     }
 
-    public int Heuristic1(Taulell t, int jugador){
+    private int Heuristic1(Taulell t, int jugador){
 
         Piece[][] p = t.getTaulell();
 
@@ -89,7 +89,7 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         return ret+ret1;
     }
 
-    public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
+    private ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
         ArrayList<Pair> a = new ArrayList<>();
         Piece[][] m = t.getTaulell();
@@ -106,14 +106,14 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         return a;
     }
 
-    public boolean estatTerminal(Taulell t, int jugador, int prf){
+    private boolean estatTerminal(Taulell t, int jugador, int prf){
         if (! t.teRei(jugador)) return true;
         else if (! t.teRei(Math.abs(jugador-1))) return true;
         else if (prf <= 0) return true;
         else return false;
     }
 
-    public Pair MiniMax(Taulell t, int jg, int profunditat){
+    private Pair MiniMax(Taulell t, int jg, int profunditat){
 
         int max,cmax; //puntuacio de la heurística
         max = -99999999;
@@ -140,7 +140,7 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         return movret;
     }
 
-    public int valorMin(Taulell t, int jg, int prf, int a, int b){
+    private int valorMin(Taulell t, int jg, int prf, int a, int b){
 
         if (estatTerminal(t,jg,prf)){
             int x = Heuristic1(t,jg);
@@ -165,7 +165,7 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         }
     }
 
-    public int valorMax(Taulell t, int jg, int prf, int a, int b){
+    private int valorMax(Taulell t, int jg, int prf, int a, int b){
 
         if (estatTerminal(t,jg,prf)){
             int x = Heuristic1(t,jg);

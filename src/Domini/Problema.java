@@ -106,13 +106,7 @@ public class Problema {
         else return (((mov - k) / 2)-1);
     }
 
-    public boolean validarProblema(Taulell t, int jug, int mov){
-        int k = MiniMax(t,jug,mov);
-        if (k >= 0) return true;
-        else return false;
-    }
-
-    public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
+    private ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
         ArrayList<Pair> a = new ArrayList<>();
         Piece[][] m = t.getTaulell();
@@ -129,13 +123,13 @@ public class Problema {
         return a;
     }
 
-    public boolean estatTerminal(Taulell t, int jugador, int prf){
+    private boolean estatTerminal(Taulell t, int jugador, int prf){
         if (prf == 0) return true;
         if (!t.teRei((Math.abs(jugador-1)))) return true;
         else return false;
     }
 
-    public int MiniMax(Taulell t, int jg, int profunditat){
+    private int MiniMax(Taulell t, int jg, int profunditat){
 
         int ret,cmax; //puntuacio de la heurística
         ret = -99999999;
@@ -159,7 +153,7 @@ public class Problema {
     }
 
 
-    public int MiniMaxOptim(Taulell t, int jg, int profunditat){
+    private int MiniMaxOptim(Taulell t, int jg, int profunditat){
 
         int ret,cmax; //puntuacio de la heurística
         ret = -99999999;
@@ -182,7 +176,7 @@ public class Problema {
         return ret;
     }
 
-    public int valorMax(Taulell t, int jg, int prf){
+    private int valorMax(Taulell t, int jg, int prf){
         int vmax;
 
         if (estatTerminal(t,jg,prf)){
@@ -208,7 +202,7 @@ public class Problema {
         }
     }
 
-    public int valorMin(Taulell t, int jg, int prf){
+    private int valorMin(Taulell t, int jg, int prf){
         int vmin;
 
         if (estatTerminal(t,jg,prf)){

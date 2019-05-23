@@ -68,14 +68,11 @@ public class CtrlDomini {
     public void CarregaBU() throws Exception{
 
         Vector<String> sbusers = db.loadBUsers("BUsers.txt");
-        System.out.println("faig un load be");
         for (String s : sbusers) {
             if (!s.equals("null")) {
                 System.out.println(s);
                 Usuari u = gson.fromJson(s,Usuari.class);
-                System.out.println("llegeixo be");
                 busers.afegirusuari(u);
-                System.out.println("afegeixo be");
 
             }
         }
