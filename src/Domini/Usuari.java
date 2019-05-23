@@ -4,7 +4,7 @@ import lib.Pair;
 
 import java.util.Scanner;
 
-public class Usuari extends Jugador{
+public class Usuari extends Jugador {
 
     //ATRIBUTS
     private String nomuser;

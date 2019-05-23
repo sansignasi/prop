@@ -31,6 +31,18 @@ public class Problema {
         calcularatacant();
     }
 
+    public String getDificultad() {
+        return dificultad;
+    }
+
+    public String getCreador() {
+        return creador;
+    }
+
+    public void setCreador(String creador) {
+        this.creador = creador;
+    }
+
     public void restoreTaulell() throws IncorrectFENException{
         T = new Taulell(FEN);
     }
@@ -43,6 +55,21 @@ public class Problema {
         String[] fenArray = FEN.split(" ");
         if (fenArray[1].equals("w")) atacant = 0;
         else atacant = 1;
+    }
+
+    public char[][] matriuChars(){
+        char[][] maux = new char[8][8];
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                if(T.getPiece(i,j)==null){
+                    maux[i][j] = '-';
+                }
+                else {
+                    maux[i][j] = T.getPiece(i, j).getLletra();
+                }
+            }
+        }
+        return maux;
     }
 
     public void visualitzaProblema(){

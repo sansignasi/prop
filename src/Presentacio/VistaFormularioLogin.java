@@ -63,12 +63,20 @@ public class VistaFormularioLogin {
             public void actionPerformed(ActionEvent e) {
                 String user = textField1.getText();
                 String psw = passwordField1.getText();
-                System.out.print("holaforular");
-                int i = controladorPresentacion.verificarusuari(user,psw);
-                if(i == 1) JOptionPane.showMessageDialog(null,"Contrasenya incorrecta.");
-                else if (i == 2) JOptionPane.showMessageDialog(null,"L'usuari no existeix.");
-                else{ //si el usuario esta okey pasamos a la siguiente vista
-
+                if(user.isEmpty())JOptionPane.showMessageDialog(null,"Introdueix nom d'usuari.");
+                else{
+                    if(psw.isEmpty())JOptionPane.showMessageDialog(null,"Introdueix contrasenya.");
+                    else{
+                        int i = controladorPresentacion.verificarusuari(user,psw);
+                        if(i == 1) JOptionPane.showMessageDialog(null,"Contrasenya incorrecta.");
+                        else if (i == 2) JOptionPane.showMessageDialog(null,"L'usuari no existeix.");
+                        else { //si el usuario esta okey pasamos a la siguiente vista/
+                            /*
+                            controladorPresentacion.setCurrentuser(user);*/
+                            desactivar();
+                            controladorPresentacion.cambiarVistaAMenuPrincipal();
+                        }
+                    }
                 }
             }
         });

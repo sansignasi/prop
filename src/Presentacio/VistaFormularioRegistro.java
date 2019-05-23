@@ -66,10 +66,22 @@ public class VistaFormularioRegistro {
                 else{
                     String psw = textField2.getText();
                     if(psw.isEmpty())JOptionPane.showMessageDialog(null,"Introdueix contrasenya.");
+                    else{
+                        int i = controladorPresentacion.verificarusuari(user,psw);
+                        if(i == 0 || i == 1)JOptionPane.showMessageDialog(null,"Aquest nom d'usuari ja existeix.");
+                        else { //registramos en nuevo user
+                            /*
+                            controladorPresentacion.crearusuari(user,psw);*/
+                            desactivar();
+                            controladorPresentacion.cambiarVistaAMenuPrincipal();
+                        }
+                        }
+                    }
+
                 }
 
                 //int i = controladorPresentacion.verificarusuari(user,psw);
-            }
+
         });
 
 

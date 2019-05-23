@@ -1,10 +1,19 @@
 package src.Controladors;
+import com.google.gson.Gson;
 import src.Domini.*;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+
+import java.util.*;
 
 public class CtrlDomini {
+
+
+    private Gson gson = new Gson();
 
     private CtrlPersistencia db = CtrlPersistencia.getInstance();
 
@@ -12,7 +21,6 @@ public class CtrlDomini {
 
     public BaseDeProblemes bproblemes;
     public BaseUsuaris busers;
-    public String currentuser;
 
     private static CtrlDomini singletonObject;
 
@@ -24,33 +32,106 @@ public class CtrlDomini {
         return singletonObject;
     }
 
-    private CtrlDomini() {
-        /*
-        this.bproblemes = db.loadBProblemes();
-        this.busers = db.loadBUsers();
-        */
-        busers = new BaseUsuaris();
+    private CtrlDomini(){}
+
+    public void setBProblemes(BaseDeProblemes b){
+        bproblemes = b;
+    }
+
+    public void setBUsers(BaseUsuaris b){
+        busers = b;
+    }
+
+    public BaseDeProblemes getBProblemes(){
+        return bproblemes;
+    }
+
+    public BaseUsuaris getBUsuaris(){
+        return busers;
+    }
+
+
+
+    public void CarregaBP() throws Exception{
+
+        Vector<String> sbproblemes = db.loadBProblems("BProblemes.txt");
+
+        for (String s : sbproblemes) {
+            if (!s.equals("null")) {
+
+                Problema p = gson.fromJson(s, Problema.class);
+                bproblemes.afegirProblema(p);
+            }
+        }
+    }
+
+    public void CarregaBU() throws Exception{
+
+        Vector<String> sbusers = db.loadBUsers("BUsers.txt");
+        System.out.println("faig un load be");
+        for (String s : sbusers) {
+            if (!s.equals("null")) {
+                System.out.println(s);
+                Usuari u = gson.fromJson(s,Usuari.class);
+                System.out.println("llegeixo be");
+                busers.afegirusuari(u);
+                System.out.println("afegeixo be");
+
+            }
+        }
+    }
+
+    public void GuardaBroblemes () throws Exception{
+
+        TreeMap<String,Problema> t = bproblemes.getMap();
+
+        String[] s = new String[t.size()];
+
+        int i = 0;
+
+        for(Map.Entry<String,Problema> entry : t.entrySet()) {
+            s[i] = gson.toJson(entry.getValue());
+            ++i;
+        }
+        for (int j = 0; j < s.length; ++j){
+            System.out.println(s[j]);
+        }
+        db.EscriureProblemes(s);
+
+    }
+
+    public void GuardaBUsers () throws Exception{
+
+        TreeMap<String,Usuari> t = busers.getMap();
+
+        String[] s = new String[t.size()];
+
+        int i = 0;
+
+        for(Map.Entry<String,Usuari> entry : t.entrySet()) {
+            s[i] = gson.toJson(entry.getValue());
+            ++i;
+        }
+        db.EscriureUsuaris(s);
+
     }
 
     public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
         Usuari u = new Usuari("user","psw");
         busers.afegirusuari(u);
-        System.out.print("holactrldomini");
         int i = busers.verificarusuari(user,psw);
         return i;
     }
 
+    public void reload() {
 
-
-
-
-
-
-
+        bproblemes = BaseDeProblemes.getInstance();
+        busers = BaseUsuaris.getInstance();
+    }
 
     public void precarregarProblemes() throws IncorrectFENException {
         String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
-        Problema prob1 = new Problema(fen1,2,"Problema 1, mat de blanques en 2");
+        Problema prob1 = new Problema(fen1,2,"prob1");
         ProblemesPrecarregats.add(prob1);
         String fen2 = "5r2/1pR3Bn/1KP1k3/2P1p3/1p3pP1/5Q2/3Pp2p/1B1b4 w - - 0 1";
         Problema prob2 = new Problema(fen2,2,"Problema 2, mat de blanques en 2");
@@ -59,6 +140,7 @@ public class CtrlDomini {
         Problema prob3 = new Problema(fen3,2,"Problema 3, mat de blanques en 2");
         ProblemesPrecarregats.add(prob3);
     }
+
 
     public void menuPrincipal() throws IncorrectFENException{
 
@@ -204,4 +286,61 @@ public class CtrlDomini {
             System.out.println();
         }
     }
+
+    public static void main(String[] args) throws Exception{
+
+
+        System.out.println("HOLA ESTIC DINS DEL MAIN DEL CTRL DOMINI");
+        System.out.println("Creo un problema i l'afegeixo a BP");
+
+        BaseDeProblemes bp = BaseDeProblemes.getInstance();
+
+        String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
+        Problema prob1 = new Problema(fen1,2,"Problema 1, mat de blanques en 2");
+
+        bp.afegirProblema(prob1);
+        Taulell t = prob1.getTaulell();
+        t.mostrarTaulell();
+
+        System.out.println("Creo un problema i l'afegeixo a BP");
+
+
+        CtrlDomini c = CtrlDomini.getInstance();
+        /*
+        File f =  new File("hola.txt");
+        System.out.println(f.getAbsolutePath());
+        boolean b = f.createNewFile();
+        System.out.println(b);
+        */
+
+        c.setBProblemes(bp);
+        c.GuardaBroblemes();
+        c.CarregaBP();
+
+        bp = c.getBProblemes();
+        prob1 = bp.buscarProblema(prob1.getNomprob());
+        t = prob1.getTaulell();
+        t.mostrarTaulell();
+
+        System.out.println("ara provem el puto busers");
+
+        Usuari u = new Usuari("pol", "lalala");
+        BaseUsuaris bu = BaseUsuaris.getInstance();
+        bu.afegirusuari(u);
+
+        System.out.println("lusuari te:" + u.getNom() + " " + u.getContraseña());
+
+        c.setBUsers(bu);
+        c.GuardaBUsers();
+        System.out.println("surto del guarda");
+        c.CarregaBU();
+        System.out.println("surto del carrega");
+        bu = c.getBUsuaris();
+        u = bu.buscarUsuari("pol");
+        System.out.println("l'usuari final te:" + u.getNom() + " " + u.getContraseña());
+
+
+    }
 }
+
+

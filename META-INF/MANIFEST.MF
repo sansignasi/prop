@@ -1,3 +1,7 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Main-Class: src.Domini.Drivers.DriverMaquina1
+=======
+Main-Class: src.DriverProblema
+>>>>>>> origin/master
 

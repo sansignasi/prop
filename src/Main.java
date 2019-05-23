@@ -11,7 +11,12 @@ public class Main {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 CtrlDomini cd = CtrlDomini.getInstance();
-                CtrlPresentacion mainWindow = new CtrlPresentacion();
+                CtrlPresentacion mainWindow = null;
+                try {
+                    mainWindow = new CtrlPresentacion();
+                } catch (IncorrectFENException e) {
+                    e.printStackTrace();
+                }
                 try {
                     //cd.menuPrincipal(); //descomentar para probar programa
                     mainWindow.inicializarPresentacion(); //parte grafica
