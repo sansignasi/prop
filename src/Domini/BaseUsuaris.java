@@ -17,6 +17,10 @@ public class BaseUsuaris {
         return singletonObject;
     }
 
+    private BaseUsuaris(){
+        this.cjtusuaris = new TreeMap<String,Usuari>();
+    }
+
     public TreeMap getMap(){
         return cjtusuaris;
     }
@@ -30,6 +34,11 @@ public class BaseUsuaris {
         else if (cjtusuaris.get(user).getContraseña().equals(psw)) return 0;
         else return 1;
 
+    }
+
+    public Usuari buscarUsuari(String s){
+
+        return cjtusuaris.get(s);
     }
 
     public void afegirusuari(Usuari u){

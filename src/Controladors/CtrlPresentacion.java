@@ -46,7 +46,7 @@ public class CtrlPresentacion {
         int i = controladorDomini.verificarusuari(user,psw);
         return i;
 
-    }
+    }/*
     public void setCurrentuser(String user){
         controladorDomini.setCurrentuser(user);
     }
@@ -56,5 +56,5 @@ public class CtrlPresentacion {
     }
     public void crearusuari(String user, String psw){
         controladorDomini.crearusuari(user,psw);
-    }
+    }*/
 }

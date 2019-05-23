@@ -70,8 +70,9 @@ public class VistaFormularioLogin {
                         int i = controladorPresentacion.verificarusuari(user,psw);
                         if(i == 1) JOptionPane.showMessageDialog(null,"Contrasenya incorrecta.");
                         else if (i == 2) JOptionPane.showMessageDialog(null,"L'usuari no existeix.");
-                        else { //si el usuario esta okey pasamos a la siguiente vista
-                            controladorPresentacion.setCurrentuser(user);
+                        else { //si el usuario esta okey pasamos a la siguiente vista/
+                            /*
+                            controladorPresentacion.setCurrentuser(user);*/
                             desactivar();
                             controladorPresentacion.cambiarVistaAMenuPrincipal();
                         }

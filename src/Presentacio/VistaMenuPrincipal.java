@@ -44,11 +44,11 @@ public class VistaMenuPrincipal {
 
 
 
-    public void hacerVisible() {
+    public void hacerVisible() {/*
         LabelCurrentUsuer.setText(controladorPresentacion.getCurrentuser());
         frameVista.setEnabled(true);
         frameVista.pack();
-        frameVista.setVisible(true);
+        frameVista.setVisible(true);*/
     }
 
     public void desactivar() {

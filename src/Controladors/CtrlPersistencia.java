@@ -4,9 +4,9 @@ import src.Domini.BaseDeProblemes;
 import src.Domini.BaseUsuaris;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Vector;
-import java.util.Vector;
+import java.io.IOException;
+import java.nio.*;
 
 public class CtrlPersistencia {
 
@@ -30,8 +30,9 @@ public class CtrlPersistencia {
 
     private CtrlPersistencia(){
 
-        busuaris = new File (".dades/BUsers.txt");
-        bproblemes = new File (".dades/BProblemes.txt");
+        busuaris = new File ("BUsers.txt");
+        bproblemes = new File ("BProblems.txt");
+        System.out.println("s'ha creat bproblemes i el seu path es " + bproblemes.getAbsolutePath());
         frproblems = null;
         frusers = null;
         fwusers = null;
@@ -40,9 +41,8 @@ public class CtrlPersistencia {
 
     public void obreBProblemes(String path) throws IOException {
         bproblemes = new File (path);
-        if (!bproblemes.exists()){
-            bproblemes.createNewFile();
-        }
+
+        boolean b = bproblemes.createNewFile();
 
     }
 
@@ -93,7 +93,7 @@ public class CtrlPersistencia {
     }
 
     public void EsborraBusuaris () throws Exception {
-        obreBUsuaris("dades/BUsers.txt");
+        obreBUsuaris("BUsers.txt");
         fwusers = new FileWriter(busuaris);
         BufferedWriter bw = new BufferedWriter(fwusers);
         bw.write("");
@@ -101,7 +101,7 @@ public class CtrlPersistencia {
     }
 
     public void EsborraBProblemes () throws Exception {
-        obreBProblemes("dades/BProblems.txt");
+        obreBProblemes("BProblems.txt");
         fwproblems = new FileWriter(bproblemes);
         BufferedWriter bw = new BufferedWriter(fwproblems);
         bw.write("");
@@ -119,10 +119,10 @@ public class CtrlPersistencia {
     }
 
     public void EscriureProblema(String s) throws Exception {
-        if (busuaris == null) throw new Exception("Arxiu no obert");
+        if (bproblemes == null) throw new Exception("Arxiu no obert");
 
-        fwusers = new FileWriter(busuaris, true);
-        BufferedWriter bw = new BufferedWriter(fwusers);
+        fwproblems = new FileWriter(bproblemes, true);
+        BufferedWriter bw = new BufferedWriter(fwproblems);
         PrintWriter out = new PrintWriter(bw);
         out.println(s);
         out.close();
@@ -131,7 +131,7 @@ public class CtrlPersistencia {
     public void EscriureProblemes(String [] s) throws Exception{
 
         EsborraBProblemes();
-        obreBProblemes("dades/BProblems.txt");
+        obreBProblemes("BProblems.txt");
         fwproblems = new FileWriter(bproblemes,true);
         BufferedWriter bw = new BufferedWriter(fwproblems);
 
@@ -145,7 +145,7 @@ public class CtrlPersistencia {
     public void EscriureUsuaris(String [] s) throws Exception{
 
         EsborraBusuaris();
-        obreBUsuaris("dades/BUsers.txt");
+        obreBUsuaris("BUsers.txt");
         fwusers = new FileWriter(busuaris,true);
         BufferedWriter bw = new BufferedWriter(fwusers);
 
@@ -153,7 +153,6 @@ public class CtrlPersistencia {
             EscriureUsuari(s[i]);
         }
         tancaBUsuaris();
-
     }
 
     public Vector<String> loadBProblems (String Path) throws Exception{
