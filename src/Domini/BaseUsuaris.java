@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 public class BaseUsuaris {
 
-    private TreeMap<String,Usuari> cjtusuaris;
+    private TreeMap<String,Usuari> cjtusuaris = new TreeMap<String,Usuari>();
 
     private static BaseUsuaris singletonObject;
 

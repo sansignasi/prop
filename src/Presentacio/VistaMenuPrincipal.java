@@ -68,7 +68,8 @@ public class VistaMenuPrincipal {
         jugarProblemaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                desactivar();
+                controladorPresentacion.cambiarVistaASelecProbJugar();
             }
         });
 
@@ -85,6 +86,8 @@ public class VistaMenuPrincipal {
 
             }
         });
+
+
 
 
 

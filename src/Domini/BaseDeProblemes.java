@@ -1,14 +1,11 @@
 package src.Domini;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.*;
 
 
 public class BaseDeProblemes {
 
-    private TreeMap<String,Problema> cjtproblemes;
+    private TreeMap<String,Problema> cjtproblemes = new TreeMap<>();
 
     private static BaseDeProblemes singletonObject;
 
@@ -20,10 +17,6 @@ public class BaseDeProblemes {
         return singletonObject;
     }
 
-    private BaseDeProblemes() {
-
-        this.cjtproblemes = new TreeMap<String,Problema>();
-    }
 
     public TreeMap getMap(){
         return cjtproblemes;
@@ -50,5 +43,9 @@ public class BaseDeProblemes {
     public Problema buscarProblema(String s){
 
         return cjtproblemes.get(s);
+    }
+
+    public Set<String> getNomProblemes(){
+        return cjtproblemes.keySet();
     }
 }
