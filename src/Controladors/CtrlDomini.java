@@ -164,7 +164,8 @@ public class CtrlDomini {
         return bproblemes.buscarProblema(s).getDificultad();
     }
 
-    /*FUNCIONES IGNASI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    //FUNCIONES IGNASI EL MAS TONTO
+
     public char[][] matriuProblema(String nomprob) {
         return bproblemes.buscarProblema(nomprob).matriuChars();
     }
