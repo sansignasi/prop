@@ -26,6 +26,7 @@ public class CtrlDomini {
 
     private CtrlDomini(){}
 
+    /*FUNCIONES DEL POL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     public void CarregaBProblemes() throws Exception{
 
         Vector<String> sbproblemes = db.loadBProblems("dades/BProblemes.txt");
@@ -48,7 +49,7 @@ public class CtrlDomini {
         bproblemes = BaseDeProblemes.getInstance();
         busers = BaseUsuaris.getInstance();
     }
-
+    /*FUNCIONES DEL PABLO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
     public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
         Usuari u = new Usuari("aa","aa");
         busers.afegirusuari(u);
@@ -94,8 +95,10 @@ public class CtrlDomini {
         return bproblemes.buscarProblema(s).getDificultad();
     }
 
-
-
+    /*FUNCIONES IGNASI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+    public char[][] matriuProblema(String nomprob) {
+        return bproblemes.buscarProblema(nomprob).matriuChars();
+    }
 
 
 
@@ -262,9 +265,7 @@ public class CtrlDomini {
         }
     }
 
-    public char[][] matriuProblema(String nomprob) {
-        return bproblemes.buscarProblema(nomprob).matriuChars();
-    }
+
 }
 
 
