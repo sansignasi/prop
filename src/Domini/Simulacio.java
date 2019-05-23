@@ -13,7 +13,7 @@ public class Simulacio {
         atacant = atac;
         defensor = def;
     }
-    public ArrayList<Boolean>simular(){ //te devuelve un vec de bools. Tantos bools como problemas, si el bool true ha ganao el atacante, si false ha perdido
+    public ArrayList<Boolean>simular() throws IncorrectFENException { //te devuelve un vec de bools. Tantos bools como problemas, si el bool true ha ganao el atacante, si false ha perdido
         ArrayList<Boolean> resultat = new ArrayList<>();
         for (Problema problema : problemas) {
             atacant.setColor(problema.getAtacant());

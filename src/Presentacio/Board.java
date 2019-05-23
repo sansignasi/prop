@@ -29,14 +29,8 @@ public class Board {
         initializeGui();
     }
 
-    public void carregaMchar() throws IncorrectFENException{
-        mchar = controladorPresentacion.matriuProblema("prob1");
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                System.out.print(mchar[i][j] + " ");
-            }
-            System.out.println();
-        }
+    public void actualitzaMchar(char[][] mcharx) throws IncorrectFENException{
+        mchar = mcharx;
     }
 
 
@@ -117,6 +111,7 @@ public class Board {
     public void hacerVisible() throws IncorrectFENException {
 
         JFrame f = new JFrame("Jugar Problema");
+        f.setPreferredSize(new Dimension(600,600));
         f.add(this.getGui());
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setLocationByPlatform(true);

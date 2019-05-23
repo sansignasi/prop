@@ -17,7 +17,7 @@ public class CtrlPresentacion {
     private Board board;
     private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
 
-    public static CtrlPresentacion getInstance() throws IncorrectFENException {
+    public static CtrlPresentacion getInstance() {
         if (ctrlPresentacion == null)
             ctrlPresentacion = new CtrlPresentacion() {
             };
@@ -91,7 +91,7 @@ public class CtrlPresentacion {
         controladorDomini.crearusuari(user,psw);
     }
 
-    public char[][] matriuProblema(String nomprob) throws IncorrectFENException {
+    public char[][] matriuProblema(String nomprob) {
         return controladorDomini.matriuProblema(nomprob);
     }
 
@@ -111,5 +111,7 @@ public class CtrlPresentacion {
         return controladorDomini.getDificultadProblema(s);
     }
 
-    //hola
+    public void actualitzaBoard(char[][] mchar) throws IncorrectFENException {
+        board.actualitzaMchar(mchar);
+    }
 }

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class DriverPartida {
 
-    public static void testjugarPartida(Problema p, Jugador j1, Jugador j2) {
+    public static void testjugarPartida(Problema p, Jugador j1, Jugador j2) throws IncorrectFENException {
         Partida game = new Partida(p,j1,j2);
         game.jugarPartida();
     }

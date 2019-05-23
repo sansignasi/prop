@@ -58,18 +58,7 @@ public class Problema {
     }
 
     public char[][] matriuChars(){
-        char[][] maux = new char[8][8];
-        for(int i=0;i<8;i++){
-            for(int j=0;j<8;j++){
-                if(T.getPiece(i,j)==null){
-                    maux[i][j] = '-';
-                }
-                else {
-                    maux[i][j] = T.getPiece(i, j).getLletra();
-                }
-            }
-        }
-        return maux;
+        return T.matriuChars();
     }
 
     public void visualitzaProblema(){

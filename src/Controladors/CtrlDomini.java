@@ -103,6 +103,10 @@ public class CtrlDomini {
         return bproblemes.buscarProblema(nomprob).matriuChars();
     }
 
+    public void actualizarMchar(char[][] mchar) throws IncorrectFENException {
+        ctrlPresentacion.actualitzaBoard(mchar);
+    }
+
 
 
 
@@ -267,6 +271,7 @@ public class CtrlDomini {
             System.out.println();
         }
     }
+
 }
 
 
