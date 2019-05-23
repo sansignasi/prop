@@ -21,14 +21,15 @@ public class Board {
     private final JLabel message = new JLabel(
             "Chess Champ is ready to play!");
     private static final String COLS = "ABCDEFGH";
-    private static char[][] mchar;
+    private char[][] mchar;
 
     public Board(CtrlPresentacion c) throws IncorrectFENException {
         controladorPresentacion = c;
+        mchar = controladorPresentacion.matriuProblema("prob1");
         initializeGui();
     }
 
-    public static void mostrarMchar() throws IncorrectFENException{
+    public void carregaMchar() throws IncorrectFENException{
         mchar = controladorPresentacion.matriuProblema("prob1");
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -95,7 +96,11 @@ public class Board {
                         chessBoard.add(new JLabel("" + (ii + 1),
                                 SwingConstants.CENTER));
                     default:
+                        ImageIcon img = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[ii][jj]));
                         chessBoard.add(chessBoardSquares[jj][ii]);
+                        if(mchar[ii][jj]!='-') {
+                            chessBoardSquares[jj][ii].setIcon(img);
+                        }
                 }
             }
         }
@@ -110,7 +115,7 @@ public class Board {
     }
 
     public void hacerVisible() throws IncorrectFENException {
-        mostrarMchar();
+        carregaMchar();
         JFrame f = new JFrame("Jugar Problema");
         f.add(this.getGui());
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

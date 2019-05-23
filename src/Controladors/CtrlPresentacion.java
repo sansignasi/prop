@@ -28,8 +28,8 @@ public class CtrlPresentacion {
 
     public void inicializarPresentacion() throws IncorrectFENException {
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
-        vistaLogin.hacerVisible(); //descomentar para testear presentacion
-        //board.hacerVisible();
+        //vistaLogin.hacerVisible(); //descomentar para testear presentacion
+        board.hacerVisible();
     }
 
     public void cambiarVistaAFormularioLogin() {
