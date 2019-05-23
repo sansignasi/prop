@@ -5,7 +5,7 @@ import java.util.Scanner;
 import src.Domini.*;
 
 public class DriverProblema {
-
+    /*
     public static Problema p = new Problema();
 
     //es pot treballar amb aquesta matriu de prova o es pot carregar un taulell amb un fen directament
@@ -152,6 +152,6 @@ public class DriverProblema {
                     break;
             }
         }
-    }
+    }*/
 
 }

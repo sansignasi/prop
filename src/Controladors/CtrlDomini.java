@@ -38,7 +38,21 @@ public class CtrlDomini {
         ctrlPresentacion = CtrlPresentacion.getInstance();
     }
 
+    public void setBProblemes(BaseDeProblemes b){
+        bproblemes = b;
+    }
 
+    public void setBUsers(BaseUsuaris b){
+        busers = b;
+    }
+
+    public BaseDeProblemes getBProblemes(){
+        return bproblemes;
+    }
+
+    public BaseUsuaris getBUsuaris(){
+        return busers;
+    }
 
     public void CarregaBP() throws Exception{
 
@@ -158,11 +172,6 @@ public class CtrlDomini {
     public void actualizarMchar(char[][] mchar) throws IncorrectFENException {
         ctrlPresentacion.actualitzaBoard(mchar);
     }
-
-
-
-
- //hola
 
 
 
@@ -287,9 +296,9 @@ public class CtrlDomini {
                     pv1.visualitzaProblema();
                     System.out.println();
                     System.out.println();
-                    boolean b = pv1.validarProblema(pv1.getTaulell(),pv1.getAtacant(),pv1.getMoviments()*2+1);
-                    if (!b) System.out.println("El problema no es pot resoldre en " + pv1.getMoviments() + " moviments.");
-                    else System.out.println("El problema es pot resoldre en " + (pv1.getMoviments()) + " moviments.");
+                    //boolean b = pv1.validarProblema(pv1.getTaulell(),pv1.getAtacant(),pv1.getMoviments()*2+1);
+                    // if (!b) System.out.println("El problema no es pot resoldre en " + pv1.getMoviments() + " moviments.");
+                    //else System.out.println("El problema es pot resoldre en " + (pv1.getMoviments()) + " moviments.");
                     break;
 
                 case 3:

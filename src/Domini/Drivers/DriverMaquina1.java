@@ -7,7 +7,7 @@ import java.util.Scanner;
 import src.Domini.*;
 
 public class DriverMaquina1 {
-
+    /*
     public static Maquina1 m = new Maquina1(0,0);
 
     //es pot treballar amb aquesta matriu de prova o es pot carregar un taulell amb un fen directament
@@ -164,6 +164,6 @@ public class DriverMaquina1 {
                     break;
             }
         }
-    }
+    }*/
 
 }
