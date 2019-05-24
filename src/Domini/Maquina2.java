@@ -3,7 +3,10 @@ import lib.Pair;
 
 import java.util.ArrayList;
 
-
+/** Representa una Chess IA implementada amb un Minimax amb poda alpha beta i una heurística més complerta
+ * @author Pol Garcia Recasens
+ * @author polgarciarecasens@gmail.com
+ */
 public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
 
     //CREADORES
@@ -13,11 +16,23 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
     }
 
     //MÈTODES
+
+    /**
+     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
+     * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
+     * @param profunditat Profunditat, tenint en compte atacant i defensor, a la que arribarà el Minimax
+     * @return Retorna una Piece i la posició on s'haurà de moure
+     */
     public Pair jugarTorn(Taulell t, int jugador, int profunditat){
         Pair p = MiniMax(t,jugador,profunditat);
         return p;
     }
 
+    /**
+     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
+     * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
+     * @return Retorna un enter que representa la puntuació amb la que l'Heuristic1 avalua l'estat del taulell
+     */
     public int Heuristic1(Taulell t, int jugador){
 
         Piece[][] p = t.getTaulell();
@@ -43,6 +58,12 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         return ret;
     }
 
+    /**
+     *
+     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
+     * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
+     * @return Retorna un enter que representa la puntuació amb la que l'Heuristic2 avalua l'estat del taulell
+     */
     public int Heuristic2(Taulell t, int jugador){
 
         //CONTEM LES PECES PER PUNTUACIÓ
@@ -80,6 +101,11 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
        return ret;
     }
 
+    /**
+     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
+     * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
+     * @return Retorna tots els moviments possibles que podrà realitzar el jugador al que supleix la màquina
+     */
     public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
         ArrayList<Pair> a = new ArrayList<>();
@@ -97,6 +123,13 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         return a;
     }
 
+    /**
+     *
+     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
+     * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
+     * @param prf Indica la profunditat de la iteració actual del Minimax
+     * @return Retorna un boolea que indica si s'ha arribat a un estat terminal o no
+     */
     public boolean estatTerminal(Taulell t, int jugador, int prf){
         if (! t.teRei(jugador)) return true;
         else if (! t.teRei(Math.abs(jugador-1))) return true;
@@ -104,6 +137,13 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         else return false;
     }
 
+    /**
+     *
+     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
+     * @param jg Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
+     * @param profunditat Indica la profunditat a la que arribarà el Minimax
+     * @return Retorna una Piece i la posició on s'haurà de moure
+     */
     public Pair MiniMax(Taulell t, int jg, int profunditat){
 
         int max,cmax; //puntuacio de la heurística
@@ -112,9 +152,7 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
 
         for (int i=0; i<p.size();++i) {
-            //System.out.println("estem dins de minimax i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
             Pair mov = p.get(i);
-            //System.out.println(mov.getFirst() + " " + mov.getSecond());
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
             int prf = profunditat;
@@ -132,17 +170,25 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         return movret;
     }
 
+    /**
+     *
+     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
+     * @param jg Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
+     * @param prf Indica la profunditat de la iteració actual del Minimax
+     * @param a Indica el valor alpha
+     * @param b Indica el valor beta
+     * @return Si es un estat terminal retorna la puntuació que li assigna l'heurístic
+     * @return Si no es un estat terminal retorna la mínima puntuació d'entre totes les subbranques que ha visitat
+     */
     public int valorMin(Taulell t, int jg, int prf, int a, int b){
 
         if (estatTerminal(t,jg,prf)){
             int x = Heuristic2(t,jg);
-            //System.out.println("El valor del heuristic es " + x );
             return x;
         }
         else{
             ArrayList<Pair> p = calculaMovimentsPosibles(t,Math.abs(jg-1));
             for (int i=0; i<p.size(); ++i){
-                //System.out.println("estem dins de valormin i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
                 Taulell aux = new Taulell();
                 aux.copiaTaulell(t);
                 Pair po = (Pair) p.get(i).getSecond();
@@ -157,17 +203,25 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         }
     }
 
+    /**
+     *
+     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
+     * @param jg Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
+     * @param prf Indica la profunditat de la iteració actual del Minimax
+     * @param a Indica el valor alpha
+     * @param b Indica el valor beta
+     * @return Si es un estat terminal retorna la puntuació que li assigna l'heurístic
+     * @return Si no es un estat terminal retorna la màxima puntuació d'entre totes les subbranques que ha visitat
+     */
     public int valorMax(Taulell t, int jg, int prf, int a, int b){
 
         if (estatTerminal(t,jg,prf)){
             int x = Heuristic2(t,jg);
-            //System.out.println("El valor del heuristic es " + x );
             return x;
         }
         else{
             ArrayList<Pair> p = calculaMovimentsPosibles(t,jg);
             for (int i=0; i<p.size(); ++i){
-                //System.out.println("estem dins de valormin i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
                 Taulell aux = new Taulell();
                 aux.copiaTaulell(t);
                 Pair po = (Pair) p.get(i).getSecond();
