@@ -12,7 +12,7 @@ public class BaseDeProblemes {
 
     /**
      * Retorna una instància de la classe Base de Problemes, com que és un Singleton només n'hi haurà una
-     * @return
+     * @return una instància de la classe BaseDeProblemes
      */
     public static BaseDeProblemes getInstance() {
 
