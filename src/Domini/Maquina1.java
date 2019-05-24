@@ -12,6 +12,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
         super(color,rol);
     }
 
+
     //MÈTODES
     public Pair jugarTorn(Taulell t, int jugador, int profunditat){
         Pair p = MiniMax(t,jugador,profunditat);
@@ -76,7 +77,6 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
 
         for (int i=0; i<p.size();++i) {
             Pair mov = p.get(i);
-            //System.out.println(mov.getFirst() + " " + mov.getSecond());
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
             int prf = profunditat;
@@ -99,13 +99,13 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
 
         if (estatTerminal(t,jg,prf)){
             if (!t.teRei(Math.abs(jg-1))) return 50000;
+            if (!t.teRei(Math.abs(jg))) return -50000;
             int x = Heuristic1(t,jg);
             return x;
         }
         else{
             vmax = -99999999;
             ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
-            //System.out.println("valor max amb profunditat " + prf);
             for (int i=0; i<p.size(); ++i){
 
                 Taulell aux = new Taulell();
@@ -127,13 +127,13 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
 
         if (estatTerminal(t,jg,prf)){
             if (!t.teRei(Math.abs(jg-1))) return 50000;
+            if (!t.teRei(Math.abs(jg))) return -50000;
             int x = Heuristic1(t,jg);
             return x;
         }
         else{
             vmin = 99999999;
             ArrayList<Pair> p = calculaMovimentsPosibles(t,Math.abs(jg-1));
-            //System.out.println("valor min amb profunditat " + prf);
             for (int i=0; i<p.size(); ++i){
                 Taulell aux = new Taulell();
                 aux.copiaTaulell(t);
@@ -143,7 +143,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 int l = valorMax(aux,jg, prf-1);
                 vmin = Math.min(vmin,l);
-                if (vmin == 50000) return vmin;
+                if (vmin == -50000) return vmin;
 
             }
             return vmin;

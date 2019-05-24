@@ -47,6 +47,10 @@ public class Problema {
         T = new Taulell(FEN);
     }
 
+    public void setRanking(Ranking r){
+        R = r;
+    }
+
     public void putRanking(String s, double i){
         R.introRank(s,i);
     }

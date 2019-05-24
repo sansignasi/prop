@@ -58,12 +58,11 @@ public class CtrlDomini {
 
         Vector<String> sbproblemes = db.loadBProblems("BProblemes.txt");
 
-        for (String s : sbproblemes) {
-            if (!s.equals("null")) {
-
-                Problema p = gson.fromJson(s, Problema.class);
+        for (int i = 0 ; i < (sbproblemes.size()/2); ++i) {
+                Problema p = gson.fromJson(sbproblemes.get(i), Problema.class);
+                Ranking r = gson.fromJson(sbproblemes.get(i+1), Ranking.class);
+                p.setRanking(r);
                 bproblemes.afegirProblema(p);
-            }
         }
     }
 
@@ -84,14 +83,18 @@ public class CtrlDomini {
 
         TreeMap<String,Problema> t = bproblemes.getMap();
 
-        String[] s = new String[t.size()];
+        String[] s = new String[t.size()*2];
 
         int i = 0;
 
         for(Map.Entry<String,Problema> entry : t.entrySet()) {
+            Problema p  = entry.getValue();
+            Ranking r = p.getRanking();
             s[i] = gson.toJson(entry.getValue());
-            ++i;
+            s[i+1] = gson.toJson(r);
+            i+=2;
         }
+
         for (int j = 0; j < s.length; ++j){
             System.out.println(s[j]);
         }
@@ -344,6 +347,8 @@ public class CtrlDomini {
 
         String fen1 = "1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1";
         Problema prob1 = new Problema(fen1,2,"Problema 1, mat de blanques en 2");
+        double aux = 10;
+        prob1.putRanking("pol",aux);
 
         bp.afegirProblema(prob1);
         Taulell t = prob1.getTaulell();
@@ -353,12 +358,6 @@ public class CtrlDomini {
 
 
         CtrlDomini c = CtrlDomini.getInstance();
-        /*
-        File f =  new File("hola.txt");
-        System.out.println(f.getAbsolutePath());
-        boolean b = f.createNewFile();
-        System.out.println(b);
-        */
 
         c.setBProblemes(bp);
         c.GuardaBroblemes();
@@ -366,10 +365,12 @@ public class CtrlDomini {
 
         bp = c.getBProblemes();
         prob1 = bp.buscarProblema(prob1.getNomprob());
+        Ranking r = prob1.getRanking();
+        r.mostraRanking();
         t = prob1.getTaulell();
         t.mostrarTaulell();
 
-        System.out.println("ara provem el puto busers");
+        /*System.out.println("ara provem el puto busers");
 
         Usuari u = new Usuari("pol", "lalala");
         BaseUsuaris bu = BaseUsuaris.getInstance();
@@ -384,7 +385,7 @@ public class CtrlDomini {
         System.out.println("surto del carrega");
         bu = c.getBUsuaris();
         u = bu.buscarUsuari("pol");
-        System.out.println("l'usuari final te:" + u.getNom() + " " + u.getContraseña());
+        System.out.println("l'usuari final te:" + u.getNom() + " " + u.getContraseña());*/
 
 
     }
