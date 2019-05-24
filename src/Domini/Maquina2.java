@@ -18,7 +18,7 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         return p;
     }
 
-    private int Heuristic1(Taulell t, int jugador){
+    public int Heuristic1(Taulell t, int jugador){
 
         Piece[][] p = t.getTaulell();
 
@@ -45,6 +45,8 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
 
     public int Heuristic2(Taulell t, int jugador){
 
+        //CONTEM LES PECES PER PUNTUACIÓ
+
         Piece[][] p = t.getTaulell();
 
         int ret = 0;
@@ -65,31 +67,20 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
                 }
             }
         }
+        ret *= 10; //donem més importancia a les peces
 
-        ArrayList<Pair> v1 = calculaMovimentsPosibles(t,jugador);
-        int ret1 = 0;
-        for (int i = 0; i < v1.size(); ++i){
-            Pair aux = (Pair)v1.get(i).getSecond();
-            if (t.tePiece((int)aux.getFirst(),(int)aux.getSecond())){
-                Piece enemic = t.getPiece((int)aux.getFirst(),(int)aux.getSecond());
-                ret1 += enemic.getValor();
+        //CONTEM EL NOMBRE DE MOVIMENTS POSSIBLES
 
-            }
-        }
-        ArrayList<Pair> v2 = calculaMovimentsPosibles(t,Math.abs(jugador-1));
-        for (int i = 0; i < v2.size(); ++i){
-            Pair aux = (Pair)v2.get(i).getSecond();
-            if (t.tePiece((int)aux.getFirst(),(int)aux.getSecond())){
-                Piece enemic = t.getPiece((int)aux.getFirst(),(int)aux.getSecond());
-                ret1 -= enemic.getValor();
+        ArrayList<Pair> k = calculaMovimentsPosibles(t,jugador);
+        ret += k.size();
+        k = calculaMovimentsPosibles(t,Math.abs(jugador-1));
+        ret -= k.size();
 
-            }
-        }
 
-        return ret+ret1;
+       return ret;
     }
 
-    private ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
+    public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
         ArrayList<Pair> a = new ArrayList<>();
         Piece[][] m = t.getTaulell();
@@ -106,14 +97,14 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         return a;
     }
 
-    private boolean estatTerminal(Taulell t, int jugador, int prf){
+    public boolean estatTerminal(Taulell t, int jugador, int prf){
         if (! t.teRei(jugador)) return true;
         else if (! t.teRei(Math.abs(jugador-1))) return true;
         else if (prf <= 0) return true;
         else return false;
     }
 
-    private Pair MiniMax(Taulell t, int jg, int profunditat){
+    public Pair MiniMax(Taulell t, int jg, int profunditat){
 
         int max,cmax; //puntuacio de la heurística
         max = -99999999;
@@ -123,6 +114,7 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         for (int i=0; i<p.size();++i) {
             //System.out.println("estem dins de minimax i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
             Pair mov = p.get(i);
+            //System.out.println(mov.getFirst() + " " + mov.getSecond());
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
             int prf = profunditat;
@@ -140,10 +132,10 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         return movret;
     }
 
-    private int valorMin(Taulell t, int jg, int prf, int a, int b){
+    public int valorMin(Taulell t, int jg, int prf, int a, int b){
 
         if (estatTerminal(t,jg,prf)){
-            int x = Heuristic1(t,jg);
+            int x = Heuristic2(t,jg);
             //System.out.println("El valor del heuristic es " + x );
             return x;
         }
@@ -165,15 +157,15 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
         }
     }
 
-    private int valorMax(Taulell t, int jg, int prf, int a, int b){
+    public int valorMax(Taulell t, int jg, int prf, int a, int b){
 
         if (estatTerminal(t,jg,prf)){
-            int x = Heuristic1(t,jg);
+            int x = Heuristic2(t,jg);
             //System.out.println("El valor del heuristic es " + x );
             return x;
         }
         else{
-            ArrayList<Pair> p = calculaMovimentsPosibles(t,Math.abs(jg-1));
+            ArrayList<Pair> p = calculaMovimentsPosibles(t,jg);
             for (int i=0; i<p.size(); ++i){
                 //System.out.println("estem dins de valormin i el moviment es " + p.get(i).getFirst() + " " + p.get(i).getSecond());
                 Taulell aux = new Taulell();

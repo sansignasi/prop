@@ -7,7 +7,7 @@ import java.util.Scanner;
 import src.Domini.*;
 
 public class DriverMaquina2 {
-/*
+
         public static Maquina2 m = new Maquina2(0, 0);
 
         //es pot treballar amb aquesta matriu de prova o es pot carregar un taulell amb un fen directament
@@ -25,21 +25,26 @@ public class DriverMaquina2 {
         public static Taulell t = new Taulell(matriu);
 
         public static void testgetMovimentAlgorism2(int jugador, int profunditat) throws IncorrectFENException {
+            float startTime = System.nanoTime();
             Pair p = m.jugarTorn(t, jugador, profunditat);
-            System.out.println("El moviment que retorna la maquina 1 es " + p.getFirst() + " " + p.getSecond());
+            float endTime = System.nanoTime();
+            float timeElapsed = endTime - startTime;
+            System.out.println("El moviment que retorna la maquina 2 es " + p.getFirst() + " " + p.getSecond());
+            System.out.println("Ha trigat " + timeElapsed / 1000000000 + " segons");
+
             System.out.println();
 
         }
 
-        private static void testHeuristic1(int j) {
+        public static void testHeuristic1(int j) {
             int h1 = m.Heuristic1(t, j);
-            System.out.println("L'avaluació del taulell de l'Heurístic 1 es " + h1);
+            System.out.println("L'avaluació del taulell de l'Heurístic 2 es " + h1);
             System.out.println();
 
 
         }
 
-        private static void testcalculaMovimentsPosibles(int j) {
+        public static void testcalculaMovimentsPosibles(int j) {
 
             ArrayList<Pair> p = m.calculaMovimentsPosibles(t, j);
             System.out.println("El vector resultants amb tots els moviments possibles de les peces del jugador es de: ");
@@ -51,14 +56,14 @@ public class DriverMaquina2 {
 
         }
 
-        private static void testestatTerminal(int jugador, int profunditat) {
+        public static void testestatTerminal(int jugador, int profunditat) {
 
             boolean b = m.estatTerminal(t, jugador, profunditat);
             System.out.println("El taulell resultant és estat terminal? " + b);
             System.out.println();
         }
 
-        private static void testMiniMax(int jugador, int profunditat) {
+        public static void testMiniMax(int jugador, int profunditat) {
 
             Pair mm = m.MiniMax(t, jugador, profunditat);
             System.out.println("La peça i la posició calculades pel MiniMax son: " + mm.getFirst() + " " + mm.getSecond());
@@ -66,7 +71,7 @@ public class DriverMaquina2 {
 
         }
 
-        private static void testvalorMax(int jugador, int profunditat, int a, int b) {
+        public static void testvalorMax(int jugador, int profunditat, int a, int b) {
 
             int vm = m.valorMax(t, jugador, profunditat,a,b);
             System.out.println("El valor retornat per la funció valorMax és: " + vm);
@@ -75,7 +80,7 @@ public class DriverMaquina2 {
 
         }
 
-        private static void testvalorMin(int jugador, int profunditat, int a, int b) {
+        public  static void testvalorMin(int jugador, int profunditat, int a, int b) {
             int vmin = m.valorMin(t, jugador, profunditat,a,b);
             System.out.println("El valor retornat per la funció valorMin és: " + vmin);
             System.out.println();
@@ -84,7 +89,7 @@ public class DriverMaquina2 {
         public static void main(String[] args) throws Exception {
             int opt = 99;
             while (opt != 0) {
-                System.out.println("~~~~DRIVER MAQUINA1~~~~");
+                System.out.println("~~~~DRIVER MAQUINA2~~~~");
                 System.out.println("Tria una opció:");
                 System.out.println("1.TestCalculaMovimentsPossibles");
                 System.out.println("2.TestEstatTerminal");
@@ -168,5 +173,5 @@ public class DriverMaquina2 {
                         break;
                 }
             }
-        }*/
+        }
     }

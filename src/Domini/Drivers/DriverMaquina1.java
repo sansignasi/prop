@@ -1,13 +1,15 @@
 package src.Domini.Drivers;
-
+import java.util.concurrent.TimeUnit;
 import lib.Pair;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import src.Domini.*;
 
+import javax.swing.*;
+
 public class DriverMaquina1 {
-    /*
+
     public static Maquina1 m = new Maquina1(0,0);
 
     //es pot treballar amb aquesta matriu de prova o es pot carregar un taulell amb un fen directament
@@ -25,8 +27,14 @@ public class DriverMaquina1 {
     public static Taulell t = new Taulell(matriu);
 
     public  static void testgetMovimentAlgorism1(int jugador, int profunditat) throws IncorrectFENException {
+
+        float startTime = System.nanoTime();
         Pair p = m.jugarTorn(t, jugador, profunditat);
+        float endTime = System.nanoTime();
+        float timeElapsed = endTime - startTime;
+
         System.out.println("El moviment que retorna la maquina 1 es " + p.getFirst() + " " + p.getSecond());
+        System.out.println("Ha trigat " + timeElapsed / 1000000000 + " segons");
         System.out.println();
 
     }
@@ -164,6 +172,6 @@ public class DriverMaquina1 {
                     break;
             }
         }
-    }*/
+    }
 
 }
