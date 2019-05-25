@@ -5,6 +5,8 @@ import src.Controladors.CtrlPresentacion;
 import src.Domini.IncorrectFENException;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -23,13 +25,13 @@ public class Board {
     private static final String COLS = "ABCDEFGH";
     private char[][] mchar;
 
-    public Board(CtrlPresentacion c,String nomprob) throws IncorrectFENException {
+    public Board(CtrlPresentacion c,String nomprob){
         controladorPresentacion = c;
         mchar = controladorPresentacion.matriuProblema(nomprob);
         initializeGui();
     }
 
-    public void actualitzaMchar(char[][] mcharx) throws IncorrectFENException{
+    public void actualitzaMchar(char[][] mcharx){
         mchar = mcharx;
     }
 
@@ -82,6 +84,10 @@ public class Board {
                     new JLabel(COLS.substring(ii, ii + 1),
                             SwingConstants.CENTER));
         }
+        final int[] contMovs = {0};
+        final int[] posIni = new int[2];
+        final int[] posFi = new int[2];
+
         // fill the black non-pawn piece row
         for (int ii = 0; ii < 8; ii++) {
             for (int jj = 0; jj < 8; jj++) {
@@ -92,9 +98,40 @@ public class Board {
                     default:
                         ImageIcon img = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[ii][jj]));
                         chessBoard.add(chessBoardSquares[jj][ii]);
+                        boolean hihapiece = false;
                         if(mchar[ii][jj]!='-') {
                             chessBoardSquares[jj][ii].setIcon(img);
+                            hihapiece = true;
                         }
+                        int finalIi = ii;
+                        int finalJj = jj;
+                        boolean finalHihapiece = hihapiece;
+                        chessBoardSquares[jj][ii].addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                if(!finalHihapiece && contMovs[0] ==0){
+                                    JOptionPane.showMessageDialog(null,"Selecciona una peça");
+                                }
+                                else if(finalHihapiece && contMovs[0] ==0){
+                                    posIni[0] = finalIi;
+                                    posIni[1] = finalJj;
+                                    contMovs[0]++;
+                                }
+                                else if(!(finalIi == posIni[0] && finalJj == posIni[1])){
+                                    posFi[0] = finalIi;
+                                    posFi[1] = finalJj;
+                                    contMovs[0]--;
+                                    System.out.println(posIni[0] + "" + posIni[1]);
+                                    System.out.println(posFi[0] + "" + posFi[1]);
+                                    controladorPresentacion.movimentUsuari(posIni[0],posIni[1],posFi[0],posFi[1]);
+                                }
+                                else{
+                                    JOptionPane.showMessageDialog(null,"Moviment no vàlid. Mou la peça a una posició diferent a la inicial.");
+                                    contMovs[0]--;
+                                }
+
+                            }
+                        });
                 }
             }
         }
@@ -108,7 +145,7 @@ public class Board {
         return gui;
     }
 
-    public void hacerVisible() throws IncorrectFENException {
+    public void hacerVisible() {
 
         JFrame f = new JFrame("Jugar Problema");
         f.setPreferredSize(new Dimension(600,600));
@@ -123,4 +160,5 @@ public class Board {
         f.setMinimumSize(f.getSize());
         f.setVisible(true);
     }
+
 }

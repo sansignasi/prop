@@ -17,7 +17,7 @@ public class CtrlPresentacion {
     private Board board;
     private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
 
-    public static CtrlPresentacion getInstance() throws IncorrectFENException{
+    public static CtrlPresentacion getInstance(){
         if (ctrlPresentacion == null)
             ctrlPresentacion = new CtrlPresentacion() {
             };
@@ -68,7 +68,7 @@ public class CtrlPresentacion {
 
     public void cambiarVistaAEscollirProbsSimulacio() throws IncorrectFENException {vistaEscollirProbsSimulacio.hacerVisible();}
 
-    public void cambiarVistaABoard() throws IncorrectFENException {
+    public void cambiarVistaABoard(){
         board.hacerVisible();
     }
 
@@ -115,5 +115,8 @@ public class CtrlPresentacion {
 
     public void actualitzaBoard(char[][] mchar) throws IncorrectFENException {
         board.actualitzaMchar(mchar);
+    }
+    public void movimentUsuari(int ii,int ij,int fi,int fj){
+
     }
 }
