@@ -332,8 +332,8 @@ public class Taulell {
                     --poslegales;
                 }
             }
-
         }
+
         if(poslegales == 0)return true;
         else return false;
     }

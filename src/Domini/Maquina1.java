@@ -14,6 +14,8 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
     public Maquina1(int color, int rol) {
         super(color,rol);
     }
+    public int infinit = 9000000;
+
 
 
     //MÈTODES
@@ -56,6 +58,10 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
                 }
             }
         }
+
+        //if (t.jaquemate(jugador)) { ret -= 9999; }
+        //if (t.jaquemate(Math.abs(jugador-1))) ret += 9999;
+
         return ret;
     }
 
@@ -91,7 +97,9 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
      */
     public boolean estatTerminal(Taulell t, int jugador, int prf){
         if (! t.teRei(jugador)) return true;
+        //if (t.jaquemate(Math.abs(jugador-1))) return true;
         else if (! t.teRei(Math.abs(jugador-1))) return true;
+        //else if (t.jaquemate(jugador)) return true;
         else if (prf <= 0) return true;
         else return false;
     }
@@ -120,7 +128,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
             else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,prf-1);
-            if (cmax == 50000) return mov;
+            if (cmax == infinit) return mov;
             if (cmax > max){
                 max = cmax;
                 movret = mov;
@@ -141,8 +149,8 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
         int vmax;
 
         if (estatTerminal(t,jg,prf)){
-            if (!t.teRei(Math.abs(jg-1))) return 50000;
-            if (!t.teRei(Math.abs(jg))) return -50000;
+            if (!t.teRei(Math.abs(jg-1))) return infinit;
+            if (!t.teRei(Math.abs(jg))) return -infinit;
             int x = Heuristic1(t,jg);
             return x;
         }
@@ -159,7 +167,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 int l = valorMin(aux,jg, prf-1);
                 vmax = Math.max(vmax,l);
-                if (vmax == 50000) return vmax;
+                if (vmax == infinit) return vmax;
             }
             return vmax;
         }
@@ -177,8 +185,8 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
         int vmin;
 
         if (estatTerminal(t,jg,prf)){
-            if (!t.teRei(Math.abs(jg-1))) return 50000;
-            if (!t.teRei(Math.abs(jg))) return -50000;
+            if (!t.teRei(Math.abs(jg-1))) return infinit;
+            if (!t.teRei(Math.abs(jg))) return -infinit;
             int x = Heuristic1(t,jg);
             return x;
         }
@@ -194,7 +202,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
                 int l = valorMax(aux,jg, prf-1);
                 vmin = Math.min(vmin,l);
-                if (vmin == -50000) return vmin;
+                if (vmin == -infinit) return vmin;
 
             }
             return vmin;

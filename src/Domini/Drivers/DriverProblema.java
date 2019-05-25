@@ -5,7 +5,7 @@ import java.util.Scanner;
 import src.Domini.*;
 
 public class DriverProblema {
-    /*
+
     public static Problema p = new Problema();
 
     //es pot treballar amb aquesta matriu de prova o es pot carregar un taulell amb un fen directament
@@ -23,18 +23,17 @@ public class DriverProblema {
     public static Taulell t = new Taulell(matriu);
 
     public static void testValidariOptimitzarProblema(int jugador, int profunditat) throws Exception {
+        float startTime = System.nanoTime();
         int n = p.validariOptimitzarProblema(t,jugador,profunditat*2+1);
+        float endTime = System.nanoTime();
+        float timeElapsed = endTime - startTime;
         if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments.");
         else System.out.println("El problema es pot resoldre en " + profunditat + " moviments i la n es " + n + ".");
+        System.out.println("Ha trigat " + timeElapsed / 1000000000 + " segons");
+
 
     }
 
-    public static void testValidarProblema(int jugador, int profunditat) throws Exception{
-        boolean b = p.validarProblema(t,jugador,profunditat*2+1);
-        if (!b) System.out.println("El problema no es pot resoldre");
-        else System.out.println("El problema es pot resoldre en " + profunditat + " moviments.");
-
-    }
 
     public static void testestatTerminal(int jugador, int profunditat) {
 
@@ -76,8 +75,7 @@ public class DriverProblema {
             System.out.println("3.TestValorMax");
             System.out.println("4.TestValorMin");
             System.out.println("5.TestMiniMax");
-            System.out.println("6.TestValidarProblema");
-            System.out.println("7.IntroduirProblema");
+            System.out.println("6.IntroduirProblema");
             System.out.println("0.Exit");
 
 
@@ -129,15 +127,6 @@ public class DriverProblema {
                     break;
 
                 case 6:
-                    Scanner in6 = new Scanner(System.in);
-                    System.out.println("Escull la profunditat (número de moviments que vols fer)");
-                    p = in6.nextInt();
-                    System.out.println("Escull el jugador (0:blanques, 1:negres)");
-                    j = in6.nextInt();
-                    testValidarProblema(j,p);
-                    break;
-
-                case 7:
                     Scanner in7 = new Scanner(System.in);
                     System.out.println("Introdueix un FEN");
                     String s = in7.nextLine();
@@ -152,6 +141,6 @@ public class DriverProblema {
                     break;
             }
         }
-    }*/
+    }
 
 }

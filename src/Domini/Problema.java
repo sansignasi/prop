@@ -180,7 +180,7 @@ public class Problema {
     public Ranking getRanking() {return R;}
 
     /**
-     *
+     * Considerem que un problema es pot validar si es pot realitzar amb exactament els moviments proposats per l'usuari
      * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
      * @param jug Indica quin és el jugador que ataca (0 blanques, 1 negres)
      * @param mov Nombre màxim de moviments que pot realitzar latacant
@@ -193,12 +193,25 @@ public class Problema {
     }
 
     /**
+     * Considerem que un problema es pot validar si es pot realitzar amb els moviments proposats per l'ususari, independentment de si es pot realitzar amb menys
+     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
+     * @param jug Indica quin és el jugador que ataca (0 blanques, 1 negres)
+     * @param mov Nombre màxim de moviments que pot realitzar latacant
+     * @return
+     */
+    public int validarProblema(Taulell t, int jug, int mov){
+        int k = MiniMax(t, jug, mov);
+        if (k == -1) return -1;
+        else return (((mov - k) / 2)-1);
+    }
+
+    /**
      *
      * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
      * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
      * @return Retorna tots els moviments possibles que podrà realitzar el jugador al que supleix la màquina
      */
-    private ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
+    public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
         ArrayList<Pair> a = new ArrayList<>();
         Piece[][] m = t.getTaulell();
@@ -221,13 +234,18 @@ public class Problema {
      * @param prf Indica la profunditat de la iteració actual del Minimax
      * @return Retorna un boolea que indica si s'ha arribat a un estat terminal o no
      */
-    private boolean estatTerminal(Taulell t, int jugador, int prf){
+    public boolean estatTerminal(Taulell t, int jugador, int prf){
         if (prf == 0) return true;
         if (!t.teRei((Math.abs(jugador-1)))) return true;
         else return false;
     }
-
-    /*
+    /**
+     * Podem quan hi ha una unica branca que valida el problema amb els moviments proposats per l'usuari
+     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
+     * @param jg Indica quin és el jugador que ataca (0 blanques, 1 negres)
+     * @param
+     * @return Retorna un enter que representa el valor de la profunditat a la que ha arribat el minimax per validar el problema (inicialment profunditat i anirà restant d'u en u recursivament)
+     */
     private int MiniMax(Taulell t, int jg, int profunditat){
 
         int ret,cmax; //puntuacio de la heurística
@@ -235,7 +253,7 @@ public class Problema {
         ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
         int i = 0;
 
-        while(i<p.size() && ret < 0){
+        while(i<p.size() && ret != profunditat){
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
             Pair po = (Pair) p.get(i).getSecond();
@@ -243,13 +261,14 @@ public class Problema {
             else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
+            if (ret == profunditat) System.out.println("HOLAAAAAAA " + ret);
             if (cmax > ret){
                 ret = cmax;
             }
             ++i;
         }
         return ret;
-    }*/
+    }
 
     /**
      *
@@ -258,7 +277,7 @@ public class Problema {
      * @param
      * @return Retorna un enter que representa el valor de la profunditat a la que ha arribat el minimax per validar el problema (inicialment profunditat i anirà restant d'u en u recursivament)
      */
-    private int MiniMaxOptim(Taulell t, int jg, int profunditat){
+    public int MiniMaxOptim(Taulell t, int jg, int profunditat){
 
         int ret,cmax; //puntuacio de la heurística
         ret = -99999999;
@@ -289,7 +308,7 @@ public class Problema {
      * @return Si es un estat terminal retorna la puntuació que li assigna l'heurístic
      * @return Si no es un estat terminal retorna la màxima puntuació d'entre totes les subbranques que ha visitat
      */
-    private int valorMax(Taulell t, int jg, int prf){
+    public int valorMax(Taulell t, int jg, int prf){
         int vmax;
 
         if (estatTerminal(t,jg,prf)){
@@ -323,7 +342,7 @@ public class Problema {
      * @return Si es un estat terminal retorna la puntuació que li assigna l'heurístic
      * @return Si no es un estat terminal retorna la mínima puntuació d'entre totes les subbranques que ha visitat
      */
-    private int valorMin(Taulell t, int jg, int prf){
+    public int valorMin(Taulell t, int jg, int prf){
         int vmin;
 
         if (estatTerminal(t,jg,prf)){

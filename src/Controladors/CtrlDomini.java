@@ -148,7 +148,7 @@ public class CtrlDomini {
         precarregarProblemes();
         ProblemesPrecarregats.get(0).setCreador("Wanyu");
         ProblemesPrecarregats.get(1).setCreador("Admin");
-        ProblemesPrecarregats.get(2).setCreador("tetas");
+        ProblemesPrecarregats.get(2).setCreador("KK");
         bproblemes.afegirProblema(ProblemesPrecarregats.get(1));
         bproblemes.afegirProblema(ProblemesPrecarregats.get(0));
         bproblemes.afegirProblema(ProblemesPrecarregats.get(2));
