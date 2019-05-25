@@ -56,7 +56,7 @@ public class CtrlDomini {
 
     public void CarregaBP() throws Exception{
 
-        Vector<String> sbproblemes = db.loadBProblems("BProblemes.txt");
+        Vector<String> sbproblemes = db.loadBProblems("BProblems.txt");
 
         for (int i = 0 ; i < (sbproblemes.size()/2); ++i) {
                 Problema p = gson.fromJson(sbproblemes.get(i), Problema.class);
@@ -123,6 +123,7 @@ public class CtrlDomini {
     }
 
     public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
+
         Usuari u = new Usuari("user","psw");
         busers.afegirusuari(u);
         int i = busers.verificarusuari(user,psw);
@@ -137,11 +138,11 @@ public class CtrlDomini {
         this.currentuser = currentuser;
     }
 
-    public void crearusuari(String user, String psw){
+    public void crearusuari(String user, String psw) throws Exception {
         Usuari u = new Usuari(user,psw);
         currentuser = user;
         busers.afegirusuari(u);
-        //GuardaBUsers();
+        GuardaBUsers();
     }
 
     public Set<String> getNomProblemes() throws IncorrectFENException {

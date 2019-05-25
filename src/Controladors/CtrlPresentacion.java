@@ -37,8 +37,10 @@ public class CtrlPresentacion {
         vistaSelecProbJugar = new VistaSelecProbJugar(this);
         vistaEscollirProbsSimulacio = new VistaEscollirProbsSimulacio(this);
     }
-    public void inicializarPresentacion() throws IncorrectFENException {
+    public void inicializarPresentacion() throws Exception {
         asignar();
+        controladorDomini.CarregaBP();
+        controladorDomini.CarregaBU();
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
         vistaLogin.hacerVisible(); //descomentar para testear presentacion
         //board.hacerVisible();
@@ -87,7 +89,7 @@ public class CtrlPresentacion {
         return controladorDomini.getCurrentuser();
     }
 
-    public void crearusuari(String user, String psw){
+    public void crearusuari(String user, String psw) throws Exception {
         controladorDomini.crearusuari(user,psw);
     }
 

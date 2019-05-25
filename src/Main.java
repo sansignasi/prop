@@ -27,6 +27,8 @@ public class Main {
                     mainWindow.inicializarPresentacion(); //parte grafica
                 } catch (IncorrectFENException e) {
                     e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
