@@ -252,8 +252,9 @@ public class Problema {
         ret = -99999999;
         ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
         int i = 0;
+        boolean b = false;
 
-        while(i<p.size() && ret != profunditat){
+        while(i<p.size() && !b){
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
             Pair po = (Pair) p.get(i).getSecond();
@@ -261,7 +262,7 @@ public class Problema {
             else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
-            if (ret == profunditat) System.out.println("HOLAAAAAAA " + ret);
+            if (cmax == 0) return 0;
             if (cmax > ret){
                 ret = cmax;
             }

@@ -34,6 +34,17 @@ public class DriverProblema {
 
     }
 
+    public static void testValidarProblema(int jugador, int profunditat) throws Exception {
+        float startTime = System.nanoTime();
+        int n = p.validarProblema(t,jugador,profunditat*2+1);
+        float endTime = System.nanoTime();
+        float timeElapsed = endTime - startTime;
+        if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments.");
+        else System.out.println("El problema es pot resoldre en " + profunditat + " moviments i la n es " + n + ".");
+        System.out.println("Ha trigat " + timeElapsed / 1000000000 + " segons");
+
+
+    }
 
     public static void testestatTerminal(int jugador, int profunditat) {
 
@@ -76,6 +87,7 @@ public class DriverProblema {
             System.out.println("4.TestValorMin");
             System.out.println("5.TestMiniMax");
             System.out.println("6.IntroduirProblema");
+            System.out.println("7.TestValidarProblema");
             System.out.println("0.Exit");
 
 
@@ -136,6 +148,14 @@ public class DriverProblema {
                     System.out.println();
                     break;
 
+                case 7:
+                    Scanner in8 = new Scanner(System.in);
+                    System.out.println("Escull la profunditat (número de moviments)");
+                    p = in8.nextInt();
+                    System.out.println("Escull el jugador (0:blanques, 1:negres)");
+                    j = in8.nextInt();
+                    testValidarProblema(j,p);
+                    break;
                 case 0:
                     System.out.println("Exit");
                     break;
