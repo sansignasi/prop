@@ -9,6 +9,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -32,7 +33,7 @@ public class VistaEscollirProbsSimulacio {
     private String nompselec1;
     private String nompselec2;
 
-    public VistaEscollirProbsSimulacio(CtrlPresentacion c) throws IncorrectFENException {
+    public VistaEscollirProbsSimulacio(CtrlPresentacion c) throws Exception {
         controladorPresentacion = c;
         inicializarComponentes();
         asignarListenersComponentes();
@@ -58,7 +59,7 @@ public class VistaEscollirProbsSimulacio {
         frameVista.setContentPane(panel1);
     }
 
-    private void inicializarLlistaProblemas() throws IncorrectFENException {
+    private void inicializarLlistaProblemas() throws Exception {
         Set<String> noms = controladorPresentacion.getNomProblemes();
         for (Iterator i = noms.iterator(); i.hasNext();) {
             model1.addElement(i.next());
@@ -124,6 +125,15 @@ public class VistaEscollirProbsSimulacio {
         simularButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                ArrayList<String> probs = new ArrayList<>();
+                for(int i = 0; i< list2.getModel().getSize();i++){
+                    probs.add((String) list2.getModel().getElementAt(i));
+                }
+                try {
+                    controladorPresentacion.cambiarVistaASimulacion(probs,atacant.getSelectedItem().toString(),defensor.getSelectedItem().toString());
+                } catch (IncorrectFENException e1) {
+                    e1.printStackTrace();
+                }
 
             }
         });

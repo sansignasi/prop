@@ -319,6 +319,7 @@ public class Taulell {
                 }
             }
         }
+
          //metemos pos del rey tambien para ver si le hacen jaque
         for (int i = 0; i < posrey.size();++i){
             boolean found = false;

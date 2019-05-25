@@ -145,7 +145,7 @@ public class CtrlDomini {//hola
         GuardaBUsers();
     }
 
-    public Set<String> getNomProblemes() throws IncorrectFENException {
+    public Set<String> getNomProblemes() throws Exception {
         precarregarProblemes();
         ProblemesPrecarregats.get(0).setCreador("Wanyu");
         ProblemesPrecarregats.get(1).setCreador("Admin");
@@ -166,6 +166,26 @@ public class CtrlDomini {//hola
 
     public String getDificultadProblema(String s){
         return bproblemes.buscarProblema(s).getDificultad();
+    }
+
+    public void ferSimulacio(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
+        System.out.print("fersimulacio ");
+        Maquina m1;
+        Maquina m2;
+        ArrayList<Problema> p = new ArrayList<>();
+        if(atacant.equals("Maquina1"))m1 = new Maquina1();
+        else m1 = new Maquina2();
+        if(defensor.equals("Maquina1"))m2 = new Maquina1();
+        else m2 = new Maquina2();
+        for(int i = 0; i < probs.size();++i){
+            p.add(bproblemes.buscarProblema(probs.get(i)));
+        }
+        Simulacio s = new Simulacio(m1,m2,p);
+        s.simular();
+    }
+
+    public void enviarresulatsimulacio(Boolean b) {
+        ctrlPresentacion.enviarresultatsimulacio(b);
     }
 
     //FUNCIONES IGNASI EL MAS TONTO

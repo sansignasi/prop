@@ -31,14 +31,14 @@ public class VistaSelecProbJugar {
     private JLabel labelMoviments;
 
 
-    public VistaSelecProbJugar(CtrlPresentacion c) throws IncorrectFENException {
+    public VistaSelecProbJugar(CtrlPresentacion c) throws Exception {
         controladorPresentacion = c;
         inicializarComponentes();
         asignarListenersComponentes();
 
     }
 
-    private void inicializarComponentes() throws IncorrectFENException { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
+    private void inicializarComponentes() throws Exception { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
         labelAutor.setVisible(false);
         labelDificultat.setVisible(false);
         labelMoviments.setVisible(false);
@@ -58,7 +58,7 @@ public class VistaSelecProbJugar {
         frameVista.setContentPane(panel1);
     }
 
-    private void inicializarLlistaProblemas() throws IncorrectFENException {
+    private void inicializarLlistaProblemas() throws Exception {
         DefaultListModel model = new DefaultListModel();
         list1.setModel(model);
         Set<String> noms = controladorPresentacion.getNomProblemes();
@@ -92,7 +92,7 @@ public class VistaSelecProbJugar {
             public void actionPerformed(ActionEvent e) {
                 desactivar();
                 try {
-                    controladorPresentacion.cambiarVistaAJugarPartida("Jugador",list1.getSelectedValue().toString());
+                    controladorPresentacion.cambiarVistaAJugarPartida("jugador",list1.getSelectedValue().toString());
                 } catch (IncorrectFENException e1) {
                     e1.printStackTrace();
                 }
@@ -102,6 +102,12 @@ public class VistaSelecProbJugar {
         vsMaquina1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                desactivar();
+                try {
+                    controladorPresentacion.cambiarVistaAJugarPartida("maquina1",list1.getSelectedValue().toString());
+                } catch (IncorrectFENException e1) {
+                    e1.printStackTrace();
+                }
 
             }
         });
@@ -109,6 +115,12 @@ public class VistaSelecProbJugar {
         vsMaquina2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                desactivar();
+                try {
+                    controladorPresentacion.cambiarVistaAJugarPartida("maquina2",list1.getSelectedValue().toString());
+                } catch (IncorrectFENException e1) {
+                    e1.printStackTrace();
+                }
 
             }
         });

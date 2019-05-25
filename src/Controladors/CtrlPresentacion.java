@@ -16,6 +16,7 @@ public class CtrlPresentacion {
     private VistaSelecProbJugar vistaSelecProbJugar;
     private Board board;
     private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
+    private VistaSimulacio vistaSimulacio;
 
     public static CtrlPresentacion getInstance(){
         if (ctrlPresentacion == null)
@@ -27,7 +28,7 @@ public class CtrlPresentacion {
     private CtrlPresentacion() {
 
     }
-    private void asignar() throws IncorrectFENException {
+    private void asignar() throws Exception {
         controladorDomini = CtrlDomini.getInstance();
         controladorDomini.reload();
         vistaLogin = new VistaLogin(this);
@@ -36,10 +37,11 @@ public class CtrlPresentacion {
         vistaMenuPrincipal = new VistaMenuPrincipal(this);
         vistaSelecProbJugar = new VistaSelecProbJugar(this);
         vistaEscollirProbsSimulacio = new VistaEscollirProbsSimulacio(this);
+        vistaSimulacio = new VistaSimulacio(this);
     }
     public void inicializarPresentacion() throws Exception {
         asignar();
-        controladorDomini.CarregaBP();
+        //controladorDomini.CarregaBP();
         controladorDomini.CarregaBU();
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
         vistaLogin.hacerVisible(); //descomentar para testear presentacion
@@ -76,6 +78,13 @@ public class CtrlPresentacion {
         board = new Board(this,nomprob);
         board.hacerVisible();
     }
+
+    public void cambiarVistaASimulacion(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
+        vistaSimulacio.hacerVisible();
+
+        controladorDomini.ferSimulacio(probs,atacant,defensor);
+    }
+
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
         int i = controladorDomini.verificarusuari(user,psw);
         return i;
@@ -97,7 +106,7 @@ public class CtrlPresentacion {
         return controladorDomini.matriuProblema(nomprob);
     }
 
-    public Set<String> getNomProblemes() throws IncorrectFENException {
+    public Set<String> getNomProblemes() throws Exception {
         return controladorDomini.getNomProblemes();
     }
 
@@ -114,7 +123,11 @@ public class CtrlPresentacion {
     }
 
     public void actualitzaBoard(char[][] mchar) throws IncorrectFENException {
-        board.actualitzaMchar(mchar);
+        //board.actualitzaMchar(mchar);
+    }
+
+    public void enviarresultatsimulacio(Boolean b) {
+        vistaSimulacio.enviarresultatsimulacio(b);
     }
     public void movimentUsuari(int ii,int ij,int fi,int fj){
 
