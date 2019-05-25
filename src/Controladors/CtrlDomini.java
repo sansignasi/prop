@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 import java.util.*;
 
-public class CtrlDomini {
+public class CtrlDomini {//hola
 
 
     private Gson gson = new Gson();

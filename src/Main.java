@@ -16,12 +16,7 @@ public class Main {
                     e.printStackTrace();
                 }
                 CtrlPresentacion mainWindow = null;
-                try {
-                    mainWindow = CtrlPresentacion.getInstance();
-                }
-                catch (IncorrectFENException e) {
-                    e.printStackTrace();
-                }
+                mainWindow = CtrlPresentacion.getInstance();
                 try {
                     //cd.menuPrincipal(); //descomentar para probar programa
                     mainWindow.inicializarPresentacion(); //parte grafica
