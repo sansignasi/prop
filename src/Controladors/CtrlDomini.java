@@ -56,7 +56,7 @@ public class CtrlDomini {
 
     public void CarregaBP() throws Exception{
 
-        Vector<String> sbproblemes = db.loadBProblems("BProblemes.txt");
+        Vector<String> sbproblemes = db.loadBProblems("BProblems.txt");
 
         for (int i = 0 ; i < (sbproblemes.size()/2); ++i) {
                 Problema p = gson.fromJson(sbproblemes.get(i), Problema.class);
