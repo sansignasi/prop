@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Problema {
     //ATRIBUTS
     private String nomprob; //nom del problema
-    public String FEN; //codificacio en FEN del problema
+    private String FEN; //codificacio en FEN del problema
     private String dificultad; //dificultad asociada al problema
     private int nMax; // num maximo de jugadas para el jaquemate
     private int atacant; // jugador que comença i ataca,
@@ -155,6 +155,10 @@ public class Problema {
      */
     public int getMoviments(){
         return nMax;
+    }
+
+    public String getFEN() {
+        return FEN;
     }
 
     /**

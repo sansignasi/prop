@@ -156,7 +156,7 @@ public class VistaGestioDeProblemes {
         importarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                controladorPresentacion.cambiarVistaAImportar();
             }
         });
     }

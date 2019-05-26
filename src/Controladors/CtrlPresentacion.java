@@ -19,6 +19,7 @@ public class CtrlPresentacion {
     private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
     private VistaSimulacio vistaSimulacio;
     private VistaGestioDeProblemes vistaGestioDeProblemes;
+    private VistaMenuImportar vistaImportar;
 
 
     public static CtrlPresentacion getInstance(){
@@ -42,14 +43,15 @@ public class CtrlPresentacion {
         vistaEscollirProbsSimulacio = new VistaEscollirProbsSimulacio(this);
         vistaSimulacio = new VistaSimulacio(this);
         vistaGestioDeProblemes = new VistaGestioDeProblemes(this);
+        vistaImportar = new VistaMenuImportar(this);
     }
     public void inicializarPresentacion() throws Exception {
         asignar();
         controladorDomini.CarregaBP();
         controladorDomini.CarregaBU();
         controladorDomini.afegirProblema("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1",2,"prob1");
-        //controladorDomini.menuPrincipal(); //descomentar para testear dominio
         vistaLogin.hacerVisible(); //descomentar para testear presentacion
+        //vistaImportar.hacerVisible();
     }
 
     public void cambiarVistaAFormularioLogin() {
@@ -93,6 +95,10 @@ public class CtrlPresentacion {
 
     public void cambiarVistaAGestioDeProblemes() throws Exception {
         vistaGestioDeProblemes.hacerVisible();
+    }
+
+    public void cambiarVistaAImportar() {
+        vistaImportar.hacerVisible();
     }
 
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
@@ -156,4 +162,9 @@ public class CtrlPresentacion {
     public void eliminarProblema(String nomp) {
         controladorDomini.eliminarProblema(nomp);
     }
+
+    public boolean existeixFENambNmovs(String fen, int nmovs) {
+        return controladorDomini.existeixFENambNmovs(fen,nmovs);
+    }
+
 }

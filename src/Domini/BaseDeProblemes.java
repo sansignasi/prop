@@ -97,4 +97,14 @@ public class BaseDeProblemes {//hola
         return probs;
 
     }
+
+    public boolean existeixFENambNmovs(String fen, int nmovs) {
+        Set keys = cjtproblemes.keySet();
+        for (Iterator i = keys.iterator(); i.hasNext();) {
+            String key = (String) i.next();
+            Problema value = cjtproblemes.get(key);
+            if(value.getFEN().equals(fen) && value.getMoviments()==nmovs) return true;
+        }
+        return false;
+    }
 }

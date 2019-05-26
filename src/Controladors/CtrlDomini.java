@@ -420,6 +420,10 @@ public class CtrlDomini {//hola
         bproblemes.eliminarProblema(bproblemes.buscarProblema(nomp));
         reload();
     }
+
+    public boolean existeixFENambNmovs(String fen, int nmovs) {
+        return bproblemes.existeixFENambNmovs(fen,nmovs);
+    }
 }
 
 
