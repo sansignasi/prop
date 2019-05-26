@@ -40,13 +40,6 @@ public class VistaSelecProbJugar {
     }
 
     private void inicializarComponentes() throws Exception { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
-        labelAutor.setVisible(false);
-        labelDificultat.setVisible(false);
-        labelMoviments.setVisible(false);
-        vsJugadorButton.setEnabled(false);
-        vsMaquina1Button.setEnabled(false);
-        vsMaquina2Button.setEnabled(false);
-        textArea1.setEditable(false);
         inicializarFrameVista();
     }
 
@@ -69,10 +62,18 @@ public class VistaSelecProbJugar {
     }
 
     public void hacerVisible() throws Exception {
+        inicializarLlistaProblemas();
+        labelAutor.setVisible(false);
+        labelDificultat.setVisible(false);
+        labelMoviments.setVisible(false);
+        vsJugadorButton.setEnabled(false);
+        vsMaquina1Button.setEnabled(false);
+        vsMaquina2Button.setEnabled(false);
+        textArea1.setEditable(false);
         frameVista.setEnabled(true);
         frameVista.pack();
         frameVista.setVisible(true);
-        inicializarLlistaProblemas();
+
     }
 
     public void desactivar() {
@@ -130,7 +131,7 @@ public class VistaSelecProbJugar {
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(!e.getValueIsAdjusting()) {
+                if(!e.getValueIsAdjusting() && list1.getSelectedValue()!=null) {
                     String nomp = list1.getSelectedValue().toString();
                     labelMoviments.setText(String.valueOf(controladorPresentacion.getMovimentsProblema(nomp)));
                     labelDificultat.setText(controladorPresentacion.getDificultadProblema(nomp));

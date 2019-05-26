@@ -97,21 +97,27 @@ public class Partida {
             }
         }
         T.mostrarTaulell();
+
         if (!jaquemate) {
             System.out.println("~~L'atacant no ha aconseguit fer escac i mat en els moviments establerts, guanya el defensor!~~");
+            prob.restoreTaulell();
             return false;
         }
         else {
             if (T.jaquemate(j2.getColor())){
                 System.out.println("~~L'atacant guanya amb Escac i mat!~~");
                 this.prob.putRanking(j1.getNom(),timej1);
+                prob.restoreTaulell();
                 return true;
             }
             else{
                 System.out.println("~~El defensor guanya amb Escac i mat!~~");
+                prob.restoreTaulell();
                 return false;
             }
         }
+
+
     }
 
     public char letraColumna(int i){

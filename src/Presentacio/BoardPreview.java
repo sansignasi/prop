@@ -23,6 +23,13 @@ public class BoardPreview {
     public BoardPreview(CtrlPresentacion c,String nomprob){
         controladorPresentacion = c;
         mchar = controladorPresentacion.matriuProblema(nomprob);
+        /*
+        for(int i = 0; i < mchar.length;++i){
+            System.out.println("");
+            for(int j = 0; j < mchar.length;++j){
+                System.out.print("."+mchar[i][j]+".");
+            }
+        }*/
         initializeGui();
     }
 
