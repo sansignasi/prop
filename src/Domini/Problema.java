@@ -102,6 +102,8 @@ public class Problema {
      * @return
      */
     public char[][] matriuChars(){
+        System.out.print(FEN);
+        T.mostrarTaulell();
         return T.matriuChars();
     }
 

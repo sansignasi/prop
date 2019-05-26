@@ -88,7 +88,7 @@ public class VistaGestioDeProblemes {
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(!(model.size() == 0) && !e.getValueIsAdjusting()) {
+                if(!(model.size() == 0) && !e.getValueIsAdjusting() && list1.getSelectedValue()!=null) {
                     String nomp = list1.getSelectedValue().toString();
                     labelMoviments.setText(String.valueOf(controladorPresentacion.getMovimentsProblema(nomp)));
                     labelDificultat.setText(controladorPresentacion.getDificultadProblema(nomp));
@@ -133,7 +133,11 @@ public class VistaGestioDeProblemes {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String nomp = list1.getSelectedValue().toString();
-                controladorPresentacion.eliminarProblema(nomp);
+                try {
+                    controladorPresentacion.eliminarProblema(nomp);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
                 model.removeElement(nomp);
                 textArea1.setText(null);
             }

@@ -162,7 +162,7 @@ public class CtrlPresentacion {
         return controladorDomini.getNomProblemesUsuari(s);
     }
 
-    public void eliminarProblema(String nomp) {
+    public void eliminarProblema(String nomp) throws Exception {
         controladorDomini.eliminarProblema(nomp);
     }
 

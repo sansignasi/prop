@@ -56,6 +56,7 @@ public class CtrlDomini {//hola
         int i = 0;
         while(i < sbproblemes.size()){
                 Problema p = gson.fromJson(sbproblemes.get(i), Problema.class);
+                p.restoreTaulell();
                 //Ranking r = gson.fromJson(sbproblemes.get(i+1), Ranking.class);
                 //p.setRanking(r);
                 bproblemes.afegirProblema(p);
@@ -202,8 +203,9 @@ public class CtrlDomini {//hola
         ctrlPresentacion.actualitzaBoard(mchar);
     }
 
-    public void eliminarProblema(String nomp) {
+    public void eliminarProblema(String nomp) throws Exception {
         bproblemes.eliminarProblema(bproblemes.buscarProblema(nomp));
+        GuardaBroblemes();
     }
 
     public boolean existeixFENambNmovs(String fen, int nmovs) {
