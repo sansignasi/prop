@@ -65,7 +65,6 @@ public class VistaMenuImportar {
                 String nomp = text_nom.getText();
                 String fen = text_fen.getText();
                 int nmovs = comboBox1.getSelectedIndex()+1;
-                System.out.println(nmovs);
                 if (nomp.isEmpty()) JOptionPane.showMessageDialog(null, "Introdueix el nom del problema");
                 else {
                     if (fen.isEmpty()) JOptionPane.showMessageDialog(null, "Introdueix el FEN del problema.");
@@ -76,6 +75,9 @@ public class VistaMenuImportar {
                             }
                             else if(controladorPresentacion.existeixFENambNmovs(fen,nmovs)){
                                 JOptionPane.showMessageDialog(null, "Ja existeix un problema amb aquest FEN i aquest nombre de moviments");
+                            }
+                            else{
+                                controladorPresentacion.cambiarVistaAImportarFEN(fen,nmovs,nomp);
                             }
                         } catch (Exception e1) {
                             e1.printStackTrace();

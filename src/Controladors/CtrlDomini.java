@@ -203,6 +203,23 @@ public class CtrlDomini {//hola
         ctrlPresentacion.actualitzaBoard(mchar);
     }
 
+    public void eliminarProblema(String nomp) {
+        bproblemes.eliminarProblema(bproblemes.buscarProblema(nomp));
+        reload();
+    }
+
+    public boolean existeixFENambNmovs(String fen, int nmovs) {
+        return bproblemes.existeixFENambNmovs(fen,nmovs);
+    }
+
+    public Boolean validarProblema(String fen, int movs) throws IncorrectFENException {
+        Problema p = new Problema(fen,movs,"temp");
+        int aux = p.validarProblema(p.getTaulell(),p.getAtacant(),p.getMoviments()*2+1);
+        System.out.print(aux);
+        if(aux == movs) return true;
+        else return false;
+    }
+
 
 
     public void precarregarProblemes() throws IncorrectFENException {
@@ -416,14 +433,7 @@ public class CtrlDomini {//hola
     }
 
 
-    public void eliminarProblema(String nomp) {
-        bproblemes.eliminarProblema(bproblemes.buscarProblema(nomp));
-        reload();
-    }
 
-    public boolean existeixFENambNmovs(String fen, int nmovs) {
-        return bproblemes.existeixFENambNmovs(fen,nmovs);
-    }
 }
 
 

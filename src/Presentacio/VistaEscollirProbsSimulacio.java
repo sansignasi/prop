@@ -39,9 +39,6 @@ public class VistaEscollirProbsSimulacio {
     }
 
     private void inicializarComponentes() throws IncorrectFENException { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
-        afegirButton.setEnabled(false);
-        eliminarButton.setEnabled(false);
-        simularButton.setEnabled(false);
         list2.setModel(model2);
         inicializarFrameVista();
 
@@ -70,6 +67,9 @@ public class VistaEscollirProbsSimulacio {
         frameVista.pack();
         frameVista.setVisible(true);
         inicializarLlistaProblemas();
+        afegirButton.setEnabled(false);
+        eliminarButton.setEnabled(false);
+        simularButton.setEnabled(false);
 
     }
 
@@ -83,6 +83,7 @@ public class VistaEscollirProbsSimulacio {
             @Override
             public void actionPerformed(ActionEvent e) {
                 desactivar();
+                model2.clear();
                 controladorPresentacion.cambiarVistaAMenuPrincipal();
             }
         });
@@ -91,15 +92,20 @@ public class VistaEscollirProbsSimulacio {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 afegirButton.setEnabled(true);
-                eliminarButton.setEnabled(false);
             }
         });
 
         list2.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                eliminarButton.setEnabled(true);
-
+                if(model2.isEmpty()){
+                    simularButton.setEnabled(false);
+                    eliminarButton.setEnabled(false);
+                }
+                else {
+                    simularButton.setEnabled(true);
+                    eliminarButton.setEnabled(true);
+                }
             }
         });
 
@@ -107,7 +113,10 @@ public class VistaEscollirProbsSimulacio {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = (String) list1.getSelectedValue();
-                if(!model2.contains(s)) model2.addElement(s);
+                if(!model2.contains(s)){
+                    model2.addElement(s);
+                    simularButton.setEnabled(true);
+                }
                 else JOptionPane.showMessageDialog(null,"Ja has afegit aquest problema a la simulació");
             }
         });
@@ -118,7 +127,6 @@ public class VistaEscollirProbsSimulacio {
                 String s = (String) list2.getSelectedValue();
                 model2.removeElement(s);
                 if(model2.isEmpty())simularButton.setEnabled(false);
-                afegirButton.setEnabled(true);
             }
         });
 

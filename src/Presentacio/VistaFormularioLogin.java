@@ -55,6 +55,7 @@ public class VistaFormularioLogin {
             public void actionPerformed(ActionEvent e) {
                 desactivar();
                 controladorPresentacion.cambiarVistaALogin();
+                passwordField1.setText("");
             }
         });
 

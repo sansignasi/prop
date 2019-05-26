@@ -20,6 +20,7 @@ public class CtrlPresentacion {
     private VistaSimulacio vistaSimulacio;
     private VistaGestioDeProblemes vistaGestioDeProblemes;
     private VistaMenuImportar vistaImportar;
+    private VistaImportarFEN vistaImportarFEN;
 
 
     public static CtrlPresentacion getInstance(){
@@ -44,6 +45,7 @@ public class CtrlPresentacion {
         vistaSimulacio = new VistaSimulacio(this);
         vistaGestioDeProblemes = new VistaGestioDeProblemes(this);
         vistaImportar = new VistaMenuImportar(this);
+        vistaImportarFEN = new VistaImportarFEN(this);
     }
     public void inicializarPresentacion() throws Exception {
         asignar();
@@ -99,6 +101,9 @@ public class CtrlPresentacion {
 
     public void cambiarVistaAImportar() {
         vistaImportar.hacerVisible();
+    }
+    public void cambiarVistaAImportarFEN(String FEN,int movs,String nomprob) throws IncorrectFENException {
+        vistaImportarFEN.hacerVisible(FEN,movs,nomprob);
     }
 
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
@@ -167,4 +172,11 @@ public class CtrlPresentacion {
         return controladorDomini.existeixFENambNmovs(fen,nmovs);
     }
 
+    public Boolean validarProblema(String fen, int movs) throws IncorrectFENException {
+        return controladorDomini.validarProblema(fen,movs);
+    }
+
+    public void afegirProblemaBP(String FEN,int n,String nomprob) throws Exception {
+        controladorDomini.afegirProblema(FEN,n,nomprob);
+    }
 }
