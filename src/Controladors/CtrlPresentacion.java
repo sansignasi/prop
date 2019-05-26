@@ -18,6 +18,7 @@ public class CtrlPresentacion {
     private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
     private VistaSimulacio vistaSimulacio;
 
+
     public static CtrlPresentacion getInstance(){
         if (ctrlPresentacion == null)
             ctrlPresentacion = new CtrlPresentacion() {
@@ -80,15 +81,12 @@ public class CtrlPresentacion {
     }
 
     public void cambiarVistaASimulacion(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
-        vistaSimulacio.hacerVisible();
-
-        controladorDomini.ferSimulacio(probs,atacant,defensor);
+        vistaSimulacio.hacerVisible(probs,atacant,defensor);
     }
 
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
         int i = controladorDomini.verificarusuari(user,psw);
         return i;
-
     }
     public void setCurrentuser(String user){
         controladorDomini.setCurrentuser(user);
@@ -126,8 +124,9 @@ public class CtrlPresentacion {
         //board.actualitzaMchar(mchar);
     }
 
-    public void enviarresultatsimulacio(Boolean b) {
-        vistaSimulacio.enviarresultatsimulacio(b);
+
+    public ArrayList<Boolean> ferSimulacio(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
+       return controladorDomini.ferSimulacio(probs,atacant,defensor);
     }
     public void movimentUsuari(int ii,int ij,int fi,int fj){
 

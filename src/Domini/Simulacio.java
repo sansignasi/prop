@@ -27,7 +27,7 @@ public class Simulacio {
             Partida p = new Partida(problema, atacant, defensor);
             Boolean b = p.jugarPartida();
             resultat.add(b);
-            c.enviarresulatsimulacio(b);
+
         }
         return resultat;
     }
