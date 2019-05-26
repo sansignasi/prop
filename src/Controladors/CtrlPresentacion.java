@@ -142,7 +142,9 @@ public class CtrlPresentacion {
         controladorDomini.getRankingProb(nomprob);
     }
 
-    public Set<String> getNomProblemesUsuari() {
-        return controladorDomini.getNomProblemesUsuari();
+    public  ArrayList<String> getNomProblemesUsuari() {
+        String s = controladorDomini.getCurrentuser();
+        System.out.print(s);
+        return controladorDomini.getNomProblemesUsuari(s);
     }
 }

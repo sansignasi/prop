@@ -86,13 +86,14 @@ public class BaseDeProblemes {//hola
         return cjtproblemes.keySet();
     }
 
-    public Set<String> getNomProblemesUsuari(String currentuser) {
-        Set<String> probs = null;
+    public  ArrayList<String> getNomProblemesUsuari(String currentuser) {
+        ArrayList<String> probs = new ArrayList<>();
         Set keys = cjtproblemes.keySet();
+        System.out.print(currentuser);
         for (Iterator i = keys.iterator(); i.hasNext();) {
             String key = (String) i.next();
-            String value = (String) cjtproblemes.get(key);
-            System.out.println(key + " = " + value);
+            Problema value = cjtproblemes.get(key);
+            if(value.getCreador().equals(currentuser)) probs.add(key);
         }
         return probs;
 

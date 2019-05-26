@@ -36,7 +36,7 @@ public class CtrlDomini {//hola
 
     private CtrlDomini() throws IncorrectFENException {
         ctrlPresentacion = CtrlPresentacion.getInstance();
-    }
+}
 
     public void setBProblemes(BaseDeProblemes b){
         bproblemes = b;
@@ -147,17 +147,17 @@ public class CtrlDomini {//hola
 
     public Set<String> getNomProblemes() throws Exception {
         precarregarProblemes();
-        ProblemesPrecarregats.get(0).setCreador("Wanyu");
+        ProblemesPrecarregats.get(0).setCreador("aa");
         ProblemesPrecarregats.get(1).setCreador("Admin");
-        ProblemesPrecarregats.get(2).setCreador("KK");
+        ProblemesPrecarregats.get(2).setCreador("aa");
         bproblemes.afegirProblema(ProblemesPrecarregats.get(1));
         bproblemes.afegirProblema(ProblemesPrecarregats.get(0));
         bproblemes.afegirProblema(ProblemesPrecarregats.get(2));
         return bproblemes.getNomProblemes();
     }
 
-    public Set<String> getNomProblemesUsuari() {
-        return bproblemes.getNomProblemesUsuari(currentuser);
+    public  ArrayList<String> getNomProblemesUsuari(String s) {
+        return bproblemes.getNomProblemesUsuari(s);
     }
 
     public int getMovimentsProblema(String s){

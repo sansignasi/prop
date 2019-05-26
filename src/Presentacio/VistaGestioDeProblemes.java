@@ -4,6 +4,7 @@ import src.Controladors.CtrlPresentacion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -40,24 +41,26 @@ public class VistaGestioDeProblemes {
         eliminarButton.setEnabled(false);
         modificarButton.setEnabled(false);
         inicializarFrameVista();
-        inicializarLlistaProblemas();
+
     }
 
-    private void inicializarFrameVista() { //preferencias del Jframe
+    private void inicializarFrameVista() throws Exception { //preferencias del Jframe
         frameVista.setPreferredSize(new Dimension(700, 495));
         frameVista.setBounds(50, 50, 700, 400);
         frameVista.setResizable(false);
         frameVista.setLocationRelativeTo(null);
         frameVista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameVista.setContentPane(panel1);
+        inicializarLlistaProblemas();
     }
 
     private void inicializarLlistaProblemas() throws Exception {
         DefaultListModel model = new DefaultListModel();
         list1.setModel(model);
-        Set<String> noms = controladorPresentacion.getNomProblemesUsuari();
-        for (Iterator i = noms.iterator(); i.hasNext();) {
-            model.addElement(i.next());
+        ArrayList<String> noms = controladorPresentacion.getNomProblemesUsuari();
+        System.out.print(noms.size());
+        for(int i = 0; i < noms.size();++i){
+            model.addElement(noms.get(i));
         }
     }
 
