@@ -70,7 +70,11 @@ public class VistaMenuPrincipal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 desactivar();
-                controladorPresentacion.cambiarVistaASelecProbJugar();
+                try {
+                    controladorPresentacion.cambiarVistaASelecProbJugar();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -91,7 +95,11 @@ public class VistaMenuPrincipal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 desactivar();
-                controladorPresentacion.cambiarVistaAGestioDeProblemes();
+                try {
+                    controladorPresentacion.cambiarVistaAGestioDeProblemes();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
 
             }
         });

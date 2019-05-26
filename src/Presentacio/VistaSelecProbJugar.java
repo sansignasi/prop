@@ -39,6 +39,7 @@ public class VistaSelecProbJugar {
         inicializarComponentes();
         asignarListenersComponentes();
 
+
     }
 
     private void inicializarComponentes() throws Exception { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
@@ -49,7 +50,6 @@ public class VistaSelecProbJugar {
         vsMaquina1Button.setEnabled(false);
         vsMaquina2Button.setEnabled(false);
         inicializarFrameVista();
-        inicializarLlistaProblemas();
     }
 
     private void inicializarFrameVista() { //preferencias del Jframe
@@ -70,10 +70,11 @@ public class VistaSelecProbJugar {
         }
     }
 
-    public void hacerVisible() {
+    public void hacerVisible() throws Exception {
         frameVista.setEnabled(true);
         frameVista.pack();
         frameVista.setVisible(true);
+        inicializarLlistaProblemas();
     }
 
     public void desactivar() {
@@ -144,6 +145,19 @@ public class VistaSelecProbJugar {
                 DefaultListModel model2 = new DefaultListModel();
                 list2.setModel(model2);
 
+            }
+        });
+
+        previewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nomp = list1.getSelectedValue().toString();
+                try {
+
+                    controladorPresentacion.cambiarVistaAPreview(nomp);
+                } catch (IncorrectFENException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 

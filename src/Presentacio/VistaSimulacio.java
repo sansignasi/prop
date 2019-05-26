@@ -47,7 +47,7 @@ public class VistaSimulacio {
         //frameVista.setBounds(50, 50, 700, 400);
         frameVista.setLocation(550,215);
         frameVista.setResizable(false);
-        frameVista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameVista.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frameVista.setContentPane(panel1);
     }
 

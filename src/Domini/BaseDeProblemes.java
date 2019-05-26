@@ -89,7 +89,6 @@ public class BaseDeProblemes {//hola
     public  ArrayList<String> getNomProblemesUsuari(String currentuser) {
         ArrayList<String> probs = new ArrayList<>();
         Set keys = cjtproblemes.keySet();
-        System.out.print(currentuser);
         for (Iterator i = keys.iterator(); i.hasNext();) {
             String key = (String) i.next();
             Problema value = cjtproblemes.get(key);

@@ -48,8 +48,7 @@ public class CtrlPresentacion {
         //controladorDomini.CarregaBP();
         controladorDomini.CarregaBU();
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
-        //vistaLogin.hacerVisible(); //descomentar para testear presentacion
-        cambiarVistaAPreview("prob1");
+        vistaLogin.hacerVisible(); //descomentar para testear presentacion
     }
 
     public void cambiarVistaAFormularioLogin() {
@@ -68,7 +67,7 @@ public class CtrlPresentacion {
         vistaMenuPrincipal.hacerVisible();
     }
 
-    public void cambiarVistaASelecProbJugar(){
+    public void cambiarVistaASelecProbJugar() throws Exception {
         vistaSelecProbJugar.hacerVisible();
     }
 
@@ -91,7 +90,7 @@ public class CtrlPresentacion {
         vistaSimulacio.hacerVisible(probs,atacant,defensor);
     }
 
-    public void cambiarVistaAGestioDeProblemes(){
+    public void cambiarVistaAGestioDeProblemes() throws Exception {
         vistaGestioDeProblemes.hacerVisible();
     }
 
@@ -149,7 +148,7 @@ public class CtrlPresentacion {
 
     public  ArrayList<String> getNomProblemesUsuari() {
         String s = controladorDomini.getCurrentuser();
-        System.out.print(s);
+
         return controladorDomini.getNomProblemesUsuari(s);
     }
 }
