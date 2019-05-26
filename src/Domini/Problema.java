@@ -201,8 +201,9 @@ public class Problema {
      */
     public int validarProblema(Taulell t, int jug, int mov){
         int k = MiniMax(t, jug, mov);
+        System.out.println(k);
         if (k == -1) return -1;
-        else return (((mov - k) / 2)-1);
+        else return ((mov - k-1) / 2);
     }
 
     /**
