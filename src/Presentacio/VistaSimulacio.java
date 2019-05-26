@@ -34,13 +34,12 @@ public class VistaSimulacio {
         asignarListenersComponentes();
 
     }
-    private void inicializarComponentes() throws MalformedURLException { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
+    private void inicializarComponentes() { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
         inicializarFrameVista();
         list1.setModel(model1);
         URL url = this.getClass().getResource("Loading.gif");
         Icon icon = new ImageIcon(url);
         gif.setIcon(icon);
-
     }
 
     private void inicializarFrameVista() { //preferencias del Jframe

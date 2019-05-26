@@ -15,6 +15,7 @@ public class CtrlPresentacion {
     private VistaMenuPrincipal vistaMenuPrincipal;
     private VistaSelecProbJugar vistaSelecProbJugar;
     private Board board;
+    private BoardPreview boardPreview;
     private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
     private VistaSimulacio vistaSimulacio;
     private VistaGestioDeProblemes vistaGestioDeProblemes;
@@ -47,8 +48,8 @@ public class CtrlPresentacion {
         //controladorDomini.CarregaBP();
         controladorDomini.CarregaBU();
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
-        vistaLogin.hacerVisible(); //descomentar para testear presentacion
-        //board.hacerVisible();
+        //vistaLogin.hacerVisible(); //descomentar para testear presentacion
+        cambiarVistaAPreview("prob1");
     }
 
     public void cambiarVistaAFormularioLogin() {
@@ -80,6 +81,10 @@ public class CtrlPresentacion {
     public void cambiarVistaAJugarPartida(String tipusjug,String nomprob) throws IncorrectFENException {
         board = new Board(this,nomprob);
         board.hacerVisible();
+    }
+    public void cambiarVistaAPreview(String nomprob) throws IncorrectFENException {
+        boardPreview = new BoardPreview(this,nomprob);
+        boardPreview.hacerVisible();
     }
 
     public void cambiarVistaASimulacion(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {

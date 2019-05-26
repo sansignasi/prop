@@ -390,8 +390,8 @@ public class CtrlDomini {//hola
         CtrlDomini c = CtrlDomini.getInstance();
 
         c.setBProblemes(bp);
-        c.GuardaBroblemes();
-        c.CarregaBP();
+        //c.GuardaBroblemes();
+        //c.CarregaBP();
 
         bp = c.getBProblemes();
         prob1 = bp.buscarProblema(prob1.getNomprob());
@@ -409,9 +409,9 @@ public class CtrlDomini {//hola
         System.out.println("lusuari te:" + u.getNom() + " " + u.getContraseña());
 
         c.setBUsers(bu);
-        c.GuardaBUsers();
+        //c.GuardaBUsers();
         System.out.println("surto del guarda");
-        c.CarregaBU();
+        //c.CarregaBU();
         System.out.println("surto del carrega");
         bu = c.getBUsuaris();
         u = bu.buscarUsuari("pol");
