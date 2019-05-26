@@ -118,9 +118,6 @@ public class CtrlDomini {//hola
     }
 
     public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
-
-        Usuari u = new Usuari("user","psw");
-        busers.afegirusuari(u);
         int i = busers.verificarusuari(user,psw);
         return i;
     }
@@ -161,7 +158,6 @@ public class CtrlDomini {//hola
     }
 
     public ArrayList<Boolean> ferSimulacio(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
-        System.out.print("fersimulacio ");
         Maquina m1;
         Maquina m2;
         ArrayList<Problema> p = new ArrayList<>();
@@ -185,9 +181,10 @@ public class CtrlDomini {//hola
 
     public void afegirProblema(String FEN, int n, String nomprob) throws Exception {
         Problema p = new Problema(FEN,n,nomprob);
-        p.setCreador("aa");
+        p.setCreador(currentuser);
+    /*    p.setCreador("aa");
         p.putRanking("aa",5E10);
-        p.putRanking("bb", 6E10);
+        p.putRanking("bb", 6E10);*/
         bproblemes.afegirProblema(p);
         GuardaBroblemes();
     }
@@ -205,7 +202,6 @@ public class CtrlDomini {//hola
 
     public void eliminarProblema(String nomp) {
         bproblemes.eliminarProblema(bproblemes.buscarProblema(nomp));
-        reload();
     }
 
     public boolean existeixFENambNmovs(String fen, int nmovs) {

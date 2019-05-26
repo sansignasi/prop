@@ -60,7 +60,7 @@ public class VistaGestioDeProblemes {
         frameVista.setLocationRelativeTo(null);
         frameVista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameVista.setContentPane(panel1);
-        inicializarLlistaProblemas();
+
     }
 
     private void inicializarLlistaProblemas() throws Exception {

@@ -51,9 +51,7 @@ public class CtrlPresentacion {
         asignar();
         controladorDomini.CarregaBP();
         controladorDomini.CarregaBU();
-        controladorDomini.afegirProblema("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1",2,"prob1");
         vistaLogin.hacerVisible(); //descomentar para testear presentacion
-        //vistaImportar.hacerVisible();
     }
 
     public void cambiarVistaAFormularioLogin() {
