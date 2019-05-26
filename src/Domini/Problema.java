@@ -157,6 +157,10 @@ public class Problema {
         return nMax;
     }
 
+    public String getFEN() {
+        return FEN;
+    }
+
     /**
      * Getter de l'atacant
      * @return Retorna 0 si l'atacant són les blanques i 1 si són les negres
@@ -201,7 +205,6 @@ public class Problema {
      */
     public int validarProblema(Taulell t, int jug, int mov){
         int k = MiniMax(t, jug, mov);
-        System.out.println(k);
         if (k == -1) return -1;
         else return ((mov - k-1) / 2);
     }

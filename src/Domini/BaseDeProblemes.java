@@ -85,4 +85,26 @@ public class BaseDeProblemes {//hola
     public Set<String> getNomProblemes(){
         return cjtproblemes.keySet();
     }
+
+    public  ArrayList<String> getNomProblemesUsuari(String currentuser) {
+        ArrayList<String> probs = new ArrayList<>();
+        Set keys = cjtproblemes.keySet();
+        for (Iterator i = keys.iterator(); i.hasNext();) {
+            String key = (String) i.next();
+            Problema value = cjtproblemes.get(key);
+            if(value.getCreador().equals(currentuser)) probs.add(key);
+        }
+        return probs;
+
+    }
+
+    public boolean existeixFENambNmovs(String fen, int nmovs) {
+        Set keys = cjtproblemes.keySet();
+        for (Iterator i = keys.iterator(); i.hasNext();) {
+            String key = (String) i.next();
+            Problema value = cjtproblemes.get(key);
+            if(value.getFEN().equals(fen) && value.getMoviments()==nmovs) return true;
+        }
+        return false;
+    }
 }

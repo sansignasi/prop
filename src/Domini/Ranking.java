@@ -31,11 +31,6 @@ public class Ranking {
         }
     }
 
-
-    public void mostraRanking(){
-        System.out.println(Collections.singletonList(rk));
-    }
-
     private static HashMap sortPerValors(HashMap map) {
         List list = new LinkedList(map.entrySet());
         // Defined Custom Comparator here
@@ -52,5 +47,27 @@ public class Ranking {
             sortedHashMap.put(entry.getKey(), entry.getValue());
         }
         return sortedHashMap;
+    }
+
+    public void eliminarRanking(){
+        rk.clear();
+    }
+
+    public String getStringRanking() {
+        HashMap h = sortPerValors(rk);
+        StringBuilder sb = new StringBuilder();
+        Iterator iter = h.entrySet().iterator();
+        int cont = 1;
+        while (iter.hasNext()){
+            HashMap.Entry entry = (HashMap.Entry) iter.next();
+            sb.append(cont);
+            sb.append(". ");
+            sb.append(entry.getKey());
+            sb.append(": ");
+            sb.append(entry.getValue());
+            sb.append(" segons\n");
+            cont++;
+        }
+        return sb.toString();
     }
 }

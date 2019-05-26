@@ -105,7 +105,6 @@ public class Partida {
             if (T.jaquemate(j2.getColor())){
                 System.out.println("~~L'atacant guanya amb Escac i mat!~~");
                 this.prob.putRanking(j1.getNom(),timej1);
-                prob.getRanking().mostraRanking();
                 return true;
             }
             else{

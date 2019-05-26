@@ -78,4 +78,5 @@ public class BaseUsuaris {
     public void afegirusuari(Usuari u){
         cjtusuaris.put(u.getNom(),u);
     }
+
 }

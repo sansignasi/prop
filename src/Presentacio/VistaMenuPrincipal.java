@@ -70,7 +70,11 @@ public class VistaMenuPrincipal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 desactivar();
-                controladorPresentacion.cambiarVistaASelecProbJugar();
+                try {
+                    controladorPresentacion.cambiarVistaASelecProbJugar();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -80,7 +84,7 @@ public class VistaMenuPrincipal {
                 desactivar();
                 try {
                     controladorPresentacion.cambiarVistaAEscollirProbsSimulacio();
-                } catch (IncorrectFENException e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
 
@@ -90,6 +94,12 @@ public class VistaMenuPrincipal {
         gestionarProblemesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                desactivar();
+                try {
+                    controladorPresentacion.cambiarVistaAGestioDeProblemes();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
 
             }
         });

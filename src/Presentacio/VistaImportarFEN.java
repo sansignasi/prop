@@ -3,7 +3,6 @@ package src.Presentacio;
 import src.Controladors.CtrlPresentacion;
 import src.Domini.IncorrectFENException;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,30 +12,28 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class VistaSimulacio {
+public class VistaImportarFEN {
     private CtrlPresentacion controladorPresentacion;
 
     private JFrame frameVista = new JFrame("Vista Simulació");
-    private JTextArea textArea1;
     private JPanel panel1;
-    private JList list1;
-    private JLabel gif;
+    private JTextArea textArea1;
     private JButton backButton;
-    private DefaultListModel model1 = new DefaultListModel();
-    private ArrayList<String> p;
-    private String a;
-    private String d;
+    private JLabel gif;
+    private String FEN;
+    private int movs;
+    private String nomprob;
 
 
-    public VistaSimulacio(CtrlPresentacion c) throws MalformedURLException {
+    public VistaImportarFEN(CtrlPresentacion c) throws MalformedURLException {
         controladorPresentacion = c;
         inicializarComponentes();
         asignarListenersComponentes();
 
     }
+
     private void inicializarComponentes() { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
         inicializarFrameVista();
-        list1.setModel(model1);
         URL url = this.getClass().getResource("Loading.gif");
         Icon icon = new ImageIcon(url);
         gif.setIcon(icon);
@@ -51,11 +48,10 @@ public class VistaSimulacio {
         frameVista.setContentPane(panel1);
     }
 
-
-    public void hacerVisible(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
-        a = atacant;
-        p = probs;
-        d = defensor;
+    public void hacerVisible(String FEN, int n,String nomprob) throws IncorrectFENException {
+        this.nomprob = nomprob;
+        this.FEN = FEN;
+        movs = n;
         frameVista.setEnabled(true);
         frameVista.pack();
         frameVista.setVisible(true);
@@ -69,48 +65,44 @@ public class VistaSimulacio {
         frameVista.setVisible(false);
         frameVista.setEnabled(false);
     }
-
-    public void enviarresultatsimulacio(ArrayList<Boolean> b) {
-        for(int i = 0; i < b.size();++i){
-            if(b.get(i))model1.addElement((i+1)+". "+p.get(i)+": L'atacant ha guanyat la partida!");
-            else model1.addElement((i+1)+". "+p.get(i)+": L'atacant ha perdut la partida");
-        }
-    }
-
     private void asignarListenersComponentes() {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 desactivar();
+                textArea1.setText("");
             }
         });
 
-
-
     }
 
-    private class aTask extends SwingWorker<ArrayList<Boolean>,Void>{
+    private class aTask extends SwingWorker<Boolean,Void>{
 
         @Override
-        protected ArrayList<Boolean> doInBackground() throws Exception {
-            ArrayList<Boolean> b = controladorPresentacion.ferSimulacio(p,a,d);
+        protected Boolean doInBackground() throws Exception {
+            Boolean b = controladorPresentacion.validarProblema(FEN,movs);
             return b;
         }
 
         @Override
         protected void done(){
             try {
-                ArrayList<Boolean> b = get();
-                enviarresultatsimulacio(b);
-                URL url = this.getClass().getResource("success.jpg");
-                Icon icon = new ImageIcon(url);
-                gif.setIcon(icon);
+                Boolean b = get();
                 gif.setVisible(false);
                 backButton.setVisible(true);
+                if(b){
+                    textArea1.append("El Problema s'ha validat amb éxit i s'ha afegit a la base de problemes.");
+                    controladorPresentacion.afegirProblemaBP(FEN,movs,nomprob);
+                }
+                else{
+                    textArea1.append("El Problema no s'ha pogut validar amb éxit.");
+                }
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 

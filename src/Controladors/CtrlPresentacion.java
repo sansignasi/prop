@@ -15,8 +15,12 @@ public class CtrlPresentacion {
     private VistaMenuPrincipal vistaMenuPrincipal;
     private VistaSelecProbJugar vistaSelecProbJugar;
     private Board board;
+    private BoardPreview boardPreview;
     private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
     private VistaSimulacio vistaSimulacio;
+    private VistaGestioDeProblemes vistaGestioDeProblemes;
+    private VistaMenuImportar vistaImportar;
+    private VistaImportarFEN vistaImportarFEN;
 
 
     public static CtrlPresentacion getInstance(){
@@ -39,14 +43,15 @@ public class CtrlPresentacion {
         vistaSelecProbJugar = new VistaSelecProbJugar(this);
         vistaEscollirProbsSimulacio = new VistaEscollirProbsSimulacio(this);
         vistaSimulacio = new VistaSimulacio(this);
+        vistaGestioDeProblemes = new VistaGestioDeProblemes(this);
+        vistaImportar = new VistaMenuImportar(this);
+        vistaImportarFEN = new VistaImportarFEN(this);
     }
     public void inicializarPresentacion() throws Exception {
         asignar();
-        //controladorDomini.CarregaBP();
+        controladorDomini.CarregaBP();
         controladorDomini.CarregaBU();
-        //controladorDomini.menuPrincipal(); //descomentar para testear dominio
         vistaLogin.hacerVisible(); //descomentar para testear presentacion
-        //board.hacerVisible();
     }
 
     public void cambiarVistaAFormularioLogin() {
@@ -65,11 +70,11 @@ public class CtrlPresentacion {
         vistaMenuPrincipal.hacerVisible();
     }
 
-    public void cambiarVistaASelecProbJugar(){
+    public void cambiarVistaASelecProbJugar() throws Exception {
         vistaSelecProbJugar.hacerVisible();
     }
 
-    public void cambiarVistaAEscollirProbsSimulacio() throws IncorrectFENException {vistaEscollirProbsSimulacio.hacerVisible();}
+    public void cambiarVistaAEscollirProbsSimulacio() throws Exception {vistaEscollirProbsSimulacio.hacerVisible();}
 
     public void cambiarVistaABoard(){
         board.hacerVisible();
@@ -79,9 +84,24 @@ public class CtrlPresentacion {
         board = new Board(this,nomprob);
         board.hacerVisible();
     }
+    public void cambiarVistaAPreview(String nomprob) throws IncorrectFENException {
+        boardPreview = new BoardPreview(this,nomprob);
+        boardPreview.hacerVisible();
+    }
 
     public void cambiarVistaASimulacion(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
         vistaSimulacio.hacerVisible(probs,atacant,defensor);
+    }
+
+    public void cambiarVistaAGestioDeProblemes() throws Exception {
+        vistaGestioDeProblemes.hacerVisible();
+    }
+
+    public void cambiarVistaAImportar() {
+        vistaImportar.hacerVisible();
+    }
+    public void cambiarVistaAImportarFEN(String FEN,int movs,String nomprob) throws IncorrectFENException {
+        vistaImportarFEN.hacerVisible(FEN,movs,nomprob);
     }
 
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
@@ -130,5 +150,31 @@ public class CtrlPresentacion {
     }
     public void movimentUsuari(int ii,int ij,int fi,int fj){
 
+    }
+
+    public String getRankingProb(String nomprob){
+        return controladorDomini.getRankingProb(nomprob);
+    }
+
+    public  ArrayList<String> getNomProblemesUsuari() {
+        String s = controladorDomini.getCurrentuser();
+
+        return controladorDomini.getNomProblemesUsuari(s);
+    }
+
+    public void eliminarProblema(String nomp) {
+        controladorDomini.eliminarProblema(nomp);
+    }
+
+    public boolean existeixFENambNmovs(String fen, int nmovs) {
+        return controladorDomini.existeixFENambNmovs(fen,nmovs);
+    }
+
+    public Boolean validarProblema(String fen, int movs) throws IncorrectFENException {
+        return controladorDomini.validarProblema(fen,movs);
+    }
+
+    public void afegirProblemaBP(String FEN,int n,String nomprob) throws Exception {
+        controladorDomini.afegirProblema(FEN,n,nomprob);
     }
 }
