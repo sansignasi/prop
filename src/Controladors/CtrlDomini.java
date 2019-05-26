@@ -2,11 +2,6 @@ package src.Controladors;
 import com.google.gson.Gson;
 import src.Domini.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 
 import java.util.*;
 
@@ -146,13 +141,6 @@ public class CtrlDomini {//hola
     }
 
     public Set<String> getNomProblemes() throws Exception {
-        precarregarProblemes();
-        ProblemesPrecarregats.get(0).setCreador("aa");
-        ProblemesPrecarregats.get(1).setCreador("Admin");
-        ProblemesPrecarregats.get(2).setCreador("aa");
-        bproblemes.afegirProblema(ProblemesPrecarregats.get(1));
-        bproblemes.afegirProblema(ProblemesPrecarregats.get(0));
-        bproblemes.afegirProblema(ProblemesPrecarregats.get(2));
         return bproblemes.getNomProblemes();
     }
 
@@ -189,11 +177,19 @@ public class CtrlDomini {//hola
         return b;
     }
 
-    public void getRankingProb(String nomprob) {
+    public String getRankingProb(String nomprob) {
         Problema p = bproblemes.buscarProblema(nomprob);
         Ranking r = p.getRanking();
+        return r.getStringRanking();
+    }
 
-
+    public void afegirProblema(String FEN, int n, String nomprob) throws Exception {
+        Problema p = new Problema(FEN,n,nomprob);
+        p.setCreador("aa");
+        p.putRanking("aa",5E10);
+        p.putRanking("bb", 6E10);
+        bproblemes.afegirProblema(p);
+        GuardaBroblemes();
     }
 
 
@@ -396,7 +392,6 @@ public class CtrlDomini {//hola
         bp = c.getBProblemes();
         prob1 = bp.buscarProblema(prob1.getNomprob());
         Ranking r = prob1.getRanking();
-        r.mostraRanking();
         t = prob1.getTaulell();
         t.mostrarTaulell();
 
@@ -421,7 +416,10 @@ public class CtrlDomini {//hola
     }
 
 
-
+    public void eliminarProblema(String nomp) {
+        bproblemes.eliminarProblema(bproblemes.buscarProblema(nomp));
+        reload();
+    }
 }
 
 

@@ -45,8 +45,9 @@ public class CtrlPresentacion {
     }
     public void inicializarPresentacion() throws Exception {
         asignar();
-        //controladorDomini.CarregaBP();
+        controladorDomini.CarregaBP();
         controladorDomini.CarregaBU();
+        controladorDomini.afegirProblema("1N1b4/6nr/R5n1/2Ppk2r/K2p2qR/8/2N1PQ2/B6B w - - 0 1",2,"prob1");
         //controladorDomini.menuPrincipal(); //descomentar para testear dominio
         vistaLogin.hacerVisible(); //descomentar para testear presentacion
     }
@@ -71,7 +72,7 @@ public class CtrlPresentacion {
         vistaSelecProbJugar.hacerVisible();
     }
 
-    public void cambiarVistaAEscollirProbsSimulacio() throws IncorrectFENException {vistaEscollirProbsSimulacio.hacerVisible();}
+    public void cambiarVistaAEscollirProbsSimulacio() throws Exception {vistaEscollirProbsSimulacio.hacerVisible();}
 
     public void cambiarVistaABoard(){
         board.hacerVisible();
@@ -142,13 +143,17 @@ public class CtrlPresentacion {
 
     }
 
-    public void getRankingProb(String nomprob){
-        controladorDomini.getRankingProb(nomprob);
+    public String getRankingProb(String nomprob){
+        return controladorDomini.getRankingProb(nomprob);
     }
 
     public  ArrayList<String> getNomProblemesUsuari() {
         String s = controladorDomini.getCurrentuser();
 
         return controladorDomini.getNomProblemesUsuari(s);
+    }
+
+    public void eliminarProblema(String nomp) {
+        controladorDomini.eliminarProblema(nomp);
     }
 }

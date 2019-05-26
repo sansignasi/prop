@@ -33,13 +33,13 @@ public class VistaGestioDeProblemes {
     private JList list1;
     private JLabel text1;
     private JButton importarButton;
+    private JTextArea textArea1;
+    private DefaultListModel model;
 
     public VistaGestioDeProblemes(CtrlPresentacion c) throws Exception {
         controladorPresentacion = c;
         inicializarComponentes();
         asignarListenersComponentes();
-
-
     }
 
     private void inicializarComponentes() throws Exception { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
@@ -49,9 +49,8 @@ public class VistaGestioDeProblemes {
         previewButton1.setEnabled(false);
         eliminarButton.setEnabled(false);
         modificarButton.setEnabled(false);
+        textArea1.setEditable(false);
         inicializarFrameVista();
-        asignarListenersComponentes();
-
     }
 
     private void inicializarFrameVista() throws Exception { //preferencias del Jframe
@@ -65,7 +64,7 @@ public class VistaGestioDeProblemes {
     }
 
     private void inicializarLlistaProblemas() throws Exception {
-        DefaultListModel model = new DefaultListModel();
+        model = new DefaultListModel();
         list1.setModel(model);
         ArrayList<String> noms = controladorPresentacion.getNomProblemesUsuari();
         for(int i = 0; i < noms.size();++i){
@@ -89,19 +88,24 @@ public class VistaGestioDeProblemes {
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                String nomp = list1.getSelectedValue().toString();
-                labelMoviments.setText(String.valueOf(controladorPresentacion.getMovimentsProblema(nomp)));
-                labelDificultat.setText(controladorPresentacion.getDificultadProblema(nomp));
-                labelAutor.setText(controladorPresentacion.getCreadorProblema(nomp));
-                labelAutor.setVisible(true);
-                labelDificultat.setVisible(true);
-                labelMoviments.setVisible(true);
-                modificarButton.setEnabled(true);
-                eliminarButton.setEnabled(true);
-                previewButton1.setEnabled(true);
-                DefaultListModel model2 = new DefaultListModel();
-                list2.setModel(model2);
-
+                if(!(model.size() == 0) && !e.getValueIsAdjusting()) {
+                    String nomp = list1.getSelectedValue().toString();
+                    labelMoviments.setText(String.valueOf(controladorPresentacion.getMovimentsProblema(nomp)));
+                    labelDificultat.setText(controladorPresentacion.getDificultadProblema(nomp));
+                    labelAutor.setText(controladorPresentacion.getCreadorProblema(nomp));
+                    labelAutor.setVisible(true);
+                    labelDificultat.setVisible(true);
+                    labelMoviments.setVisible(true);
+                    modificarButton.setEnabled(true);
+                    eliminarButton.setEnabled(true);
+                    previewButton1.setEnabled(true);
+                    textArea1.append(controladorPresentacion.getRankingProb(nomp));
+                }
+                else{
+                    eliminarButton.setEnabled(false);
+                    previewButton1.setEnabled(false);
+                    modificarButton.setEnabled(false);
+                }
             }
         });
 
@@ -118,7 +122,6 @@ public class VistaGestioDeProblemes {
             public void actionPerformed(ActionEvent e) {
                 String nomp = list1.getSelectedValue().toString();
                 try {
-                    System.out.print("hola ");
                     controladorPresentacion.cambiarVistaAPreview(nomp);
                 } catch (IncorrectFENException e1) {
                     e1.printStackTrace();
@@ -129,7 +132,10 @@ public class VistaGestioDeProblemes {
         eliminarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String nomp = list1.getSelectedValue().toString();
+                controladorPresentacion.eliminarProblema(nomp);
+                model.removeElement(nomp);
+                textArea1.setText(null);
             }
         });
 

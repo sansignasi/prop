@@ -84,7 +84,7 @@ public class VistaMenuPrincipal {
                 desactivar();
                 try {
                     controladorPresentacion.cambiarVistaAEscollirProbsSimulacio();
-                } catch (IncorrectFENException e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
 
