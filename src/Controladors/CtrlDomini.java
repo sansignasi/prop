@@ -53,11 +53,13 @@ public class CtrlDomini {//hola
 
         Vector<String> sbproblemes = db.loadBProblems("BProblems.txt");
 
-        for (int i = 0 ; i < (sbproblemes.size()/2); ++i) {
+        int i = 0;
+        while(i < sbproblemes.size()){
                 Problema p = gson.fromJson(sbproblemes.get(i), Problema.class);
-                Ranking r = gson.fromJson(sbproblemes.get(i+1), Ranking.class);
-                p.setRanking(r);
+                //Ranking r = gson.fromJson(sbproblemes.get(i+1), Ranking.class);
+                //p.setRanking(r);
                 bproblemes.afegirProblema(p);
+                ++i;
         }
     }
 
@@ -78,16 +80,16 @@ public class CtrlDomini {//hola
 
         TreeMap<String,Problema> t = bproblemes.getMap();
 
-        String[] s = new String[t.size()*2];
+        String[] s = new String[t.size()];
 
         int i = 0;
 
         for(Map.Entry<String,Problema> entry : t.entrySet()) {
             Problema p  = entry.getValue();
-            Ranking r = p.getRanking();
+            //Ranking r = p.getRanking();
             s[i] = gson.toJson(entry.getValue());
-            s[i+1] = gson.toJson(r);
-            i+=2;
+            //s[i+1] = gson.toJson(r);
+            ++i;
         }
 
         for (int j = 0; j < s.length; ++j){
