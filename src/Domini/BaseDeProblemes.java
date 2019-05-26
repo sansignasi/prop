@@ -85,4 +85,16 @@ public class BaseDeProblemes {//hola
     public Set<String> getNomProblemes(){
         return cjtproblemes.keySet();
     }
+
+    public Set<String> getNomProblemesUsuari(String currentuser) {
+        Set<String> probs = null;
+        Set keys = cjtproblemes.keySet();
+        for (Iterator i = keys.iterator(); i.hasNext();) {
+            String key = (String) i.next();
+            String value = (String) cjtproblemes.get(key);
+            System.out.println(key + " = " + value);
+        }
+        return probs;
+
+    }
 }

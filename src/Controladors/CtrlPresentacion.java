@@ -17,6 +17,7 @@ public class CtrlPresentacion {
     private Board board;
     private VistaEscollirProbsSimulacio vistaEscollirProbsSimulacio;
     private VistaSimulacio vistaSimulacio;
+    private VistaGestioDeProblemes vistaGestioDeProblemes;
 
 
     public static CtrlPresentacion getInstance(){
@@ -39,6 +40,7 @@ public class CtrlPresentacion {
         vistaSelecProbJugar = new VistaSelecProbJugar(this);
         vistaEscollirProbsSimulacio = new VistaEscollirProbsSimulacio(this);
         vistaSimulacio = new VistaSimulacio(this);
+        vistaGestioDeProblemes = new VistaGestioDeProblemes(this);
     }
     public void inicializarPresentacion() throws Exception {
         asignar();
@@ -82,6 +84,10 @@ public class CtrlPresentacion {
 
     public void cambiarVistaASimulacion(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
         vistaSimulacio.hacerVisible(probs,atacant,defensor);
+    }
+
+    public void cambiarVistaAGestioDeProblemes(){
+        vistaGestioDeProblemes.hacerVisible();
     }
 
     public int verificarusuari(String user, String psw){//0 OK 1 contra incorrecta 2 no existe user
@@ -130,5 +136,13 @@ public class CtrlPresentacion {
     }
     public void movimentUsuari(int ii,int ij,int fi,int fj){
 
+    }
+
+    public void getRankingProb(String nomprob){
+        controladorDomini.getRankingProb(nomprob);
+    }
+
+    public Set<String> getNomProblemesUsuari() {
+        return controladorDomini.getNomProblemesUsuari();
     }
 }

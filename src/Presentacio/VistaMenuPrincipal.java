@@ -90,6 +90,8 @@ public class VistaMenuPrincipal {
         gestionarProblemesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                desactivar();
+                controladorPresentacion.cambiarVistaAGestioDeProblemes();
 
             }
         });

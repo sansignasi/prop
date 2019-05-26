@@ -156,6 +156,10 @@ public class CtrlDomini {//hola
         return bproblemes.getNomProblemes();
     }
 
+    public Set<String> getNomProblemesUsuari() {
+        return bproblemes.getNomProblemesUsuari(currentuser);
+    }
+
     public int getMovimentsProblema(String s){
         return bproblemes.buscarProblema(s).getMoviments();
     }
@@ -183,6 +187,13 @@ public class CtrlDomini {//hola
         Simulacio s = new Simulacio(m1,m2,p);
         ArrayList<Boolean> b = s.simular();
         return b;
+    }
+
+    public void getRankingProb(String nomprob) {
+        Problema p = bproblemes.buscarProblema(nomprob);
+        Ranking r = p.getRanking();
+
+
     }
 
 
@@ -408,6 +419,9 @@ public class CtrlDomini {//hola
 
 
     }
+
+
+
 }
 
 

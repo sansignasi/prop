@@ -29,6 +29,9 @@ public class VistaSelecProbJugar {
     private JLabel labelAutor;
     private JLabel labelDificultat;
     private JLabel labelMoviments;
+    private JList list2;
+    private JButton previewButton;
+
 
 
     public VistaSelecProbJugar(CtrlPresentacion c) throws Exception {
@@ -138,6 +141,9 @@ public class VistaSelecProbJugar {
                 vsJugadorButton.setEnabled(true);
                 vsMaquina1Button.setEnabled(true);
                 vsMaquina2Button.setEnabled(true);
+                DefaultListModel model2 = new DefaultListModel();
+                list2.setModel(model2);
+
             }
         });
 
