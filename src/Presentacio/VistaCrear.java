@@ -353,37 +353,48 @@ public class VistaCrear {
             contp++;
             return true;
         }
-        else if(piece=='P'&&contP>7){
+        else if(piece=='P'&&contP<8){
+            contP++;
             return true;
         }
-        else if(piece=='N'&&contN>1){
+        else if(piece=='N'&&contN<2){
+            contN++;
             return true;
         }
-        else if(piece=='n'&&contN>1){
+        else if(piece=='n'&&contN<2){
+            contn++;
             return true;
         }
-        else if(piece=='b'&&contb>1){
+        else if(piece=='b'&&contb<2){
+            contb++;
             return true;
         }
-        else if(piece=='B'&&contB>1){
+        else if(piece=='B'&&contB<2){
+            contB++;
             return true;
         }
-        else if(piece=='r'&&contr>1){
+        else if(piece=='r'&&contr<2){
+            contr++;
             return true;
         }
-        else if(piece=='R'&&contR>1){
+        else if(piece=='R'&&contR<2){
+            contR++;
             return true;
         }
-        else if(piece=='q'&&contq>0){
+        else if(piece=='q'&&contq<1){
+            contq++;
             return true;
         }
-        else if(piece=='Q'&&contQ>0){
+        else if(piece=='Q'&&contQ<1){
+            contQ++;
             return true;
         }
-        else if(piece=='k'&&contK>0){
+        else if(piece=='k'&&contk<1){
+            contk++;
             return true;
         }
-        else if(piece=='K'&&contK>0){
+        else if(piece=='K'&&contK<1){
+            contK++;
             return true;
         }
         return res;
