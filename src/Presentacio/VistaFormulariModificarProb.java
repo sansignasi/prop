@@ -7,17 +7,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VistaMenuImportar {
+public class VistaFormulariModificarProb {
     CtrlPresentacion controladorPresentacion;
+
+    private JFrame frameVista = new JFrame("Informació problema a modificar");
     private JTextField text_nom;
     private JPanel panel1;
-    private JFrame frameVista = new JFrame("Importar FEN");
-    private JTextField text_fen;
-    private JButton crearProblemaButton;
+    private JComboBox movs;
+    private JComboBox color;
     private JButton backButton;
-    private JComboBox comboBox1;
+    private JButton crearProblemaButton;
+    private String FENincompleto;
+    private String nomprob;
 
-    public VistaMenuImportar(CtrlPresentacion c){
+    public VistaFormulariModificarProb(CtrlPresentacion c){
         controladorPresentacion = c;
         inicializarComponentes(); //iniciar las configs de cada elemento
         asignarListenersComponentes(); //asignar listeners de los elementos(clikar boton, etc...)
@@ -35,7 +38,9 @@ public class VistaMenuImportar {
         frameVista.setContentPane(panel1);
     }
 
-    public void hacerVisible() {
+    public void hacerVisible(String s, String nomprob) {
+        this.nomprob = nomprob;
+        FENincompleto = s;
         frameVista.setEnabled(true);
         frameVista.pack();
         frameVista.setVisible(true);
@@ -51,40 +56,37 @@ public class VistaMenuImportar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 desactivar();
-                try {
-                    controladorPresentacion.cambiarVistaAGestioDeProblemes();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
+            }
+        });
+
+        crearProblemaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nomp = text_nom.getText();
+                String atacant = (String)color.getSelectedItem();
+                int nmovs = movs.getSelectedIndex()+1;
+                String atk;
+                if(atacant.equals("Blanques"))atk = "w";
+                else atk = "b";
+                String fen = FENincompleto+" "+atk+" - - 0 1";
+                if (nomp.isEmpty()) JOptionPane.showMessageDialog(null, "Introdueix el nom del problema");
+                else {
+                    try {
+                        if(controladorPresentacion.getNomProblemes().contains(nomp)){
+                            JOptionPane.showMessageDialog(null, "Ja existeix un problema amb aquest nom.");
+                        }
+                        else if(controladorPresentacion.existeixFENambNmovs(fen,nmovs)){
+                            JOptionPane.showMessageDialog(null, "Ja existeix un problema amb aquest FEN i aquest nombre de moviments");
+                        }
+                        else{
+                            //controladorPresentacion.cambiarVista
+                        }
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
         });
 
-        crearProblemaButton.addActionListener(new ActionListener() { //boton de login
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String nomp = text_nom.getText();
-                String fen = text_fen.getText();
-                int nmovs = comboBox1.getSelectedIndex()+1;
-                if (nomp.isEmpty()) JOptionPane.showMessageDialog(null, "Introdueix el nom del problema");
-                else {
-                    if (fen.isEmpty()) JOptionPane.showMessageDialog(null, "Introdueix el FEN del problema.");
-                    else {
-                        try {
-                            if(controladorPresentacion.getNomProblemes().contains(nomp)){
-                                JOptionPane.showMessageDialog(null, "Ja existeix un problema amb aquest nom.");
-                            }
-                            else if(controladorPresentacion.existeixFENambNmovs(fen,nmovs)){
-                                JOptionPane.showMessageDialog(null, "Ja existeix un problema amb aquest FEN i aquest nombre de moviments");
-                            }
-                            else{
-                                controladorPresentacion.cambiarVistaAImportarFEN(fen,nmovs,nomp);
-                            }
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
-                        }
-                    }
-                    }
-                }
-        });
     }
 }

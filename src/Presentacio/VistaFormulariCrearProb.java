@@ -33,7 +33,7 @@ public class VistaFormulariCrearProb {
         frameVista.setPreferredSize(new Dimension(500,200));
         frameVista.setResizable(false);
         frameVista.setLocation(400,215);
-        frameVista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameVista.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frameVista.setContentPane(panel1);
     }
 

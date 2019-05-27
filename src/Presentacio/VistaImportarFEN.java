@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
 public class VistaImportarFEN {
     private CtrlPresentacion controladorPresentacion;
 
-    private JFrame frameVista = new JFrame("Vista Simulació");
+    private JFrame frameVista = new JFrame("Vista Validar");
     private JPanel panel1;
     private JTextArea textArea1;
     private JButton backButton;
@@ -49,6 +49,7 @@ public class VistaImportarFEN {
     }
 
     public void hacerVisible(String FEN, int n,String nomprob) throws IncorrectFENException {
+        gif.setVisible(true);
         this.nomprob = nomprob;
         this.FEN = FEN;
         movs = n;

@@ -23,6 +23,9 @@ public class CtrlPresentacion {
     private VistaImportarFEN vistaImportarFEN;
     private VistaCrear vistaCrear;
     private VistaFormulariCrearProb vistaFormulariCrearProb;
+    private VistaModificar vistaModificar;
+    private VistaFormulariModificarProb vistaFormulariModificarProb;
+    private VistaValidarModificacion vistaValidarModificacion;
 
 
     public static CtrlPresentacion getInstance(){
@@ -49,7 +52,12 @@ public class CtrlPresentacion {
         vistaImportar = new VistaMenuImportar(this);
         vistaImportarFEN = new VistaImportarFEN(this);
         vistaFormulariCrearProb = new VistaFormulariCrearProb(this);
+        vistaFormulariModificarProb = new VistaFormulariModificarProb(this);
+        vistaValidarModificacion = new VistaValidarModificacion();
+        vistaModificar = new VistaModificar(this);
+
     }
+
     public void inicializarPresentacion() throws Exception {
         asignar();
         controladorDomini.CarregaBP();
@@ -98,8 +106,16 @@ public class CtrlPresentacion {
         vistaCrear.hacerVisible();
     }
 
+    public void cambiarVistaAModificar(char[][] c,String nomp){
+        vistaModificar.hacerVisible(c,nomp);
+    }
+
     public void cambiarVistaAForumulariCrearProb(String fen){
         vistaFormulariCrearProb.hacerVisible(fen);
+    }
+
+    public void cambiarVistaAFormulariModificarProb(String fen, String nomp){
+        vistaFormulariModificarProb.hacerVisible(fen,nomp);
     }
 
     public void cambiarVistaASimulacion(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {

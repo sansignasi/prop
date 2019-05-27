@@ -17,7 +17,6 @@ public class VistaSimulacio {
     private CtrlPresentacion controladorPresentacion;
 
     private JFrame frameVista = new JFrame("Vista Simulació");
-    private JTextArea textArea1;
     private JPanel panel1;
     private JList list1;
     private JLabel gif;
@@ -53,6 +52,8 @@ public class VistaSimulacio {
 
 
     public void hacerVisible(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
+        gif.setVisible(true);
+        model1.clear();
         a = atacant;
         p = probs;
         d = defensor;
