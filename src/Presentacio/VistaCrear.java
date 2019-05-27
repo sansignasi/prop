@@ -40,6 +40,20 @@ public class VistaCrear {
     private JMenuItem reinaN = new JMenuItem("Reina");
     private JMenuItem reiB = new JMenuItem("Rei");
     private JMenuItem reiN = new JMenuItem("Rei");
+    private int contp = 0;
+    private int contP = 0;
+    private int contn = 0;
+    private int contN = 0;
+    private int contb = 0;
+    private int contB = 0;
+    private int contr = 0;
+    private int contR = 0;
+    private int contq = 0;
+    private int contQ = 0;
+    private int contk = 0;
+    private int contK = 0;
+
+
 
 
 
@@ -189,13 +203,16 @@ public class VistaCrear {
                             public void actionPerformed(ActionEvent e) {
                                 mchar[finalIi][finalJj] = piece;
                                 ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[finalIi][finalJj]));
-                                if(mchar[finalIi][finalJj]!='-') {
+                                if(mchar[finalIi][finalJj]!='-'&& pieceMax(piece)) {
                                     chessBoardSquares[finalIi][finalJj].setIcon(img3);
                                 }
-                                else{
+                                else if(mchar[finalIi][finalJj]=='-'){
                                     ImageIcon icon = new ImageIcon(
                                             new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
                                     chessBoardSquares[finalIi][finalJj].setIcon(icon);
+                                }
+                                else{
+                                    JOptionPane.showMessageDialog(null,"No pots posar més peces d'aquest tipus");
                                 }
                                 System.out.println(finalIi + ", " + finalJj + ": " + mchar[finalIi][finalJj]);
                             }
@@ -289,9 +306,87 @@ public class VistaCrear {
         eliminarPiece.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(piece=='p'){
+                    contp--;
+                }
+                else if(piece=='P'){
+                    contP--;
+                }
+                else if(piece=='N'){
+                    contN--;
+                }
+                else if(piece=='n'){
+                    contn--;
+                }
+                else if(piece=='b'){
+                    contb--;
+                }
+                else if(piece=='B'){
+                    contB--;
+                }
+                else if(piece=='r'){
+                    contr--;
+                }
+                else if(piece=='R'){
+                    contR--;
+                }
+                else if(piece=='q'){
+                    contq--;
+                }
+                else if(piece=='Q'){
+                    contQ--;
+                }
+                else if(piece=='k'){
+                    contk--;
+                }
+                else if(piece=='K'){
+                    contK--;
+                }
                 piece = '-';
             }
         });
+    }
+
+    private boolean pieceMax(char piece){
+        boolean res = false;
+        if(piece=='p'&&contp<8){
+            contp++;
+            return true;
+        }
+        else if(piece=='P'&&contP>7){
+            return true;
+        }
+        else if(piece=='N'&&contN>1){
+            return true;
+        }
+        else if(piece=='n'&&contN>1){
+            return true;
+        }
+        else if(piece=='b'&&contb>1){
+            return true;
+        }
+        else if(piece=='B'&&contB>1){
+            return true;
+        }
+        else if(piece=='r'&&contr>1){
+            return true;
+        }
+        else if(piece=='R'&&contR>1){
+            return true;
+        }
+        else if(piece=='q'&&contq>0){
+            return true;
+        }
+        else if(piece=='Q'&&contQ>0){
+            return true;
+        }
+        else if(piece=='k'&&contK>0){
+            return true;
+        }
+        else if(piece=='K'&&contK>0){
+            return true;
+        }
+        return res;
     }
 
     public void hacerVisible() {
@@ -303,12 +398,28 @@ public class VistaCrear {
         f.setLocationByPlatform(true);
         f.setJMenuBar(menuCrear);
         piece = '-';
+        resetConts();
         // ensures the frame is the minimum size it needs to be
         // in order display the components within it
         f.pack();
         // ensures the minimum size is enforced.
         f.setMinimumSize(f.getSize());
         f.setVisible(true);
+    }
+
+    private void resetConts() {
+        contp = 0;
+        contP = 0;
+        contn = 0;
+        contN = 0;
+        contb = 0;
+        contB = 0;
+        contr = 0;
+        contR = 0;
+        contq = 0;
+        contQ = 0;
+        contk = 0;
+        contK = 0;
     }
 
 }
