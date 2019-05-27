@@ -54,8 +54,6 @@ public class CtrlPresentacion {
         vistaFormulariCrearProb = new VistaFormulariCrearProb(this);
         vistaFormulariModificarProb = new VistaFormulariModificarProb(this);
         vistaValidarModificacion = new VistaValidarModificacion();
-        vistaModificar = new VistaModificar(this);
-
     }
 
     public void inicializarPresentacion() throws Exception {
@@ -106,8 +104,9 @@ public class CtrlPresentacion {
         vistaCrear.hacerVisible();
     }
 
-    public void cambiarVistaAModificar(char[][] c,String nomp){
-        vistaModificar.hacerVisible(c,nomp);
+    public void cambiarVistaAModificar(String nomp){
+        vistaModificar = new VistaModificar(this, nomp);
+        vistaModificar.hacerVisible();
     }
 
     public void cambiarVistaAForumulariCrearProb(String fen){

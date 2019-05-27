@@ -48,11 +48,11 @@ public class Taulell {
 
     public Piece copiaPiece(Piece u){
         Piece p;
-        if (u.getTipus() == "Pawn") p = new Pawn(u);
-        else if (u.getTipus() == "King") p = new King(u);
-        else if (u.getTipus() == "Knight") p = new Knight(u);
-        else if (u.getTipus() == "Bishop") p = new Bishop(u);
-        else if (u.getTipus() == "Queen") p = new Queen(u);
+        if (u instanceof Pawn) p = new Pawn(u);
+        else if (u instanceof King) p = new King(u);
+        else if (u instanceof Knight) p = new Knight(u);
+        else if (u instanceof Bishop) p = new Bishop(u);
+        else if (u instanceof Queen) p = new Queen(u);
         else p = new Rook(u);
         return p;
     }
@@ -273,7 +273,7 @@ public class Taulell {
             for (int j = 0; j < 8; ++j) {
                 if (matriu[i][j] != null) { //si hay pieza
                     if (matriu[i][j].getJugador() == jug) { //la pieza es del que defiende
-                        if (matriu[i][j].getTipus().equals("King")) { //el rey del defensor
+                        if ((matriu[i][j] instanceof King)) { //el rey del defensor
                             x = i;
                             y = j;
                         }
@@ -303,7 +303,7 @@ public class Taulell {
             for (int j = 0; j < 8; ++j) {
                 if (matriu[i][j] != null) { //si hay pieza
                     if (matriu[i][j].getJugador() == jug) { //la pieza es del que defiende
-                        if (matriu[i][j].getTipus().equals("King")) { //el rey del defensor
+                        if ((matriu[i][j] instanceof King)) { //el rey del defensor
                             x = i;
                             y = j;
                             posrey = matriu[x][y].calculaMovimentsPiece(matriu,x,y);

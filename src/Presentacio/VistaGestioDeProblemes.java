@@ -150,7 +150,7 @@ public class VistaGestioDeProblemes {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String prob  = list1.getSelectedValue().toString();
-                controladorPresentacion.cambiarVistaAModificar(controladorPresentacion.matriuProblema(prob),prob);
+                controladorPresentacion.cambiarVistaAModificar(prob);
 
             }
         });

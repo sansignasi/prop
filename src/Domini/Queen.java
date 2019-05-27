@@ -150,7 +150,7 @@ public class Queen extends Piece {
                     }
                     else {
                         res.add(new Pair(p, new Pair(auxi, auxj)));
-                        if(!m[auxi][auxj].getTipus().equals("King"))obs = true; //si no es un rey se cuenta como obstaculo
+                        if(!(m[auxi][auxj] instanceof King))obs = true; //si no es un rey se cuenta como obstaculo
                     }
                 }
             }

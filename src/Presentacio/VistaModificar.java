@@ -59,8 +59,9 @@ public class VistaModificar {
 
 
 
-    public VistaModificar(CtrlPresentacion c){
+    public VistaModificar(CtrlPresentacion c, String nomp){
         controladorPresentacion = c;
+        mchar = controladorPresentacion.matriuProblema(nomp);
         initializeGui();
     }
     
@@ -192,9 +193,6 @@ public class VistaModificar {
                                 SwingConstants.CENTER));
                     default:
                         ImageIcon imga = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[ii][jj]));
-                        Image imgb = imga.getImage();
-                        Image imagc = imgb.getScaledInstance( 27, 27,  java.awt.Image.SCALE_SMOOTH ) ;
-                        imga = new ImageIcon( imagc );
                         chessBoard.add(chessBoardSquares[jj][ii]);
                         if(mchar[ii][jj]!='-') {
                             chessBoardSquares[jj][ii].setIcon(imga);
@@ -434,16 +432,8 @@ public class VistaModificar {
         return res;
     }
 
-    public void hacerVisible(char[][] mprob,String nom) {
-        System.out.print(nom);
-        nomp = nom;
+    public void hacerVisible() {
         resetConts();
-        for(int i = 0; i<8; i++){
-            for(int j = 0; j<8; j++){
-                mchar[i][j]=mprob[i][j];
-            }
-        }
-        initializeGui();
         asignarContadores();
         JFrame f = new JFrame("Modificar Problema");
         f.setPreferredSize(new Dimension(600, 600));
