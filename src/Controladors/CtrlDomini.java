@@ -185,9 +185,6 @@ public class CtrlDomini {//hola
     public void afegirProblema(String FEN, int n, String nomprob) throws Exception {
         Problema p = new Problema(FEN,n,nomprob);
         p.setCreador(currentuser);
-    /*    p.setCreador("aa");
-        p.putRanking("aa",5E10);
-        p.putRanking("bb", 6E10);*/
         bproblemes.afegirProblema(p);
         GuardaBroblemes();
     }

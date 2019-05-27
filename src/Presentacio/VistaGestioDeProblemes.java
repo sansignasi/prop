@@ -89,6 +89,7 @@ public class VistaGestioDeProblemes {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(!(model.size() == 0) && !e.getValueIsAdjusting() && list1.getSelectedValue()!=null) {
+                    textArea1.setText("");
                     String nomp = list1.getSelectedValue().toString();
                     labelMoviments.setText(String.valueOf(controladorPresentacion.getMovimentsProblema(nomp)));
                     labelDificultat.setText(controladorPresentacion.getDificultadProblema(nomp));
@@ -100,6 +101,7 @@ public class VistaGestioDeProblemes {
                     eliminarButton.setEnabled(true);
                     previewButton1.setEnabled(true);
                     textArea1.append(controladorPresentacion.getRankingProb(nomp));
+
                 }
                 else{
                     eliminarButton.setEnabled(false);
@@ -112,6 +114,7 @@ public class VistaGestioDeProblemes {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                textArea1.setText("");
                 desactivar();
                 controladorPresentacion.cambiarVistaAMenuPrincipal();
             }

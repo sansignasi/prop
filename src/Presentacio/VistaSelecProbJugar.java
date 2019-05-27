@@ -85,6 +85,7 @@ public class VistaSelecProbJugar {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                textArea1.setText("");
                 desactivar();
                 controladorPresentacion.cambiarVistaAMenuPrincipal();
             }
@@ -132,6 +133,7 @@ public class VistaSelecProbJugar {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(!e.getValueIsAdjusting() && list1.getSelectedValue()!=null) {
+                    textArea1.setText("");
                     String nomp = list1.getSelectedValue().toString();
                     labelMoviments.setText(String.valueOf(controladorPresentacion.getMovimentsProblema(nomp)));
                     labelDificultat.setText(controladorPresentacion.getDificultadProblema(nomp));
