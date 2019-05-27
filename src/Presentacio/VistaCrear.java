@@ -190,11 +190,11 @@ public class VistaCrear {
         for (int ii = 0; ii < 8; ii++) {
             for (int jj = 0; jj < 8; jj++) {
                 switch (jj) {
-                    case 0:
+                    case 0://II I JJ AL REVÉS, POT PORTAR PROBLEMES
                         chessBoard.add(new JLabel("" + (ii + 1),
                                 SwingConstants.CENTER));
                     default:
-                        chessBoard.add(chessBoardSquares[jj][ii]);
+                        chessBoard.add(chessBoardSquares[ii][jj]);
                         int finalJj = jj;
                         int finalIi = ii;
                         chessBoardSquares[ii][jj].addActionListener(new ActionListener() {
@@ -328,6 +328,13 @@ public class VistaCrear {
                         chessBoardSquares[i][j].setIcon(icon);
                     }
                 }
+            }
+        });
+        crearProb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String fen = controladorPresentacion.mcharAFEN(mchar);
+                controladorPresentacion.cambiarVistaAFormularioCrear(fen);
             }
         });
     }

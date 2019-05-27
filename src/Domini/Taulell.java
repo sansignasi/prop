@@ -143,6 +143,7 @@ public class Taulell {
         return maux;
     }
 
+
     public void carregaFEN(String fen) throws IncorrectFENException {
         for (int i = 0; i < matriu.length; ++i) {
             for (int j = 0; j < matriu[0].length; ++j) {
@@ -221,7 +222,7 @@ public class Taulell {
                         fen += emptyCounter;
                         emptyCounter = 0;
                     }
-                        fen += matriu[i][j].getLletra();
+                    fen += matriu[i][j].getLletra();
 
                 } else {
                     emptyCounter++;

@@ -184,4 +184,31 @@ public class CtrlPresentacion {
     public void afegirProblemaBP(String FEN,int n,String nomprob) throws Exception {
         controladorDomini.afegirProblema(FEN,n,nomprob);
     }
+
+    public String mcharAFEN(char[][] mchar) {
+        String fen = "";
+        // Build the board description:
+        for(int i=0; i<8; i++) {
+            int emptyCounter = 0;
+            for(int j=0;j<8;j++) {
+                if(mchar[i][j]!='-') {
+                    if(emptyCounter!=0) {
+                        fen += emptyCounter;
+                        emptyCounter = 0;
+                    }
+                    fen += mchar[i][j];
+
+                } else {
+                    emptyCounter++;
+                }
+            }
+            if(emptyCounter!=0) {
+                fen += emptyCounter;
+            }
+            if(i!=7) {
+                fen += "/";
+            }
+        }
+        return fen;
+    }
 }

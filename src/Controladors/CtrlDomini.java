@@ -428,9 +428,6 @@ public class CtrlDomini {//hola
 
 
     }
-
-
-
 }
 
 
