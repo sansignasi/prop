@@ -14,9 +14,17 @@ import java.util.Set;
 public class Ranking {
     HashMap<String,Double> rk = new HashMap<String,Double>();
 
+    /**
+     * Creadora per defecte de la classe Ranking
+     */
     public Ranking(){
     }
 
+    /**
+     * Funció que introdueix una nova entrada al Ranking
+     * @param s String que representa un usuari que ha jugat el problema
+     * @param i Double que representa la puntuació que ha fet l'usurari
+     */
     public void introRank(String s, Double i){
         boolean b = rk.containsKey(s);
         double tsecs = (double) i / 1_000_000_000;
@@ -31,6 +39,11 @@ public class Ranking {
         }
     }
 
+    /**
+     * Funció estàtica que retorna el HashMap  rebut com a paràmetre ordenat per el temps (valor del map)
+     * @param map Map que volem ordenar
+     * @return Retorna un Hashmap equivalent al map rebut com a paràmetre ordenat per el segon valor
+     */
     private static HashMap sortPerValors(HashMap map) {
         List list = new LinkedList(map.entrySet());
         // Defined Custom Comparator here
@@ -53,6 +66,10 @@ public class Ranking {
         rk.clear();
     }
 
+    /**
+     * Getter del st
+     * @return
+     */
     public String getStringRanking() {
         HashMap h = sortPerValors(rk);
         StringBuilder sb = new StringBuilder();

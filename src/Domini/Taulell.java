@@ -19,6 +19,9 @@ public class Taulell {
 
     //CREADORES
 
+    /**
+     * Creadora per defecte de la classe taulell
+     */
     public Taulell() {
         this.reiblanc = true;
         this.reinegre = true;
@@ -30,6 +33,10 @@ public class Taulell {
         }
     }
 
+    /**
+     * Creadora de la classe taulell
+     * @param mat Matriu de peces que itroduirem com a atribut matriu de la classe Taulell
+     */
     public Taulell(Piece[][] mat){
         {
             this.reiblanc = true;
@@ -38,6 +45,11 @@ public class Taulell {
         }
     }
 
+    /**
+     * Creadora taulell
+     * @param fen Carreguem com a taulell de la classe el taulell resultant de transformar el FEN que s'ha rebut com a paràmetre a un taulell
+     * @throws IncorrectFENException
+     */
     public Taulell(String fen) throws IncorrectFENException{
         this.reiblanc = true;
         this.reinegre = true;
@@ -46,6 +58,11 @@ public class Taulell {
 
     //COPIADORES
 
+    /**
+     * Funció auxiliar que copia una Piece
+     * @param u Piece a copiar
+     * @return Retorna una piece idèntica a la Piece rebuda com a paràmetre
+     */
     public Piece copiaPiece(Piece u){
         Piece p;
         if (u instanceof Pawn) p = new Pawn(u);
@@ -57,6 +74,10 @@ public class Taulell {
         return p;
     }
 
+    /**
+     * Copiem la matriu de l'objecte Taulell rebut com a paràmetre a l'atribut matriu de la classe
+     * @param t Taulell a copiar
+     */
     public void copiaTaulell(Taulell t){
 
         Piece[][] k = t.matriu;
@@ -78,21 +99,41 @@ public class Taulell {
 
     //GETTERS
 
+    /**
+     * Getter de la matriu de Pieces
+     * @return Retorna l'atribut matriu de la classe
+     */
     public Piece[][] getTaulell(){
         return matriu;
     }
 
+    /**
+     * Getter de la Piece corresponent a la fila i columna j de l'atribut matriu de Pieces
+     * @param i Fila
+     * @param j Columna
+     * @return Es retorna la Piece de la fila i columna j de la matriu de Pieces
+     */
     public Piece getPiece(int i, int j){
         return matriu[i][j];
     }
     //SETTERS
 
+    /**
+     * Setter que posa el rei del jugador jg a b
+     * @param b Posarem el rei a true o false depenent del valor de b
+     * @param jg Indica quin serà el rei (blanc o negre) que modificarem
+     */
     public void setRei(boolean b, int jg){
 
         if (jg == 0) this.reiblanc = b;
         else if (jg == 1) this.reinegre = b;
     }
 
+    /**
+     * Actualitza el taulell, mou la Piece p1 a la posició posFI
+     * @param p1 Piece que mourem (tenim la posició de la Piece dins de l'objecte
+     * @param posFi Posició on la mourem
+     */
     public void actualitzarTaulell(Piece p1, Pair posFi) {
         //PRE: p1 és una peça de la matriu i p una posició vàlida on es pot moure p1
         //POST: s'actualitza la matriu, amb la peça p1 posicionada a p
@@ -118,16 +159,31 @@ public class Taulell {
 
     //MÈTODES
 
+    /**
+     * Consultora que retorna un boolea en funció de si a la posició(i,j) de la matriu de Pieces hi ha una Piece o no
+     * @param i Indica la fila
+     * @param j Indica la columna
+     * @return Retorna un booleà que indica si hi ha una Piece a la posició(i,j) de l'atribut matriu de la classe
+     */
     public boolean tePiece(int i, int j){
         return (matriu[i][j] != null);
     }
 
+    /**
+     * Consultora que retorna un booleà en funció de si el jugador jg del taulell té el rei viu o no
+     * @param jg Jugador al que consultarem el seu estat
+     * @return Retorna true si té el rei i false en cas contrari
+     */
     public boolean teRei(int jg){
 
         if (jg == 0) return this.reiblanc;
         else return this.reinegre;
     }
 
+    /**
+     * Transforma la matriu de Pieces de la classe Taulell a una matriu de chars
+     * @return Retorna la matriu de chars equivalent a l'atribut matriu de la classe
+     */
     public char[][] matriuChars(){
         char[][] maux = new char[8][8];
         for(int i=0;i<8;i++){
@@ -143,7 +199,11 @@ public class Taulell {
         return maux;
     }
 
-
+    /**
+     * Carrega un FEN i crea un matriu de Pieces a partir d'aquest
+     * @param fen String que representa el FEN
+     * @throws IncorrectFENException
+     */
     public void carregaFEN(String fen) throws IncorrectFENException {
         for (int i = 0; i < matriu.length; ++i) {
             for (int j = 0; j < matriu[0].length; ++j) {
@@ -211,6 +271,10 @@ public class Taulell {
         }
     }
 
+    /**
+     * Transforma la matriu de Pieces del Taulell a un string FEN
+     * @return Retorna el FEN corresponent a l'estat de la matriu de Pieces del taulell
+     */
     public String taulellAFEN() {
         String fen = "";
         // Build the board description:
@@ -265,6 +329,12 @@ public class Taulell {
             System.out.println();
         }
     }
+
+    /**
+     * Calcula si el jugador jug està en escac
+     * @param jug Jugador que consultarem
+     * @return Retorna true si el jugador jug esta en escac i false en cas contrari
+     */
     public boolean jaque(int jug) {//jug es el jugador al que le estan haciendo el jaque(0 atacante 1 defensor)
         ArrayList<Pair> posenemy = new ArrayList<>();
         int x = 0;
@@ -293,6 +363,11 @@ public class Taulell {
         return amenaza;
     }
 
+    /**
+     * Calcula si el jugador jug esta en escac i mat
+     * @param jug Jugador que consultarem
+     * @return Retorna true si esta en escac i mat i false en cas contrari
+     */
     public boolean jaquemate(int jug){//jug es el jugador al que le estan haciendo el jaquemate(0 atacante 1 defensor)
         ArrayList<Pair> posenemy = new ArrayList<>();
         int x = 0;
