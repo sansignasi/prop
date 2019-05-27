@@ -63,6 +63,7 @@ public class VistaCrear {
         initializeGui();
     }
 
+
     public void actualitzaMchar(char[][] mcharx){
         mchar = mcharx;
     }
@@ -199,20 +200,28 @@ public class VistaCrear {
                         chessBoardSquares[ii][jj].addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                mchar[finalIi][finalJj] = piece;
-                                ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[finalIi][finalJj]));
-                                if(mchar[finalIi][finalJj]!='-'&& pieceMax(piece)) {
-                                    chessBoardSquares[finalIi][finalJj].setIcon(img3);
-                                }
-                                else if(mchar[finalIi][finalJj]=='-'){
+                                if(piece == '-'){
+                                    decrementarCont(mchar[finalIi][finalJj]);
+                                    mchar[finalIi][finalJj] = piece;
                                     ImageIcon icon = new ImageIcon(
                                             new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
                                     chessBoardSquares[finalIi][finalJj].setIcon(icon);
                                 }
                                 else{
-                                    JOptionPane.showMessageDialog(null,"No pots posar més peces d'aquest tipus");
+                                    if(mchar[finalIi][finalJj] != piece && pieceMax(piece)){
+                                        decrementarCont(mchar[finalIi][finalJj]);
+                                        mchar[finalIi][finalJj] = piece;
+                                        ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[finalIi][finalJj]));
+                                        chessBoardSquares[finalIi][finalJj].setIcon(img3);
+                                    }
+                                    else if(!pieceMax(piece)){
+                                        JOptionPane.showMessageDialog(null,"No pots posar més peces d'aquest tipus");
+                                    }
+                                    else{
+                                        decrementarCont(piece);
+                                    }
+                                    //System.out.println(finalIi + ", " + finalJj + ": " + mchar[finalIi][finalJj]);
                                 }
-                                System.out.println(finalIi + ", " + finalJj + ": " + mchar[finalIi][finalJj]);
                             }
                         });
                 }
@@ -304,48 +313,13 @@ public class VistaCrear {
         eliminarPiece.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(piece=='p'){
-                    contp--;
-                }
-                else if(piece=='P'){
-                    contP--;
-                }
-                else if(piece=='N'){
-                    contN--;
-                }
-                else if(piece=='n'){
-                    contn--;
-                }
-                else if(piece=='b'){
-                    contb--;
-                }
-                else if(piece=='B'){
-                    contB--;
-                }
-                else if(piece=='r'){
-                    contr--;
-                }
-                else if(piece=='R'){
-                    contR--;
-                }
-                else if(piece=='q'){
-                    contq--;
-                }
-                else if(piece=='Q'){
-                    contQ--;
-                }
-                else if(piece=='k'){
-                    contk--;
-                }
-                else if(piece=='K'){
-                    contK--;
-                }
                 piece = '-';
             }
         });
         restaurar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                resetConts();
                 for(int i = 0; i < 8; i++){
                     for(int j = 0; j < 8; j++){
                         mchar[i][j]='-';
@@ -356,6 +330,44 @@ public class VistaCrear {
                 }
             }
         });
+    }
+    private void decrementarCont(char c){
+        if(c=='p'){
+            contp--;
+        }
+        else if(c=='P'){
+            contP--;
+        }
+        else if(c=='N'){
+            contN--;
+        }
+        else if(c=='n'){
+            contn--;
+        }
+        else if(c=='b'){
+            contb--;
+        }
+        else if(c=='B'){
+            contB--;
+        }
+        else if(c=='r'){
+            contr--;
+        }
+        else if(c=='R'){
+            contR--;
+        }
+        else if(c=='q'){
+            contq--;
+        }
+        else if(c=='Q'){
+            contQ--;
+        }
+        else if(c=='k'){
+            contk--;
+        }
+        else if(c=='K'){
+            contK--;
+        }
     }
 
     private boolean pieceMax(char piece){

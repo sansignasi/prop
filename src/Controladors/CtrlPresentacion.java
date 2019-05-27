@@ -21,6 +21,7 @@ public class CtrlPresentacion {
     private VistaGestioDeProblemes vistaGestioDeProblemes;
     private VistaMenuImportar vistaImportar;
     private VistaImportarFEN vistaImportarFEN;
+    private VistaCrear vistaCrear;
 
 
     public static CtrlPresentacion getInstance(){
@@ -51,9 +52,9 @@ public class CtrlPresentacion {
         asignar();
         controladorDomini.CarregaBP();
         controladorDomini.CarregaBU();
-        //vistaLogin.hacerVisible(); //descomentar para testear presentacion
-        VistaCrear vistaCrear = new VistaCrear(this);
-        vistaCrear.hacerVisible();
+        vistaLogin.hacerVisible(); //descomentar para testear presentacion
+        //VistaCrear vistaCrear = new VistaCrear(this);
+        //vistaCrear.hacerVisible();
     }
 
     public void cambiarVistaAFormularioLogin() {
@@ -89,6 +90,10 @@ public class CtrlPresentacion {
     public void cambiarVistaAPreview(String nomprob) throws IncorrectFENException {
         boardPreview = new BoardPreview(this,nomprob);
         boardPreview.hacerVisible();
+    }
+    public void cambiarVistaACrear(){
+        vistaCrear = new VistaCrear(this);
+        vistaCrear.hacerVisible();
     }
 
     public void cambiarVistaASimulacion(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {

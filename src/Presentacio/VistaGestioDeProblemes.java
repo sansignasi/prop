@@ -156,6 +156,7 @@ public class VistaGestioDeProblemes {
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                controladorPresentacion.cambiarVistaACrear();
 
             }
         });
