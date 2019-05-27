@@ -51,7 +51,9 @@ public class CtrlPresentacion {
         asignar();
         controladorDomini.CarregaBP();
         controladorDomini.CarregaBU();
-        vistaLogin.hacerVisible(); //descomentar para testear presentacion
+        //vistaLogin.hacerVisible(); //descomentar para testear presentacion
+        VistaCrear vistaCrear = new VistaCrear(this);
+        vistaCrear.hacerVisible();
     }
 
     public void cambiarVistaAFormularioLogin() {
