@@ -334,7 +334,7 @@ public class VistaCrear {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String fen = controladorPresentacion.mcharAFEN(mchar);
-                controladorPresentacion.cambiarVistaAFormularioCrear(fen);
+                controladorPresentacion.cambiarVistaAForumulariCrearProb(fen);
             }
         });
     }

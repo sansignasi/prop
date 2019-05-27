@@ -22,6 +22,7 @@ public class CtrlPresentacion {
     private VistaMenuImportar vistaImportar;
     private VistaImportarFEN vistaImportarFEN;
     private VistaCrear vistaCrear;
+    private VistaFormulariCrearProb vistaFormulariCrearProb;
 
 
     public static CtrlPresentacion getInstance(){
@@ -47,6 +48,7 @@ public class CtrlPresentacion {
         vistaGestioDeProblemes = new VistaGestioDeProblemes(this);
         vistaImportar = new VistaMenuImportar(this);
         vistaImportarFEN = new VistaImportarFEN(this);
+        vistaFormulariCrearProb = new VistaFormulariCrearProb(this);
     }
     public void inicializarPresentacion() throws Exception {
         asignar();
@@ -94,6 +96,10 @@ public class CtrlPresentacion {
     public void cambiarVistaACrear(){
         vistaCrear = new VistaCrear(this);
         vistaCrear.hacerVisible();
+    }
+
+    public void cambiarVistaAForumulariCrearProb(String fen){
+        vistaFormulariCrearProb.hacerVisible(fen);
     }
 
     public void cambiarVistaASimulacion(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
