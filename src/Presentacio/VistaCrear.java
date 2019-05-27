@@ -27,6 +27,7 @@ public class VistaCrear {
     private JMenu menuBlancas = new JMenu("Afegir blanca");
     private JMenu menuNegras = new JMenu("Afegir negra");
     private JButton eliminarPiece = new JButton("Eliminar peça");
+    private JButton restaurar = new JButton("Restaurar Taulell");
     private JButton crearProb = new JButton("Crear problema");
     private JMenuItem peoB = new JMenuItem("Peó");
     private JMenuItem peoN = new JMenuItem("Peó");
@@ -70,11 +71,7 @@ public class VistaCrear {
     public final void initializeGui() {
         // set up the main GUI
         gui.setBorder(new EmptyBorder(5, 5, 5, 5));
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++){
-                mchar[i][j]='-';
-            }
-        }
+
         chessBoard = new JPanel(new GridLayout(0, 9));
         chessBoard.setBorder(new LineBorder(Color.BLACK));
         gui.add(chessBoard);
@@ -156,6 +153,7 @@ public class VistaCrear {
         menuCrear.add(menuBlancas);
         menuCrear.add(menuNegras);
         menuCrear.add(eliminarPiece);
+        menuCrear.add(restaurar);
         menuCrear.add(crearProb);
         // create the chess board squares
         Insets buttonMargin = new Insets(0, 0, 0, 0);
@@ -345,6 +343,19 @@ public class VistaCrear {
                 piece = '-';
             }
         });
+        restaurar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(int i = 0; i < 8; i++){
+                    for(int j = 0; j < 8; j++){
+                        mchar[i][j]='-';
+                        ImageIcon icon = new ImageIcon(
+                                new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+                        chessBoardSquares[i][j].setIcon(icon);
+                    }
+                }
+            }
+        });
     }
 
     private boolean pieceMax(char piece){
@@ -361,7 +372,7 @@ public class VistaCrear {
             contN++;
             return true;
         }
-        else if(piece=='n'&&contN<2){
+        else if(piece=='n'&&contn<2){
             contn++;
             return true;
         }
@@ -410,6 +421,11 @@ public class VistaCrear {
         f.setJMenuBar(menuCrear);
         piece = '-';
         resetConts();
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                mchar[i][j]='-';
+            }
+        }
         // ensures the frame is the minimum size it needs to be
         // in order display the components within it
         f.pack();
