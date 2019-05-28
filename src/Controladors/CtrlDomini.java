@@ -446,6 +446,29 @@ public class CtrlDomini {//hola
         }
         return found;
     }
+
+    public int[] movimentM1(char[][] mchar, int nmovs, String nomprob) throws IncorrectFENException {
+        String fenincomplete = ctrlPresentacion.mcharAFEN(mchar); //fen incompleto solo con mchar
+        String atk;
+        if(bproblemes.buscarProblema(nomprob).getAtacant() == 0) atk = "w";
+        else atk = "b";
+        int jug=0;
+        if(atk.equals("w"))jug = 1;
+        else jug = 0;
+        String fen = fenincomplete+" "+atk+" - - 0 1"; //fen bueno
+        Taulell T = new Taulell(fen);
+        Maquina1 m1 = new Maquina1();
+        Pair p = null;
+        p = m1.jugarTorn(T,jug,nmovs*2);
+        int[] res = new int[4];
+        Piece PieceAux = (Piece)p.getFirst();
+        Pair PosAux = (Pair) p.getSecond();
+        res[0]=(int)PieceAux.getPos().getFirst();
+        res[1]=(int)PieceAux.getPos().getSecond();
+        res[2]=(int)PosAux.getFirst();
+        res[3]=(int)PosAux.getSecond();
+        return res;
+    }
 }
 
 

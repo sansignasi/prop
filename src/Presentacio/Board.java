@@ -1,5 +1,6 @@
 package src.Presentacio;
 
+import lib.Pair;
 import src.Controladors.CtrlDomini;
 import src.Controladors.CtrlPresentacion;
 import src.Domini.IncorrectFENException;
@@ -28,7 +29,7 @@ public class Board {
 
     public Board(CtrlPresentacion c,String nomprob,String tipusjug){
         controladorPresentacion = c;
-        this.tipusjug = tipusjug;
+        this.tipusjug = "maquina1";
         this.nomprob = nomprob;
         nmovs = controladorPresentacion.getMovimentsProblema(nomprob);
         mchar = controladorPresentacion.matriuProblema(nomprob);
@@ -149,7 +150,7 @@ public class Board {
                                     }
 
                                 }
-                                else if(nmovs>0 && !tornuser){
+                                else if(tipusjug.equals("jugador") && nmovs>0 && !tornuser){
                                     if (!finalHihapiece && contMovs[0] == 0) {//Si no hi ha peça i és el primer click
                                         JOptionPane.showMessageDialog(null, "Selecciona una peça");
                                     }
@@ -195,6 +196,22 @@ public class Board {
                                         }
                                     }
 
+                                }
+                                else if(tipusjug.equals("maquina1") && nmovs>0 && !tornuser){
+                                    int[] vecMov = new int[4];
+                                    try {
+                                        vecMov = controladorPresentacion.movimentM1(mchar,nmovs,nomprob);
+                                        mchar[vecMov[2]][vecMov[3]]=mchar[vecMov[0]][vecMov[1]];
+                                        mchar[vecMov[0]][vecMov[1]] = '-';
+                                        ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[posFi[0]][posFi[1]]));
+                                        chessBoardSquares[vecMov[2]][vecMov[3]].setIcon(img3);
+                                        ImageIcon icon = new ImageIcon(
+                                                new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+                                        chessBoardSquares[vecMov[0]][vecMov[1]].setIcon(icon);
+                                        tornuser = true;
+                                    } catch (IncorrectFENException e1) {
+                                        e1.printStackTrace();
+                                    }
                                 }
                                 else{
                                     System.out.println("hola");

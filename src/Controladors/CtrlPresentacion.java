@@ -236,4 +236,8 @@ public class CtrlPresentacion {
     public boolean movimentValid(char[][] mchar, int[] posIni, int[] posFi,String nomprob) throws IncorrectFENException {
         return controladorDomini.movimentValid(mchar,posIni,posFi,nomprob);
     }
+
+    public int[] movimentM1(char[][] mchar, int nmovs, String nomprob) throws IncorrectFENException {
+        return (controladorDomini.movimentM1(mchar,nmovs,nomprob));
+    }
 }
