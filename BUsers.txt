@@ -1,3 +1,4 @@
-{"nomuser":"aaa","contraseña":"aaa","color":0,"rol":0}
-{"nomuser":"pablo","contraseña":"aaa","color":0,"rol":0}
+{"nomuser":"Pol","contraseña":"Garcia","color":0,"rol":0}
+{"nomuser":"aa","contraseña":"aa","color":0,"rol":0}
+{"nomuser":"lol","contraseña":"sdsds","color":0,"rol":0}
 {"nomuser":"user","contraseña":"psw","color":0,"rol":0}

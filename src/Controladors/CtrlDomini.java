@@ -1,11 +1,7 @@
 package src.Controladors;
 import com.google.gson.Gson;
+import lib.Pair;
 import src.Domini.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 
 import java.util.*;
@@ -36,7 +32,7 @@ public class CtrlDomini {//hola
 
     private CtrlDomini() throws IncorrectFENException {
         ctrlPresentacion = CtrlPresentacion.getInstance();
-    }
+}
 
     public void setBProblemes(BaseDeProblemes b){
         bproblemes = b;
@@ -58,11 +54,14 @@ public class CtrlDomini {//hola
 
         Vector<String> sbproblemes = db.loadBProblems("BProblems.txt");
 
-        for (int i = 0 ; i < (sbproblemes.size()/2); ++i) {
+        int i = 0;
+        while(i < sbproblemes.size()){
                 Problema p = gson.fromJson(sbproblemes.get(i), Problema.class);
-                Ranking r = gson.fromJson(sbproblemes.get(i+1), Ranking.class);
-                p.setRanking(r);
+                p.restoreTaulell();
+                //Ranking r = gson.fromJson(sbproblemes.get(i+1), Ranking.class);
+                //p.setRanking(r);
                 bproblemes.afegirProblema(p);
+                ++i;
         }
     }
 
@@ -83,16 +82,16 @@ public class CtrlDomini {//hola
 
         TreeMap<String,Problema> t = bproblemes.getMap();
 
-        String[] s = new String[t.size()*2];
+        String[] s = new String[t.size()];
 
         int i = 0;
 
         for(Map.Entry<String,Problema> entry : t.entrySet()) {
             Problema p  = entry.getValue();
-            Ranking r = p.getRanking();
+            //Ranking r = p.getRanking();
             s[i] = gson.toJson(entry.getValue());
-            s[i+1] = gson.toJson(r);
-            i+=2;
+            //s[i+1] = gson.toJson(r);
+            ++i;
         }
 
         for (int j = 0; j < s.length; ++j){
@@ -123,9 +122,6 @@ public class CtrlDomini {//hola
     }
 
     public int verificarusuari(String user, String psw){ //0 OK 1 contra incorrecta 2 no existe user
-
-        Usuari u = new Usuari("user","psw");
-        busers.afegirusuari(u);
         int i = busers.verificarusuari(user,psw);
         return i;
     }
@@ -146,14 +142,11 @@ public class CtrlDomini {//hola
     }
 
     public Set<String> getNomProblemes() throws Exception {
-        precarregarProblemes();
-        ProblemesPrecarregats.get(0).setCreador("Wanyu");
-        ProblemesPrecarregats.get(1).setCreador("Admin");
-        ProblemesPrecarregats.get(2).setCreador("KK");
-        bproblemes.afegirProblema(ProblemesPrecarregats.get(1));
-        bproblemes.afegirProblema(ProblemesPrecarregats.get(0));
-        bproblemes.afegirProblema(ProblemesPrecarregats.get(2));
         return bproblemes.getNomProblemes();
+    }
+
+    public  ArrayList<String> getNomProblemesUsuari(String s) {
+        return bproblemes.getNomProblemesUsuari(s);
     }
 
     public int getMovimentsProblema(String s){
@@ -168,8 +161,7 @@ public class CtrlDomini {//hola
         return bproblemes.buscarProblema(s).getDificultad();
     }
 
-    public void ferSimulacio(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
-        System.out.print("fersimulacio ");
+    public ArrayList<Boolean> ferSimulacio(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {
         Maquina m1;
         Maquina m2;
         ArrayList<Problema> p = new ArrayList<>();
@@ -181,12 +173,23 @@ public class CtrlDomini {//hola
             p.add(bproblemes.buscarProblema(probs.get(i)));
         }
         Simulacio s = new Simulacio(m1,m2,p);
-        s.simular();
+        ArrayList<Boolean> b = s.simular();
+        return b;
     }
 
-    public void enviarresulatsimulacio(Boolean b) {
-        ctrlPresentacion.enviarresultatsimulacio(b);
+    public String getRankingProb(String nomprob) {
+        Problema p = bproblemes.buscarProblema(nomprob);
+        Ranking r = p.getRanking();
+        return r.getStringRanking();
     }
+
+    public void afegirProblema(String FEN, int n, String nomprob) throws Exception {
+        Problema p = new Problema(FEN,n,nomprob);
+        p.setCreador(currentuser);
+        bproblemes.afegirProblema(p);
+        GuardaBroblemes();
+    }
+
 
     //FUNCIONES IGNASI EL MAS TONTO
 
@@ -196,6 +199,23 @@ public class CtrlDomini {//hola
 
     public void actualizarMchar(char[][] mchar) throws IncorrectFENException {
         ctrlPresentacion.actualitzaBoard(mchar);
+    }
+
+    public void eliminarProblema(String nomp) throws Exception {
+        bproblemes.eliminarProblema(bproblemes.buscarProblema(nomp));
+        GuardaBroblemes();
+    }
+
+    public boolean existeixFENambNmovs(String fen, int nmovs) {
+        return bproblemes.existeixFENambNmovs(fen,nmovs);
+    }
+
+    public Boolean validarProblema(String fen, int movs) throws IncorrectFENException {
+        Problema p = new Problema(fen,movs,"temp");
+        int aux = p.validarProblema(p.getTaulell(),p.getAtacant(),p.getMoviments()*2+1);
+        System.out.print(aux);
+        if(aux == movs) return true;
+        else return false;
     }
 
 
@@ -381,13 +401,12 @@ public class CtrlDomini {//hola
         CtrlDomini c = CtrlDomini.getInstance();
 
         c.setBProblemes(bp);
-        c.GuardaBroblemes();
-        c.CarregaBP();
+        //c.GuardaBroblemes();
+        //c.CarregaBP();
 
         bp = c.getBProblemes();
         prob1 = bp.buscarProblema(prob1.getNomprob());
         Ranking r = prob1.getRanking();
-        r.mostraRanking();
         t = prob1.getTaulell();
         t.mostrarTaulell();
 
@@ -400,15 +419,32 @@ public class CtrlDomini {//hola
         System.out.println("lusuari te:" + u.getNom() + " " + u.getContraseña());
 
         c.setBUsers(bu);
-        c.GuardaBUsers();
+        //c.GuardaBUsers();
         System.out.println("surto del guarda");
-        c.CarregaBU();
+        //c.CarregaBU();
         System.out.println("surto del carrega");
         bu = c.getBUsuaris();
         u = bu.buscarUsuari("pol");
         System.out.println("l'usuari final te:" + u.getNom() + " " + u.getContraseña());*/
 
 
+    }
+
+    public boolean movimentValid(char[][] mchar, int[] posIni, int[] posFi,String nomprob) throws IncorrectFENException {
+        String fenincomplete = ctrlPresentacion.mcharAFEN(mchar); //fen incompleto solo con mchar
+        String atk;
+        if(bproblemes.buscarProblema(nomprob).getAtacant() == 0) atk = "w";
+        else atk = "b";
+        String fen = fenincomplete+" "+atk+" - - 0 1"; //fen bueno
+        Taulell T = new Taulell(fen);
+        Piece p = T.getPiece(posIni[0],posIni[1]); //pieza a mover
+        ArrayList<Pair> pairs = p.calculaMovimentsPiece(T.getTaulell(), posIni[0], posIni[1]); //movs posibles de tu pieza a mover
+        boolean found = false;
+        for(int i = 0; i < pairs.size() && !found; ++i){
+            Pair posaux = (Pair) pairs.get(i).getSecond();
+            if ((int)posaux.getFirst() == posFi[0] && (int)posaux.getSecond() == posFi[1])found = true; //si la pos a la q quieres mover esta en los movs posibles return true
+        }
+        return found;
     }
 }
 

@@ -21,6 +21,13 @@ public class Partida {
     private CtrlDomini c = CtrlDomini.getInstance();
     //METODES
 
+    /**
+     * Creadora
+     * @param p Problema
+     * @param j1 Jugador j1
+     * @param j2 Jugador j2
+     * @throws IncorrectFENException
+     */
     public Partida(Problema p, Jugador j1, Jugador j2) throws IncorrectFENException {
         this.j1 = j1;
         this.j2 = j2;
@@ -32,10 +39,19 @@ public class Partida {
         if(j2 instanceof Usuari) j2u = true;
     }
 
+    /**
+     * Consultora que retorna la matriu de chars corresponent a l'atribut Taulell T
+     * @return Retorna una matriu de chars
+     */
     public char[][] matriuChars(){
         return T.matriuChars();
     }
 
+    /**
+     * Funcio de Jugar Partida
+     * @return Retorna un booleà que indica si l'atacant ha pogut guanyar la partida o no
+     * @throws IncorrectFENException
+     */
     public boolean jugarPartida() throws IncorrectFENException {
         String s;
         Scanner sc = new Scanner(System.in);
@@ -97,24 +113,34 @@ public class Partida {
             }
         }
         T.mostrarTaulell();
+
         if (!jaquemate) {
             System.out.println("~~L'atacant no ha aconseguit fer escac i mat en els moviments establerts, guanya el defensor!~~");
+            prob.restoreTaulell();
             return false;
         }
         else {
             if (T.jaquemate(j2.getColor())){
                 System.out.println("~~L'atacant guanya amb Escac i mat!~~");
                 this.prob.putRanking(j1.getNom(),timej1);
-                prob.getRanking().mostraRanking();
+                prob.restoreTaulell();
                 return true;
             }
             else{
                 System.out.println("~~El defensor guanya amb Escac i mat!~~");
+                prob.restoreTaulell();
                 return false;
             }
         }
+
+
     }
 
+    /**
+     * Funció que retorna el char equivalent al paràmetre rebut com a input
+     * @param i Enter amb el que volem calcular el char
+     * @return Retorna el char equivalent a l'enter i
+     */
     public char letraColumna(int i){
         if(i == 0)return 'a';
         else if (i == 1)return 'b';

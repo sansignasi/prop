@@ -29,24 +29,18 @@ public class VistaSelecProbJugar {
     private JLabel labelAutor;
     private JLabel labelDificultat;
     private JLabel labelMoviments;
+    private JButton previewButton;
+    private JTextArea textArea1;
 
 
     public VistaSelecProbJugar(CtrlPresentacion c) throws Exception {
         controladorPresentacion = c;
         inicializarComponentes();
         asignarListenersComponentes();
-
     }
 
     private void inicializarComponentes() throws Exception { //todas las preferencias de cada componente iran aqui(hacer una funcion nueva pa cada comp)
-        labelAutor.setVisible(false);
-        labelDificultat.setVisible(false);
-        labelMoviments.setVisible(false);
-        vsJugadorButton.setEnabled(false);
-        vsMaquina1Button.setEnabled(false);
-        vsMaquina2Button.setEnabled(false);
         inicializarFrameVista();
-        inicializarLlistaProblemas();
     }
 
     private void inicializarFrameVista() { //preferencias del Jframe
@@ -67,10 +61,19 @@ public class VistaSelecProbJugar {
         }
     }
 
-    public void hacerVisible() {
+    public void hacerVisible() throws Exception {
+        inicializarLlistaProblemas();
+        labelAutor.setVisible(false);
+        labelDificultat.setVisible(false);
+        labelMoviments.setVisible(false);
+        vsJugadorButton.setEnabled(false);
+        vsMaquina1Button.setEnabled(false);
+        vsMaquina2Button.setEnabled(false);
+        textArea1.setEditable(false);
         frameVista.setEnabled(true);
         frameVista.pack();
         frameVista.setVisible(true);
+
     }
 
     public void desactivar() {
@@ -82,6 +85,7 @@ public class VistaSelecProbJugar {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                textArea1.setText("");
                 desactivar();
                 controladorPresentacion.cambiarVistaAMenuPrincipal();
             }
@@ -128,16 +132,33 @@ public class VistaSelecProbJugar {
         list1.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                if(!e.getValueIsAdjusting() && list1.getSelectedValue()!=null) {
+                    textArea1.setText("");
+                    String nomp = list1.getSelectedValue().toString();
+                    labelMoviments.setText(String.valueOf(controladorPresentacion.getMovimentsProblema(nomp)));
+                    labelDificultat.setText(controladorPresentacion.getDificultadProblema(nomp));
+                    labelAutor.setText(controladorPresentacion.getCreadorProblema(nomp));
+                    labelAutor.setVisible(true);
+                    labelDificultat.setVisible(true);
+                    labelMoviments.setVisible(true);
+                    vsJugadorButton.setEnabled(true);
+                    vsMaquina1Button.setEnabled(true);
+                    vsMaquina2Button.setEnabled(true);
+                    textArea1.append(controladorPresentacion.getRankingProb(nomp));
+                }
+            }
+        });
+
+        previewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 String nomp = list1.getSelectedValue().toString();
-                labelMoviments.setText(String.valueOf(controladorPresentacion.getMovimentsProblema(nomp)));
-                labelDificultat.setText(controladorPresentacion.getDificultadProblema(nomp));
-                labelAutor.setText(controladorPresentacion.getCreadorProblema(nomp));
-                labelAutor.setVisible(true);
-                labelDificultat.setVisible(true);
-                labelMoviments.setVisible(true);
-                vsJugadorButton.setEnabled(true);
-                vsMaquina1Button.setEnabled(true);
-                vsMaquina2Button.setEnabled(true);
+                try {
+
+                    controladorPresentacion.cambiarVistaAPreview(nomp);
+                } catch (IncorrectFENException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 

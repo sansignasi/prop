@@ -85,4 +85,38 @@ public class BaseDeProblemes {//hola
     public Set<String> getNomProblemes(){
         return cjtproblemes.keySet();
     }
+
+    /**
+     * Getter dels noms dels problemes que ha jugat un usuari
+     * @param currentuser Usuari que consultarem
+     * @return Retorna un vector de Strings amb els noms dels problemes
+     */
+
+    public  ArrayList<String> getNomProblemesUsuari(String currentuser) {
+        ArrayList<String> probs = new ArrayList<>();
+        Set keys = cjtproblemes.keySet();
+        for (Iterator i = keys.iterator(); i.hasNext();) {
+            String key = (String) i.next();
+            Problema value = cjtproblemes.get(key);
+            if(value.getCreador().equals(currentuser)) probs.add(key);
+        }
+        return probs;
+
+    }
+
+    /**
+     * Consultara que retorna un boolèa en funció de si existeix un problema com el del input
+     * @param fen Fen que consultarem
+     * @param nmovs Moviments que consultarem
+     * @return Retorna true si existeix un problema amb FEN fen i moviments nmovs
+     */
+    public boolean existeixFENambNmovs(String fen, int nmovs) {
+        Set keys = cjtproblemes.keySet();
+        for (Iterator i = keys.iterator(); i.hasNext();) {
+            String key = (String) i.next();
+            Problema value = cjtproblemes.get(key);
+            if(value.getFEN().equals(fen) && value.getMoviments()==nmovs) return true;
+        }
+        return false;
+    }
 }

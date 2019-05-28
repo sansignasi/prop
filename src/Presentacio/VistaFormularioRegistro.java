@@ -55,6 +55,8 @@ public class VistaFormularioRegistro {
             public void actionPerformed(ActionEvent e) {
                 desactivar();
                 controladorPresentacion.cambiarVistaALogin();
+                textField1.setText("");
+                textField2.setText("");
             }
         });
 

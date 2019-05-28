@@ -10,12 +10,24 @@ public class Simulacio {
     private Jugador atacant;
     private Jugador defensor;
 
+    /**
+     * Creadora de la classe Simulació
+     * @param atac Objecte de la classe Jugador que representa l'atacant
+     * @param def Objecte de la classe Jugador que representa el defensor
+     * @param probs Problemes que es jugaràn durant la simulació
+     */
     public Simulacio(Jugador atac, Jugador def, ArrayList<Problema> probs){
         problemas = probs;
         atacant = atac;
         defensor = def;
     }
-    public ArrayList<Boolean>simular() throws IncorrectFENException { //te devuelve un vec de bools. Tantos bools como problemas, si el bool true ha ganao el atacante, si false ha perdido
+
+    /**
+     * Funció que representa la simulació
+     * @return Retorna un vector de bools (tants bools com problemes s'han simulat). Si el bool del problema es true es que ha guanyat l'atacant, si es false es que ha perdut
+     * @throws IncorrectFENException
+     */
+    public ArrayList<Boolean> simular() throws IncorrectFENException {
         ArrayList<Boolean> resultat = new ArrayList<>();
         CtrlDomini c = CtrlDomini.getInstance();
         for (Problema problema : problemas) {
@@ -27,7 +39,7 @@ public class Simulacio {
             Partida p = new Partida(problema, atacant, defensor);
             Boolean b = p.jugarPartida();
             resultat.add(b);
-            c.enviarresulatsimulacio(b);
+
         }
         return resultat;
     }

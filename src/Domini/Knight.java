@@ -7,33 +7,69 @@ import java.util.ArrayList;
 public class Knight extends Piece {
 
     //CREADORES
+
+    /**
+     * Creadora de la classe Knight
+     * @param p Paràmetre amb el que inicialitzarem la superclasse
+     */
     public Knight(Piece p) {
         super(p);
     }
 
+    /**
+     * Creadora de la classe Knight
+     * @param c Paràmetre amb el que inicialitzarem el color de la superclasse
+     */
     public Knight(char c) {
         super(c);
     }
 
+    /**
+     * Creadora de la classe Knight on inicialitzarem els atributs de la superclasse amb els paràmetres rebuts
+     * @param c Color
+     * @param x X
+     * @param y Y
+     */
     public Knight(char c,int x, int y) {
         super(c,x,y);
     }
 
     //GETTERS
+
+    /**
+     * Getter del tipus de Piece
+     * @return Retorna un string
+     */
     public String getTipus() {
         return "Knight";
     }
 
+    /**
+     * Getter del valor de la classe Knight
+     * @return Retorna un enter
+     */
     public int getValor() {
         return 3;
     }
 
+    /**
+     * Getter de la lletra a la que s'associa la classe Knight
+     * @return Retorna una n
+     */
     public char getLletra(){
         if(super.getColor() == 'w')return 'N';
         else return 'n';
     }
 
     //MÈTODES
+
+    /**
+     * Funció que calcula els moviments possibles que pot realitzar un Knight des de la posició on està
+     * @param m Matriu de Piece
+     * @param i Posició x de la piece
+     * @param j Posició y de la piece
+     * @return Retorna un vector de pairs amb Piece i posició possible on pot anar
+     */
     public ArrayList<Pair> calculaMovimentsPiece(Piece[][] m, int i, int j) {
         Piece p = m[i][j];
         int dir;
@@ -97,6 +133,14 @@ public class Knight extends Piece {
         }
         return res;
     }
+
+    /**
+     * Funció que calcula els moviments per saber com influeix en l'escac i mat
+     * @param m Matriu de Piece
+     * @param i Posició x de la piece
+     * @param j Posició y de la piece
+     * @return Retorna un vector de posicions amb Piece p i posició
+     */
     public ArrayList<Pair> calculaMovimentsJaqueMate(Piece[][] m, int i, int j) {
         Piece p = m[i][j];
         int dir;
