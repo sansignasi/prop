@@ -23,11 +23,13 @@ public class Board {
     private char[][] mchar;
     private String tipusjug;
     private int nmovs;
+    private String nomprob;
     private Boolean tornuser=true;
 
     public Board(CtrlPresentacion c,String nomprob,String tipusjug){
         controladorPresentacion = c;
         this.tipusjug = tipusjug;
+        this.nomprob = nomprob;
         nmovs = controladorPresentacion.getMovimentsProblema(nomprob);
         mchar = controladorPresentacion.matriuProblema(nomprob);
         initializeGui();
@@ -89,17 +91,16 @@ public class Board {
                     default:
                         ImageIcon img = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[ii][jj]));
                         chessBoard.add(chessBoardSquares[ii][jj]);
-                        boolean hihapiece = false;
                         if(mchar[ii][jj]!='-') {
-                            chessBoardSquares[jj][ii].setIcon(img);
-                            hihapiece = true;
+                            chessBoardSquares[ii][jj].setIcon(img);
                         }
                         int finalIi = ii;
                         int finalJj = jj;
-                        boolean finalHihapiece = hihapiece;
-                        chessBoardSquares[jj][ii].addActionListener(new ActionListener() {
+                        chessBoardSquares[ii][jj].addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
+                                boolean finalHihapiece = false;
+                                if(mchar[finalIi][finalJj]!='-') finalHihapiece = true;
                                 if(tornuser && nmovs>0) {//torn jugador atacant
                                     if (!finalHihapiece && contMovs[0] == 0) {//Si no hi ha peça i és el primer click
                                         JOptionPane.showMessageDialog(null, "Selecciona una peça");
@@ -121,50 +122,82 @@ public class Board {
                                     else {
                                         posFi[0] = finalIi;
                                         posFi[1] = finalJj;
-                                        if(controladorPresentacion.movimentValid(mchar,posIni,posFi)){
-                                            //Actualitzes taulell
-                                            tornuser = false;
-                                            nmovs--;
-                                            contMovs[0]--;
-                                            mchar[posFi[0]][posFi[1]]= mchar[posIni[0]][posIni[1]];
-                                            mchar[posIni[0]][posIni[1]] = '-';
-                                            ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[posFi[0]][posFi[1]]));
-                                            chessBoardSquares[posFi[0]][posFi[1]].setIcon(img3);
-                                            ImageIcon icon = new ImageIcon(
-                                                    new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
-                                            chessBoardSquares[posIni[0]][posIni[1]].setIcon(icon);
-                                        }
-                                        else{
-                                            JOptionPane.showMessageDialog(null, "Moviment no vàlid.");
-                                            contMovs[0]--;
+                                        System.out.println(posFi[0] +" "+posFi[1]);
+                                        System.out.println(finalIi +" "+finalJj);
+                                        try {
+                                            if(controladorPresentacion.movimentValid(mchar,posIni,posFi,nomprob)){
+                                                //Actualitzes taulell
+                                                tornuser = false;
+                                                nmovs--;
+                                                contMovs[0]--;
+                                                mchar[posFi[0]][posFi[1]]= mchar[posIni[0]][posIni[1]];
+                                                System.out.println(mchar[posFi[0]][posFi[1]]);
+                                                mchar[posIni[0]][posIni[1]] = '-';
+                                                ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[posFi[0]][posFi[1]]));
+                                                chessBoardSquares[posFi[0]][posFi[1]].setIcon(img3);
+                                                ImageIcon icon = new ImageIcon(
+                                                        new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+                                                chessBoardSquares[posIni[0]][posIni[1]].setIcon(icon);
+                                            }
+                                            else{
+                                                JOptionPane.showMessageDialog(null, "Moviment no vàlid.");
+                                                contMovs[0]--;
+                                            }
+                                        } catch (IncorrectFENException e1) {
+                                            e1.printStackTrace();
                                         }
                                     }
 
                                 }
                                 else if(nmovs>0 && !tornuser){
-                                    if(tipusjug.equals("jugador")){
-                                        if (!finalHihapiece && contMovs[0] == 0) {
-                                            JOptionPane.showMessageDialog(null, "Selecciona una peça");
-                                        } else if (finalHihapiece && contMovs[0] == 0) {
+                                    if (!finalHihapiece && contMovs[0] == 0) {//Si no hi ha peça i és el primer click
+                                        JOptionPane.showMessageDialog(null, "Selecciona una peça");
+                                    }
+                                    else if (finalHihapiece && contMovs[0] == 0) {
+                                        if (!colorPiece(mchar[finalIi][finalJj])){//Si és blanca
                                             posIni[0] = finalIi;
                                             posIni[1] = finalJj;
                                             contMovs[0]++;
-                                        } else if (!(finalIi == posIni[0] && finalJj == posIni[1])) {
-                                            posFi[0] = finalIi;
-                                            posFi[1] = finalJj;
-                                            contMovs[0]--;
-                                            System.out.println("jug2");
-                                            System.out.println(posIni[0] + "" + posIni[1]);
-                                            System.out.println(posFi[0] + "" + posFi[1]);
-                                            tornuser = true;
-                                        } else {
-                                            JOptionPane.showMessageDialog(null, "Moviment no vàlid. Mou la peça a una posició diferent a la inicial.");
-                                            contMovs[0]--;
+                                        }
+                                        else{
+                                            JOptionPane.showMessageDialog(null, "Selecciona una peça del teu color");
                                         }
                                     }
+                                    else if (finalIi == posIni[0] && finalJj == posIni[1]){//Posició final = inicial
+                                        JOptionPane.showMessageDialog(null, "Moviment no vàlid. Mou la peça a una posició diferent a la inicial.");
+                                        contMovs[0]--;
+                                    }
+                                    else {
+                                        posFi[0] = finalIi;
+                                        posFi[1] = finalJj;
+                                        System.out.println(posFi[0] +" "+posFi[1]);
+                                        System.out.println(finalIi +" "+finalJj);
+                                        try {
+                                            if(controladorPresentacion.movimentValid(mchar,posIni,posFi,nomprob)){
+                                                //Actualitzes taulell
+                                                tornuser = true;
+                                                contMovs[0]--;
+                                                mchar[posFi[0]][posFi[1]]= mchar[posIni[0]][posIni[1]];
+                                                System.out.println(mchar[posFi[0]][posFi[1]]);
+                                                mchar[posIni[0]][posIni[1]] = '-';
+                                                ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[posFi[0]][posFi[1]]));
+                                                chessBoardSquares[posFi[0]][posFi[1]].setIcon(img3);
+                                                ImageIcon icon = new ImageIcon(
+                                                        new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+                                                chessBoardSquares[posIni[0]][posIni[1]].setIcon(icon);
+                                            }
+                                            else{
+                                                JOptionPane.showMessageDialog(null, "Moviment no vàlid.");
+                                                contMovs[0]--;
+                                            }
+                                        } catch (IncorrectFENException e1) {
+                                            e1.printStackTrace();
+                                        }
+                                    }
+
                                 }
                                 else{
-
+                                    System.out.println("hola");
                                 }
 
                             }
