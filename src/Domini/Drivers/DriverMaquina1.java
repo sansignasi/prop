@@ -29,7 +29,7 @@ public class DriverMaquina1 {
     public  static void testgetMovimentAlgorism1(int jugador, int profunditat) throws IncorrectFENException {
 
         float startTime = System.nanoTime();
-        Pair p = m.jugarTorn(t, jugador, profunditat);
+        Pair p = m.jugarTorn(t, jugador, profunditat*2);
         float endTime = System.nanoTime();
         float timeElapsed = endTime - startTime;
 

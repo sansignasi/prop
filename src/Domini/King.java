@@ -49,7 +49,7 @@ public class King extends Piece {
      * @return Retorna 9999 ja que es tracta d'un rei
      */
     public int getValor() {
-        return 9999;
+        return 200;
     }
 
     /**

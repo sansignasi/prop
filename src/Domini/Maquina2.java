@@ -18,6 +18,7 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
     //MÈTODES
 
     /**
+     * Funció que calcula quina Piece i a quina posició anirà segons la Màquina2
      * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
      * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
      * @param profunditat Profunditat, tenint en compte atacant i defensor, a la que arribarà el Minimax
@@ -29,40 +30,10 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
     }
 
     /**
-     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
-     * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
-     * @return Retorna un enter que representa la puntuació amb la que l'Heuristic1 avalua l'estat del taulell
-     */
-    public int Heuristic1(Taulell t, int jugador){
-
-        Piece[][] p = t.getTaulell();
-
-        int ret = 0;
-
-        for (int i=0; i< p.length; ++i) {
-            for (int j = 0; j < p[0].length; ++j) {
-
-                Piece p1 = t.getPiece(i,j);
-                if(t.tePiece(i,j)){
-                    if (p1.getJugador()==jugador) {
-                        Piece pC = t.getPiece(i,j);
-                        ret += pC.getValor();
-                    }
-                    else {
-                        Piece pC = t.getPiece(i,j);
-                        ret -= pC.getValor();
-                    }
-                }
-            }
-        }
-        return ret;
-    }
-
-    /**
-     *
-     * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
-     * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
-     * @return Retorna un enter que representa la puntuació amb la que l'Heuristic2 avalua l'estat del taulell
+     * Funció que avalua el taulell en funció de la puntuació de les peces i de la seva mobilitat
+     * @param t Taulell a avaluar
+     * @param jugador Jugador que ataca (tindrà el valor positiu, l'oponent negatiu)
+     * @return Retorna un enter que representa la puntuació de l'heurístic
      */
     public int Heuristic2(Taulell t, int jugador){
 
@@ -88,20 +59,19 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
                 }
             }
         }
-        ret *= 10; //donem més importancia a les peces
 
-        //CONTEM EL NOMBRE DE MOVIMENTS POSSIBLES
 
         ArrayList<Pair> k = calculaMovimentsPosibles(t,jugador);
         ret += k.size();
+
         k = calculaMovimentsPosibles(t,Math.abs(jugador-1));
         ret -= k.size();
-
 
        return ret;
     }
 
     /**
+     * Funció que calcula els moviments possibles que es poden realitzar amb les peces
      * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
      * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
      * @return Retorna tots els moviments possibles que podrà realitzar el jugador al que supleix la màquina
@@ -138,7 +108,7 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
     }
 
     /**
-     *
+     * Funció Minimax que simula una IA i calcula quina es la millor Piece que s'ha de moure
      * @param t El taulell que representa un taulell d'escacs 8*8 amb les respectives peces
      * @param jg Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
      * @param profunditat Indica la profunditat a la que arribarà el Minimax
@@ -187,6 +157,9 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
             return x;
         }
         else{
+            int a1,b1;
+            a1 = a;
+            b1 = b;
             ArrayList<Pair> p = calculaMovimentsPosibles(t,Math.abs(jg-1));
             for (int i=0; i<p.size(); ++i){
                 Taulell aux = new Taulell();
@@ -195,11 +168,11 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
                 if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()) instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
                 else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()) instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
-                int l = valorMax(aux,jg, prf-1,a,b);
-                b = Math.min(b,l);
-                if (a >= b) return a;
+                int l = valorMax(aux,jg, prf-1,a1,b1);
+                b1 = Math.min(b1,l);
+                if (a1 >= b1) return a1;
             }
-            return b;
+            return b1;
         }
     }
 
@@ -220,6 +193,8 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
             return x;
         }
         else{
+            int a1 = a;
+            int b1 = b;
             ArrayList<Pair> p = calculaMovimentsPosibles(t,jg);
             for (int i=0; i<p.size(); ++i){
                 Taulell aux = new Taulell();
@@ -228,11 +203,11 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
                 if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()) instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
                 else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()) instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
-                int l = valorMax(aux,jg, prf-1,a,b);
-                a = Math.max(a,l);
-                if (a >= b) return b;
+                int l = valorMax(aux,jg, prf-1,a1,b1);
+                a1 = Math.max(a1,l);
+                if (a1 >= b1) return b1;
             }
-            return b;
+            return a1;
         }
     }
 

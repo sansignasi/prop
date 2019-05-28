@@ -31,7 +31,7 @@ public class DriverMaquina2 {
 
         public static void testgetMovimentAlgorism2(int jugador, int profunditat) throws IncorrectFENException {
             float startTime = System.nanoTime();
-            Pair p = m.jugarTorn(t, jugador, profunditat);
+            Pair p = m.jugarTorn(t, jugador, profunditat*2);
             float endTime = System.nanoTime();
             float timeElapsed = endTime - startTime;
             System.out.println("El moviment que retorna la maquina 2 es " + p.getFirst() + " " + p.getSecond());
@@ -41,13 +41,6 @@ public class DriverMaquina2 {
 
         }
 
-        public static void testHeuristic1(int j) {
-            int h1 = m.Heuristic1(t, j);
-            System.out.println("L'avaluació del taulell de l'Heurístic 2 es " + h1);
-            System.out.println();
-
-
-        }
 
         public static void testcalculaMovimentsPosibles(int j) {
 
@@ -147,12 +140,6 @@ public class DriverMaquina2 {
                         System.out.println("Escull el jugador (0:blanques, 1:negres)");
                         j = in4.nextInt();
                         testMiniMax(j, p);
-                        break;
-                    case 6:
-                        Scanner in5 = new Scanner(System.in);
-                        System.out.println("Escull el jugador (0:blanques, 1:negres)");
-                        j = in5.nextInt();
-                        testHeuristic1(j);
                         break;
 
                     case 7:

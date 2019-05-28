@@ -72,6 +72,7 @@ public class BaseUsuaris {
     }
 
     /**
+     * Pre: l'usuari u no existeix a la base d'usuaris
      * Afegeix un Usuari u a la Base d'Usuaris
      * @param u Representa l'Usuari u que afegirem al TreeMap cjtusuaris
      */
