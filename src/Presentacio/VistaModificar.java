@@ -22,7 +22,7 @@ public class VistaModificar {
     private JPanel chessBoard;
     private static final String COLS = "ABCDEFGH";
     private char[][] mchar = new char[8][8];
-    private char piece;
+    private char piece = 'P';
     private String nomp;
     private JMenuBar menuCrear = new JMenuBar();
     private JMenu menuBlancas = new JMenu("Afegir blanca");
@@ -60,11 +60,13 @@ public class VistaModificar {
 
 
     public VistaModificar(CtrlPresentacion c, String nomp){
+        this.nomp = nomp;
         controladorPresentacion = c;
         mchar = controladorPresentacion.matriuProblema(nomp);
         resetConts();
         asignarContadores();
         initializeGui();
+
     }
     
 
@@ -195,15 +197,16 @@ public class VistaModificar {
                                 SwingConstants.CENTER));
                     default:
                         ImageIcon imga = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[ii][jj]));
-                        chessBoard.add(chessBoardSquares[jj][ii]);
+                        chessBoard.add(chessBoardSquares[ii][jj]);
                         if(mchar[ii][jj]!='-') {
-                            chessBoardSquares[jj][ii].setIcon(imga);
+                            chessBoardSquares[ii][jj].setIcon(imga);
                         }
                         int finalJj = jj;
                         int finalIi = ii;
                         chessBoardSquares[ii][jj].addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
+                                System.out.println(piece);
                                 if(piece == '-'){
                                     decrementarCont(mchar[finalIi][finalJj]);
                                     mchar[finalIi][finalJj] = piece;

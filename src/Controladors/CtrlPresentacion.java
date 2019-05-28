@@ -53,7 +53,7 @@ public class CtrlPresentacion {
         vistaImportarFEN = new VistaImportarFEN(this);
         vistaFormulariCrearProb = new VistaFormulariCrearProb(this);
         vistaFormulariModificarProb = new VistaFormulariModificarProb(this);
-        vistaValidarModificacion = new VistaValidarModificacion();
+        vistaValidarModificacion = new VistaValidarModificacion(this);
     }
 
     public void inicializarPresentacion() throws Exception {
@@ -115,6 +115,9 @@ public class CtrlPresentacion {
 
     public void cambiarVistaAFormulariModificarProb(String fen, String nomp){
         vistaFormulariModificarProb.hacerVisible(fen,nomp);
+    }
+    public void cambiarVistaAValidarModificacion(String fen, int nmovs, String nomp, String nomprob) throws IncorrectFENException {
+        vistaValidarModificacion.hacerVisible(fen,nmovs,nomp,nomprob);
     }
 
     public void cambiarVistaASimulacion(ArrayList<String> probs, String atacant, String defensor) throws IncorrectFENException {

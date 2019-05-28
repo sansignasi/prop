@@ -79,7 +79,7 @@ public class VistaFormulariModificarProb {
                             JOptionPane.showMessageDialog(null, "Ja existeix un problema amb aquest FEN i aquest nombre de moviments");
                         }
                         else{
-                            //controladorPresentacion.cambiarVista
+                            controladorPresentacion.cambiarVistaAValidarModificacion(fen,nmovs,nomp,nomprob);
                         }
                     } catch (Exception e1) {
                         e1.printStackTrace();
