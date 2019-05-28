@@ -87,12 +87,9 @@ public class CtrlPresentacion {
 
     public void cambiarVistaAEscollirProbsSimulacio() throws Exception {vistaEscollirProbsSimulacio.hacerVisible();}
 
-    public void cambiarVistaABoard(){
-        board.hacerVisible();
-    }
 
     public void cambiarVistaAJugarPartida(String tipusjug,String nomprob) throws IncorrectFENException {
-        board = new Board(this,nomprob);
+        board = new Board(this,nomprob,tipusjug);
         board.hacerVisible();
     }
     public void cambiarVistaAPreview(String nomprob) throws IncorrectFENException {
@@ -234,5 +231,9 @@ public class CtrlPresentacion {
             }
         }
         return fen;
+    }
+
+    public boolean movimentValid(char[][] mchar, int[] posIni, int[] posFi) {
+        return true;
     }
 }

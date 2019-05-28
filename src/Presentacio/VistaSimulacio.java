@@ -103,9 +103,6 @@ public class VistaSimulacio {
             try {
                 ArrayList<Boolean> b = get();
                 enviarresultatsimulacio(b);
-                URL url = this.getClass().getResource("success.jpg");
-                Icon icon = new ImageIcon(url);
-                gif.setIcon(icon);
                 gif.setVisible(false);
                 backButton.setVisible(true);
 
