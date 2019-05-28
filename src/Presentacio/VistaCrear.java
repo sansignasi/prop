@@ -333,11 +333,14 @@ public class VistaCrear {
         crearProb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String fen = controladorPresentacion.mcharAFEN(mchar);
-                controladorPresentacion.cambiarVistaAForumulariCrearProb(fen);
+                if (contK == 1 && contk == 1) {
+                    String fen = controladorPresentacion.mcharAFEN(mchar);
+                    controladorPresentacion.cambiarVistaAForumulariCrearProb(fen);
+                } else JOptionPane.showMessageDialog(null, "No es pot crear un problema sense els 2 reis.");
             }
         });
     }
+
     private void decrementarCont(char c){
         if(c=='p'){
             contp--;

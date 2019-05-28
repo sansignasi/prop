@@ -62,6 +62,8 @@ public class VistaModificar {
     public VistaModificar(CtrlPresentacion c, String nomp){
         controladorPresentacion = c;
         mchar = controladorPresentacion.matriuProblema(nomp);
+        resetConts();
+        asignarContadores();
         initializeGui();
     }
     
@@ -335,10 +337,11 @@ public class VistaModificar {
         crearProb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String fen = controladorPresentacion.mcharAFEN(mchar);
-                controladorPresentacion.cambiarVistaAFormulariModificarProb(fen,nomp);
-            }
-        });
+                if (contK == 1 && contk == 1) {
+                    String fen = controladorPresentacion.mcharAFEN(mchar);
+                    controladorPresentacion.cambiarVistaAFormulariModificarProb(fen, nomp);
+                } else JOptionPane.showMessageDialog(null, "No es pot crear un problema sense els 2 reis.");
+            }});
     }
     private void decrementarCont(char c){
         if(c=='p'){
@@ -433,8 +436,6 @@ public class VistaModificar {
     }
 
     public void hacerVisible() {
-        resetConts();
-        asignarContadores();
         JFrame f = new JFrame("Modificar Problema");
         f.setPreferredSize(new Dimension(600, 600));
         f.add(this.getGui());
