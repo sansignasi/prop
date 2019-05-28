@@ -233,7 +233,7 @@ public class CtrlPresentacion {
         return fen;
     }
 
-    public boolean movimentValid(char[][] mchar, int[] posIni, int[] posFi) {
-        return true;
+    public boolean movimentValid(char[][] mchar, int[] posIni, int[] posFi,String nomprob) throws IncorrectFENException {
+        return controladorDomini.movimentValid(mchar,posIni,posFi,nomprob);
     }
 }

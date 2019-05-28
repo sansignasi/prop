@@ -88,7 +88,7 @@ public class Board {
                                 SwingConstants.CENTER));
                     default:
                         ImageIcon img = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[ii][jj]));
-                        chessBoard.add(chessBoardSquares[jj][ii]);
+                        chessBoard.add(chessBoardSquares[ii][jj]);
                         boolean hihapiece = false;
                         if(mchar[ii][jj]!='-') {
                             chessBoardSquares[jj][ii].setIcon(img);

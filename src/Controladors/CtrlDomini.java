@@ -1,5 +1,6 @@
 package src.Controladors;
 import com.google.gson.Gson;
+import lib.Pair;
 import src.Domini.*;
 
 
@@ -427,6 +428,23 @@ public class CtrlDomini {//hola
         System.out.println("l'usuari final te:" + u.getNom() + " " + u.getContraseña());*/
 
 
+    }
+
+    public boolean movimentValid(char[][] mchar, int[] posIni, int[] posFi,String nomprob) throws IncorrectFENException {
+        String fenincomplete = ctrlPresentacion.mcharAFEN(mchar); //fen incompleto solo con mchar
+        String atk;
+        if(bproblemes.buscarProblema(nomprob).getAtacant() == 0) atk = "w";
+        else atk = "b";
+        String fen = fenincomplete+" "+atk+" - - 0 1"; //fen bueno
+        Taulell T = new Taulell(fen);
+        Piece p = T.getPiece(posIni[0],posIni[1]); //pieza a mover
+        ArrayList<Pair> pairs = p.calculaMovimentsPiece(T.getTaulell(), posIni[0], posIni[1]); //movs posibles de tu pieza a mover
+        boolean found = false;
+        for(int i = 0; i < pairs.size() && !found; ++i){
+            Pair posaux = (Pair) pairs.get(i).getSecond();
+            if ((int)posaux.getFirst() == posFi[0] && (int)posaux.getSecond() == posFi[1])found = true; //si la pos a la q quieres mover esta en los movs posibles return true
+        }
+        return found;
     }
 }
 
