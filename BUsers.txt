@@ -1,0 +1,3 @@
+{"nomuser":"aaa","contraseña":"aaa","color":0,"rol":0}
+{"nomuser":"pablo","contraseña":"aaa","color":0,"rol":0}
+{"nomuser":"user","contraseña":"psw","color":0,"rol":0}
