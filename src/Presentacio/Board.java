@@ -31,7 +31,7 @@ public class Board {
         controladorPresentacion = c;
         this.tipusjug = "maquina1";
         this.nomprob = nomprob;
-        nmovs = controladorPresentacion.getMovimentsProblema(nomprob);
+        nmovs = controladorPresentacion.getMovimentsProblema(nomprob)+1;
         mchar = controladorPresentacion.matriuProblema(nomprob);
         initializeGui();
     }
@@ -126,12 +126,12 @@ public class Board {
                                         System.out.println(posFi[0] +" "+posFi[1]);
                                         System.out.println(finalIi +" "+finalJj);
                                         try {
-                                            if(controladorPresentacion.movimentValid(mchar,posIni,posFi,nomprob)){
+                                            if(controladorPresentacion.movimentValid(mchar,posIni,posFi,nomprob)) {
                                                 //Actualitzes taulell
                                                 tornuser = false;
                                                 nmovs--;
                                                 contMovs[0]--;
-                                                mchar[posFi[0]][posFi[1]]= mchar[posIni[0]][posIni[1]];
+                                                mchar[posFi[0]][posFi[1]] = mchar[posIni[0]][posIni[1]];
                                                 System.out.println(mchar[posFi[0]][posFi[1]]);
                                                 mchar[posIni[0]][posIni[1]] = '-';
                                                 ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[posFi[0]][posFi[1]]));
@@ -139,6 +139,23 @@ public class Board {
                                                 ImageIcon icon = new ImageIcon(
                                                         new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
                                                 chessBoardSquares[posIni[0]][posIni[1]].setIcon(icon);
+                                                //TORN DE LA MÀQUINA
+                                                if (tipusjug.equals("maquina1") && nmovs > 0 && !tornuser) {
+                                                    int[] vecMov = new int[4];
+                                                    try {
+                                                        vecMov = controladorPresentacion.movimentM1(mchar, nmovs, nomprob);
+                                                        mchar[vecMov[2]][vecMov[3]] = mchar[vecMov[0]][vecMov[1]];
+                                                        mchar[vecMov[0]][vecMov[1]] = '-';
+                                                        ImageIcon imgx = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[vecMov[2]][vecMov[3]]));
+                                                        chessBoardSquares[vecMov[2]][vecMov[3]].setIcon(imgx);
+                                                        ImageIcon icon2 = new ImageIcon(
+                                                                new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+                                                        chessBoardSquares[vecMov[0]][vecMov[1]].setIcon(icon2);
+                                                        tornuser = true;
+                                                    } catch (IncorrectFENException e1) {
+                                                        e1.printStackTrace();
+                                                    }
+                                                }
                                             }
                                             else{
                                                 JOptionPane.showMessageDialog(null, "Moviment no vàlid.");
@@ -197,26 +214,6 @@ public class Board {
                                     }
 
                                 }
-                                else if(tipusjug.equals("maquina1") && nmovs>0 && !tornuser){
-                                    int[] vecMov = new int[4];
-                                    try {
-                                        vecMov = controladorPresentacion.movimentM1(mchar,nmovs,nomprob);
-                                        mchar[vecMov[2]][vecMov[3]]=mchar[vecMov[0]][vecMov[1]];
-                                        mchar[vecMov[0]][vecMov[1]] = '-';
-                                        ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[posFi[0]][posFi[1]]));
-                                        chessBoardSquares[vecMov[2]][vecMov[3]].setIcon(img3);
-                                        ImageIcon icon = new ImageIcon(
-                                                new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
-                                        chessBoardSquares[vecMov[0]][vecMov[1]].setIcon(icon);
-                                        tornuser = true;
-                                    } catch (IncorrectFENException e1) {
-                                        e1.printStackTrace();
-                                    }
-                                }
-                                else{
-                                    System.out.println("hola");
-                                }
-
                             }
                         });
                 }
