@@ -32,7 +32,7 @@ public class Board {
 
     public Board(CtrlPresentacion c,String nomprob,String tipusjug){
         controladorPresentacion = c;
-        this.tipusjug = "maquina1";
+        this.tipusjug = "maquina2";
         this.nomprob = nomprob;
         nmovs = controladorPresentacion.getMovimentsProblema(nomprob)+1;
         mchar = controladorPresentacion.matriuProblema(nomprob);
@@ -144,9 +144,12 @@ public class Board {
                                                 chessBoardSquares[posIni[0]][posIni[1]].setIcon(icon);
                                                 //TORN DE LA MÀQUINA
                                                 if (tipusjug.equals("maquina1") && nmovs > 0 && !tornuser) {
-                                                        aTask t = new aTask();
-                                                        t.execute();
-
+                                                    CalculaM1 m1 = new CalculaM1();
+                                                    m1.execute();
+                                                }
+                                                if (tipusjug.equals("maquina2") && nmovs > 0 && !tornuser) {
+                                                    CalculaM2 m2 = new CalculaM2();
+                                                    m2.execute();
                                                 }
                                             }
                                             else{
@@ -243,11 +246,37 @@ public class Board {
         f.setVisible(true);
     }
 
-    private class aTask extends SwingWorker<int[],Void>{
-
+    private class CalculaM1 extends SwingWorker<int[],Void>{
         @Override
         protected int[] doInBackground() throws Exception {
             int[] vec = controladorPresentacion.movimentM1(mchar, nmovs, nomprob);
+            return vec;
+        }
+
+        @Override
+        protected void done(){
+            try {
+                vecMov = get();
+                mchar[vecMov[2]][vecMov[3]] = mchar[vecMov[0]][vecMov[1]];
+                mchar[vecMov[0]][vecMov[1]] = '-';
+                ImageIcon imgx = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[vecMov[2]][vecMov[3]]));
+                chessBoardSquares[vecMov[2]][vecMov[3]].setIcon(imgx);
+                ImageIcon icon2 = new ImageIcon(
+                        new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+                chessBoardSquares[vecMov[0]][vecMov[1]].setIcon(icon2);
+                tornuser = true;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private class CalculaM2 extends SwingWorker<int[],Void>{
+        @Override
+        protected int[] doInBackground() throws Exception {
+            int[] vec = controladorPresentacion.movimentM2(mchar, nmovs, nomprob);
             return vec;
         }
 

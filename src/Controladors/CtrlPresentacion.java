@@ -240,4 +240,8 @@ public class CtrlPresentacion {
     public int[] movimentM1(char[][] mchar, int nmovs, String nomprob) throws IncorrectFENException {
         return (controladorDomini.movimentM1(mchar,nmovs,nomprob));
     }
+
+    public int[] movimentM2(char[][] mchar, int nmovs, String nomprob) throws IncorrectFENException {
+        return (controladorDomini.movimentM2(mchar,nmovs,nomprob));
+    }
 }
