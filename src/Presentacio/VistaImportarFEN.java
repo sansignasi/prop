@@ -80,9 +80,15 @@ public class VistaImportarFEN {
     private class aTask extends SwingWorker<Boolean,Void>{
 
         @Override
-        protected Boolean doInBackground() throws Exception {
-            Boolean b = controladorPresentacion.validarProblema(FEN,movs);
-            return b;
+        protected Boolean doInBackground() throws IncorrectFENException {
+            try{
+                Boolean b = controladorPresentacion.validarProblema(FEN,movs);
+                return b;
+            }
+            catch (IncorrectFENException e){
+                JOptionPane.showMessageDialog(null, "FEN incorrecte");
+            }
+            return false;
         }
 
         @Override
@@ -99,8 +105,8 @@ public class VistaImportarFEN {
                     textArea1.append("El Problema no s'ha pogut validar amb éxit.");
                 }
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (IncorrectFENException e) {
+                JOptionPane.showMessageDialog(null, "FEN incorrecte");
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (Exception e) {
