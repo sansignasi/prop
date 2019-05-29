@@ -62,10 +62,10 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
 
 
         ArrayList<Pair> k = calculaMovimentsPosibles(t,jugador);
-        ret += k.size();
+        ret += 0.5*k.size();
 
         k = calculaMovimentsPosibles(t,Math.abs(jugador-1));
-        ret -= k.size();
+        ret -= 0.5*k.size();
 
        return ret;
     }
@@ -76,7 +76,7 @@ public class Maquina2 extends Maquina{ //Minimax amb profunditat limitada
      * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
      * @return Retorna tots els moviments possibles que podrà realitzar el jugador al que supleix la màquina
      */
-    public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
+    public static ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
         ArrayList<Pair> a = new ArrayList<>();
         Piece[][] m = t.getTaulell();

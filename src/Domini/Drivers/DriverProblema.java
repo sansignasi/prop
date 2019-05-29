@@ -25,7 +25,7 @@ public class DriverProblema {
     public static void testValidariOptimitzarProblema(int jugador, int profunditat) throws Exception {
         float startTime = System.nanoTime();
         int n = p.validariOptimitzarProblema(t,jugador,profunditat*2-1);
-        System.out.println(n);
+        //System.out.println(n);
         float endTime = System.nanoTime();
         float timeElapsed = endTime - startTime;
         if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments.");
@@ -37,8 +37,7 @@ public class DriverProblema {
 
     public static void testValidarProblema(int jugador, int profunditat) throws Exception {
         float startTime = System.nanoTime();
-        int n = p.validarProblema(t,jugador,profunditat*2-1);
-        System.out.println(n);
+        int n = p.validarProblema(t,jugador,profunditat*2+1);
         float endTime = System.nanoTime();
         float timeElapsed = endTime - startTime;
         if (n == -1) System.out.println("El problema no es pot resoldre en " + profunditat + " moviments.");

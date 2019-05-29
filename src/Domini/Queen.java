@@ -188,7 +188,6 @@ public class Queen extends Piece {
                 if(!obs){
                     if(m[auxi][auxj] == null) res.add(new Pair(p, new Pair(auxi, auxj)));
                     else if (m[auxi][auxj].getColor() == p.getColor()){
-                        res.add(new Pair(p, new Pair(auxi, auxj)));
                         obs = true;
                     }
                     else {

@@ -52,11 +52,11 @@ public class DriverTaulell {
 
     public static void testJaquemate()throws IncorrectFENException  {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Introdueix un FEN:");
-        String fen2 = sc.nextLine();
-        t.carregaFEN(fen2);
+        //System.out.println("Introdueix un FEN:");
+        //String fen2 = sc.nextLine();
+        //t.carregaFEN(fen2);
         t.mostrarTaulell();
-        if(t.jaquemate(1))System.out.println("Es fa escac y mat");
+        if(t.jaquemate(0))System.out.println("Es fa escac y mat");
         else System.out.println("No es fa escac y mat");
     }
 

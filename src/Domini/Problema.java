@@ -195,7 +195,6 @@ public class Problema {
      */
     public int validariOptimitzarProblema(Taulell t, int jug, int mov){
         int k = MiniMaxOptim(t, jug, mov);
-        System.out.println("hola el valor que retorna el mnimax es " + k);
         if (k == -1) return -1;
         else return (((mov + 1) / 2));
     }
@@ -210,7 +209,7 @@ public class Problema {
     public int validarProblema(Taulell t, int jug, int mov){
         int k = MiniMax(t, jug, mov);
         if (k == -1) return -1;
-        else return ((mov - k+1) / 2);
+        else return ((mov - k - 1) / 2);
     }
 
     /**
@@ -244,15 +243,14 @@ public class Problema {
      */
     public boolean estatTerminal(Taulell t, int jugador, int prf){
         if (prf == 0) return true;
-        //if (!t.teRei(Math.abs(jugador-1))) return true;
-        //if (!t.teRei(jugador)) return true;
-        if (t.jaquemate(jugador)) return true;
-        if (t.jaquemate(Math.abs(jugador-1))) return true;
+        if (!t.teRei((Math.abs(jugador-1)))) return true;
         else return false;
     }
 
     public boolean estatTerminalOptim(Taulell t, int jugador, int prf){
         if (prf == 0) return true;
+        if (t.jaquemate(jugador)) return true;
+        if (t.jaquemate(Math.abs(jugador-1))) return true;
         else return false;
     }
     /**
@@ -268,17 +266,17 @@ public class Problema {
         ret = -99999999;
         ArrayList<Pair> p = calculaMovimentsPosibles(t,jg); //no retorna un enter, retorna un conjunt de moviments
         int i = 0;
-        boolean b = false;
 
-        while(i<p.size() && !b){
+        while(i<p.size()){
             Taulell aux = new Taulell();
             aux.copiaTaulell(t);
             Pair po = (Pair) p.get(i).getSecond();
-            if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()) instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
-            else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond())instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
+            if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
+            else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
-            if (cmax == 1) return 1;
+            System.out.println(cmax);
+            if (cmax == 0) return 0 ;
             if (cmax > ret){
                 ret = cmax;
             }
@@ -309,7 +307,7 @@ public class Problema {
             else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond())instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMinOptim(aux,jg,profunditat-1);
-            System.out.println(cmax);
+            //System.out.println(cmax);
             //if (cmax == 1) System.out.println(p.get(i).getFirst() + " " + p.get(i).getSecond());
             //if (cmax == 1) return 1;
             if (cmax > ret){
@@ -332,12 +330,7 @@ public class Problema {
         int vmax;
 
         if (estatTerminal(t,jg,prf)){
-            /*if(!t.teRei(Math.abs(jg-1))) {
-                return prf;
-            }*/
-            if(t.jaquemate(Math.abs(jg-1))) {
-                return prf;
-            }
+            if(!t.teRei(Math.abs(jg-1))) return prf;
             else return -1;
         }
         else{
@@ -350,7 +343,8 @@ public class Problema {
                 if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()) instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
                 else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()) instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
-                int l = valorMin(aux,jg, (prf)-1);
+                int l = valorMin(aux,jg, prf-1);
+                if (l == 0) return l;
                 vmax = Math.max(vmax,l);
             }
             return vmax;
@@ -369,9 +363,11 @@ public class Problema {
         int vmax;
 
         if (estatTerminalOptim(t,jg,prf)){
+            if (!t.teRei(Math.abs(jg-1))) return -1;
+            if (!t.teRei(jg)) return -1;
             if(t.jaquemate(Math.abs(jg-1))){
-                t.mostrarTaulell();
-                System.out.println("-----------------------------------------");
+                //t.mostrarTaulell();
+                //System.out.println("-----------------------------------------");
                 return 1;
             }
             else return -1;
@@ -406,10 +402,7 @@ public class Problema {
         int vmin;
 
         if (estatTerminal(t,jg,prf)){
-            /*if(!t.teRei(Math.abs(jg-1))){
-                return prf;
-            }*/
-            if(t.jaquemate(Math.abs(jg-1))) {
+            if(!t.teRei(Math.abs(jg-1))){
                 return prf;
             }
             else return -1;
@@ -424,8 +417,9 @@ public class Problema {
                 if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()) instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'w') aux.setRei(false,0);
                 else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()) instanceof King && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
                 aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
-                int l = valorMax(aux,jg, (prf)-1);
+                int l = valorMax(aux,jg, prf-1);
                 vmin = Math.min(vmin,l);
+                if (vmin == -1) return vmin;
 
             }
             return vmin;
@@ -444,6 +438,8 @@ public class Problema {
         int vmin;
 
         if (estatTerminalOptim(t,jg,prf)){
+            if (!t.teRei(Math.abs(jg-1))) return -1;
+            if (!t.teRei(jg)) return -1;
             if(t.jaquemate(Math.abs(jg-1))) {
                 t.mostrarTaulell();
                 System.out.println("-----------------------------------------");

@@ -4,6 +4,9 @@ import lib.Pair;
 
 import java.util.ArrayList;
 
+import static java.lang.StrictMath.sqrt;
+import static javax.print.attribute.standard.MediaSizeName.A;
+
 public class Taulell {
 
     //ATRIBUTS
@@ -363,17 +366,66 @@ public class Taulell {
         return amenaza;
     }
 
+
+    private boolean member(Piece p, ArrayList<Pair> v){
+        boolean b = false;
+        Pair pos = p.getPos();
+        //System.out.println("la meva posicio es " + pos);
+        for (int i = 0; i < v.size() && b == false; ++i){
+            Pair p1 = (Pair)v.get(i).getSecond();
+            //System.out.println(p1.getFirst() + " " + p1.getSecond());
+            if(pos.getFirst() == p1.getFirst() && pos.getSecond() == p1.getSecond()) b = true;
+        }
+        return b;
+    }
+
+    private boolean intercepted(Pair enemic, Pair rei, ArrayList<Pair> v){
+
+        boolean b = false;
+
+        for (int i = 0; i < v.size() && b == false; ++i){
+
+            Pair pos = (Pair)v.get(i).getSecond();
+
+            if(enemic.getFirst() == rei.getFirst()){ //mateixa fila
+                if (pos.getFirst() == enemic.getFirst()){
+                    if ((Integer)pos.getSecond() > (Integer)enemic.getSecond() && (Integer)pos.getSecond() < (Integer)rei.getSecond()) return true;
+                    if ((Integer)pos.getSecond() < (Integer)enemic.getSecond() && (Integer)pos.getSecond() > (Integer)rei.getSecond()) return true;
+
+                }
+            }
+
+            if(enemic.getSecond() == rei.getSecond()){ //mateixa columna
+                if (pos.getSecond() == enemic.getSecond()){
+                    if ((Integer)pos.getFirst() > (Integer)enemic.getFirst() && (Integer)pos.getFirst() < (Integer)rei.getFirst()) return true;
+                    if ((Integer)pos.getFirst() < (Integer)enemic.getFirst() && (Integer)pos.getFirst() > (Integer)rei.getFirst()) return true;
+
+                }
+            }
+
+        }
+        return false;
+    }
+
     /**
      * Calcula si el jugador jug esta en escac i mat
      * @param jug Jugador que consultarem
      * @return Retorna true si esta en escac i mat i false en cas contrari
      */
     public boolean jaquemate(int jug){//jug es el jugador al que le estan haciendo el jaquemate(0 atacante 1 defensor)
-        ArrayList<Pair> posenemy = new ArrayList<>();
+
+        Maquina2 m = new Maquina2();
+        ArrayList<Pair> v = m.calculaMovimentsPosibles(this,jug);
+
         int x = 0;
         int y = 0;
         int poslegales = 0;
         ArrayList<Pair> posrey = new ArrayList<>();
+        ArrayList<Pair> posenemy = new ArrayList<>();
+
+        //creem un vector de moviments amb els moviments del rei
+        //creem un vector amb tots els possibles moviments de l'enemic
+
         for (int i = 0; i < 8;++i) {
             for (int j = 0; j < 8; ++j) {
                 if (matriu[i][j] != null) { //si hay pieza
@@ -381,37 +433,73 @@ public class Taulell {
                         if ((matriu[i][j] instanceof King)) { //el rey del defensor
                             x = i;
                             y = j;
-                            posrey = matriu[x][y].calculaMovimentsPiece(matriu,x,y);
+                            //System.out.println("soc el rei");
+                            posrey = matriu[x][y].calculaMovimentsPiece(matriu,x,y); //calculem moviments del rei i els posem al vector posrey
                             Piece rey = matriu[x][y];
                             Pair pos = new Pair(x,y);
                             Pair aux = new Pair(rey,pos);
-                            posrey.add(aux);
-                            poslegales = posrey.size();
+                            posrey.add(aux); //afegim la posicio del rei al vector de moviments=
+                            //System.out.println("les posicions del rei son " + posrey.size());
+                            //for (int i1 = 0; i1 < posrey.size(); ++i1) System.out.println(posrey.get(i1));
+
+                            poslegales = posrey.size(); //posicions legals = posicions que es pot moure el rei
                         }
-                    } else { //si es enemiga ponemos sus posibles posiciones en el vec posenemy
+                    }
+                    else { //si es enemiga ponemos sus posibles posiciones en el vec posenemy
                         ArrayList<Pair> aux = matriu[i][j].calculaMovimentsJaqueMate(matriu, i, j);
                         posenemy.addAll(aux);
+
                     }
                 }
             }
         }
 
          //metemos pos del rey tambien para ver si le hacen jaque
-        for (int i = 0; i < posrey.size();++i){
+
+        boolean uncop = false;
+
+        boolean b1;
+        boolean b2;
+        int cont = 0;
+
+        for (int i = 0; i < posrey.size();++i){ //iterem sobre els possibles moviments del rei
+
             boolean found = false;
-            Pair posreyaux = posrey.get(i);
-            posreyaux =(Pair) posreyaux.getSecond();
-            for (int j = 0; j < posenemy.size() && !found;++j){
-                Pair posenemyaux = posenemy.get(j);
-                posenemyaux = (Pair) posenemyaux.getSecond();
-                if(posreyaux.getFirst() == posenemyaux.getFirst() && posreyaux.getSecond() == posenemyaux.getSecond()){
-                    found = true;
-                    --poslegales;
+            Pair posreyaux = (Pair) posrey.get(i).getSecond(); //posició del rei
+
+            for (int j = 0; j < posenemy.size() && !found; ++j){ //iterem sobre els moviments dels enemics
+
+                Piece p = (Piece) posenemy.get(j).getFirst();
+                Pair posenemyaux = (Pair)posenemy.get(j).getSecond(); //possible posicio de l'enemic
+
+
+                if(posreyaux.getFirst() == posenemyaux.getFirst() && posreyaux.getSecond() == posenemyaux.getSecond()){ //si son iguals
+                    Pair p1 = new Pair(x,y); //posicio del rei original
+
+                    if ((Integer) posreyaux.getFirst() == x && (Integer) posreyaux.getSecond() == y) { //amenaza directa
+                            //this.mostrarTaulell();
+                            //System.out.println("entro");
+                            b1 = intercepted(p.getPos(),p1,v);
+                            b2 = member(p,v);
+
+                            if ((!b1 && !b2)||(cont > 0)){
+                                found = true;
+                                --poslegales;
+                            }
+                            else if (cont == 0 && (b1 || b2)){
+                                ++cont;
+                            }
+                    }
+                    else {
+                        found = true;
+                        --poslegales;
+                    }
                 }
             }
         }
+        //System.out.println(poslegales);
 
-        if(poslegales == 0)return true;
+        if(poslegales == 0) return true;
         else return false;
     }
 }
