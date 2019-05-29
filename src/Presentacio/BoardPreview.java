@@ -41,6 +41,7 @@ public class BoardPreview {
         gui.add(tools, BorderLayout.PAGE_START);
 
         chessBoard = new JPanel(new GridLayout(0, 9));
+        chessBoard.setBackground(Color.decode("0x857454"));
         chessBoard.setBorder(new LineBorder(Color.BLACK));
         gui.add(chessBoard);
 
@@ -60,7 +61,7 @@ public class BoardPreview {
                 if ((jj % 2 == 1 && ii % 2 == 1)
                         //) {
                         || (jj % 2 == 0 && ii % 2 == 0)) {
-                    b.setBackground(Color.WHITE);
+                    b.setBackground(Color.decode("0xB5A254"));
                 } else {
                     b.setBackground(Color.BLACK);
                 }
@@ -82,7 +83,7 @@ public class BoardPreview {
             for (int jj = 0; jj < 8; jj++) {
                 switch (jj) {
                     case 0:
-                        chessBoard.add(new JLabel("" + (ii + 1),
+                        chessBoard.add(new JLabel("" + (8 - ii),
                                 SwingConstants.CENTER));
                     default:
                         ImageIcon img = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[ii][jj]));

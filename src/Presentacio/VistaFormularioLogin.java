@@ -74,6 +74,7 @@ public class VistaFormularioLogin {
                         else { //si el usuario esta okey pasamos a la siguiente vista
                             controladorPresentacion.setCurrentuser(user);
                             desactivar();
+                            passwordField1.setText("");
                             controladorPresentacion.cambiarVistaAMenuPrincipal();
                         }
                     }

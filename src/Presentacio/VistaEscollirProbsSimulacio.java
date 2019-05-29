@@ -45,8 +45,8 @@ public class VistaEscollirProbsSimulacio {
     }
 
     private void inicializarFrameVista() { //preferencias del Jframe
-        frameVista.setPreferredSize(new Dimension(700, 365));
-        frameVista.setBounds(50, 50, 700, 400);
+        frameVista.setPreferredSize(new Dimension(650, 372));
+        frameVista.setBounds(50, 50, 650, 450);
         frameVista.setResizable(false);
         frameVista.setLocationRelativeTo(null);
         frameVista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

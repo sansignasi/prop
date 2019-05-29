@@ -18,6 +18,7 @@ public class VistaMenuPrincipal {
     private JButton jugarProblemaButton;
     private JButton gestionarProblemesButton;
     private JButton simularProblemesButton;
+    private JLabel currentUserLabel;
 
     public VistaMenuPrincipal(CtrlPresentacion c){
         controladorPresentacion = c;
@@ -110,5 +111,6 @@ public class VistaMenuPrincipal {
 
 
     }
+
 
 }

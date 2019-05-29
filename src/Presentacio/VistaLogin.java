@@ -16,6 +16,7 @@ public class VistaLogin {
     private JButton loginButton;
     private JPanel panel1;
     private JButton registerButton;
+    private JLabel label;
 
     public VistaLogin(CtrlPresentacion c){
         controladorPresentacion = c;
@@ -39,7 +40,7 @@ public class VistaLogin {
     }
     public void hacerVisible() {
         frameVista.setEnabled(true);
-        frameVista.pack();
+        //frameVista.pack();
         frameVista.setVisible(true);
     }
 

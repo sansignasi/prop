@@ -75,6 +75,7 @@ public class VistaCrear {
 
         chessBoard = new JPanel(new GridLayout(0, 9));
         chessBoard.setBorder(new LineBorder(Color.BLACK));
+        chessBoard.setBackground(Color.decode("0x857454"));
         gui.add(chessBoard);
         asignarListenersComponentes();
         ImageIcon img = new ImageIcon(ChessSprites.SILVER_PAWN);
@@ -170,7 +171,7 @@ public class VistaCrear {
                 if ((jj % 2 == 1 && ii % 2 == 1)
                         //) {
                         || (jj % 2 == 0 && ii % 2 == 0)) {
-                    b.setBackground(Color.WHITE);
+                    b.setBackground(Color.decode("0xB5A254"));
                 } else {
                     b.setBackground(Color.BLACK);
                 }
@@ -191,7 +192,7 @@ public class VistaCrear {
             for (int jj = 0; jj < 8; jj++) {
                 switch (jj) {
                     case 0://II I JJ AL REVÉS, POT PORTAR PROBLEMES
-                        chessBoard.add(new JLabel("" + (ii + 1),
+                        chessBoard.add(new JLabel("" + (8 - ii),
                                 SwingConstants.CENTER));
                     default:
                         chessBoard.add(chessBoardSquares[ii][jj]);
