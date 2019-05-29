@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.EventObject;
+import java.util.concurrent.ExecutionException;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -26,6 +28,7 @@ public class Board {
     private int nmovs;
     private String nomprob;
     private Boolean tornuser=true;
+    private int[] vecMov;
 
     public Board(CtrlPresentacion c,String nomprob,String tipusjug){
         controladorPresentacion = c;
@@ -141,9 +144,8 @@ public class Board {
                                                 chessBoardSquares[posIni[0]][posIni[1]].setIcon(icon);
                                                 //TORN DE LA MÀQUINA
                                                 if (tipusjug.equals("maquina1") && nmovs > 0 && !tornuser) {
-                                                    int[] vecMov = new int[4];
-                                                    try {
-                                                        vecMov = controladorPresentacion.movimentM1(mchar, nmovs, nomprob);
+                                                        aTask t = new aTask();
+                                                        t.execute();
                                                         mchar[vecMov[2]][vecMov[3]] = mchar[vecMov[0]][vecMov[1]];
                                                         mchar[vecMov[0]][vecMov[1]] = '-';
                                                         ImageIcon imgx = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[vecMov[2]][vecMov[3]]));
@@ -152,9 +154,7 @@ public class Board {
                                                                 new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
                                                         chessBoardSquares[vecMov[0]][vecMov[1]].setIcon(icon2);
                                                         tornuser = true;
-                                                    } catch (IncorrectFENException e1) {
-                                                        e1.printStackTrace();
-                                                    }
+
                                                 }
                                             }
                                             else{
@@ -250,5 +250,26 @@ public class Board {
         f.setMinimumSize(f.getSize());
         f.setVisible(true);
     }
+
+    private class aTask extends SwingWorker<int[],Void>{
+
+        @Override
+        protected int[] doInBackground() throws Exception {
+            int[] vec = controladorPresentacion.movimentM1(mchar, nmovs, nomprob);
+            return vec;
+        }
+
+        @Override
+        protected void done(){
+            try {
+                vecMov = get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 }
