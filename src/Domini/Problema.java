@@ -98,6 +98,7 @@ public class Problema {
         else atacant = 1;
     }
 
+
     /**
      * Retorna el Taulell T transformat a una matriu de chars
      * @return
@@ -137,10 +138,9 @@ public class Problema {
         }
 
         float dificultat = (meves-seves)/nMax;
-        if (dificultat > 0.5) dificultad = "Molt facil";
-        else if (dificultat > 0) dificultad = "Facil";
-        else if (dificultat > -0.5) dificultad = "Dificil";
-        else dificultad = "Molt Dificil";
+        if (dificultat > 0) dificultad = "Facil";
+        else if (dificultat > -0.5) dificultad = "Normal";
+        else dificultad = "Dificil";
 
     }
 

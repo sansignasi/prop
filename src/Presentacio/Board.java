@@ -18,7 +18,7 @@ import javax.swing.border.*;
 public class Board {
 
     private static CtrlPresentacion controladorPresentacion;
-
+    private JFrame f;
     private final JPanel gui = new JPanel(new BorderLayout(3, 3));
     private JButton[][] chessBoardSquares = new JButton[8][8];
     private JPanel chessBoard;
@@ -29,12 +29,14 @@ public class Board {
     private String nomprob;
     private Boolean tornuser=true;
     private int[] vecMov;
+    private long taux = 0;
 
     public Board(CtrlPresentacion c,String nomprob,String tipusjug){
+
         controladorPresentacion = c;
-        this.tipusjug = "maquina2";
+        this.tipusjug = tipusjug;
         this.nomprob = nomprob;
-        nmovs = controladorPresentacion.getMovimentsProblema(nomprob)+1;
+        nmovs = controladorPresentacion.getMovimentsProblema(nomprob);
         mchar = controladorPresentacion.matriuProblema(nomprob);
         initializeGui();
     }
@@ -46,6 +48,7 @@ public class Board {
 
     public final void initializeGui() {
         // set up the main GUI
+        taux = System.nanoTime();
         gui.setBorder(new EmptyBorder(5, 5, 5, 5));
         chessBoard = new JPanel(new GridLayout(0, 9));
         chessBoard.setBorder(new LineBorder(Color.BLACK));
@@ -142,21 +145,27 @@ public class Board {
                                                 ImageIcon icon = new ImageIcon(
                                                         new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
                                                 chessBoardSquares[posIni[0]][posIni[1]].setIcon(icon);
+                                                //el 1 de jaque indica defensor
+                                                if(controladorPresentacion.hayJaque(mchar, nomprob, 1))JOptionPane.showMessageDialog(null, "L'atacant fa escac.");
+                                                if(nmovs == 0) finalizarpartida();
                                                 //TORN DE LA MÀQUINA
                                                 if (tipusjug.equals("maquina1") && nmovs > 0 && !tornuser) {
                                                     CalculaM1 m1 = new CalculaM1();
                                                     m1.execute();
                                                 }
-                                                if (tipusjug.equals("maquina2") && nmovs > 0 && !tornuser) {
+                                                else if (tipusjug.equals("maquina2") && nmovs > 0 && !tornuser) {
                                                     CalculaM2 m2 = new CalculaM2();
                                                     m2.execute();
                                                 }
+
                                             }
                                             else{
                                                 JOptionPane.showMessageDialog(null, "Moviment no vàlid.");
                                                 contMovs[0]--;
                                             }
                                         } catch (IncorrectFENException e1) {
+                                            e1.printStackTrace();
+                                        } catch (Exception e1) {
                                             e1.printStackTrace();
                                         }
                                     }
@@ -198,6 +207,8 @@ public class Board {
                                                 ImageIcon icon = new ImageIcon(
                                                         new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
                                                 chessBoardSquares[posIni[0]][posIni[1]].setIcon(icon);
+                                                if(controladorPresentacion.hayJaque(mchar, nomprob, 0))JOptionPane.showMessageDialog(null, "El defensor fa escac.");
+
                                             }
                                             else{
                                                 JOptionPane.showMessageDialog(null, "Moviment no vàlid.");
@@ -232,7 +243,7 @@ public class Board {
 
     public void hacerVisible() {
 
-        JFrame f = new JFrame("Jugar Problema");
+        f = new JFrame("Jugar Problema");
         f.setPreferredSize(new Dimension(600,600));
         f.add(this.getGui());
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -264,10 +275,13 @@ public class Board {
                 ImageIcon icon2 = new ImageIcon(
                         new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
                 chessBoardSquares[vecMov[0]][vecMov[1]].setIcon(icon2);
+                if(controladorPresentacion.hayJaque(mchar, nomprob, 0))JOptionPane.showMessageDialog(null, "El defensor fa escac.");
                 tornuser = true;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (IncorrectFENException e) {
                 e.printStackTrace();
             }
         }
@@ -291,14 +305,42 @@ public class Board {
                 ImageIcon icon2 = new ImageIcon(
                         new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
                 chessBoardSquares[vecMov[0]][vecMov[1]].setIcon(icon2);
+                if(controladorPresentacion.hayJaque(mchar, nomprob, 0))JOptionPane.showMessageDialog(null, "El defensor fa escac.");
+
                 tornuser = true;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
+            } catch (IncorrectFENException e) {
+                e.printStackTrace();
             }
         }
     }
 
+    private void finalizarpartida() throws Exception {
+        taux = System.nanoTime() - taux;
+        System.out.println(taux);
+        if(controladorPresentacion.hayJaqueMate(mchar, nomprob, 1)){
+            if(tipusjug.equals("jugador"))JOptionPane.showMessageDialog(null, "L'atacant guanya amb escac i mat!.");
+            else{
+                controladorPresentacion.afegirAlRanking(nomprob,taux);
+                JOptionPane.showMessageDialog(null, "L'atacant guanya amb escac i mat!.");
+            }
+
+            desactivar();
+            controladorPresentacion.cambiarVistaASelecProbJugar();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "L'atacant no ha fet escac i mat en el numero de moviments establerts");
+            desactivar();
+            controladorPresentacion.cambiarVistaASelecProbJugar();
+        }
+    }
+
+    public void desactivar() {
+        f.setVisible(false);
+        f.setEnabled(false);
+    }
 
 }

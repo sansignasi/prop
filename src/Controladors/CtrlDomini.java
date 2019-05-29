@@ -494,6 +494,31 @@ public class CtrlDomini {//hola
     }
 
 
+    public boolean hayJaque(char[][] mchar, String nomprob, int jug) throws IncorrectFENException {
+        String fenincomplete = ctrlPresentacion.mcharAFEN(mchar); //fen incompleto solo con mchar
+        String atk;
+        if(bproblemes.buscarProblema(nomprob).getAtacant() == 0) atk = "w";
+        else atk = "b";
+        String fen = fenincomplete+" "+atk+" - - 0 1"; //fen bueno
+        Taulell T = new Taulell(fen);
+        return T.jaque(jug);
+    }
+
+    public boolean hayJaqueMate(char[][] mchar, String nomprob, int i) throws IncorrectFENException {
+        String fenincomplete = ctrlPresentacion.mcharAFEN(mchar); //fen incompleto solo con mchar
+        String atk;
+        if(bproblemes.buscarProblema(nomprob).getAtacant() == 0) atk = "w";
+        else atk = "b";
+        String fen = fenincomplete+" "+atk+" - - 0 1"; //fen bueno
+        Taulell T = new Taulell(fen);
+        return T.jaquemate(i);
+    }
+
+    public void afegirAlRanking(String nomprob, long taux) throws Exception {
+        Problema p = bproblemes.buscarProblema(nomprob);
+        p.putRanking(currentuser,taux);
+        GuardaBroblemes();
+    }
 }
 
 
