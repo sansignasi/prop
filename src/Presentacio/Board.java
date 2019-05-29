@@ -146,14 +146,6 @@ public class Board {
                                                 if (tipusjug.equals("maquina1") && nmovs > 0 && !tornuser) {
                                                         aTask t = new aTask();
                                                         t.execute();
-                                                        mchar[vecMov[2]][vecMov[3]] = mchar[vecMov[0]][vecMov[1]];
-                                                        mchar[vecMov[0]][vecMov[1]] = '-';
-                                                        ImageIcon imgx = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[vecMov[2]][vecMov[3]]));
-                                                        chessBoardSquares[vecMov[2]][vecMov[3]].setIcon(imgx);
-                                                        ImageIcon icon2 = new ImageIcon(
-                                                                new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
-                                                        chessBoardSquares[vecMov[0]][vecMov[1]].setIcon(icon2);
-                                                        tornuser = true;
 
                                                 }
                                             }
@@ -263,6 +255,14 @@ public class Board {
         protected void done(){
             try {
                 vecMov = get();
+                mchar[vecMov[2]][vecMov[3]] = mchar[vecMov[0]][vecMov[1]];
+                mchar[vecMov[0]][vecMov[1]] = '-';
+                ImageIcon imgx = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[vecMov[2]][vecMov[3]]));
+                chessBoardSquares[vecMov[2]][vecMov[3]].setIcon(imgx);
+                ImageIcon icon2 = new ImageIcon(
+                        new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
+                chessBoardSquares[vecMov[0]][vecMov[1]].setIcon(icon2);
+                tornuser = true;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
