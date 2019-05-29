@@ -236,4 +236,24 @@ public class CtrlPresentacion {
     public boolean movimentValid(char[][] mchar, int[] posIni, int[] posFi,String nomprob) throws IncorrectFENException {
         return controladorDomini.movimentValid(mchar,posIni,posFi,nomprob);
     }
+
+    public int[] movimentM1(char[][] mchar, int nmovs, String nomprob) throws IncorrectFENException {
+        return (controladorDomini.movimentM1(mchar,nmovs,nomprob));
+    }
+
+    public int[] movimentM2(char[][] mchar, int nmovs, String nomprob) throws IncorrectFENException {
+        return (controladorDomini.movimentM2(mchar,nmovs,nomprob));
+    }
+
+    public boolean hayJaque(char[][] mchar, String nomprob, int jug) throws IncorrectFENException {
+        return controladorDomini.hayJaque(mchar,nomprob,jug);
+    }
+
+    public boolean hayJaqueMate(char[][] mchar, String nomprob, int i) throws IncorrectFENException {
+        return controladorDomini.hayJaqueMate(mchar,nomprob,i);
+    }
+
+    public void afegirAlRanking(String nomprob, long taux) throws Exception {
+        controladorDomini.afegirAlRanking(nomprob,taux);
+    }
 }
