@@ -519,6 +519,10 @@ public class CtrlDomini {//hola
         p.putRanking(currentuser,taux);
         GuardaBroblemes();
     }
+
+    public int getAtacantProblema(String nomprob) {
+        return bproblemes.buscarProblema(nomprob).getAtacant();
+    }
 }
 
 

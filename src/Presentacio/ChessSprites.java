@@ -18,10 +18,10 @@ public final class ChessSprites {
         }
     }
 
-    public static final BufferedImage GOLD_QUEEN    = SHEET.getSubimage(0 * SIZE, 0,    SIZE, SIZE);
-    public static final BufferedImage SILVER_QUEEN  = SHEET.getSubimage(0 * SIZE, SIZE, SIZE, SIZE);
-    public static final BufferedImage GOLD_KING     = SHEET.getSubimage(1 * SIZE, 0,    SIZE, SIZE);
-    public static final BufferedImage SILVER_KING   = SHEET.getSubimage(1 * SIZE, SIZE, SIZE, SIZE);
+    public static final BufferedImage GOLD_QUEEN    = SHEET.getSubimage(1 * SIZE, 0,    SIZE, SIZE);
+    public static final BufferedImage SILVER_QUEEN  = SHEET.getSubimage(1 * SIZE, SIZE, SIZE, SIZE);
+    public static final BufferedImage GOLD_KING     = SHEET.getSubimage(0 * SIZE, 0,    SIZE, SIZE);
+    public static final BufferedImage SILVER_KING   = SHEET.getSubimage(0 * SIZE, SIZE, SIZE, SIZE);
     public static final BufferedImage GOLD_ROOK     = SHEET.getSubimage(2 * SIZE, 0,    SIZE, SIZE);
     public static final BufferedImage SILVER_ROOK   = SHEET.getSubimage(2 * SIZE, SIZE, SIZE, SIZE);
     public static final BufferedImage GOLD_KNIGHT   = SHEET.getSubimage(3 * SIZE, 0,    SIZE, SIZE);

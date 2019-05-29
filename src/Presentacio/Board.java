@@ -113,7 +113,7 @@ public class Board {
                                         JOptionPane.showMessageDialog(null, "Selecciona una peça");
                                     }
                                     else if (finalHihapiece && contMovs[0] == 0) {
-                                        if (colorPiece(mchar[finalIi][finalJj])){//Si és blanca
+                                        if (colorPiece(mchar[finalIi][finalJj]) == controladorPresentacion.getAtacantProblema(nomprob)){//Si és blanca
                                             posIni[0] = finalIi;
                                             posIni[1] = finalJj;
                                             contMovs[0]++;
@@ -176,7 +176,7 @@ public class Board {
                                         JOptionPane.showMessageDialog(null, "Selecciona una peça");
                                     }
                                     else if (finalHihapiece && contMovs[0] == 0) {
-                                        if (!colorPiece(mchar[finalIi][finalJj])){//Si és blanca
+                                        if (colorPiece(mchar[finalIi][finalJj]) != controladorPresentacion.getAtacantProblema(nomprob)){//Si és blanca
                                             posIni[0] = finalIi;
                                             posIni[1] = finalJj;
                                             contMovs[0]++;
@@ -227,9 +227,9 @@ public class Board {
         }
     }
 
-    private boolean colorPiece(char c){
-        if(c=='p'||c=='n'||c=='b'||c=='r'||c=='q'||c=='k') return false;
-        else return true;
+    private int colorPiece(char c){
+        if(c=='p'||c=='n'||c=='b'||c=='r'||c=='q'||c=='k') return 1;
+        else return 0;
     }
 
     public final JComponent getChessBoard() {

@@ -256,4 +256,8 @@ public class CtrlPresentacion {
     public void afegirAlRanking(String nomprob, long taux) throws Exception {
         controladorDomini.afegirAlRanking(nomprob,taux);
     }
+
+    public int getAtacantProblema(String nomprob) {
+        return controladorDomini.getAtacantProblema(nomprob);
+    }
 }
