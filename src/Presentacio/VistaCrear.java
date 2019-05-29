@@ -441,6 +441,8 @@ public class VistaCrear {
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setLocationByPlatform(true);
         f.setJMenuBar(menuCrear);
+        f.setResizable(false);
+        f.setLocation(450,150);
         piece = '-';
         resetConts();
         for(int i = 0; i < 8; i++){

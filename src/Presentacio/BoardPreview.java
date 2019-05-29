@@ -113,8 +113,8 @@ public class BoardPreview {
         f.add(this.getGui());
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setLocationByPlatform(true);
-        f.setLocation(550,215);
-
+        f.setResizable(false);
+        f.setLocation(600,320);
         // ensures the frame is the minimum size it needs to be
         // in order display the components within it
         f.pack();

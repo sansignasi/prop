@@ -445,6 +445,8 @@ public class VistaModificar {
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setLocationByPlatform(true);
         f.setJMenuBar(menuCrear);
+        f.setResizable(false);
+        f.setLocation(450,150);
         // ensures the frame is the minimum size it needs to be
         // in order display the components within it
         f.pack();

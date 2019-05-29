@@ -248,8 +248,9 @@ public class Board {
         f.add(this.getGui());
         f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setLocationByPlatform(true);
-
-        // ensures the frame is the minimum size it needs to be
+        f.setResizable(false);
+        f.setLocation(450,150);
+        // ensures the frame is te minimum size it needs to be
         // in order display the components within it
         f.pack();
         // ensures the minimum size is enforced.

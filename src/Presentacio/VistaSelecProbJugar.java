@@ -94,7 +94,6 @@ public class VistaSelecProbJugar {
         vsJugadorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                desactivar();
                 try {
                     controladorPresentacion.cambiarVistaAJugarPartida("jugador",list1.getSelectedValue().toString());
                 } catch (IncorrectFENException e1) {
@@ -106,7 +105,6 @@ public class VistaSelecProbJugar {
         vsMaquina1Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                desactivar();
                 try {
                     controladorPresentacion.cambiarVistaAJugarPartida("maquina1",list1.getSelectedValue().toString());
                 } catch (IncorrectFENException e1) {
@@ -119,7 +117,6 @@ public class VistaSelecProbJugar {
         vsMaquina2Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                desactivar();
                 try {
                     controladorPresentacion.cambiarVistaAJugarPartida("maquina2",list1.getSelectedValue().toString());
                 } catch (IncorrectFENException e1) {
