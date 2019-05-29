@@ -206,7 +206,6 @@ public class VistaModificar {
                         chessBoardSquares[ii][jj].addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                System.out.println(piece);
                                 if(piece == '-'){
                                     decrementarCont(mchar[finalIi][finalJj]);
                                     mchar[finalIi][finalJj] = piece;

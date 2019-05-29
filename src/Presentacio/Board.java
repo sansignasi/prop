@@ -129,8 +129,6 @@ public class Board {
                                     else {
                                         posFi[0] = finalIi;
                                         posFi[1] = finalJj;
-                                        System.out.println(posFi[0] +" "+posFi[1]);
-                                        System.out.println(finalIi +" "+finalJj);
                                         try {
                                             if(controladorPresentacion.movimentValid(mchar,posIni,posFi,nomprob)) {
                                                 //Actualitzes taulell
@@ -138,7 +136,6 @@ public class Board {
                                                 nmovs--;
                                                 contMovs[0]--;
                                                 mchar[posFi[0]][posFi[1]] = mchar[posIni[0]][posIni[1]];
-                                                System.out.println(mchar[posFi[0]][posFi[1]]);
                                                 mchar[posIni[0]][posIni[1]] = '-';
                                                 ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[posFi[0]][posFi[1]]));
                                                 chessBoardSquares[posFi[0]][posFi[1]].setIcon(img3);
@@ -192,15 +189,12 @@ public class Board {
                                     else {
                                         posFi[0] = finalIi;
                                         posFi[1] = finalJj;
-                                        System.out.println(posFi[0] +" "+posFi[1]);
-                                        System.out.println(finalIi +" "+finalJj);
                                         try {
                                             if(controladorPresentacion.movimentValid(mchar,posIni,posFi,nomprob)){
                                                 //Actualitzes taulell
                                                 tornuser = true;
                                                 contMovs[0]--;
                                                 mchar[posFi[0]][posFi[1]]= mchar[posIni[0]][posIni[1]];
-                                                System.out.println(mchar[posFi[0]][posFi[1]]);
                                                 mchar[posIni[0]][posIni[1]] = '-';
                                                 ImageIcon img3 = new ImageIcon(ChessSprites.ImatgeDePiece(mchar[posFi[0]][posFi[1]]));
                                                 chessBoardSquares[posFi[0]][posFi[1]].setIcon(img3);
@@ -321,7 +315,6 @@ public class Board {
 
     private void finalizarpartida() throws Exception {
         taux = System.nanoTime() - taux;
-        System.out.println(taux);
         if(controladorPresentacion.hayJaqueMate(mchar, nomprob, 1)){
             if(tipusjug.equals("jugador"))JOptionPane.showMessageDialog(null, "L'atacant guanya amb escac i mat!.");
             else{

@@ -1,3 +1,4 @@
+/*
 package src.Domini.Drivers;
 
 import lib.Pair;
@@ -84,12 +85,14 @@ public class DriverPiece {
     }
 
     public static void testcalculaMovimentsPiece() throws IncorrectFENException{
-        /*Taulell t = new Taulell();
+        */
+/*Taulell t = new Taulell();
 
         System.out.println("Introdueix un FEN:");
         String fen2 = sc.nextLine();
         t.carregaFEN(fen2);
-        */
+        *//*
+
         Scanner sc = new Scanner(System.in);
         t.mostrarTaulell();
         System.out.println("Escull la posició de la peça a testejar(ex a5):");
@@ -173,3 +176,4 @@ public class DriverPiece {
         }
     }
 }
+*/

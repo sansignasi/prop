@@ -104,18 +104,7 @@ public class Problema {
      * @return
      */
     public char[][] matriuChars(){
-        System.out.print(FEN);
-        T.mostrarTaulell();
         return T.matriuChars();
-    }
-
-    public void visualitzaProblema(){
-        System.out.println(nomprob);
-        System.out.println();
-        System.out.println("Dificultad: "+dificultad);
-        System.out.println();
-        System.out.println();
-        T.mostrarTaulell();
     }
 
     /**
@@ -275,7 +264,6 @@ public class Problema {
             else if (t.tePiece((int)po.getFirst(),(int)po.getSecond()) && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getTipus() == "King" && t.getPiece((int)po.getFirst(),(int)po.getSecond()).getColor() == 'b') aux.setRei(false,1);
             aux.actualitzarTaulell((Piece)p.get(i).getFirst(),(Pair)p.get(i).getSecond());
             cmax = valorMin(aux,jg,profunditat-1);
-            System.out.println(cmax);
             if (cmax == 0) return 0 ;
             if (cmax > ret){
                 ret = cmax;
@@ -441,8 +429,6 @@ public class Problema {
             if (!t.teRei(Math.abs(jg-1))) return -1;
             if (!t.teRei(jg)) return -1;
             if(t.jaquemate(Math.abs(jg-1))) {
-                t.mostrarTaulell();
-                System.out.println("-----------------------------------------");
                 return 1;
             }
             else return -1;

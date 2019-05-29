@@ -304,35 +304,6 @@ public class Taulell {
         }
         return fen;
     }
-
-    public void mostrarTaulell() {
-        //PRE:
-        //POST: mostra l'estat actual de les peces al taulell
-        char [][] tprint = new char[9][9];
-        for(int i=1;i<9;i++){
-            tprint[i][0]=(char)(Math.abs(i-9)+'0');
-            tprint[0][i]=(char)(64+i);
-        }
-        for(int j=1;j<9;j++){
-            for(int y=1;y<9;y++){
-                if(matriu[j-1][y-1]!=null) {
-                    tprint[j][y] = matriu[j - 1][y - 1].getLletra();
-                }
-            }
-        }
-        for (int i = 0; i < tprint.length; i++) {
-            for (int j = 0; j < tprint[i].length; j++) {
-                if (tprint[i][j]!=0) {
-                    System.out.print(tprint[i][j] + " " + " " + " ");
-                }
-                else if(i==0 && j==0) System.out.print(" " + " " + " " + " ");
-                else System.out.print("-" + " " + " " + " ");
-            }
-            System.out.println();
-            System.out.println();
-        }
-    }
-
     /**
      * Calcula si el jugador jug està en escac
      * @param jug Jugador que consultarem
@@ -370,8 +341,7 @@ public class Taulell {
     private boolean member(Piece p, ArrayList<Pair> v){
         boolean b = false;
         Pair pos = p.getPos();
-        //System.out.println("la meva posicio es " + pos);
-        for (int i = 0; i < v.size() && b == false; ++i){
+        for (int i = 0; i < v.size() && !b; ++i){
             Pair p1 = (Pair)v.get(i).getSecond();
             //System.out.println(p1.getFirst() + " " + p1.getSecond());
             if(pos.getFirst() == p1.getFirst() && pos.getSecond() == p1.getSecond()) b = true;
@@ -383,7 +353,7 @@ public class Taulell {
 
         boolean b = false;
 
-        for (int i = 0; i < v.size() && b == false; ++i){
+        for (int i = 0; i < v.size() && !b; ++i){
 
             Pair pos = (Pair)v.get(i).getSecond();
 

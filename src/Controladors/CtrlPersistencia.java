@@ -44,7 +44,6 @@ public class CtrlPersistencia {
 
         busuaris = new File ("BUsers.txt");
         bproblemes = new File ("BProblems.txt");
-        System.out.println("s'ha creat bproblemes i el seu path es " + bproblemes.getAbsolutePath());
         frproblems = null;
         frusers = null;
         fwusers = null;

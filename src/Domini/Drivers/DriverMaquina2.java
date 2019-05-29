@@ -1,3 +1,4 @@
+/*
 package src.Domini.Drivers;
 
 import lib.Pair;
@@ -6,10 +7,12 @@ import java.util.Scanner;
 
 import src.Domini.*;
 
+*/
 /** Representa una Chess IA implementada amb un Minimax amb poda alpha beta i una heurística més complerta
  * @author Pol Garcia Recasens
  * @author polgarciarecasens@gmail.com
- */
+ *//*
+
 public class DriverMaquina2 {
 
         public static Maquina2 m = new Maquina2(0, 0);
@@ -166,4 +169,4 @@ public class DriverMaquina2 {
                 }
             }
         }
-    }
+    }*/
