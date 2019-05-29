@@ -33,13 +33,7 @@ public class Rook extends Piece {
     }
 
     //GETTERS
-    /**
-     * Getter del tipus de Piece
-     * @return Retorna que es una Piece del tipus Rook
-     */
-    public String getTipus() {
-        return "Rook";
-    }
+
     /**
      * Getter del valor de la classe Rook
      * @return Retorna un enter

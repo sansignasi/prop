@@ -16,8 +16,6 @@ public class Partida {
     private Jugador j2; //jugador 2 de la partida (el que defiende)
     private int atacant;
     private Taulell T;
-    private boolean j1u=false;
-    private boolean j2u=false;
     private CtrlDomini c = CtrlDomini.getInstance();
     //METODES
 
@@ -35,8 +33,6 @@ public class Partida {
         mov = p.getMoviments();
         atacant = p.getAtacant();
         this.T = p.getTaulell();
-        if(j1 instanceof Usuari) j1u = true;
-        if(j2 instanceof Usuari) j2u = true;
     }
 
     /**
@@ -55,8 +51,6 @@ public class Partida {
     public boolean jugarPartida() throws IncorrectFENException {
         String s;
         Scanner sc = new Scanner(System.in);
-        long timej1 = 0;
-        long taux = 0;
         int x;
         int y;
         Piece p;
@@ -69,12 +63,7 @@ public class Partida {
                 Boolean peçaselec = false;
                 while (!peçaselec) {
                     if (i % 2 == 0) {
-                        taux = System.nanoTime();
                         move = j1.jugarTorn(T, j1.getColor(), prob.getMoviments() * 2);
-                        if(j1u){
-                            taux = System.nanoTime() - taux;
-                            timej1+=taux;
-                        }
                         if (move != null) peçaselec = true;
                     } else {
                         move = j2.jugarTorn(T, j2.getColor(), prob.getMoviments() * 2);
@@ -111,7 +100,6 @@ public class Partida {
         }
         else {
             if (T.jaquemate(j2.getColor())){
-                this.prob.putRanking(j1.getNom(),timej1);
                 prob.restoreTaulell();
                 return true;
             }

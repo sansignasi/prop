@@ -36,13 +36,6 @@ public class King extends Piece {
 
     //GETTERS
 
-    /**
-     * Getter del tipus de Piece
-     * @return Retorna que es una Piece del tipus King
-     */
-    public String getTipus() {
-        return "King";
-    }
 
     /**
      * Getter del valor de la classe

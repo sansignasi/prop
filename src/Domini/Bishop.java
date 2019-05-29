@@ -36,14 +36,7 @@ public class Bishop extends Piece{
      * Getter del tipus de Piece
      * @return Retorna el nom de la Classe
      */
-    public String getTipus() {
-        return "Bishop";
-    }
 
-    /**
-     * Getter del valor que li hem assignat a la classe Bishop
-     * @return Retorna el seu valor
-     */
     public int getValor() {
         return 3;
     }

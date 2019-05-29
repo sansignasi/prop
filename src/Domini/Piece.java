@@ -77,13 +77,6 @@ public class Piece {
 
     /**
      * Funció abstracta que es redefinirà a les subclasses
-     */
-    public String getTipus() {
-        return null;
-    }
-
-    /**
-     * Funció abstracta que es redefinirà a les subclasses
      * @return
      */
     public int getValor() {

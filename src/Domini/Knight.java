@@ -36,13 +36,6 @@ public class Knight extends Piece {
 
     //GETTERS
 
-    /**
-     * Getter del tipus de Piece
-     * @return Retorna un string
-     */
-    public String getTipus() {
-        return "Knight";
-    }
 
     /**
      * Getter del valor de la classe Knight

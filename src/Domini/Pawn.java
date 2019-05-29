@@ -36,13 +36,6 @@ public class Pawn extends Piece {
 
     //GETTERS
 
-    /**
-     * Getter del tipus de Tipus de Piece
-     * @return Retorna un string dient que es una Piece del tipus Pawn
-     */
-    public String getTipus() {
-        return "Pawn";
-    }
 
     /**
      * Getter del valor associat a la classe pawn
