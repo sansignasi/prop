@@ -68,6 +68,7 @@ public class VistaSelecProbJugar {
         labelMoviments.setVisible(false);
         vsJugadorButton.setEnabled(false);
         vsMaquina1Button.setEnabled(false);
+        previewButton.setEnabled(false);
         vsMaquina2Button.setEnabled(false);
         textArea1.setEditable(false);
         frameVista.setEnabled(true);
@@ -139,6 +140,7 @@ public class VistaSelecProbJugar {
                     labelDificultat.setVisible(true);
                     labelMoviments.setVisible(true);
                     vsJugadorButton.setEnabled(true);
+                    previewButton.setEnabled(true);
                     vsMaquina1Button.setEnabled(true);
                     vsMaquina2Button.setEnabled(true);
                     textArea1.append(controladorPresentacion.getRankingProb(nomp));

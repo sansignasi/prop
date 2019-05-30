@@ -79,6 +79,8 @@ public class VistaFormularioRegistro {
                                 e1.printStackTrace();
                             }
                             desactivar();
+                            textField1.setText("");
+                            textField2.setText("");
                             controladorPresentacion.cambiarVistaAMenuPrincipal();
                         }
                         }
