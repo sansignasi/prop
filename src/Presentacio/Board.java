@@ -30,6 +30,7 @@ public class Board {
     private Boolean tornuser=true;
     private int[] vecMov;
     private long taux = 0;
+    private long tfin = 0;
 
     public Board(CtrlPresentacion c,String nomprob,String tipusjug){
 
@@ -48,11 +49,11 @@ public class Board {
 
     public final void initializeGui() {
         // set up the main GUI
-        taux = System.nanoTime();
         gui.setBorder(new EmptyBorder(5, 5, 5, 5));
         chessBoard = new JPanel(new GridLayout(0, 9));
         chessBoard.setBackground(Color.decode("0xC4A499"));
         chessBoard.setBorder(new LineBorder(Color.BLACK));
+        taux = System.nanoTime();
         gui.add(chessBoard);
 
         // create the chess board squares
@@ -144,6 +145,8 @@ public class Board {
                                                         new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
                                                 chessBoardSquares[posIni[0]][posIni[1]].setIcon(icon);
                                                 //el 1 de jaque indica defensor
+                                                taux = System.nanoTime() - taux;
+                                                tfin+=taux;
                                                 if(controladorPresentacion.hayJaque(mchar, nomprob, 1))JOptionPane.showMessageDialog(null, "L'atacant fa escac.");
                                                 if(nmovs == 0) finalizarpartida();
                                                 //TORN DE LA MÀQUINA
@@ -155,7 +158,7 @@ public class Board {
                                                     CalculaM2 m2 = new CalculaM2();
                                                     m2.execute();
                                                 }
-
+                                                taux = System.nanoTime();
                                             }
                                             else{
                                                 JOptionPane.showMessageDialog(null, "Moviment no vàlid.");
@@ -315,11 +318,10 @@ public class Board {
     }
 
     private void finalizarpartida() throws Exception {
-        taux = System.nanoTime() - taux;
         if(controladorPresentacion.hayJaqueMate(mchar, nomprob, 1)){
             if(tipusjug.equals("jugador"))JOptionPane.showMessageDialog(null, "L'atacant guanya amb escac i mat!.");
             else{
-                controladorPresentacion.afegirAlRanking(nomprob,taux);
+                controladorPresentacion.afegirAlRanking(nomprob,tfin);
                 JOptionPane.showMessageDialog(null, "L'atacant guanya amb escac i mat!.");
             }
 
