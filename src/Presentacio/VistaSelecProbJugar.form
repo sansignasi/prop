@@ -35,7 +35,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-4873644"/>
+                  <background color="-4220112"/>
                   <font size="13" style="1"/>
                   <text value="Back"/>
                 </properties>
@@ -45,7 +45,7 @@
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-4873644"/>
+                  <background color="-4220112"/>
                   <font size="13" style="1"/>
                   <foreground color="-13487825"/>
                   <hideActionText value="false"/>
@@ -57,7 +57,7 @@
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-4873644"/>
+                  <background color="-4220112"/>
                   <font size="13" style="1"/>
                   <foreground color="-13487825"/>
                   <text value="VsMaquina1"/>
@@ -68,7 +68,7 @@
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-4873644"/>
+                  <background color="-4220112"/>
                   <font size="13" style="1"/>
                   <foreground color="-13487825"/>
                   <text value="VsMaquina2"/>
@@ -79,7 +79,7 @@
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-4873644"/>
+                  <background color="-4220112"/>
                   <font size="13" style="1"/>
                   <text value="Preview"/>
                 </properties>
@@ -102,7 +102,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-4873644"/>
+                  <background color="-2376784"/>
                   <font size="12" style="1"/>
                 </properties>
                 <border type="bevel-lowered" title="Ranking" title-justification="2" title-position="2">
@@ -117,9 +117,9 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <background color="-4873644"/>
+                      <background color="-2376784"/>
                       <font size="12" style="1"/>
-                      <selectionColor color="-7308221"/>
+                      <selectionColor color="-3890023"/>
                     </properties>
                   </component>
                 </children>
@@ -134,7 +134,7 @@
               </grid>
             </constraints>
             <properties>
-              <background color="-4873644"/>
+              <background color="-2376784"/>
             </properties>
             <border type="bevel-lowered" title="Informació ">
               <font size="12" style="1"/>
@@ -216,10 +216,10 @@
               <component id="ac12b" class="javax.swing.JList" binding="list1" default-binding="true">
                 <constraints/>
                 <properties>
-                  <background color="-4873644"/>
+                  <background color="-2376784"/>
                   <font size="12" style="1"/>
                   <foreground color="-13487825"/>
-                  <selectionBackground color="-8031148"/>
+                  <selectionBackground color="-3890023"/>
                   <selectionForeground color="-13487825"/>
                 </properties>
               </component>
@@ -232,7 +232,9 @@
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-13487825"/>
+        </properties>
         <border type="none"/>
         <children/>
       </grid>
@@ -242,7 +244,7 @@
         </constraints>
         <properties>
           <font size="13" style="1"/>
-          <foreground color="-4873644"/>
+          <foreground color="-4220112"/>
           <text value="Llistat de problemes"/>
         </properties>
       </component>
@@ -256,7 +258,9 @@
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-13487825"/>
+        </properties>
         <border type="none"/>
         <children/>
       </grid>
@@ -265,7 +269,9 @@
         <constraints>
           <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-13487825"/>
+        </properties>
         <border type="none"/>
         <children/>
       </grid>
@@ -274,7 +280,9 @@
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-13487825"/>
+        </properties>
         <border type="none"/>
         <children/>
       </grid>

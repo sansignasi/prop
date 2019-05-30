@@ -43,7 +43,7 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <background color="-4873644"/>
+                      <background color="-4220112"/>
                       <font size="13" style="1"/>
                       <text value="Back"/>
                     </properties>
@@ -53,7 +53,7 @@
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <background color="-4873644"/>
+                      <background color="-4220112"/>
                       <font size="13" style="1"/>
                       <text value=" Afegir"/>
                     </properties>
@@ -63,7 +63,7 @@
                       <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <background color="-4873644"/>
+                      <background color="-4220112"/>
                       <font size="13" style="1"/>
                       <text value="Eliminar"/>
                     </properties>
@@ -73,7 +73,7 @@
                       <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <background color="-4873644"/>
+                      <background color="-4220112"/>
                       <font size="13" style="1"/>
                       <text value="Simular"/>
                     </properties>
@@ -92,9 +92,9 @@
                   <component id="bca23" class="javax.swing.JList" binding="list1" default-binding="true">
                     <constraints/>
                     <properties>
-                      <background color="-4873644"/>
+                      <background color="-2376784"/>
                       <font size="12" style="1"/>
-                      <selectionBackground color="-8031148"/>
+                      <selectionBackground color="-3890023"/>
                     </properties>
                   </component>
                 </children>
@@ -111,7 +111,7 @@
                   <component id="c9b44" class="javax.swing.JList" binding="list2" default-binding="true">
                     <constraints/>
                     <properties>
-                      <background color="-4873644"/>
+                      <background color="-2376784"/>
                       <font size="12" style="1"/>
                       <selectionBackground color="-8031148"/>
                     </properties>
@@ -125,8 +125,9 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-4220112"/>
               <font size="13" style="1"/>
-              <foreground color="-4873644"/>
+              <foreground color="-4220112"/>
               <text value="Llistat de problemes"/>
             </properties>
           </component>
@@ -140,8 +141,8 @@
             </properties>
             <border type="line" title="Defensor">
               <font size="12" style="1"/>
-              <title-color color="-4873644"/>
-              <color color="-4873644"/>
+              <title-color color="-4220112"/>
+              <color color="-4220112"/>
             </border>
             <children>
               <component id="85115" class="javax.swing.JComboBox" binding="defensor">
@@ -168,8 +169,8 @@
             </properties>
             <border type="line" title="Atacant">
               <font size="12" style="1"/>
-              <title-color color="-4873644"/>
-              <color color="-4873644"/>
+              <title-color color="-4220112"/>
+              <color color="-4220112"/>
             </border>
             <children>
               <component id="958ed" class="javax.swing.JComboBox" binding="atacant">
@@ -191,7 +192,9 @@
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13487825"/>
+            </properties>
             <border type="none"/>
             <children/>
           </grid>
@@ -200,7 +203,9 @@
             <constraints>
               <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13487825"/>
+            </properties>
             <border type="none"/>
             <children/>
           </grid>
@@ -209,7 +214,9 @@
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13487825"/>
+            </properties>
             <border type="none"/>
             <children/>
           </grid>
