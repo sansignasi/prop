@@ -36,7 +36,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
      * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
      * @return Retorna un enter que representa la puntuació amb la que l'Heuristic avalua l'estat del taulell
      */
-    public int Heuristic1(Taulell t, int jugador){
+    private int Heuristic1(Taulell t, int jugador){
 
         Piece[][] p = t.getTaulell();
 
@@ -71,7 +71,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
      * @param jugador Indica quin és el jugador al que supleix la màquina (0 blanques, 1 negres)
      * @return Retorna tots els moviments possibles que podrà realitzar el jugador al que supleix la màquina
      */
-    public ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
+    private ArrayList<Pair> calculaMovimentsPosibles(Taulell t, int jugador){
 
         ArrayList<Pair> a = new ArrayList<>();
         Piece[][] m = t.getTaulell();
@@ -95,7 +95,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
      * @param prf Indica la profunditat de la iteració actual del Minimax
      * @return Retorna un boolea que indica si s'ha arribat a un estat terminal o no
      */
-    public boolean estatTerminal(Taulell t, int jugador, int prf){
+    private boolean estatTerminal(Taulell t, int jugador, int prf){
         if (! t.teRei(jugador)) return true;
         //if (t.jaquemate(Math.abs(jugador-1))) return true;
         else if (! t.teRei(Math.abs(jugador-1))) return true;
@@ -111,7 +111,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
      * @param profunditat Indica la profunditat a la que arribarà el Minimax
      * @return Retorna una Piece i la posició on s'haurà de moure
      */
-    public Pair MiniMax(Taulell t, int jg, int profunditat){
+    private Pair MiniMax(Taulell t, int jg, int profunditat){
 
         int max,cmax; //puntuacio de la heurística
         max = -99999999;
@@ -145,7 +145,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
      * @return Si es un estat terminal retorna la puntuació que li assigna l'heurístic
      * @return Si no es un estat terminal retorna la màxima puntuació d'entre totes les subbranques que ha visitat
      */
-    public int valorMax(Taulell t, int jg, int prf){
+    private int valorMax(Taulell t, int jg, int prf){
         int vmax;
 
         if (estatTerminal(t,jg,prf)){
@@ -181,7 +181,7 @@ public class Maquina1 extends Maquina{ //Minimax amb profunditat limitada
      * @return Si es un estat terminal retorna la puntuació que li assigna l'heurístic
      * @return Si no es un estat terminal retorna la mínima puntuació d'entre totes les subbranques que ha visitat
      */
-    public int valorMin(Taulell t, int jg, int prf){
+    private int valorMin(Taulell t, int jg, int prf){
         int vmin;
 
         if (estatTerminal(t,jg,prf)){
